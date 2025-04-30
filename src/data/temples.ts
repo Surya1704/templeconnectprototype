@@ -1,5 +1,5 @@
 
-import { Flame, Mountain, Temple, Book, Home, Users, Sun, Moon, Star, Waves } from "lucide-react";
+import { Flame, Mountain, Church, Book, Home, Users, Sun, Moon, Star, Waves } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
 export interface Temple {
@@ -69,7 +69,7 @@ export interface Category {
 export const categories: Category[] = [
   { name: "Popular", icon: Flame },
   { name: "Shiva Temples", icon: Mountain },
-  { name: "Vishnu Temples", icon: Temple },
+  { name: "Vishnu Temples", icon: Church },
   { name: "Shakti Temples", icon: Book },
   { name: "Ganesh Temples", icon: Home },
   { name: "Morning Aarti", icon: Sun },
