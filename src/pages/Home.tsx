@@ -1,12 +1,17 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart } from "lucide-react";
-import { temples, categories } from "@/data/temples";
+import { temples, categories, getTemplesByState } from "@/data/temples";
+import StateFilter from "@/components/StateFilter";
+import CongestionIndicator from "@/components/CongestionIndicator";
 
 const Home = () => {
+  const [selectedState, setSelectedState] = useState("All States");
+  const filteredTemples = getTemplesByState(selectedState);
+
   return (
     <div>
       {/* Hero Section */}
@@ -58,18 +63,24 @@ const Home = () => {
       {/* Temples Section */}
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
             <h2 className="text-2xl font-bold text-gray-800">Sacred Destinations</h2>
-            <Button variant="ghost" className="text-orange-500 hover:text-orange-600 flex items-center">
-              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 mr-1">
-                <path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Edit Temples
-            </Button>
+            <div className="flex items-center gap-4">
+              <StateFilter 
+                selectedState={selectedState} 
+                onStateChange={setSelectedState}
+              />
+              <Button variant="ghost" className="text-orange-500 hover:text-orange-600 flex items-center">
+                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 mr-1">
+                  <path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Edit Temples
+              </Button>
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {temples.map((temple) => (
+            {filteredTemples.map((temple) => (
               <Card key={temple.id} className="overflow-hidden border-none shadow-sm">
                 <div className="relative">
                   <Link to={`/temple/${temple.id}`}>
@@ -89,7 +100,7 @@ const Home = () => {
                 </div>
                 
                 <CardContent className="p-4">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center justify-between mb-2">
                     <Link 
                       to={`/temple/${temple.id}`}
                       className="text-lg font-semibold hover:text-orange-500"
@@ -102,7 +113,11 @@ const Home = () => {
                     </div>
                   </div>
                   
-                  <p className="text-gray-600 mb-2">{temple.location}</p>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-gray-600">{temple.location}</p>
+                    <CongestionIndicator level={["low", "moderate", "high", "extreme"][Math.floor(Math.random() * 4)] as any} />
+                  </div>
+
                   <p className="text-gray-600 text-sm mb-3">{temple.hours}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
