@@ -15,8 +15,9 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[500px] bg-gray-200 flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30 z-10"></div>
+      <section className="relative h-[500px] bg-cover bg-center flex items-center justify-center" 
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1598977054780-2dc700fdc103?q=80&w=2070&auto=format&fit=crop')" }}>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 z-10"></div>
         <div className="container mx-auto px-4 relative z-20 text-center text-white">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">Connect with Divine Temples</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
@@ -27,7 +28,7 @@ const Home = () => {
               <Link to="/events">Book Darshan</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white">
-              <Link to="/contact">Edit Content</Link>
+              <Link to="/prasad-booking">Order Prasad</Link>
             </Button>
           </div>
         </div>
@@ -39,7 +40,7 @@ const Home = () => {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">Browse by category</h2>
             <Button variant="ghost" className="text-orange-500 hover:text-orange-600">
-              Edit Filters
+              View All
             </Button>
           </div>
           
@@ -47,7 +48,7 @@ const Home = () => {
             {categories.map((category) => (
               <Link 
                 key={category.name} 
-                to="/" 
+                to="/temples" 
                 className="flex flex-col items-center text-center group"
               >
                 <div className="w-16 h-16 rounded-full border flex items-center justify-center mb-2 group-hover:border-orange-500 group-hover:text-orange-500">
@@ -70,22 +71,21 @@ const Home = () => {
                 selectedState={selectedState} 
                 onStateChange={setSelectedState}
               />
-              <Button variant="ghost" className="text-orange-500 hover:text-orange-600 flex items-center">
-                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 mr-1">
-                  <path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                Edit Temples
+              <Button asChild variant="ghost" className="text-orange-500 hover:text-orange-600">
+                <Link to="/temples" className="flex items-center">
+                  View All Temples
+                </Link>
               </Button>
             </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filteredTemples.map((temple) => (
+            {filteredTemples.slice(0, 8).map((temple) => (
               <Card key={temple.id} className="overflow-hidden border-none shadow-sm">
                 <div className="relative">
                   <Link to={`/temple/${temple.id}`}>
                     <img 
-                      src={temple.image || "https://via.placeholder.com/300x200?text=Temple+Image"} 
+                      src={temple.image} 
                       alt={temple.name} 
                       className="w-full h-48 object-cover transition-transform hover:scale-105"
                     />
@@ -150,6 +150,14 @@ const Home = () => {
               </Card>
             ))}
           </div>
+          
+          {filteredTemples.length > 8 && (
+            <div className="flex justify-center mt-8">
+              <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
+                <Link to="/temples">View All Temples</Link>
+              </Button>
+            </div>
+          )}
         </div>
       </section>
     </div>
