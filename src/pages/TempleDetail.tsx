@@ -1,14 +1,19 @@
 
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Calendar, MapPin, Clock, AlertCircle } from "lucide-react";
+import { Heart, Calendar, MapPin, Clock, AlertCircle, ShoppingCart } from "lucide-react";
 import { temples, getTempleById } from "@/data/temples";
+import CongestionIndicator from "@/components/CongestionIndicator";
+import { useToast } from "@/hooks/use-toast";
 
 const TempleDetail = () => {
   const { id } = useParams();
   const temple = getTempleById(id || "");
+  const { toast } = useToast();
+  const [selectedDate, setSelectedDate] = useState<number>(3);
+  const [selectedTime, setSelectedTime] = useState<string>("8:00 AM");
   
   if (!temple) {
     return (
@@ -21,6 +26,24 @@ const TempleDetail = () => {
       </div>
     );
   }
+
+  // Generate random congestion level for demo purposes
+  const congestionLevels: ["low", "moderate", "high", "extreme"] = ["low", "moderate", "high", "extreme"];
+  const currentCongestion = congestionLevels[Math.floor(Math.random() * congestionLevels.length)];
+
+  const bookDarshan = () => {
+    toast({
+      title: "Darshan Booked",
+      description: `Your darshan at ${temple.name} has been confirmed for May ${selectedDate + 10} at ${selectedTime}`,
+    });
+  };
+
+  const bookPrasad = () => {
+    toast({
+      title: "Redirecting to Prasad Booking",
+      description: "Please select your preferred prasad items",
+    });
+  };
 
   return (
     <div>
@@ -43,6 +66,11 @@ const TempleDetail = () => {
               <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
                 <span>{temple.location}</span>
+              </div>
+              
+              {/* Real-time crowd congestion indicator */}
+              <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
+                <CongestionIndicator level={currentCongestion} />
               </div>
             </div>
           </div>
@@ -82,6 +110,33 @@ const TempleDetail = () => {
                     and the annual [festival name] celebration.
                   </p>
                 </div>
+
+                <div className="mt-6 p-4 border rounded-lg bg-orange-50">
+                  <h3 className="font-medium text-lg mb-2 flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    Real-time Crowd Status
+                  </h3>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex justify-between items-center">
+                      <span>Current Crowd Level:</span>
+                      <CongestionIndicator level={currentCongestion} />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Estimated Wait Time:</span>
+                      <span className="font-medium">
+                        {currentCongestion === "low" ? "5-10 minutes" : 
+                         currentCongestion === "moderate" ? "30-45 minutes" : 
+                         currentCongestion === "high" ? "1-2 hours" : "3+ hours"}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>Best Time to Visit Today:</span>
+                      <span className="font-medium">
+                        {currentCongestion === "low" || currentCongestion === "moderate" ? "Now" : "After 6:00 PM"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
             
@@ -118,6 +173,28 @@ const TempleDetail = () => {
                     </div>
                   ))}
                 </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="mb-6">
+              <CardContent className="p-6">
+                <h2 className="text-2xl font-semibold mb-6">Temple Gallery</h2>
+                
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {[1, 2, 3, 4, 5, 6].map((item) => (
+                    <div key={item} className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
+                      <img 
+                        src={`https://via.placeholder.com/300x300?text=Temple+Image+${item}`} 
+                        alt={`Temple image ${item}`}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  ))}
+                </div>
+                
+                <Button variant="outline" className="mt-4 w-full">
+                  View All Photos
+                </Button>
               </CardContent>
             </Card>
             
@@ -178,8 +255,9 @@ const TempleDetail = () => {
                     {[1, 2, 3, 4, 5, 6].map((day) => (
                       <Button 
                         key={day} 
-                        variant={day === 3 ? "default" : "outline"} 
-                        className={day === 3 ? "bg-orange-500 hover:bg-orange-600" : ""}
+                        variant={day === selectedDate ? "default" : "outline"} 
+                        className={day === selectedDate ? "bg-orange-500 hover:bg-orange-600" : ""}
+                        onClick={() => setSelectedDate(day)}
                       >
                         May {day + 10}
                       </Button>
@@ -193,8 +271,9 @@ const TempleDetail = () => {
                     {["6:00 AM", "8:00 AM", "10:00 AM", "4:00 PM"].map((time) => (
                       <Button 
                         key={time} 
-                        variant={time === "8:00 AM" ? "default" : "outline"}
-                        className={time === "8:00 AM" ? "bg-orange-500 hover:bg-orange-600" : ""}
+                        variant={time === selectedTime ? "default" : "outline"}
+                        className={time === selectedTime ? "bg-orange-500 hover:bg-orange-600" : ""}
+                        onClick={() => setSelectedTime(time)}
                       >
                         {time}
                       </Button>
@@ -207,8 +286,22 @@ const TempleDetail = () => {
                   <span>₹{temple.price}</span>
                 </div>
                 
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                <Button 
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white mb-3"
+                  onClick={bookDarshan}
+                >
                   Book Now
+                </Button>
+
+                <Button 
+                  variant="outline"
+                  className="w-full flex items-center justify-center gap-2"
+                  asChild
+                >
+                  <Link to="/prasad-booking">
+                    <ShoppingCart className="h-4 w-4" />
+                    Order Prasad
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -247,6 +340,33 @@ const TempleDetail = () => {
                 </div>
                 <Button variant="outline" className="w-full mt-4">
                   Contact Temple
+                </Button>
+              </CardContent>
+            </Card>
+            
+            {/* Live Congestion Updates Card */}
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-semibold">Live Updates</h2>
+                  <div className="animate-pulse h-2 w-2 rounded-full bg-green-500"></div>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm">
+                    <span className="text-green-500 font-medium">10 min ago</span>
+                    <p>Main temple hall is now {currentCongestion === "low" ? "easily accessible" : "getting crowded"}.</p>
+                  </div>
+                  <div className="text-sm">
+                    <span className="text-amber-500 font-medium">45 min ago</span>
+                    <p>Special puja preparations have started in the north wing.</p>
+                  </div>
+                  <div className="text-sm">
+                    <span className="text-gray-500 font-medium">2 hours ago</span>
+                    <p>Temple grounds opened for early morning visitors.</p>
+                  </div>
+                </div>
+                <Button variant="ghost" size="sm" className="w-full mt-4 text-orange-500">
+                  See all updates
                 </Button>
               </CardContent>
             </Card>

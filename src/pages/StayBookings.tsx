@@ -2,8 +2,9 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Search, MapPin, Calendar, Users, Star } from "lucide-react";
+import { Search, MapPin, Calendar, Users, Star, Wifi, Coffee } from "lucide-react";
 import { temples } from "@/data/temples";
+import CongestionIndicator from "@/components/CongestionIndicator";
 
 const StayBookings = () => {
   return (
@@ -57,7 +58,7 @@ const StayBookings = () => {
           </div>
         </div>
         
-        <div className="flex items-center gap-4 mt-4">
+        <div className="flex flex-wrap items-center gap-2 mt-4">
           <Button variant="outline" size="sm" className="rounded-full border-gray-300">
             Free cancellation
           </Button>
@@ -84,12 +85,18 @@ const StayBookings = () => {
             <div className="md:flex">
               <div className="md:w-2/5 relative">
                 <img
-                  src={temple.image || `https://via.placeholder.com/300x300?text=Accommodation`}
+                  src={temple.image || `https://via.placeholder.com/300x300?text=Accommodation+${temple.id}`}
                   alt={`Accommodation near ${temple.name}`}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 rounded text-xs">
                   Featured
+                </div>
+                <div className="absolute top-2 right-2">
+                  <CongestionIndicator 
+                    level={["low", "moderate", "high", "extreme"][parseInt(temple.id) % 4] as "low" | "moderate" | "high" | "extreme"} 
+                    showLabel={false}
+                  />
                 </div>
               </div>
               
@@ -115,10 +122,16 @@ const StayBookings = () => {
                   </p>
                   
                   <div className="flex flex-wrap gap-2 text-xs">
-                    <span className="bg-gray-100 rounded-full px-2 py-1">Free WiFi</span>
+                    <span className="bg-gray-100 rounded-full px-2 py-1 flex items-center gap-1">
+                      <Wifi className="h-3 w-3" />
+                      Free WiFi
+                    </span>
                     <span className="bg-gray-100 rounded-full px-2 py-1">Temple Shuttle</span>
                     <span className="bg-gray-100 rounded-full px-2 py-1">AC Rooms</span>
-                    <span className="bg-gray-100 rounded-full px-2 py-1">Vegetarian Meals</span>
+                    <span className="bg-gray-100 rounded-full px-2 py-1 flex items-center gap-1">
+                      <Coffee className="h-3 w-3" />
+                      Vegetarian Meals
+                    </span>
                   </div>
                 </div>
                 
@@ -146,12 +159,18 @@ const StayBookings = () => {
           <Card key={item} className="overflow-hidden hover:shadow-md transition-shadow">
             <div className="relative">
               <img
-                src={`https://via.placeholder.com/300x200?text=Homestay+${item}`}
+                src={`https://via.placeholder.com/400x300?text=Homestay+${item}`}
                 alt={`Homestay ${item}`}
                 className="w-full h-48 object-cover"
               />
               <div className="absolute top-2 right-2 bg-white text-orange-500 p-1 rounded-full">
                 <Star className="h-4 w-4 fill-current" />
+              </div>
+              <div className="absolute top-2 left-2">
+                <CongestionIndicator 
+                  level={["low", "moderate", "high", "extreme"][item % 4] as "low" | "moderate" | "high" | "extreme"} 
+                  showLabel={false}
+                />
               </div>
             </div>
             

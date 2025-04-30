@@ -1,24 +1,24 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search, Globe, Menu, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NavBar = () => {
+  const location = useLocation();
+
   return (
     <header className="border-b sticky top-0 z-50 w-full bg-white">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center text-orange-500 font-bold">
+            {/* Updated temple outline logo */}
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
-              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M12 16V18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M12 6V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M16 12H18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M6 12H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M12 3L4 9V21H20V9L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M9 21V12H15V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M12 3V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span className="text-xl">TempleConnect</span>
           </Link>
@@ -61,12 +61,13 @@ const NavBar = () => {
       <nav className="hidden md:block border-t">
         <div className="container mx-auto px-4">
           <ul className="flex justify-center space-x-8">
-            <NavItem to="/" text="Home" />
-            <NavItem to="/events" text="Events" />
-            <NavItem to="/puja-timings" text="Puja Timings" />
-            <NavItem to="/stay-bookings" text="Stay Bookings" />
-            <NavItem to="/gallery" text="Gallery" />
-            <NavItem to="/contact" text="Contact" />
+            <NavItem to="/" text="Home" active={location.pathname === '/'} />
+            <NavItem to="/events" text="Events" active={location.pathname === '/events'} />
+            <NavItem to="/puja-timings" text="Puja Timings" active={location.pathname === '/puja-timings'} />
+            <NavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
+            <NavItem to="/prasad-booking" text="Prasad Booking" active={location.pathname === '/prasad-booking'} />
+            <NavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
+            <NavItem to="/contact" text="Contact" active={location.pathname === '/contact'} />
           </ul>
         </div>
       </nav>

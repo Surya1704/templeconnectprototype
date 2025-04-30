@@ -11,6 +11,7 @@ import StayBookings from "./pages/StayBookings";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import TempleDetail from "./pages/TempleDetail";
+import PrasadBooking from "./pages/PrasadBooking";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="puja-timings" element={<PujaTiming />} />
             <Route path="stay-bookings" element={<StayBookings />} />
             <Route path="gallery" element={<Gallery />} />
+            <Route path="prasad-booking" element={<PrasadBooking />} />
             <Route path="contact" element={<Contact />} />
             <Route path="temple/:id" element={<TempleDetail />} />
           </Route>
