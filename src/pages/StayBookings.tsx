@@ -126,7 +126,7 @@ const StayBookings = () => {
                   <div>
                     <p className="text-sm text-gray-600">2 nights · Double room</p>
                     <p className="text-lg font-semibold">
-                      ₹{1200 + temple.id * 300} <span className="text-sm font-normal text-gray-600">per night</span>
+                      ₹{1200 + parseInt(temple.id) * 300} <span className="text-sm font-normal text-gray-600">per night</span>
                     </p>
                   </div>
                   <Button className="bg-orange-500 hover:bg-orange-600">
