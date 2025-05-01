@@ -1,4 +1,3 @@
-
 import { Flame, Mountain, Church, Book, Home, Users, Sun, Moon, Star, Waves } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -243,7 +242,7 @@ export const filterTemples = ({ state, tag, search }: { state?: string; tag?: st
     filtered = filtered.filter((temple) => temple.state === state);
   }
   
-  if (tag) {
+  if (tag && tag !== "all") {
     filtered = filtered.filter((temple) => temple.tags.includes(tag));
   }
   

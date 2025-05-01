@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart, Search, Filter } from "lucide-react";
@@ -19,12 +18,12 @@ import CongestionIndicator from "@/components/CongestionIndicator";
 
 const AllTemples = () => {
   const [selectedState, setSelectedState] = useState("All States");
-  const [selectedTag, setSelectedTag] = useState("");
+  const [selectedTag, setSelectedTag] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   
   const filteredTemples = filterTemples({
     state: selectedState,
-    tag: selectedTag,
+    tag: selectedTag !== "all" ? selectedTag : "",
     search: searchQuery,
   });
 
@@ -71,7 +70,7 @@ const AllTemples = () => {
                   <SelectValue placeholder="Filter by amenity" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Amenities</SelectItem>
+                  <SelectItem value="all">All Amenities</SelectItem>
                   {allTags.map((tag) => (
                     <SelectItem key={tag} value={tag}>{tag}</SelectItem>
                   ))}
