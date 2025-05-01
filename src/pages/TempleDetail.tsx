@@ -167,8 +167,8 @@ const TempleDetail = () => {
                         </div>
                       </div>
                       
-                      <Button className="bg-orange-500 hover:bg-orange-600 text-white self-center">
-                        Book Now
+                      <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white self-center">
+                        <Link to="/pooja-booking">Book Now</Link>
                       </Button>
                     </div>
                   ))}
@@ -184,7 +184,7 @@ const TempleDetail = () => {
                   {[1, 2, 3, 4, 5, 6].map((item) => (
                     <div key={item} className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
                       <img 
-                        src={`https://via.placeholder.com/300x300?text=Temple+Image+${item}`} 
+                        src={`https://images.unsplash.com/photo-${1500000000000 + item * 10000}?q=80&w=300&h=300&auto=format&fit=crop`} 
                         alt={`Temple image ${item}`}
                         className="object-cover w-full h-full"
                       />
@@ -192,8 +192,8 @@ const TempleDetail = () => {
                   ))}
                 </div>
                 
-                <Button variant="outline" className="mt-4 w-full">
-                  View All Photos
+                <Button asChild variant="outline" className="mt-4 w-full">
+                  <Link to="/gallery">View All Photos</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -293,16 +293,29 @@ const TempleDetail = () => {
                   Book Now
                 </Button>
 
-                <Button 
-                  variant="outline"
-                  className="w-full flex items-center justify-center gap-2"
-                  asChild
-                >
-                  <Link to="/prasad-booking">
-                    <ShoppingCart className="h-4 w-4" />
-                    Order Prasad
-                  </Link>
-                </Button>
+                <div className="grid grid-cols-2 gap-3">
+                  <Button 
+                    variant="outline"
+                    className="flex items-center justify-center gap-2"
+                    asChild
+                  >
+                    <Link to="/prasad-booking">
+                      <ShoppingCart className="h-4 w-4" />
+                      Order Prasad
+                    </Link>
+                  </Button>
+                  
+                  <Button 
+                    variant="outline"
+                    className="flex items-center justify-center gap-2"
+                    asChild
+                  >
+                    <Link to="/pooja-booking">
+                      <Calendar className="h-4 w-4" />
+                      Book Pooja
+                    </Link>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
             
@@ -338,8 +351,8 @@ const TempleDetail = () => {
                   <AlertCircle className="h-5 w-5 text-orange-500" />
                   <span>Have questions about visiting this temple?</span>
                 </div>
-                <Button variant="outline" className="w-full mt-4">
-                  Contact Temple
+                <Button asChild variant="outline" className="w-full mt-4">
+                  <Link to="/contact">Contact Temple</Link>
                 </Button>
               </CardContent>
             </Card>

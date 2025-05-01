@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import TempleDetail from "./pages/TempleDetail";
 import PrasadBooking from "./pages/PrasadBooking";
 import AllTemples from "./pages/AllTemples";
+import PoojaBooking from "./pages/PoojaBooking";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="stay-bookings" element={<StayBookings />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="prasad-booking" element={<PrasadBooking />} />
+            <Route path="pooja-booking" element={<PoojaBooking />} />
             <Route path="contact" element={<Contact />} />
             <Route path="temple/:id" element={<TempleDetail />} />
             <Route path="temples" element={<AllTemples />} />
