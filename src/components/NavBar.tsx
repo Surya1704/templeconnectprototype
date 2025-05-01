@@ -38,14 +38,6 @@ const NavBar = () => {
         
         {/* Right side nav items */}
         <div className="flex items-center gap-4">
-          <Button variant="ghost" asChild className="hidden sm:flex text-orange-500 hover:text-orange-600">
-            <Link to="/contact">Edit Content</Link>
-          </Button>
-          
-          <Button variant="ghost" asChild className="hidden md:flex text-orange-500 hover:text-orange-600">
-            <Link to="/contact">List Your Temple</Link>
-          </Button>
-          
           <Button variant="ghost" size="icon" className="rounded-full">
             <Globe className="h-5 w-5" />
           </Button>
@@ -67,6 +59,7 @@ const NavBar = () => {
             <NavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
             <NavItem to="/prasad-booking" text="Prasad Booking" active={location.pathname === '/prasad-booking'} />
             <NavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
+            <NavItem to="/astrology" text="Hindu Astrology" active={location.pathname === '/astrology'} />
             <NavItem to="/contact" text="Contact" active={location.pathname === '/contact'} />
           </ul>
         </div>

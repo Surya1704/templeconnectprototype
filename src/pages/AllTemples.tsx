@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart, Search, Filter } from "lucide-react";
@@ -26,6 +27,16 @@ const AllTemples = () => {
     tag: selectedTag !== "all" ? selectedTag : "",
     search: searchQuery,
   });
+
+  // Temple images
+  const templeImages = {
+    kashi: "public/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png",
+    tirupati: "public/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png",
+    golden: "public/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png",
+    meenakshi: "public/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png",
+    jagannath: "https://images.unsplash.com/photo-1627894006066-b45796eba1cb?q=80&w=1176&auto=format&fit=crop",
+    somnath: "https://images.unsplash.com/photo-1586132497247-32bdc8e1f52e?q=80&w=1180&auto=format&fit=crop"
+  };
 
   // Available tags from all temples
   const allTags = Array.from(
@@ -99,80 +110,98 @@ const AllTemples = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredTemples.map((temple) => (
-            <Card key={temple.id} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative">
-                <Link to={`/temple/${temple.id}`}>
-                  <img 
-                    src={temple.image} 
-                    alt={temple.name} 
-                    className="w-full h-48 object-cover transition-transform hover:scale-105"
-                  />
-                </Link>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="absolute top-2 right-2 bg-white/80 rounded-full hover:bg-white"
-                >
-                  <Heart className="h-5 w-5 text-orange-500" />
-                </Button>
-                
-                <div className="absolute bottom-2 right-2">
-                  <CongestionIndicator level={["low", "moderate", "high", "extreme"][Math.floor(Math.random() * 4)] as any} />
-                </div>
-              </div>
-              
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <Link 
-                    to={`/temple/${temple.id}`}
-                    className="text-lg font-semibold hover:text-orange-500"
-                  >
-                    {temple.name}
+          {filteredTemples.map((temple) => {
+            // Get temple image based on temple name
+            let templeImage = temple.image;
+            if (temple.name.includes("Kashi") || temple.name.includes("Varanasi")) {
+              templeImage = templeImages.kashi;
+            } else if (temple.name.includes("Tirupati") || temple.name.includes("Balaji")) {
+              templeImage = templeImages.tirupati;
+            } else if (temple.name.includes("Golden") || temple.name.includes("Harmandir")) {
+              templeImage = templeImages.golden;
+            } else if (temple.name.includes("Meenakshi")) {
+              templeImage = templeImages.meenakshi;
+            } else if (temple.name.includes("Jagannath")) {
+              templeImage = templeImages.jagannath;
+            } else if (temple.name.includes("Somnath")) {
+              templeImage = templeImages.somnath;
+            }
+            
+            return (
+              <Card key={temple.id} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow">
+                <div className="relative">
+                  <Link to={`/temple/${temple.id}`}>
+                    <img 
+                      src={templeImage} 
+                      alt={temple.name} 
+                      className="w-full h-48 object-cover transition-transform hover:scale-105"
+                    />
                   </Link>
-                  <div className="flex items-center text-amber-500">
-                    <span>★</span>
-                    <span className="ml-1 text-sm text-gray-700">{temple.rating}</span>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="absolute top-2 right-2 bg-white/80 rounded-full hover:bg-white"
+                  >
+                    <Heart className="h-5 w-5 text-orange-500" />
+                  </Button>
+                  
+                  <div className="absolute bottom-2 right-2">
+                    <CongestionIndicator level={["low", "moderate", "high", "extreme"][Math.floor(Math.random() * 4)] as any} />
                   </div>
                 </div>
                 
-                <p className="text-gray-600 mb-1">{temple.location}</p>
-                <p className="text-gray-600 text-sm mb-3">{temple.hours}</p>
-                
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {temple.tags.slice(0, 3).map((tag) => (
-                    <span 
-                      key={tag} 
-                      className="text-xs rounded-full px-2 py-1 bg-orange-50 text-orange-800 border border-orange-200"
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <Link 
+                      to={`/temple/${temple.id}`}
+                      className="text-lg font-semibold hover:text-orange-500"
                     >
-                      {tag}
-                    </span>
-                  ))}
-                  {temple.tags.length > 3 && (
-                    <span className="text-xs text-gray-500 py-1">
-                      +{temple.tags.length - 3} more
-                    </span>
-                  )}
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="font-semibold">₹{temple.price}</span>
-                    <span className="text-gray-500 text-sm ml-1">darshan</span>
+                      {temple.name}
+                    </Link>
+                    <div className="flex items-center text-amber-500">
+                      <span>★</span>
+                      <span className="ml-1 text-sm text-gray-700">{temple.rating}</span>
+                    </div>
                   </div>
                   
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
-                      Book
-                    </Button>
-                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">
-                      Donate
-                    </Button>
+                  <p className="text-gray-600 mb-1">{temple.location}</p>
+                  <p className="text-gray-600 text-sm mb-3">{temple.hours}</p>
+                  
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {temple.tags.slice(0, 3).map((tag) => (
+                      <span 
+                        key={tag} 
+                        className="text-xs rounded-full px-2 py-1 bg-orange-50 text-orange-800 border border-orange-200"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {temple.tags.length > 3 && (
+                      <span className="text-xs text-gray-500 py-1">
+                        +{temple.tags.length - 3} more
+                      </span>
+                    )}
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                  
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="font-semibold">₹{temple.price}</span>
+                      <span className="text-gray-500 text-sm ml-1">darshan</span>
+                    </div>
+                    
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
+                        Book
+                      </Button>
+                      <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">
+                        Donate
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       )}
 

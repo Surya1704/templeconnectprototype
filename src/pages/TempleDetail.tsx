@@ -15,6 +15,16 @@ const TempleDetail = () => {
   const [selectedDate, setSelectedDate] = useState<number>(3);
   const [selectedTime, setSelectedTime] = useState<string>("8:00 AM");
   
+  // Temple images
+  const templeImages = {
+    kashi: "public/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png",
+    tirupati: "public/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png",
+    golden: "public/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png",
+    meenakshi: "public/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png",
+    jagannath: "https://images.unsplash.com/photo-1627894006066-b45796eba1cb?q=80&w=1176&auto=format&fit=crop",
+    somnath: "https://images.unsplash.com/photo-1586132497247-32bdc8e1f52e?q=80&w=1180&auto=format&fit=crop"
+  };
+  
   if (!temple) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
@@ -25,6 +35,22 @@ const TempleDetail = () => {
         </Button>
       </div>
     );
+  }
+
+  // Get temple image based on temple name
+  let templeImage = temple.image;
+  if (temple.name.includes("Kashi") || temple.name.includes("Varanasi")) {
+    templeImage = templeImages.kashi;
+  } else if (temple.name.includes("Tirupati") || temple.name.includes("Balaji")) {
+    templeImage = templeImages.tirupati;
+  } else if (temple.name.includes("Golden") || temple.name.includes("Harmandir")) {
+    templeImage = templeImages.golden;
+  } else if (temple.name.includes("Meenakshi")) {
+    templeImage = templeImages.meenakshi;
+  } else if (temple.name.includes("Jagannath")) {
+    templeImage = templeImages.jagannath;
+  } else if (temple.name.includes("Somnath")) {
+    templeImage = templeImages.somnath;
   }
 
   // Generate random congestion level for demo purposes
@@ -49,7 +75,7 @@ const TempleDetail = () => {
     <div>
       <div className="relative h-[400px]">
         <img 
-          src={temple.image || "https://via.placeholder.com/1200x400?text=Temple+Image"} 
+          src={templeImage || "https://via.placeholder.com/1200x400?text=Temple+Image"} 
           alt={temple.name}
           className="w-full h-full object-cover"
         />
@@ -181,15 +207,33 @@ const TempleDetail = () => {
                 <h2 className="text-2xl font-semibold mb-6">Temple Gallery</h2>
                 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {[1, 2, 3, 4, 5, 6].map((item) => (
-                    <div key={item} className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
-                      <img 
-                        src={`https://images.unsplash.com/photo-${1500000000000 + item * 10000}?q=80&w=300&h=300&auto=format&fit=crop`} 
-                        alt={`Temple image ${item}`}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                  ))}
+                  {[1, 2, 3, 4, 5, 6].map((item) => {
+                    let galleryImage = "https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=300&h=300&auto=format&fit=crop";
+                    
+                    if (item === 1 && templeImage) {
+                      galleryImage = templeImage;
+                    } else if (item === 2) {
+                      galleryImage = "https://images.unsplash.com/photo-1629702071853-eff62ee67bfe?q=80&w=300&h=300&auto=format&fit=crop";
+                    } else if (item === 3) {
+                      galleryImage = "https://images.unsplash.com/photo-1599321989307-0d1b65530aa3?q=80&w=300&h=300&auto=format&fit=crop";
+                    } else if (item === 4) {
+                      galleryImage = "https://images.unsplash.com/photo-1618835597295-33e3c712cccc?q=80&w=300&h=300&auto=format&fit=crop";
+                    } else if (item === 5) {
+                      galleryImage = "https://images.unsplash.com/photo-1592991538534-00972b6f59ab?q=80&w=300&h=300&auto=format&fit=crop";
+                    } else if (item === 6) {
+                      galleryImage = "https://images.unsplash.com/photo-1634413123503-a64ce962fd1a?q=80&w=300&h=300&auto=format&fit=crop";
+                    }
+                    
+                    return (
+                      <div key={item} className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity">
+                        <img 
+                          src={galleryImage} 
+                          alt={`Temple image ${item}`}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
                 
                 <Button asChild variant="outline" className="mt-4 w-full">
