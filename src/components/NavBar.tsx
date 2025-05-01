@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Search, Globe, Menu, User } from "lucide-react";
+import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NavBar = () => {
@@ -24,28 +24,12 @@ const NavBar = () => {
           </Link>
         </div>
         
-        {/* Search Bar */}
+        {/* Search Bar (simplified) */}
         <div className="hidden md:flex items-center bg-white border rounded-full p-2 px-4 shadow-sm">
-          <Button variant="ghost" size="sm" className="rounded-full text-slate-500">Any Temple</Button>
-          <div className="h-4 w-px bg-slate-200 mx-2"></div>
-          <Button variant="ghost" size="sm" className="rounded-full text-slate-500">Any Date</Button>
-          <div className="h-4 w-px bg-slate-200 mx-2"></div>
-          <Button variant="ghost" size="sm" className="rounded-full text-slate-500">Darshan Type</Button>
-          <Button size="icon" variant="default" className="ml-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white">
-            <Search className="h-4 w-4" />
+          <Button variant="default" size="sm" className="ml-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white">
+            <Search className="h-4 w-4 mr-2" />
+            <span>Search Temples</span>
           </Button>
-        </div>
-        
-        {/* Right side nav items */}
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="rounded-full">
-            <Globe className="h-5 w-5" />
-          </Button>
-          
-          <div className="flex items-center rounded-full border px-2 py-1 shadow-sm">
-            <Menu className="h-4 w-4 mr-2" />
-            <User className="h-4 w-4" />
-          </div>
         </div>
       </div>
       

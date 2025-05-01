@@ -28,14 +28,15 @@ const AllTemples = () => {
     search: searchQuery,
   });
 
-  // Temple images
+  // Temple images with correct paths
   const templeImages = {
-    kashi: "public/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png",
-    tirupati: "public/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png",
-    golden: "public/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png",
-    meenakshi: "public/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png",
+    kashi: "/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png",
+    tirupati: "/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png",
+    golden: "/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png",
+    meenakshi: "/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png",
     jagannath: "https://images.unsplash.com/photo-1627894006066-b45796eba1cb?q=80&w=1176&auto=format&fit=crop",
-    somnath: "https://images.unsplash.com/photo-1586132497247-32bdc8e1f52e?q=80&w=1180&auto=format&fit=crop"
+    somnath: "https://images.unsplash.com/photo-1586132497247-32bdc8e1f52e?q=80&w=1180&auto=format&fit=crop",
+    default: "https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=2070&auto=format&fit=crop"
   };
 
   // Available tags from all temples
@@ -112,18 +113,18 @@ const AllTemples = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredTemples.map((temple) => {
             // Get temple image based on temple name
-            let templeImage = temple.image;
-            if (temple.name.includes("Kashi") || temple.name.includes("Varanasi")) {
+            let templeImage = templeImages.default;
+            if (temple.name.toLowerCase().includes("kashi") || temple.name.toLowerCase().includes("varanasi")) {
               templeImage = templeImages.kashi;
-            } else if (temple.name.includes("Tirupati") || temple.name.includes("Balaji")) {
+            } else if (temple.name.toLowerCase().includes("tirupati") || temple.name.toLowerCase().includes("balaji")) {
               templeImage = templeImages.tirupati;
-            } else if (temple.name.includes("Golden") || temple.name.includes("Harmandir")) {
+            } else if (temple.name.toLowerCase().includes("golden") || temple.name.toLowerCase().includes("harmandir")) {
               templeImage = templeImages.golden;
-            } else if (temple.name.includes("Meenakshi")) {
+            } else if (temple.name.toLowerCase().includes("meenakshi")) {
               templeImage = templeImages.meenakshi;
-            } else if (temple.name.includes("Jagannath")) {
+            } else if (temple.name.toLowerCase().includes("jagannath")) {
               templeImage = templeImages.jagannath;
-            } else if (temple.name.includes("Somnath")) {
+            } else if (temple.name.toLowerCase().includes("somnath")) {
               templeImage = templeImages.somnath;
             }
             
