@@ -1,147 +1,313 @@
 
 import React from "react";
+import { Calendar, MapPin, Clock, Users, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Clock, Search } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Events = () => {
+  // Sample events data with real images
+  const events = [
+    {
+      id: "1",
+      title: "Kumbh Mela",
+      date: "January 15, 2025",
+      time: "All Day",
+      location: "Prayagraj, Uttar Pradesh",
+      temple: "Triveni Sangam",
+      description: "One of the largest religious gatherings in the world, the Kumbh Mela is celebrated every 12 years at the Triveni Sangam in Prayagraj.",
+      image: "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?q=80&w=2070&auto=format&fit=crop",
+      attendees: 342,
+      category: "festival"
+    },
+    {
+      id: "2",
+      title: "Navratri Celebrations",
+      date: "October 12-20, 2024",
+      time: "6:00 PM - 10:00 PM",
+      location: "Ahmedabad, Gujarat",
+      temple: "Ambaji Temple",
+      description: "Nine nights dedicated to the worship of Goddess Durga with traditional Garba dance performances and special puja ceremonies.",
+      image: "https://images.unsplash.com/photo-1633934542430-0e25b3fac90e?q=80&w=2070&auto=format&fit=crop",
+      attendees: 156,
+      category: "festival"
+    },
+    {
+      id: "3",
+      title: "Maha Shivaratri",
+      date: "March 8, 2025",
+      time: "All Day",
+      location: "Varanasi, Uttar Pradesh",
+      temple: "Kashi Vishwanath",
+      description: "The great night of Shiva celebrated with night-long temple rituals, fasting, and meditation dedicated to Lord Shiva.",
+      image: "https://images.unsplash.com/photo-1627896157126-41022f16a0a8?q=80&w=2070&auto=format&fit=crop",
+      attendees: 289,
+      category: "ceremony"
+    },
+    {
+      id: "4",
+      title: "Ganesh Chaturthi",
+      date: "September 2, 2024",
+      time: "8:00 AM - 9:00 PM",
+      location: "Mumbai, Maharashtra",
+      temple: "Siddhivinayak Temple",
+      description: "A 10-day festival celebrating the birth of Lord Ganesha with elaborate idol installations, prayers, and immersion ceremonies.",
+      image: "https://images.unsplash.com/photo-1631632366518-a2411fccef0d?q=80&w=2070&auto=format&fit=crop",
+      attendees: 210,
+      category: "festival"
+    },
+    {
+      id: "5",
+      title: "Rath Yatra",
+      date: "July 7, 2024",
+      time: "10:00 AM - 6:00 PM",
+      location: "Puri, Odisha",
+      temple: "Jagannath Temple",
+      description: "The famous chariot festival where deities are placed on large chariots and pulled through the streets by thousands of devotees.",
+      image: "https://images.unsplash.com/photo-1627894486874-b830e5a8be76?q=80&w=2070&auto=format&fit=crop",
+      attendees: 387,
+      category: "procession"
+    },
+    {
+      id: "6",
+      title: "Diwali Celebrations",
+      date: "November 12, 2024",
+      time: "6:00 PM - 10:00 PM",
+      location: "Ayodhya, Uttar Pradesh",
+      temple: "Ram Janmabhoomi",
+      description: "The festival of lights celebrated with millions of diyas illuminating the temples, special prayers, and festive decorations.",
+      image: "https://images.unsplash.com/photo-1604823040052-257c5e40bc72?q=80&w=2070&auto=format&fit=crop",
+      attendees: 432,
+      category: "festival"
+    },
+    {
+      id: "7",
+      title: "Makar Sankranti",
+      date: "January 14, 2025",
+      time: "6:00 AM - 6:00 PM",
+      location: "Mysuru, Karnataka",
+      temple: "Chamundeshwari Temple",
+      description: "A harvest festival marking the transition of the sun into Capricorn with special pujas, kite flying, and charitable activities.",
+      image: "https://images.unsplash.com/photo-1610630516585-7eefd4beca3f?q=80&w=2070&auto=format&fit=crop",
+      attendees: 189,
+      category: "ceremony"
+    },
+    {
+      id: "8",
+      title: "Guru Purnima",
+      date: "July 21, 2024",
+      time: "9:00 AM - 1:00 PM",
+      location: "Rishikesh, Uttarakhand",
+      temple: "Parmarth Niketan",
+      description: "A day to honor spiritual and academic teachers with special worship services, knowledge-sharing sessions, and cultural programs.",
+      image: "https://images.unsplash.com/photo-1592547097938-7942b29d8e8b?q=80&w=1931&auto=format&fit=crop",
+      attendees: 123,
+      category: "ceremony"
+    }
+  ];
+
+  // Filter events by category
+  const festivals = events.filter(event => event.category === "festival");
+  const ceremonies = events.filter(event => event.category === "ceremony");
+  const processions = events.filter(event => event.category === "procession");
+  const upcoming = events.slice(0, 5);
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-2">Temple Events</h1>
-      <p className="text-gray-600 mb-8">
-        Discover and participate in spiritual events at temples across India
-      </p>
-      
-      {/* Search & Filter */}
-      <div className="bg-white rounded-lg shadow p-4 mb-8">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="relative flex-grow">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search events..."
-              className="w-full pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <select className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white">
-              <option>Any Event Type</option>
-              <option>Festivals</option>
-              <option>Special Pujas</option>
-              <option>Cultural Programs</option>
-              <option>Spiritual Talks</option>
-            </select>
-            <select className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white">
-              <option>Any Date</option>
-              <option>Today</option>
-              <option>This Week</option>
-              <option>This Month</option>
-              <option>Next Month</option>
-            </select>
-            <Button className="bg-orange-500 hover:bg-orange-600">
-              Search
-            </Button>
-          </div>
-        </div>
-      </div>
-      
-      {/* Featured Event */}
-      <div className="bg-gradient-to-r from-orange-500/10 to-amber-500/10 rounded-lg overflow-hidden mb-8">
-        <div className="md:flex">
-          <div className="md:w-1/3">
-            <img
-              src="https://via.placeholder.com/600x400?text=Festival+Image"
-              alt="Featured Event"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="p-6 md:w-2/3">
-            <div className="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium mb-4">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Sacred Events Calendar</h1>
+        <p className="text-gray-600 mb-6">
+          Discover upcoming temple events, festivals, and ceremonies across India
+        </p>
+
+        {/* Featured Event */}
+        <div className="relative rounded-lg overflow-hidden mb-10">
+          <img 
+            src={events[0].image} 
+            alt={events[0].title}
+            className="w-full h-80 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-8">
+            <span className="inline-block bg-orange-500 text-white text-sm font-medium px-3 py-1 rounded-full mb-3">
               Featured Event
-            </div>
-            <h2 className="text-2xl font-bold mb-2">Annual Karthikai Deepam Festival</h2>
-            <div className="flex flex-wrap gap-3 mb-4 text-sm text-gray-600">
+            </span>
+            <h2 className="text-3xl font-bold text-white mb-2">{events[0].title}</h2>
+            <p className="text-white/90 mb-4 max-w-2xl">{events[0].description}</p>
+            
+            <div className="flex flex-wrap gap-4 mb-4 text-white/80">
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                <span>May 15-20, 2025</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="h-4 w-4" />
-                <span>Tiruvannamalai Temple, Tamil Nadu</span>
+                <span>{events[0].date}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                <span>5:00 PM onwards</span>
+                <span>{events[0].time}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <MapPin className="h-4 w-4" />
+                <span>{events[0].location}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Users className="h-4 w-4" />
+                <span>{events[0].attendees} attending</span>
               </div>
             </div>
-            <p className="text-gray-600 mb-6">
-              Experience the magnificent lighting of the sacred beacon on top of Arunachala hill, 
-              symbolizing Lord Shiva as the infinite pillar of light. This five-day festival attracts 
-              thousands of devotees and features special pujas, cultural programs, and the grand 
-              deepam lighting ceremony.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button className="bg-orange-500 hover:bg-orange-600">
-                Register to Attend
+            
+            <div className="flex gap-3">
+              <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+                Register Now
               </Button>
-              <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
-                View Details
+              <Button variant="outline" className="border-white/70 text-white hover:bg-white/10">
+                Add to Calendar
               </Button>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Upcoming Events */}
-      <h2 className="text-2xl font-semibold mb-6">Upcoming Events</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[1, 2, 3, 4, 5, 6].map((item) => (
-          <div key={item} className="bg-white rounded-lg overflow-hidden shadow-sm border hover:shadow-md transition-shadow">
-            <img
-              src={`https://via.placeholder.com/400x200?text=Event+${item}`}
-              alt={`Event ${item}`}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-5">
-              <div className="flex justify-between items-start mb-3">
-                <div className="min-w-16 h-16 bg-orange-100 text-orange-600 rounded-lg flex flex-col items-center justify-center text-center">
-                  <span className="text-sm font-medium">May</span>
-                  <span className="text-xl font-bold">{item + 15}</span>
-                </div>
-                <div className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">
-                  {item % 3 === 0 ? "Festival" : item % 3 === 1 ? "Puja" : "Cultural"}
-                </div>
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{
-                item % 3 === 0 ? "Hanuman Jayanti Celebration" : 
-                item % 3 === 1 ? "Sahasra Deepa Alankara" : 
-                "Bhajan & Devotional Music Night"
-              }</h3>
-              <div className="flex items-center gap-1 text-sm text-gray-500 mb-2">
-                <MapPin className="h-3 w-3" />
-                <span>{
-                  item % 4 === 0 ? "Jagannath Temple, Puri" : 
-                  item % 4 === 1 ? "Meenakshi Temple, Madurai" : 
-                  item % 4 === 2 ? "Kashi Vishwanath, Varanasi" :
-                  "Tirupati Balaji Temple, Andhra Pradesh"
-                }</span>
-              </div>
-              <div className="flex items-center gap-1 text-sm text-gray-500 mb-4">
-                <Clock className="h-3 w-3" />
-                <span>{
-                  item % 3 === 0 ? "6:00 AM - 9:00 PM" : 
-                  item % 3 === 1 ? "7:00 PM - 9:00 PM" : 
-                  "5:00 PM - 8:00 PM"
-                }</span>
-              </div>
-              <Button className="w-full bg-orange-500 hover:bg-orange-600">
-                Register
-              </Button>
-            </div>
+      {/* Events Tabs */}
+      <Tabs defaultValue="upcoming" className="mb-6">
+        <TabsList className="mb-6">
+          <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+          <TabsTrigger value="festivals">Festivals</TabsTrigger>
+          <TabsTrigger value="ceremonies">Ceremonies</TabsTrigger>
+          <TabsTrigger value="processions">Processions</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="upcoming">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {upcoming.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
           </div>
-        ))}
+        </TabsContent>
+        
+        <TabsContent value="festivals">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {festivals.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="ceremonies">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {ceremonies.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="processions">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {processions.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        </TabsContent>
+      </Tabs>
+      
+      {/* Calendar View */}
+      <div className="bg-white rounded-lg shadow p-6 mb-10">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-bold">Monthly Calendar</h2>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm">&lt; Previous</Button>
+            <Button variant="outline" size="sm">Next &gt;</Button>
+          </div>
+        </div>
+        
+        <div className="border rounded-lg overflow-hidden">
+          <div className="grid grid-cols-7 bg-gray-50">
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <div key={day} className="p-3 text-center font-medium border-b">{day}</div>
+            ))}
+          </div>
+          
+          <div className="grid grid-cols-7">
+            {Array.from({ length: 35 }, (_, i) => {
+              const day = i - 3; // Offset to start month correctly
+              return (
+                <div 
+                  key={i} 
+                  className={`p-3 min-h-24 border ${day <= 0 ? 'text-gray-400' : ''} ${
+                    [7, 12, 21].includes(day) ? 'relative' : ''
+                  }`}
+                >
+                  <span>{day <= 0 ? 30 + day : day > 31 ? day - 31 : day}</span>
+                  
+                  {day === 7 && (
+                    <div className="mt-1 p-1 text-xs bg-orange-100 text-orange-800 rounded">
+                      Rath Yatra
+                    </div>
+                  )}
+                  
+                  {day === 12 && (
+                    <div className="mt-1 p-1 text-xs bg-purple-100 text-purple-800 rounded">
+                      Navratri
+                    </div>
+                  )}
+                  
+                  {day === 21 && (
+                    <div className="mt-1 p-1 text-xs bg-blue-100 text-blue-800 rounded">
+                      Guru Purnima
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
+// Event card component
+const EventCard = ({ event }: { event: any }) => (
+  <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="relative h-48">
+      <img 
+        src={event.image} 
+        alt={event.title} 
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute top-2 right-2 bg-white/90 text-orange-500 text-xs font-medium px-2 py-1 rounded">
+        {event.category.charAt(0).toUpperCase() + event.category.slice(1)}
+      </div>
+    </div>
+    <CardContent className="p-5">
+      <h3 className="font-bold text-lg mb-2">{event.title}</h3>
+      
+      <div className="flex flex-col gap-2 mb-4">
+        <div className="flex items-center gap-2 text-sm text-gray-600">
+          <Calendar className="h-4 w-4 text-orange-500" />
+          <span>{event.date}</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-gray-600">
+          <Clock className="h-4 w-4 text-orange-500" />
+          <span>{event.time}</span>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-gray-600">
+          <MapPin className="h-4 w-4 text-orange-500" />
+          <span>{event.location}</span>
+        </div>
+      </div>
+      
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-1 text-sm text-gray-500">
+          <Users className="h-4 w-4" />
+          <span>{event.attendees} attending</span>
+        </div>
+        
+        <Button asChild size="sm" className="bg-orange-500 hover:bg-orange-600">
+          <Link to={`/events/${event.id}`}>Details</Link>
+        </Button>
+      </div>
+    </CardContent>
+  </Card>
+);
 
 export default Events;

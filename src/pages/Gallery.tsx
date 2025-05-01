@@ -1,26 +1,104 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Search, Filter } from "lucide-react";
 
 const Gallery = () => {
-  // Generate some placeholder images
-  const generateGalleryItems = (count: number) => {
-    return Array.from({ length: count }, (_, i) => ({
-      id: i + 1,
-      title: `Temple Image ${i + 1}`,
-      category: i % 5 === 0 ? "Architecture" : 
-               i % 5 === 1 ? "Festival" : 
-               i % 5 === 2 ? "Rituals" : 
-               i % 5 === 3 ? "Deities" : "Interior",
-      location: i % 4 === 0 ? "Tamil Nadu" : 
-                i % 4 === 1 ? "Karnataka" : 
-                i % 4 === 2 ? "Uttar Pradesh" : "Gujarat",
-      imageUrl: `https://via.placeholder.com/600x400?text=Temple+Image+${i + 1}`
-    }));
-  };
-
-  const galleryItems = generateGalleryItems(12);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+  
+  // Real temple images instead of placeholders
+  const galleryItems = [
+    {
+      id: 1,
+      title: "Varanasi Kashi Vishwanath Temple",
+      category: "Architecture",
+      location: "Uttar Pradesh",
+      imageUrl: "https://images.unsplash.com/photo-1566636544546-61d736ee499e?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: 2,
+      title: "Tirupati Balaji Temple",
+      category: "Architecture",
+      location: "Andhra Pradesh",
+      imageUrl: "https://images.unsplash.com/photo-1621831714462-bec666e92454?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: 3,
+      title: "Golden Temple During Festival",
+      category: "Festival",
+      location: "Punjab",
+      imageUrl: "https://images.unsplash.com/photo-1597074866923-dc0589150358?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      id: 4,
+      title: "Meenakshi Temple Rituals",
+      category: "Rituals",
+      location: "Tamil Nadu",
+      imageUrl: "https://images.unsplash.com/photo-1591014101761-a4172786fbbe?q=80&w=2071&auto=format&fit=crop"
+    },
+    {
+      id: 5,
+      title: "Lord Jagannath Deity",
+      category: "Deities",
+      location: "Odisha",
+      imageUrl: "https://images.unsplash.com/photo-1627894486874-b830e5a8be76?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      id: 6,
+      title: "Somnath Temple Interior",
+      category: "Interior",
+      location: "Gujarat",
+      imageUrl: "https://images.unsplash.com/photo-1599319191289-a530dbf24f4c?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: 7,
+      title: "Badrinath Temple",
+      category: "Architecture",
+      location: "Uttarakhand",
+      imageUrl: "https://images.unsplash.com/photo-1623953858703-9c7c4f5ceb73?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: 8,
+      title: "Kedarnath Festival Celebration",
+      category: "Festival",
+      location: "Uttarakhand",
+      imageUrl: "https://images.unsplash.com/photo-1590667046966-1e0e11a9b2ad?q=80&w=1972&auto=format&fit=crop"
+    },
+    {
+      id: 9,
+      title: "Brihadeeswara Temple Rituals",
+      category: "Rituals",
+      location: "Tamil Nadu",
+      imageUrl: "https://images.unsplash.com/photo-1616843413587-9b1d52fd4437?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: 10,
+      title: "Konark Sun Temple",
+      category: "Architecture",
+      location: "Odisha",
+      imageUrl: "https://images.unsplash.com/photo-1600687623593-1c503a8d4d8d?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      id: 11,
+      title: "Rameshwaram Temple Interior",
+      category: "Interior",
+      location: "Tamil Nadu",
+      imageUrl: "https://images.unsplash.com/photo-1626439710312-8ecc612cf587?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+      id: 12,
+      title: "Akshardham Temple Deity",
+      category: "Deities",
+      location: "Delhi",
+      imageUrl: "https://images.unsplash.com/photo-1545126178-862cdb469409?q=80&w=1974&auto=format&fit=crop"
+    }
+  ];
+  
+  const filteredItems = activeCategory === "all" 
+    ? galleryItems 
+    : galleryItems.filter(item => item.category === activeCategory);
+    
+  const categories = ["all", ...Array.from(new Set(galleryItems.map(item => item.category)))];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -41,13 +119,16 @@ const Gallery = () => {
             />
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
-            <select className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white">
-              <option>All Categories</option>
-              <option>Architecture</option>
-              <option>Festivals</option>
-              <option>Rituals</option>
-              <option>Deities</option>
-              <option>Interior</option>
+            <select 
+              className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+              value={activeCategory}
+              onChange={(e) => setActiveCategory(e.target.value)}
+            >
+              {categories.map(category => (
+                <option key={category} value={category}>
+                  {category === "all" ? "All Categories" : category}
+                </option>
+              ))}
             </select>
             <select className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white">
               <option>All Regions</option>
@@ -65,23 +146,30 @@ const Gallery = () => {
       </div>
       
       {/* Featured Collection */}
-      <div className="relative mb-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/80 to-amber-500/80 rounded-lg"></div>
-        <div className="relative p-8 text-white">
-          <h2 className="text-2xl font-bold mb-2">Featured Collection: Festival of Lights</h2>
+      <div className="relative mb-10 rounded-lg overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1618769122190-371113a9651f?q=80&w=2070&auto=format&fit=crop" 
+          alt="Festival of Lights" 
+          className="w-full h-64 object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/80 to-amber-500/80"></div>
+        <div className="absolute inset-0 p-8 flex flex-col justify-center text-white">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">Featured Collection: Festival of Lights</h2>
           <p className="mb-4 max-w-2xl">
             Explore our curated collection of temple celebrations during Diwali, with stunning 
             images of temples illuminated by thousands of lamps.
           </p>
-          <Button variant="outline" className="border-white text-white hover:bg-white/20">
-            View Collection
-          </Button>
+          <div>
+            <Button variant="outline" className="border-white text-white hover:bg-white/20">
+              View Collection
+            </Button>
+          </div>
         </div>
       </div>
       
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {galleryItems.map((item) => (
+        {filteredItems.map((item) => (
           <div 
             key={item.id} 
             className="group relative overflow-hidden bg-gray-100 rounded-lg hover:shadow-lg transition-shadow"
@@ -105,6 +193,12 @@ const Gallery = () => {
           </div>
         ))}
       </div>
+      
+      {filteredItems.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-gray-500">No images found for this category</p>
+        </div>
+      )}
       
       <div className="mt-10 text-center">
         <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
