@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,7 +9,7 @@ import {
   BedDouble, 
   Wifi, 
   UtensilsCrossed, 
-  Shower,
+  Bath,
   Search,
   CheckCircle2,
   Star
@@ -395,7 +394,7 @@ const StayBookings = () => {
           
           <div className="flex items-start gap-3">
             <div className="bg-orange-100 p-2 rounded-full">
-              <Shower className="h-5 w-5 text-orange-500" />
+              <Bath className="h-5 w-5 text-orange-500" />
             </div>
             <div>
               <h4 className="font-medium mb-1">Traditional Experience</h4>
@@ -458,7 +457,7 @@ const AccommodationCard = ({
               {amenity === "Free Wifi" && <Wifi className="h-3 w-3 text-orange-500" />}
               {amenity === "Temple View" && <MapPin className="h-3 w-3 text-orange-500" />}
               {amenity === "Vegetarian Meals" && <UtensilsCrossed className="h-3 w-3 text-orange-500" />}
-              {amenity === "AC Rooms" && <Shower className="h-3 w-3 text-orange-500" />}
+              {amenity === "AC Rooms" && <Bath className="h-3 w-3 text-orange-500" />}
               {amenity === "Breakfast Included" && <UtensilsCrossed className="h-3 w-3 text-orange-500" />}
               <span>{amenity}</span>
             </div>
