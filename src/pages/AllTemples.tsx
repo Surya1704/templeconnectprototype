@@ -28,16 +28,24 @@ const AllTemples = () => {
     search: searchQuery,
   });
 
-  // Temple images with correct paths
+  // Temple images with high-quality images from iStock
   const templeImages = {
-    kashi: "/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png",
-    tirupati: "/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png",
-    golden: "/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png",
-    meenakshi: "/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png",
-    jagannath: "https://images.unsplash.com/photo-1627894006066-b45796eba1cb?q=80&w=1176&auto=format&fit=crop",
-    somnath: "https://images.unsplash.com/photo-1586132497247-32bdc8e1f52e?q=80&w=1180&auto=format&fit=crop",
-    default: "https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=2070&auto=format&fit=crop"
+    kashi: "https://media.istockphoto.com/id/1146517111/photo/aerial-view-of-varanasi-city-architecture-and-ganga-river-at-night.jpg?s=612x612&w=0&k=20&c=AH4yTiwPKbE9RFqmhGewUATSJ5kUz3pK4DI2Y6uYP9A=",
+    tirupati: "https://media.istockphoto.com/id/1436234336/photo/tirumala-tirupati-balaji-temple.jpg?s=612x612&w=0&k=20&c=23Nn3plP2qcwmEU6jO6Qc--VXNiAJAFZaZDIKJ9j2s0=",
+    golden: "https://media.istockphoto.com/id/471702674/photo/golden-temple-harmandir-sahib-in-amritsar-punjab-india.jpg?s=612x612&w=0&k=20&c=e87CDt1NMF1qVvXyHzn0TMBM0DTcEhsJdYUCPFX1L7o=",
+    meenakshi: "https://media.istockphoto.com/id/1145592947/photo/meenakshi-hindu-temple-in-madurai-tamil-nadu-south-india.jpg?s=612x612&w=0&k=20&c=c4EB9jT_XH1CQ2hHL84A3tb3iRXx-j3p8DJi3_CTei4=",
+    jagannath: "https://media.istockphoto.com/id/1442188495/photo/aerial-view-of-chhatrapati-shahu-maharaj-temple-kolhapur-maharashtra-india.jpg?s=612x612&w=0&k=20&c=mZ9fat8WK0nHPJug9j0Up-oorOIQct4OdOPHp7aM2NQ=",
+    somnath: "https://media.istockphoto.com/id/1363614823/photo/mahabodhi-temple-bodh-gaya-india-the-site-where-gautam-buddha-attained-enlightenment.jpg?s=612x612&w=0&k=20&c=SvtKmrWYgazTzqP8picdXtAXX8a30iWIPsFSJzAbH4o=",
+    default: "https://media.istockphoto.com/id/611286644/photo/ancient-temple-in-india.jpg?s=612x612&w=0&k=20&c=VrQoQ-vwu6gaomZFWZuhQPYiX0vSCD-VR6i-xgYZmGw="
   };
+
+  // Additional temple images for variety
+  const additionalImages = [
+    "https://media.istockphoto.com/id/1357819735/photo/sun-temple-at-modhera-gujarat-india.jpg?s=612x612&w=0&k=20&c=z4QLVboqbfXQMdZxwJYkmI2HVLLAY-A4RWzs2koIX-s=",
+    "https://media.istockphoto.com/id/1171904338/photo/brihadishwara-temple-thanjavur.jpg?s=612x612&w=0&k=20&c=RlyAVZe-hTVgHlJrGdsmK_e1xQegZsqSauyoIxr6OUk=",
+    "https://media.istockphoto.com/id/1178966830/photo/beautiful-temple-in-jaisalmer-fort-rajasthan-india.jpg?s=612x612&w=0&k=20&c=oCDvyc5YR1_MyfumQbTj1ugTkyUwI5o0dWEZMP0Nlo8=",
+    "https://media.istockphoto.com/id/487756442/photo/mysore-palace.jpg?s=612x612&w=0&k=20&c=1SnhvMQs1oe6m6yNHVKm3NnI8RUYPIiZMg8ZMPpUGSA="
+  ];
 
   // Available tags from all temples
   const allTags = Array.from(
@@ -111,8 +119,8 @@ const AllTemples = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredTemples.map((temple) => {
-            // Get temple image based on temple name
+          {filteredTemples.map((temple, index) => {
+            // Get temple image based on temple name, with more variety
             let templeImage = templeImages.default;
             if (temple.name.toLowerCase().includes("kashi") || temple.name.toLowerCase().includes("varanasi")) {
               templeImage = templeImages.kashi;
@@ -126,6 +134,9 @@ const AllTemples = () => {
               templeImage = templeImages.jagannath;
             } else if (temple.name.toLowerCase().includes("somnath")) {
               templeImage = templeImages.somnath;
+            } else {
+              // For other temples, use additional images to add variety
+              templeImage = additionalImages[index % additionalImages.length];
             }
             
             return (

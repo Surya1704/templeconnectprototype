@@ -24,13 +24,13 @@ const NavBar = () => {
           </Link>
         </div>
         
-        {/* Search Bar (simplified) */}
-        <div className="hidden md:flex items-center bg-white border rounded-full p-2 px-4 shadow-sm">
-          <Button variant="default" size="sm" className="ml-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white">
+        {/* Search Bar */}
+        <Link to="/temples" className="hidden md:flex items-center">
+          <Button variant="default" size="sm" className="rounded-full bg-orange-500 hover:bg-orange-600 text-white">
             <Search className="h-4 w-4 mr-2" />
             <span>Search Temples</span>
           </Button>
-        </div>
+        </Link>
       </div>
       
       {/* Main Navigation */}
