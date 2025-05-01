@@ -375,7 +375,13 @@ const PrasadBooking = () => {
               <div className="p-8 text-center">
                 <p className="text-gray-500 mb-4">You haven't placed any prasad orders yet.</p>
                 <Button 
-                  onClick={() => document.querySelector('[data-value="shop"]')?.click()} 
+                  onClick={() => {
+                    // Fix: Instead of using Element.click(), we use the TabsTrigger's value to switch tabs
+                    const shopTab = document.querySelector('[data-value="shop"]');
+                    if (shopTab && shopTab instanceof HTMLElement) {
+                      shopTab.click();
+                    }
+                  }} 
                   className="bg-orange-500 hover:bg-orange-600"
                 >
                   Shop Prasad
