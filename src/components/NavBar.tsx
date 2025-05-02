@@ -4,13 +4,15 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 const NavBar = () => {
   const location = useLocation();
 
   return (
     <header className="border-b sticky top-0 z-50 w-full bg-white">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between">
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center text-orange-500 font-bold">
@@ -24,13 +26,62 @@ const NavBar = () => {
           </Link>
         </div>
         
-        {/* Search Bar */}
-        <Link to="/temples" className="hidden md:flex items-center">
-          <Button variant="default" size="sm" className="rounded-full bg-orange-500 hover:bg-orange-600 text-white">
-            <Search className="h-4 w-4 mr-2" />
-            <span>Search Temples</span>
-          </Button>
-        </Link>
+        {/* Enhanced Search Bar */}
+        <div className="my-4 md:my-0 w-full md:w-auto flex-1 max-w-xl mx-auto md:mx-0">
+          <div className="flex items-center justify-center rounded-full border shadow-sm bg-white overflow-hidden">
+            <div className="flex divide-x flex-1">
+              <div className="flex-1 px-3 py-2">
+                <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
+                  <SelectValue placeholder="Any Temple" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="any">Any Temple</SelectItem>
+                  <SelectItem value="tirupati">Tirupati</SelectItem>
+                  <SelectItem value="vaishno-devi">Vaishno Devi</SelectItem>
+                  <SelectItem value="kedarnath">Kedarnath</SelectItem>
+                </SelectContent>
+              </div>
+              
+              <div className="flex-1 px-3 py-2">
+                <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
+                  <SelectValue placeholder="Any Date" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="any">Any Date</SelectItem>
+                  <SelectItem value="today">Today</SelectItem>
+                  <SelectItem value="tomorrow">Tomorrow</SelectItem>
+                  <SelectItem value="this-week">This Week</SelectItem>
+                  <SelectItem value="this-month">This Month</SelectItem>
+                </SelectContent>
+              </div>
+              
+              <div className="flex-1 px-3 py-2">
+                <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
+                  <SelectValue placeholder="Darshan Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="any">Any Type</SelectItem>
+                  <SelectItem value="special">Special</SelectItem>
+                  <SelectItem value="regular">Regular</SelectItem>
+                  <SelectItem value="vip">VIP</SelectItem>
+                </SelectContent>
+              </div>
+            </div>
+            
+            <Button variant="default" size="icon" className="rounded-full h-10 w-10 m-1 bg-orange-500 hover:bg-orange-600">
+              <Search className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+        
+        {/* Right side action button */}
+        <div className="ml-4 hidden md:block">
+          <Link to="/contact">
+            <Button variant="outline" size="sm" className="border-orange-500 text-orange-500 hover:bg-orange-50">
+              List Your Temple
+            </Button>
+          </Link>
+        </div>
       </div>
       
       {/* Main Navigation */}
