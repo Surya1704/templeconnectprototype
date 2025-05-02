@@ -31,40 +31,46 @@ const NavBar = () => {
           <div className="flex items-center justify-center rounded-full border shadow-sm bg-white overflow-hidden">
             <div className="flex divide-x flex-1">
               <div className="flex-1 px-3 py-2">
-                <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
-                  <SelectValue placeholder="Any Temple" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="any">Any Temple</SelectItem>
-                  <SelectItem value="tirupati">Tirupati</SelectItem>
-                  <SelectItem value="vaishno-devi">Vaishno Devi</SelectItem>
-                  <SelectItem value="kedarnath">Kedarnath</SelectItem>
-                </SelectContent>
+                <Select>
+                  <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
+                    <SelectValue placeholder="Any Temple" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="any">Any Temple</SelectItem>
+                    <SelectItem value="tirupati">Tirupati</SelectItem>
+                    <SelectItem value="vaishno-devi">Vaishno Devi</SelectItem>
+                    <SelectItem value="kedarnath">Kedarnath</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               
               <div className="flex-1 px-3 py-2">
-                <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
-                  <SelectValue placeholder="Any Date" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="any">Any Date</SelectItem>
-                  <SelectItem value="today">Today</SelectItem>
-                  <SelectItem value="tomorrow">Tomorrow</SelectItem>
-                  <SelectItem value="this-week">This Week</SelectItem>
-                  <SelectItem value="this-month">This Month</SelectItem>
-                </SelectContent>
+                <Select>
+                  <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
+                    <SelectValue placeholder="Any Date" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="any">Any Date</SelectItem>
+                    <SelectItem value="today">Today</SelectItem>
+                    <SelectItem value="tomorrow">Tomorrow</SelectItem>
+                    <SelectItem value="this-week">This Week</SelectItem>
+                    <SelectItem value="this-month">This Month</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               
               <div className="flex-1 px-3 py-2">
-                <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
-                  <SelectValue placeholder="Darshan Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="any">Any Type</SelectItem>
-                  <SelectItem value="special">Special</SelectItem>
-                  <SelectItem value="regular">Regular</SelectItem>
-                  <SelectItem value="vip">VIP</SelectItem>
-                </SelectContent>
+                <Select>
+                  <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
+                    <SelectValue placeholder="Darshan Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="any">Any Type</SelectItem>
+                    <SelectItem value="special">Special</SelectItem>
+                    <SelectItem value="regular">Regular</SelectItem>
+                    <SelectItem value="vip">VIP</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
             
