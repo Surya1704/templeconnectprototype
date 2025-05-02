@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { IndianRupee, BuildingBank, Users, CheckCircle2, BadgeDollarSign } from "lucide-react";
+import { BadgeIndianRupee, Building, Users, CheckCircle2, BadgeDollarSign } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { temples } from "@/data/temples";
@@ -57,7 +57,7 @@ const DonationPage = () => {
           <div className="space-y-8">
             <div className="flex gap-6">
               <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
-                <BuildingBank className="h-6 w-6 text-orange-600" />
+                <Building className="h-6 w-6 text-orange-600" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Temple Maintenance</h3>
@@ -99,7 +99,7 @@ const DonationPage = () => {
               Every contribution, regardless of size, makes a meaningful difference.
             </p>
             <div className="flex items-center gap-2 text-orange-600">
-              <IndianRupee className="h-5 w-5" />
+              <BadgeIndianRupee className="h-5 w-5" />
               <span className="font-medium">100% of your donation goes directly to the temples</span>
             </div>
           </div>
