@@ -15,11 +15,22 @@ import {
 import { filterTemples, indianStates } from "@/data/temples";
 import StateFilter from "@/components/StateFilter";
 import CongestionIndicator from "@/components/CongestionIndicator";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const AllTemples = () => {
   const [selectedState, setSelectedState] = useState("All States");
   const [selectedTag, setSelectedTag] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
   
   const filteredTemples = filterTemples({
     state: selectedState,
@@ -27,12 +38,23 @@ const AllTemples = () => {
     search: searchQuery,
   });
 
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredTemples.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentTemples = filteredTemples.slice(indexOfFirstItem, indexOfLastItem);
+
   // Available tags from all temples
   const allTags = Array.from(
     new Set(
       filteredTemples.flatMap((temple) => temple.tags)
     )
   ).sort();
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -85,6 +107,7 @@ const AllTemples = () => {
       <div className="flex justify-between items-center mb-6">
         <p className="text-gray-600">
           {filteredTemples.length} {filteredTemples.length === 1 ? 'temple' : 'temples'} found
+          {filteredTemples.length > 0 && ` (showing ${indexOfFirstItem + 1}-${Math.min(indexOfLastItem, filteredTemples.length)})`}
         </p>
         <Button variant="outline" size="sm" className="flex gap-2">
           <Filter className="h-4 w-4" />
@@ -99,7 +122,7 @@ const AllTemples = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredTemples.map((temple) => (
+          {currentTemples.map((temple) => (
             <Card key={temple.id} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow">
               <div className="relative">
                 <Link to={`/temple/${temple.id}`}>
@@ -174,26 +197,40 @@ const AllTemples = () => {
         </div>
       )}
 
-      {/* Pagination */}
-      <div className="mt-10 flex justify-center">
-        <nav className="flex items-center gap-1">
-          <Button variant="outline" size="sm" disabled>
-            Previous
-          </Button>
-          <Button variant="outline" size="sm" className="bg-orange-500 text-white border-orange-500">
-            1
-          </Button>
-          <Button variant="outline" size="sm">
-            2
-          </Button>
-          <Button variant="outline" size="sm">
-            3
-          </Button>
-          <Button variant="outline" size="sm">
-            Next
-          </Button>
-        </nav>
-      </div>
+      {/* Pagination using shadcn/ui components */}
+      {totalPages > 1 && (
+        <div className="mt-10">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious 
+                  onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                  className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                />
+              </PaginationItem>
+              
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    onClick={() => handlePageChange(index + 1)}
+                    isActive={currentPage === index + 1}
+                    className="cursor-pointer"
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              
+              <PaginationItem>
+                <PaginationNext 
+                  onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                  className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+      )}
     </div>
   );
 };
