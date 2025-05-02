@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Events = () => {
-  // Sample events data with real images
+  // Sample events data without images
   const events = [
     {
       id: "1",
@@ -17,7 +17,6 @@ const Events = () => {
       location: "Prayagraj, Uttar Pradesh",
       temple: "Triveni Sangam",
       description: "One of the largest religious gatherings in the world, the Kumbh Mela is celebrated every 12 years at the Triveni Sangam in Prayagraj.",
-      image: "https://images.unsplash.com/photo-1584813470613-5b1c1cad3d69?q=80&w=2070&auto=format&fit=crop",
       attendees: 342,
       category: "festival"
     },
@@ -29,7 +28,6 @@ const Events = () => {
       location: "Ahmedabad, Gujarat",
       temple: "Ambaji Temple",
       description: "Nine nights dedicated to the worship of Goddess Durga with traditional Garba dance performances and special puja ceremonies.",
-      image: "https://images.unsplash.com/photo-1633934542430-0e25b3fac90e?q=80&w=2070&auto=format&fit=crop",
       attendees: 156,
       category: "festival"
     },
@@ -41,7 +39,6 @@ const Events = () => {
       location: "Varanasi, Uttar Pradesh",
       temple: "Kashi Vishwanath",
       description: "The great night of Shiva celebrated with night-long temple rituals, fasting, and meditation dedicated to Lord Shiva.",
-      image: "https://images.unsplash.com/photo-1627896157126-41022f16a0a8?q=80&w=2070&auto=format&fit=crop",
       attendees: 289,
       category: "ceremony"
     },
@@ -53,7 +50,6 @@ const Events = () => {
       location: "Mumbai, Maharashtra",
       temple: "Siddhivinayak Temple",
       description: "A 10-day festival celebrating the birth of Lord Ganesha with elaborate idol installations, prayers, and immersion ceremonies.",
-      image: "https://images.unsplash.com/photo-1631632366518-a2411fccef0d?q=80&w=2070&auto=format&fit=crop",
       attendees: 210,
       category: "festival"
     },
@@ -65,7 +61,6 @@ const Events = () => {
       location: "Puri, Odisha",
       temple: "Jagannath Temple",
       description: "The famous chariot festival where deities are placed on large chariots and pulled through the streets by thousands of devotees.",
-      image: "https://images.unsplash.com/photo-1627894486874-b830e5a8be76?q=80&w=2070&auto=format&fit=crop",
       attendees: 387,
       category: "procession"
     },
@@ -77,7 +72,6 @@ const Events = () => {
       location: "Ayodhya, Uttar Pradesh",
       temple: "Ram Janmabhoomi",
       description: "The festival of lights celebrated with millions of diyas illuminating the temples, special prayers, and festive decorations.",
-      image: "https://images.unsplash.com/photo-1604823040052-257c5e40bc72?q=80&w=2070&auto=format&fit=crop",
       attendees: 432,
       category: "festival"
     },
@@ -89,7 +83,6 @@ const Events = () => {
       location: "Mysuru, Karnataka",
       temple: "Chamundeshwari Temple",
       description: "A harvest festival marking the transition of the sun into Capricorn with special pujas, kite flying, and charitable activities.",
-      image: "https://images.unsplash.com/photo-1610630516585-7eefd4beca3f?q=80&w=2070&auto=format&fit=crop",
       attendees: 189,
       category: "ceremony"
     },
@@ -101,7 +94,6 @@ const Events = () => {
       location: "Rishikesh, Uttarakhand",
       temple: "Parmarth Niketan",
       description: "A day to honor spiritual and academic teachers with special worship services, knowledge-sharing sessions, and cultural programs.",
-      image: "https://images.unsplash.com/photo-1592547097938-7942b29d8e8b?q=80&w=1931&auto=format&fit=crop",
       attendees: 123,
       category: "ceremony"
     }
@@ -122,21 +114,16 @@ const Events = () => {
         </p>
 
         {/* Featured Event */}
-        <div className="relative rounded-lg overflow-hidden mb-10">
-          <img 
-            src={events[0].image} 
-            alt={events[0].title}
-            className="w-full h-80 object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-8">
+        <div className="relative rounded-lg overflow-hidden mb-10 bg-orange-100 p-8">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent"></div>
+          <div className="relative z-10">
             <span className="inline-block bg-orange-500 text-white text-sm font-medium px-3 py-1 rounded-full mb-3">
               Featured Event
             </span>
-            <h2 className="text-3xl font-bold text-white mb-2">{events[0].title}</h2>
-            <p className="text-white/90 mb-4 max-w-2xl">{events[0].description}</p>
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">{events[0].title}</h2>
+            <p className="text-gray-700 mb-4 max-w-2xl">{events[0].description}</p>
             
-            <div className="flex flex-wrap gap-4 mb-4 text-white/80">
+            <div className="flex flex-wrap gap-4 mb-4 text-gray-700">
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
                 <span>{events[0].date}</span>
@@ -159,7 +146,7 @@ const Events = () => {
               <Button className="bg-orange-500 hover:bg-orange-600 text-white">
                 Register Now
               </Button>
-              <Button variant="outline" className="border-white/70 text-white hover:bg-white/10">
+              <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
                 Add to Calendar
               </Button>
             </div>
@@ -268,12 +255,8 @@ const Events = () => {
 // Event card component
 const EventCard = ({ event }: { event: any }) => (
   <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-    <div className="relative h-48">
-      <img 
-        src={event.image} 
-        alt={event.title} 
-        className="w-full h-full object-cover"
-      />
+    <div className="relative h-48 bg-orange-100 p-4 flex items-center justify-center">
+      <div className="text-2xl font-bold text-orange-800">{event.category.charAt(0).toUpperCase() + event.category.slice(1)}</div>
       <div className="absolute top-2 right-2 bg-white/90 text-orange-500 text-xs font-medium px-2 py-1 rounded">
         {event.category.charAt(0).toUpperCase() + event.category.slice(1)}
       </div>

@@ -12,7 +12,6 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import { filterTemples, indianStates } from "@/data/temples";
 import StateFilter from "@/components/StateFilter";
 import CongestionIndicator from "@/components/CongestionIndicator";
@@ -27,25 +26,6 @@ const AllTemples = () => {
     tag: selectedTag !== "all" ? selectedTag : "",
     search: searchQuery,
   });
-
-  // Temple images with high-quality images from iStock
-  const templeImages = {
-    kashi: "https://media.istockphoto.com/id/1146517111/photo/aerial-view-of-varanasi-city-architecture-and-ganga-river-at-night.jpg?s=612x612&w=0&k=20&c=AH4yTiwPKbE9RFqmhGewUATSJ5kUz3pK4DI2Y6uYP9A=",
-    tirupati: "https://media.istockphoto.com/id/1436234336/photo/tirumala-tirupati-balaji-temple.jpg?s=612x612&w=0&k=20&c=23Nn3plP2qcwmEU6jO6Qc--VXNiAJAFZaZDIKJ9j2s0=",
-    golden: "https://media.istockphoto.com/id/471702674/photo/golden-temple-harmandir-sahib-in-amritsar-punjab-india.jpg?s=612x612&w=0&k=20&c=e87CDt1NMF1qVvXyHzn0TMBM0DTcEhsJdYUCPFX1L7o=",
-    meenakshi: "https://media.istockphoto.com/id/1145592947/photo/meenakshi-hindu-temple-in-madurai-tamil-nadu-south-india.jpg?s=612x612&w=0&k=20&c=c4EB9jT_XH1CQ2hHL84A3tb3iRXx-j3p8DJi3_CTei4=",
-    jagannath: "https://media.istockphoto.com/id/1442188495/photo/aerial-view-of-chhatrapati-shahu-maharaj-temple-kolhapur-maharashtra-india.jpg?s=612x612&w=0&k=20&c=mZ9fat8WK0nHPJug9j0Up-oorOIQct4OdOPHp7aM2NQ=",
-    somnath: "https://media.istockphoto.com/id/1363614823/photo/mahabodhi-temple-bodh-gaya-india-the-site-where-gautam-buddha-attained-enlightenment.jpg?s=612x612&w=0&k=20&c=SvtKmrWYgazTzqP8picdXtAXX8a30iWIPsFSJzAbH4o=",
-    default: "https://media.istockphoto.com/id/611286644/photo/ancient-temple-in-india.jpg?s=612x612&w=0&k=20&c=VrQoQ-vwu6gaomZFWZuhQPYiX0vSCD-VR6i-xgYZmGw="
-  };
-
-  // Additional temple images for variety
-  const additionalImages = [
-    "https://media.istockphoto.com/id/1357819735/photo/sun-temple-at-modhera-gujarat-india.jpg?s=612x612&w=0&k=20&c=z4QLVboqbfXQMdZxwJYkmI2HVLLAY-A4RWzs2koIX-s=",
-    "https://media.istockphoto.com/id/1171904338/photo/brihadishwara-temple-thanjavur.jpg?s=612x612&w=0&k=20&c=RlyAVZe-hTVgHlJrGdsmK_e1xQegZsqSauyoIxr6OUk=",
-    "https://media.istockphoto.com/id/1178966830/photo/beautiful-temple-in-jaisalmer-fort-rajasthan-india.jpg?s=612x612&w=0&k=20&c=oCDvyc5YR1_MyfumQbTj1ugTkyUwI5o0dWEZMP0Nlo8=",
-    "https://media.istockphoto.com/id/487756442/photo/mysore-palace.jpg?s=612x612&w=0&k=20&c=1SnhvMQs1oe6m6yNHVKm3NnI8RUYPIiZMg8ZMPpUGSA="
-  ];
 
   // Available tags from all temples
   const allTags = Array.from(
@@ -119,101 +99,78 @@ const AllTemples = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredTemples.map((temple, index) => {
-            // Get temple image based on temple name, with more variety
-            let templeImage = templeImages.default;
-            if (temple.name.toLowerCase().includes("kashi") || temple.name.toLowerCase().includes("varanasi")) {
-              templeImage = templeImages.kashi;
-            } else if (temple.name.toLowerCase().includes("tirupati") || temple.name.toLowerCase().includes("balaji")) {
-              templeImage = templeImages.tirupati;
-            } else if (temple.name.toLowerCase().includes("golden") || temple.name.toLowerCase().includes("harmandir")) {
-              templeImage = templeImages.golden;
-            } else if (temple.name.toLowerCase().includes("meenakshi")) {
-              templeImage = templeImages.meenakshi;
-            } else if (temple.name.toLowerCase().includes("jagannath")) {
-              templeImage = templeImages.jagannath;
-            } else if (temple.name.toLowerCase().includes("somnath")) {
-              templeImage = templeImages.somnath;
-            } else {
-              // For other temples, use additional images to add variety
-              templeImage = additionalImages[index % additionalImages.length];
-            }
-            
-            return (
-              <Card key={temple.id} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow">
-                <div className="relative">
-                  <Link to={`/temple/${temple.id}`}>
-                    <img 
-                      src={templeImage} 
-                      alt={temple.name} 
-                      className="w-full h-48 object-cover transition-transform hover:scale-105"
-                    />
-                  </Link>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    className="absolute top-2 right-2 bg-white/80 rounded-full hover:bg-white"
+          {filteredTemples.map((temple) => (
+            <Card key={temple.id} className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow">
+              <div className="relative">
+                <Link to={`/temple/${temple.id}`}>
+                  <div className="w-full h-48 bg-orange-100 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-orange-800">{temple.name.charAt(0)}</span>
+                  </div>
+                </Link>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="absolute top-2 right-2 bg-white/80 rounded-full hover:bg-white"
+                >
+                  <Heart className="h-5 w-5 text-orange-500" />
+                </Button>
+                
+                <div className="absolute bottom-2 right-2">
+                  <CongestionIndicator level={["low", "moderate", "high", "extreme"][Math.floor(Math.random() * 4)] as any} />
+                </div>
+              </div>
+              
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <Link 
+                    to={`/temple/${temple.id}`}
+                    className="text-lg font-semibold hover:text-orange-500"
                   >
-                    <Heart className="h-5 w-5 text-orange-500" />
-                  </Button>
-                  
-                  <div className="absolute bottom-2 right-2">
-                    <CongestionIndicator level={["low", "moderate", "high", "extreme"][Math.floor(Math.random() * 4)] as any} />
+                    {temple.name}
+                  </Link>
+                  <div className="flex items-center text-amber-500">
+                    <span>★</span>
+                    <span className="ml-1 text-sm text-gray-700">{temple.rating}</span>
                   </div>
                 </div>
                 
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <Link 
-                      to={`/temple/${temple.id}`}
-                      className="text-lg font-semibold hover:text-orange-500"
+                <p className="text-gray-600 mb-1">{temple.location}</p>
+                <p className="text-gray-600 text-sm mb-3">{temple.hours}</p>
+                
+                <div className="flex flex-wrap gap-1 mb-4">
+                  {temple.tags.slice(0, 3).map((tag) => (
+                    <span 
+                      key={tag} 
+                      className="text-xs rounded-full px-2 py-1 bg-orange-50 text-orange-800 border border-orange-200"
                     >
-                      {temple.name}
-                    </Link>
-                    <div className="flex items-center text-amber-500">
-                      <span>★</span>
-                      <span className="ml-1 text-sm text-gray-700">{temple.rating}</span>
-                    </div>
+                      {tag}
+                    </span>
+                  ))}
+                  {temple.tags.length > 3 && (
+                    <span className="text-xs text-gray-500 py-1">
+                      +{temple.tags.length - 3} more
+                    </span>
+                  )}
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="font-semibold">₹{temple.price}</span>
+                    <span className="text-gray-500 text-sm ml-1">darshan</span>
                   </div>
                   
-                  <p className="text-gray-600 mb-1">{temple.location}</p>
-                  <p className="text-gray-600 text-sm mb-3">{temple.hours}</p>
-                  
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {temple.tags.slice(0, 3).map((tag) => (
-                      <span 
-                        key={tag} 
-                        className="text-xs rounded-full px-2 py-1 bg-orange-50 text-orange-800 border border-orange-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {temple.tags.length > 3 && (
-                      <span className="text-xs text-gray-500 py-1">
-                        +{temple.tags.length - 3} more
-                      </span>
-                    )}
+                  <div className="flex gap-2">
+                    <Button size="sm" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
+                      Book
+                    </Button>
+                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">
+                      Donate
+                    </Button>
                   </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="font-semibold">₹{temple.price}</span>
-                      <span className="text-gray-500 text-sm ml-1">darshan</span>
-                    </div>
-                    
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
-                        Book
-                      </Button>
-                      <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">
-                        Donate
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       )}
 
