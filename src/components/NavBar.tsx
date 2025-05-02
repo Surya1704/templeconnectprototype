@@ -42,6 +42,7 @@ const NavBar = () => {
             <NavItem to="/puja-timings" text="Puja Timings" active={location.pathname === '/puja-timings'} />
             <NavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
             <NavItem to="/prasad-booking" text="Prasad Booking" active={location.pathname === '/prasad-booking'} />
+            <NavItem to="/donations" text="Donations" active={location.pathname === '/donations'} />
             <NavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
             <NavItem to="/astrology" text="Hindu Astrology" active={location.pathname === '/astrology'} />
             <NavItem to="/contact" text="Contact" active={location.pathname === '/contact'} />

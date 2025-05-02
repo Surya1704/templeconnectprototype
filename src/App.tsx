@@ -15,6 +15,7 @@ import PrasadBooking from "./pages/PrasadBooking";
 import AllTemples from "./pages/AllTemples";
 import PoojaBooking from "./pages/PoojaBooking";
 import Astrology from "./pages/Astrology";
+import Donations from "./pages/Donations";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="gallery" element={<Gallery />} />
             <Route path="prasad-booking" element={<PrasadBooking />} />
             <Route path="pooja-booking" element={<PoojaBooking />} />
+            <Route path="donations" element={<Donations />} />
             <Route path="contact" element={<Contact />} />
             <Route path="temple/:id" element={<TempleDetail />} />
             <Route path="temples" element={<AllTemples />} />
