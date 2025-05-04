@@ -49,9 +49,6 @@ const Index = () => {
         ref={heroRef}
         className="relative min-h-screen bg-gradient-to-b from-spiritual-maroon via-spiritual-ochre to-spiritual-saffron overflow-hidden"
       >
-        {/* Temple silhouette */}
-        <div className="absolute inset-0 bg-[url('/temple-silhouette.svg')] bg-bottom bg-no-repeat opacity-20"></div>
-        
         {/* Content */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="container mx-auto px-6 py-24 text-center">
@@ -99,23 +96,6 @@ const Index = () => {
           </div>
         </div>
         
-        {/* Animated elements */}
-        <div className="absolute bottom-20 left-20 w-32 h-32 opacity-30 animate-rotate-slow">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45" stroke="#FFF" strokeWidth="1"/>
-            <circle cx="50" cy="50" r="35" stroke="#FFF" strokeWidth="1"/>
-            <circle cx="50" cy="50" r="25" stroke="#FFF" strokeWidth="1"/>
-            <path d="M50 5 L50 95 M5 50 L95 50 M15 15 L85 85 M85 15 L15 85" stroke="#FFF" strokeWidth="1"/>
-          </svg>
-        </div>
-        
-        <div className="absolute top-40 right-20 w-40 h-40 opacity-20 animate-float">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50,10 L90,90 L10,90 Z" fill="#FFFFFF"/>
-            <path d="M50,20 L80,80 L20,80 Z" fill="none" stroke="#FFFFFF"/>
-          </svg>
-        </div>
-        
         {/* Scroll indicator */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
           <div className="flex flex-col items-center">
@@ -128,7 +108,7 @@ const Index = () => {
       </section>
 
       {/* Introduction Section */}
-      <section className="py-20 px-6 temple-pattern">
+      <section className="py-20 px-6 bg-spiritual-ivory">
         <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -339,8 +319,6 @@ const Index = () => {
       
       {/* Call to Action */}
       <section className="py-20 px-6 bg-spiritual-maroon relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/mandala-pattern.svg')] opacity-10"></div>
-        
         <div className="container mx-auto relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <motion.h2
