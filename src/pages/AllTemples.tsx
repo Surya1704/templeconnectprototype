@@ -182,11 +182,11 @@ const AllTemples = () => {
                     <span className="text-gray-500 text-sm ml-1">darshan</span>
                   </div>
                   
-                  <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
+                  <div className="flex items-center gap-2 ml-2">
+                    <Button size="sm" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50 h-8 px-3 py-1">
                       Book
                     </Button>
-                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white">
+                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white h-8 px-3 py-1">
                       Donate
                     </Button>
                   </div>
