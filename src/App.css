@@ -1,7 +1,8 @@
+
+/* Temple-inspired design system */
+
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -12,10 +13,7 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em rgba(212, 175, 55, 0.67));
 }
 
 @keyframes logo-spin {
@@ -33,10 +31,95 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
+}
+
+/* Custom animations */
+.pillar-glow {
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
+  }
+}
+
+.floating-lotus {
+  animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.rotating-mandala {
+  animation: rotate 60s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Temple-inspired text and heading styles */
+.temple-heading {
+  font-family: 'Cinzel', serif;
+  color: #800000;
+  position: relative;
+}
+
+.temple-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #D4AF37, transparent);
+}
+
+.temple-text {
+  font-family: 'Poppins', sans-serif;
+  color: #4a3c30;
+  line-height: 1.7;
+}
+
+/* Divine card style */
+.divine-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(128, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.divine-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(128, 0, 0, 0.15);
+}
+
+.divine-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, #FF7722, #D4AF37);
 }

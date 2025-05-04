@@ -1,0 +1,27 @@
+
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer circle -->
+  <circle cx="150" cy="150" r="140" stroke="white" stroke-width="1"/>
+  
+  <!-- Geometric patterns -->
+  <circle cx="150" cy="150" r="120" stroke="white" stroke-width="1"/>
+  <circle cx="150" cy="150" r="100" stroke="white" stroke-width="1"/>
+  <circle cx="150" cy="150" r="80" stroke="white" stroke-width="1"/>
+  <circle cx="150" cy="150" r="60" stroke="white" stroke-width="1"/>
+  <circle cx="150" cy="150" r="40" stroke="white" stroke-width="1"/>
+  <circle cx="150" cy="150" r="20" stroke="white" stroke-width="1"/>
+  
+  <!-- Radial lines -->
+  <path d="M150 10 L150 290" stroke="white" stroke-width="1"/>
+  <path d="M10 150 L290 150" stroke="white" stroke-width="1"/>
+  
+  <!-- Diagonal lines -->
+  <path d="M30 30 L270 270" stroke="white" stroke-width="1"/>
+  <path d="M270 30 L30 270" stroke="white" stroke-width="1"/>
+  
+  <!-- Additional geometric elements -->
+  <path d="M150 10 L90 90 L150 150 L210 90 Z" stroke="white" stroke-width="1" fill="none"/>
+  <path d="M150 290 L90 210 L150 150 L210 210 Z" stroke="white" stroke-width="1" fill="none"/>
+  <path d="M10 150 L90 90 L150 150 L90 210 Z" stroke="white" stroke-width="1" fill="none"/>
+  <path d="M290 150 L210 90 L150 150 L210 210 Z" stroke="white" stroke-width="1" fill="none"/>
+</svg>

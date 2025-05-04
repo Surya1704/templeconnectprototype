@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,25 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Temple-inspired color palette
+				spiritual: {
+					saffron: '#FF7722',
+					maroon: '#800000',
+					gold: '#D4AF37',
+					deepgold: '#B8860B',
+					ivory: '#FFFFF0',
+					sandstone: '#F4A460',
+					ochre: '#CC7722',
+					copper: '#B87333',
+					vermilion: '#E34234',
+					turmeric: '#FFC300',
+				},
+			},
+			fontFamily: {
+				'cinzel': ['Cinzel', 'serif'],
+				'playfair': ['Playfair Display', 'serif'],
+				'sans': ['Poppins', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,12 +103,37 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'glow': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.6' },
+				},
+				'rotate-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' },
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'glow': 'glow 3s ease-in-out infinite',
+				'rotate-slow': 'rotate-slow 20s linear infinite',
+				'fade-in': 'fade-in 0.8s ease-out forwards',
+			},
+			backgroundImage: {
+				'temple-pattern': "url('/patterns/temple-pattern.png')",
+				'mandala': "url('/patterns/mandala.png')",
+				'lotus': "url('/patterns/lotus.png')",
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

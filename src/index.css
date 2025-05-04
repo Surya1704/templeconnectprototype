@@ -1,92 +1,87 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 39 38% 97%;
+    --foreground: 36 25% 16%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 36 25% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 36 25% 16%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 28 100% 52%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 26 66% 89%;
+    --secondary-foreground: 36 25% 16%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 26 39% 94%;
+    --muted-foreground: 36 8% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 356 75% 25%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 26 20% 86%;
+    --input: 26 20% 86%;
+    --ring: 28 100% 52%;
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 36 22% 8%;
+    --foreground: 39 38% 85%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 36 22% 12%;
+    --card-foreground: 39 38% 85%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 36 22% 12%;
+    --popover-foreground: 39 38% 85%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 28 100% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 26 16% 25%;
+    --secondary-foreground: 39 38% 85%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 26 16% 20%;
+    --muted-foreground: 36 8% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 356 75% 25%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 26 16% 30%;
+    --input: 26 16% 30%;
+    --ring: 28 100% 45%;
+    
+    --sidebar-background: 36 22% 10%;
+    --sidebar-foreground: 39 38% 85%;
+    --sidebar-primary: 28 100% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 26 16% 25%;
+    --sidebar-accent-foreground: 39 38% 85%;
+    --sidebar-border: 26 16% 30%;
+    --sidebar-ring: 28 100% 45%;
   }
 }
 
@@ -96,6 +91,90 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  h1, h2, h3, h4, h5, .heading {
+    @apply font-playfair;
+  }
+}
+
+@layer components {
+  .temple-pattern {
+    background-color: #fcf5eb;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50L0 50 M50 50L100 50 M50 50L50 0 M50 50L50 100' stroke='%23D4AF37' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+  }
+
+  .mandala-bg {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='none' stroke='%23d4af37' stroke-width='1' opacity='0.1' /%3E%3Ccircle cx='100' cy='100' r='60' fill='none' stroke='%23d4af37' stroke-width='1' opacity='0.1' /%3E%3Ccircle cx='100' cy='100' r='40' fill='none' stroke='%23d4af37' stroke-width='1' opacity='0.1' /%3E%3Ccircle cx='100' cy='100' r='20' fill='none' stroke='%23d4af37' stroke-width='1' opacity='0.1' /%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  .lotus-accent {
+    position: relative;
+  }
+  
+  .lotus-accent::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4a3 3 0 0 0-3 3c0 1-1 2-3 2 0 0 0 0 0 0h12s0 0 0 0c-2 0-3-1-3-2a3 3 0 0 0-3-3Z'/%3E%3Cpath d='M18 12c0 5-6 8-6 8s-6-3-6-8'/%3E%3Cpath d='M12 4c0 0 2 0 2 2'/%3E%3Cpath d='M12 4c0 0-2 0-2 2'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+  }
+
+  .temple-card {
+    @apply rounded-lg overflow-hidden border border-spiritual-sandstone/20 bg-white shadow-sm hover:shadow-md transition-all;
+  }
+
+  .temple-title {
+    @apply font-cinzel font-bold text-spiritual-maroon border-b border-spiritual-gold/30 pb-2 mb-4;
+  }
+
+  .divine-glow {
+    @apply relative;
+  }
+  
+  .divine-glow::after {
+    @apply content-[''] absolute -inset-[1px] rounded-lg bg-gradient-to-tr from-spiritual-gold/20 via-spiritual-saffron/10 to-spiritual-gold/20 blur-sm -z-10;
+  }
+
+  .divine-btn {
+    @apply bg-spiritual-saffron text-white hover:bg-spiritual-ochre transition-colors font-medium;
+  }
+
+  .divine-btn-outline {
+    @apply border-spiritual-saffron text-spiritual-saffron hover:bg-spiritual-saffron/5 transition-colors font-medium;
+  }
+
+  .ornate-border {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0,0 L100,0 L100,100 L0,100 Z' fill='none' stroke='%23D4AF37' stroke-width='4' stroke-dasharray='10,10' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .hero-scroll-indicator {
+    @apply absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer;
+  }
+}
+
+/* Add temple-inspired scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.spiritual.ivory');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.spiritual.saffron');
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.spiritual.ochre');
 }
