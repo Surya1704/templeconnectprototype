@@ -19,6 +19,7 @@ import Donations from "./pages/Donations";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 
+// Create a client for React Query
 const queryClient = new QueryClient();
 
 const App = () => (

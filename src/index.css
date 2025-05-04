@@ -33,7 +33,7 @@
     --input: 26 20% 86%;
     --ring: 28 100% 52%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -98,19 +98,61 @@
   h1, h2, h3, h4, h5, .heading {
     @apply font-playfair;
   }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer components {
   .temple-pattern {
-    background-color: #fcf5eb;
+    position: relative;
+  }
+  
+  .temple-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: -1;
   }
 
   .mandala-bg {
-    background-color: rgba(212, 175, 55, 0.05);
+    position: relative;
+  }
+  
+  .mandala-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23d4af37' stroke-width='1' fill='none' stroke-opacity='0.1'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='%23d4af37' stroke-width='1' fill='none' stroke-opacity='0.1'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23d4af37' stroke-width='1' fill='none' stroke-opacity='0.1'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: -1;
   }
 
   .lotus-accent {
     position: relative;
+  }
+  
+  .lotus-accent::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 15px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='15' viewBox='0 0 30 15'%3E%3Cpath d='M15,0 C10,0 5,5 0,15 L30,15 C25,5 20,0 15,0' fill='%23d4af37' fill-opacity='0.2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .divine-glow {
@@ -130,16 +172,75 @@
   }
 
   .ornate-border {
-    border: 2px solid rgba(212, 175, 55, 0.3);
-    border-radius: 8px;
+    @apply border-2 border-spiritual-gold/30 rounded-lg;
   }
-
-  .hero-scroll-indicator {
-    @apply absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer;
+  
+  /* Temple card hover effects */
+  .temple-card {
+    @apply transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  /* Mandala spinner animation */
+  .mandala-spin {
+    animation: spin 20s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Diya glow effect */
+  .diya-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    0% { filter: drop-shadow(0 0 2px rgba(255, 119, 34, 0.7)); }
+    100% { filter: drop-shadow(0 0 6px rgba(255, 119, 34, 0.9)); }
+  }
+  
+  /* Parallax Layers */
+  .parallax-layer {
+    will-change: transform;
+  }
+  
+  /* Sacred geometrical borders */
+  .sacred-border {
+    position: relative;
+  }
+  
+  .sacred-border::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      rgba(212, 175, 55, 0), 
+      rgba(212, 175, 55, 0.5), 
+      rgba(212, 175, 55, 0.8),
+      rgba(212, 175, 55, 0.5),
+      rgba(212, 175, 55, 0)
+    );
+  }
+  
+  /* Hover reveal effect */
+  .hover-reveal {
+    @apply relative overflow-hidden;
+  }
+  
+  .hover-reveal-content {
+    @apply absolute inset-0 flex items-center justify-center bg-spiritual-maroon/80 opacity-0 transition-opacity duration-300;
+  }
+  
+  .hover-reveal:hover .hover-reveal-content {
+    @apply opacity-100;
   }
 }
 
-/* Add temple-inspired scrollbar */
+/* Temple-inspired scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
