@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart, Search, Filter } from "lucide-react";
@@ -176,17 +175,17 @@ const AllTemples = () => {
                   )}
                 </div>
                 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between w-full">
                   <div>
                     <span className="font-semibold">₹{temple.price}</span>
                     <span className="text-gray-500 text-sm ml-1">darshan</span>
                   </div>
                   
-                  <div className="flex items-center gap-2 ml-2">
+                  <div className="flex items-center gap-2">
                     <Button size="sm" variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50 h-8 px-3 py-1">
                       Book
                     </Button>
-                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white h-8 px-3 py-1">
+                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white h-8 px-3 py-1 whitespace-nowrap">
                       Donate
                     </Button>
                   </div>
