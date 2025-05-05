@@ -21,7 +21,7 @@ const Home = () => {
           className="absolute inset-0 z-0 overflow-hidden"
         >
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTQgMjRjMCAxNC40LTExLjYgMjYtMjYgMjZTMiAzOC40IDIgMjRDMiA5LjYgMTMuNiAtMiAyOCAtMnMyNiAxMS42IDI2IDI2eiIgZmlsbD0iI2M3NWIxYiIgZmlsbC1vcGFjaXR5PSIwLjAzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-30" />
-        </div>
+        </motion.div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
