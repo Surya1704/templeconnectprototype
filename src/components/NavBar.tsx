@@ -183,7 +183,6 @@ const NavBar = () => {
               <Input
                 placeholder="Search temples..."
                 className="mb-4"
-                prefix={<Search className="h-4 w-4 text-gray-400" />}
               />
               <Button className="w-full bg-spiritual-saffron hover:bg-spiritual-ochre">Book Darshan</Button>
             </div>
