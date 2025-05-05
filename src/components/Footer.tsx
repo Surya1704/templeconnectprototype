@@ -45,6 +45,7 @@ const Footer = () => {
               <FooterLink to="/contact" text="Temple Connect Foundation" />
               <FooterLink to="/contact" text="Temple preservation initiatives" />
               <FooterLink to="/contact" text="Cultural heritage programs" />
+              <FooterLink to="/founder" text="About Our Founder" />
             </ul>
           </div>
           
@@ -66,7 +67,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <FooterLink to="/contact" text="Newsroom" />
               <FooterLink to="/contact" text="Learn about new features" />
-              <FooterLink to="/contact" text="Letter from our founders" />
+              <FooterLink to="/founder" text="Letter from our founder" />
               <FooterLink to="/contact" text="Careers" />
               <FooterLink to="/contact" text="Investors" />
             </ul>
@@ -98,10 +99,10 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4 text-orange-800">Connect with us</h3>
             <div className="flex space-x-4">
-              <SocialLink href="#" icon={<Facebook size={20} />} label="Facebook" />
-              <SocialLink href="#" icon={<Twitter size={20} />} label="Twitter" />
-              <SocialLink href="#" icon={<Instagram size={20} />} label="Instagram" />
-              <SocialLink href="#" icon={<Linkedin size={20} />} label="LinkedIn" />
+              <SocialLink href="https://facebook.com" icon={<Facebook size={20} />} label="Facebook" />
+              <SocialLink href="https://twitter.com" icon={<Twitter size={20} />} label="Twitter" />
+              <SocialLink href="https://instagram.com" icon={<Instagram size={20} />} label="Instagram" />
+              <SocialLink href="https://linkedin.com" icon={<Linkedin size={20} />} label="LinkedIn" />
             </div>
           </div>
         </div>

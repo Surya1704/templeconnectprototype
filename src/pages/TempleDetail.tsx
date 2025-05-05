@@ -1,380 +1,228 @@
 
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { getTempleById } from "@/data/mergeTemples";
+import { CalendarDays, Clock, MapPin, Users, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Calendar, MapPin, Clock, AlertCircle, ShoppingCart } from "lucide-react";
-import { getTempleById } from "@/data/temples";
-import CongestionIndicator from "@/components/CongestionIndicator";
+import { Separator } from "@/components/ui/separator";
+import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import { Temple } from "@/data/temples";
 
 const TempleDetail = () => {
-  const { id } = useParams();
-  const temple = getTempleById(id || "");
+  const { id } = useParams<{ id: string }>();
+  const [temple, setTemple] = useState<Temple | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
-  const [selectedDate, setSelectedDate] = useState<number>(3);
-  const [selectedTime, setSelectedTime] = useState<string>("8:00 AM");
-  
-  if (!temple) {
+
+  useEffect(() => {
+    // Simulate API call
+    setTimeout(() => {
+      if (id) {
+        const templeData = getTempleById(id);
+        setTemple(templeData);
+      }
+      setIsLoading(false);
+    }, 500);
+  }, [id]);
+
+  const handleBooking = () => {
+    toast({
+      title: "Booking initiated!",
+      description: "You will soon be redirected to the booking page.",
+    });
+  };
+
+  if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-3xl font-bold mb-4">Temple Not Found</h1>
-        <p className="mb-6">The temple you're looking for doesn't exist or has been removed.</p>
-        <Button asChild>
-          <a href="/">Return Home</a>
-        </Button>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-spiritual-saffron border-t-spiritual-maroon rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-spiritual-maroon">Loading temple information...</p>
+        </div>
       </div>
     );
   }
 
-  // Generate random congestion level for demo purposes
-  const congestionLevels: ["low", "moderate", "high", "extreme"] = ["low", "moderate", "high", "extreme"];
-  const currentCongestion = congestionLevels[Math.floor(Math.random() * congestionLevels.length)];
-
-  const bookDarshan = () => {
-    toast({
-      title: "Darshan Booked",
-      description: `Your darshan at ${temple.name} has been confirmed for May ${selectedDate + 10} at ${selectedTime}`,
-    });
-  };
-
-  const bookPrasad = () => {
-    toast({
-      title: "Redirecting to Prasad Booking",
-      description: "Please select your preferred prasad items",
-    });
-  };
+  if (!temple) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center max-w-md px-4">
+          <div className="text-5xl mb-6">🕉️</div>
+          <h1 className="text-2xl font-bold text-spiritual-maroon mb-2">Temple Not Found</h1>
+          <p className="text-gray-600 mb-6">
+            We couldn't find the temple you're looking for. It may have been removed or you might have followed an incorrect link.
+          </p>
+          <Link to="/temples">
+            <Button className="bg-spiritual-saffron hover:bg-spiritual-ochre">
+              Browse All Temples
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <div className="relative h-[400px] bg-orange-100 flex items-center justify-center">
-        <div className="text-5xl font-bold text-orange-800">{temple.name.charAt(0)}</div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
-        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-          <div className="container mx-auto">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">{temple.name}</h1>
-            <div className="flex flex-wrap items-center gap-4 mb-4">
-              <div className="flex items-center gap-1">
-                <span>★</span>
-                <span>{temple.rating}</span>
-                <span className="text-white/80">(120+ reviews)</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="h-4 w-4" />
-                <span>{temple.location}</span>
+    <div className="min-h-screen bg-spiritual-ivory/20 pb-16">
+      {/* Temple Header */}
+      <div className="bg-gradient-to-r from-spiritual-maroon to-spiritual-ochre text-white">
+        <div className="container mx-auto px-4 py-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div>
+                <h1 className="text-3xl md:text-4xl font-cinzel font-bold">{temple.name}</h1>
+                <div className="flex items-center mt-3 text-white/80">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  <span>{temple.location}</span>
+                </div>
               </div>
               
-              {/* Real-time crowd congestion indicator */}
-              <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                <CongestionIndicator level={currentCongestion} />
+              <div className="flex items-center gap-2 bg-white/20 rounded-full py-1.5 px-3">
+                <span className="text-yellow-200">★</span>
+                <span className="font-medium">{temple.rating}</span>
+                <span className="text-sm text-white/70">(490+ ratings)</span>
               </div>
             </div>
-          </div>
+            
+            <div className="mt-8 flex flex-wrap gap-4">
+              {temple.tags.map((tag) => (
+                <span key={tag} className="bg-white/10 rounded-full px-4 py-1.5 text-sm">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
       
+      {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="lg:w-2/3">
-            <Card className="mb-6">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h2 className="text-2xl font-semibold mb-1">About</h2>
-                    <p className="text-gray-500">Temple History & Significance</p>
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Left Column */}
+            <div className="md:col-span-2">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-white rounded-xl shadow-sm overflow-hidden mb-8"
+              >
+                <div className="h-64 bg-spiritual-sandstone/30 relative">
+                  {/* Temple Illustration */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-32 h-40 relative">
+                      <div className="absolute inset-0 bg-spiritual-maroon/20 rounded-t-2xl"></div>
+                      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-24 h-24 rounded-t-full bg-spiritual-ochre/30"></div>
+                      <div className="absolute left-1/2 -translate-x-1/2 top-3 w-8 h-8 rounded-full bg-spiritual-gold/40"></div>
+                    </div>
                   </div>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="flex items-center gap-1"
-                  >
-                    <Heart className="h-4 w-4" />
-                    Save
-                  </Button>
                 </div>
                 
-                <div className="prose max-w-none">
-                  <p>
-                    {temple.description || `${temple.name} is one of the most sacred temples in India. 
-                    Located in the heart of ${temple.location.split(',')[0]}, this ancient temple is dedicated 
-                    to [Deity] and attracts thousands of devotees daily. The temple's architecture 
-                    dates back several centuries and showcases the intricate craftsmanship of the era.`}
+                <div className="p-6">
+                  <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon mb-4">About {temple.name}</h2>
+                  <p className="text-gray-700 leading-relaxed">
+                    {temple.description || `${temple.name} is a beautiful religious site located in ${temple.location}. The temple attracts thousands of devotees every year who come to seek blessings and experience the spiritual ambiance of this sacred place.`}
                   </p>
-                  <p>
-                    Visitors come to seek blessings, participate in rituals, and experience the 
-                    divine atmosphere. The temple is particularly famous for its [special feature/ritual] 
-                    and the annual [festival name] celebration.
-                  </p>
-                </div>
-
-                <div className="mt-6 p-4 border rounded-lg bg-orange-50">
-                  <h3 className="font-medium text-lg mb-2 flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    Real-time Crowd Status
-                  </h3>
-                  <div className="flex flex-col gap-4">
-                    <div className="flex justify-between items-center">
-                      <span>Current Crowd Level:</span>
-                      <CongestionIndicator level={currentCongestion} />
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Estimated Wait Time:</span>
-                      <span className="font-medium">
-                        {currentCongestion === "low" ? "5-10 minutes" : 
-                         currentCongestion === "moderate" ? "30-45 minutes" : 
-                         currentCongestion === "high" ? "1-2 hours" : "3+ hours"}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Best Time to Visit Today:</span>
-                      <span className="font-medium">
-                        {currentCongestion === "low" || currentCongestion === "moderate" ? "Now" : "After 6:00 PM"}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="mb-6">
-              <CardContent className="p-6">
-                <h2 className="text-2xl font-semibold mb-6">Upcoming Events</h2>
-                
-                <div className="space-y-4">
-                  {[1, 2, 3].map((item) => (
-                    <div key={item} className="flex gap-4 p-3 border rounded-lg hover:bg-gray-50">
-                      <div className="min-w-16 h-16 bg-orange-100 text-orange-600 rounded-lg flex flex-col items-center justify-center text-center">
-                        <span className="text-sm font-medium">May</span>
-                        <span className="text-xl font-bold">{item + 10}</span>
+                  
+                  <Separator className="my-6" />
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 bg-spiritual-saffron/10 rounded-lg text-spiritual-saffron">
+                        <Clock className="w-5 h-5" />
                       </div>
-                      
-                      <div className="flex-grow">
-                        <h3 className="font-medium">Special Puja Ceremony</h3>
-                        <p className="text-gray-600 text-sm">Annual celebration with special rituals</p>
-                        <div className="flex items-center gap-4 mt-1 text-sm text-gray-500">
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
-                            <span>6:00 AM - 8:00 AM</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
-                            <span>Main Temple Complex</span>
-                          </div>
-                        </div>
+                      <div>
+                        <h3 className="font-medium text-spiritual-maroon">Opening Hours</h3>
+                        <p className="text-sm text-gray-600">{temple.hours}</p>
                       </div>
-                      
-                      <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white self-center">
-                        <Link to="/pooja-booking">Book Now</Link>
-                      </Button>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="mb-6">
-              <CardContent className="p-6">
-                <h2 className="text-2xl font-semibold mb-6">Temple Gallery</h2>
-                
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {[1, 2, 3, 4, 5, 6].map((item) => (
-                    <div key={item} className="aspect-square bg-orange-100 rounded-lg flex items-center justify-center">
-                      <span className="text-xl font-bold text-orange-800">{temple.name.charAt(0)}{item}</span>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 bg-spiritual-saffron/10 rounded-lg text-spiritual-saffron">
+                        <CalendarDays className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-spiritual-maroon">Best Time to Visit</h3>
+                        <p className="text-sm text-gray-600">Early morning or during festivals</p>
+                      </div>
                     </div>
-                  ))}
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 bg-spiritual-saffron/10 rounded-lg text-spiritual-saffron">
+                        <Users className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-spiritual-maroon">Rush Hours</h3>
+                        <p className="text-sm text-gray-600">10 AM - 12 PM & 5 PM - 7 PM</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="p-2 bg-spiritual-saffron/10 rounded-lg text-spiritual-saffron">
+                        <Info className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-spiritual-maroon">Dress Code</h3>
+                        <p className="text-sm text-gray-600">Traditional or modest attire</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                
-                <Button asChild variant="outline" className="mt-4 w-full">
-                  <Link to="/gallery">View All Photos</Link>
-                </Button>
-              </CardContent>
-            </Card>
+              </motion.div>
+            </div>
             
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-2xl font-semibold mb-6">Visitor Information</h2>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-medium mb-2">Opening Hours</h3>
-                    <p className="text-gray-600">{temple.hours}</p>
-                    <p className="text-gray-600 mt-2">Special timings may apply during festivals.</p>
+            {/* Right Column */}
+            <div>
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white rounded-xl shadow-sm overflow-hidden sticky top-24"
+              >
+                <div className="p-6">
+                  <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon mb-4">Book Your Visit</h2>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-gray-600">Entry Fee</span>
+                    <span className="font-medium text-lg">
+                      {temple.price === 0 ? "Free" : `₹${temple.price}`}
+                    </span>
                   </div>
                   
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-medium mb-2">Dress Code</h3>
-                    <p className="text-gray-600">
-                      Traditional and modest attire is recommended. Men should wear dhoti or pants, 
-                      and women should wear sarees or salwar kameez.
-                    </p>
-                  </div>
-                  
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-medium mb-2">Photography</h3>
-                    <p className="text-gray-600">
-                      Photography is restricted in certain areas. Please check with temple authorities.
-                    </p>
-                  </div>
-                  
-                  <div className="border rounded-lg p-4">
-                    <h3 className="font-medium mb-2">Special Instructions</h3>
-                    <p className="text-gray-600">
-                      Electronic devices may need to be deposited at the entrance. Offerings like flowers 
-                      and fruits are available near the temple.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-          
-          <div className="lg:w-1/3 space-y-6">
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Book Darshan</h2>
-                
-                <div className="border-b pb-4 mb-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium">Darshan</span>
-                    <span className="font-medium">₹{temple.price}</span>
-                  </div>
-                  <p className="text-sm text-gray-600">Regular entry for one person</p>
-                </div>
-                
-                <div className="border-b pb-4 mb-4">
-                  <h3 className="font-medium mb-2">Select Date</h3>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[1, 2, 3, 4, 5, 6].map((day) => (
-                      <Button 
-                        key={day} 
-                        variant={day === selectedDate ? "default" : "outline"} 
-                        className={day === selectedDate ? "bg-orange-500 hover:bg-orange-600" : ""}
-                        onClick={() => setSelectedDate(day)}
-                      >
-                        May {day + 10}
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="border-b pb-4 mb-4">
-                  <h3 className="font-medium mb-2">Select Time Slot</h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    {["6:00 AM", "8:00 AM", "10:00 AM", "4:00 PM"].map((time) => (
-                      <Button 
-                        key={time} 
-                        variant={time === selectedTime ? "default" : "outline"}
-                        className={time === selectedTime ? "bg-orange-500 hover:bg-orange-600" : ""}
-                        onClick={() => setSelectedTime(time)}
-                      >
-                        {time}
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="flex justify-between items-center font-medium mb-4">
-                  <span>Total</span>
-                  <span>₹{temple.price}</span>
-                </div>
-                
-                <Button 
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white mb-3"
-                  onClick={bookDarshan}
-                >
-                  Book Now
-                </Button>
-
-                <div className="grid grid-cols-2 gap-3">
                   <Button 
-                    variant="outline"
-                    className="flex items-center justify-center gap-2"
-                    asChild
+                    className="w-full bg-spiritual-saffron hover:bg-spiritual-ochre mb-4"
+                    onClick={handleBooking}
                   >
-                    <Link to="/prasad-booking">
-                      <ShoppingCart className="h-4 w-4" />
-                      Order Prasad
-                    </Link>
+                    Book Darshan
                   </Button>
                   
                   <Button 
                     variant="outline"
-                    className="flex items-center justify-center gap-2"
-                    asChild
+                    className="w-full border-spiritual-maroon text-spiritual-maroon hover:bg-spiritual-maroon/5 mb-4"
                   >
-                    <Link to="/pooja-booking">
-                      <Calendar className="h-4 w-4" />
-                      Book Pooja
-                    </Link>
+                    Book Puja Service
                   </Button>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Make a Donation</h2>
-                <p className="text-gray-600 mb-4">
-                  Support the temple's activities and maintenance with your contribution.
-                </p>
-                
-                <div className="grid grid-cols-3 gap-2 mb-4">
-                  {["₹101", "₹501", "₹1,001", "₹2,001", "₹5,001", "₹10,001"].map((amount) => (
-                    <Button 
-                      key={amount} 
-                      variant="outline"
-                      className="border-orange-200 hover:border-orange-500"
-                    >
-                      {amount}
-                    </Button>
-                  ))}
-                </div>
-                
-                <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-                  Donate Now
-                </Button>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Need Help?</h2>
-                <div className="flex items-center gap-3 text-gray-700">
-                  <AlertCircle className="h-5 w-5 text-orange-500" />
-                  <span>Have questions about visiting this temple?</span>
-                </div>
-                <Button asChild variant="outline" className="w-full mt-4">
-                  <Link to="/contact">Contact Temple</Link>
-                </Button>
-              </CardContent>
-            </Card>
-            
-            {/* Live Congestion Updates Card */}
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-xl font-semibold">Live Updates</h2>
-                  <div className="animate-pulse h-2 w-2 rounded-full bg-green-500"></div>
-                </div>
-                <div className="space-y-3">
-                  <div className="text-sm">
-                    <span className="text-green-500 font-medium">10 min ago</span>
-                    <p>Main temple hall is now {currentCongestion === "low" ? "easily accessible" : "getting crowded"}.</p>
-                  </div>
-                  <div className="text-sm">
-                    <span className="text-amber-500 font-medium">45 min ago</span>
-                    <p>Special puja preparations have started in the north wing.</p>
-                  </div>
-                  <div className="text-sm">
-                    <span className="text-gray-500 font-medium">2 hours ago</span>
-                    <p>Temple grounds opened for early morning visitors.</p>
+                  
+                  <Button 
+                    variant="outline"
+                    className="w-full border-spiritual-ochre text-spiritual-ochre hover:bg-spiritual-ochre/5"
+                  >
+                    Order Prasad Online
+                  </Button>
+                  
+                  <div className="mt-6 bg-spiritual-saffron/5 rounded-lg p-4 text-sm text-gray-600">
+                    <p className="mb-2 font-medium text-spiritual-maroon">COVID-19 Information</p>
+                    <p>Temperature checks and masks required. Please check current guidelines.</p>
                   </div>
                 </div>
-                <Button variant="ghost" size="sm" className="w-full mt-4 text-orange-500">
-                  See all updates
-                </Button>
-              </CardContent>
-            </Card>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
