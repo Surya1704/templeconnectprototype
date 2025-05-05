@@ -170,7 +170,8 @@ const Home = () => {
       
       {/* Call to Action */}
       <section className="py-20 px-6 bg-spiritual-maroon relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\" viewBox=\"0 0 60 60\"><path d=\"M30 5l5 15h14l-11 9 4 16-12-9-12 9 4-16-11-9h14z\" fill=\"white\" opacity=\"0.05\"/></svg>')] bg-repeat opacity-20"></div>
+        {/* Fix: Encode the SVG properly for the background */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNMzAgNWw1IDE1aDE0bC0xMSA5IDQgMTZsLTEyLTlsLTEyIDkgNC0xNmwtMTEtOWgxNHoiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjA1Ii8+PC9zdmc+')] bg-repeat opacity-20"></div>
         
         <div className="container mx-auto relative z-10">
           <div className="max-w-3xl mx-auto text-center">
