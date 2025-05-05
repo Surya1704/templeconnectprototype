@@ -69,7 +69,6 @@ const AllTemples = () => {
             <div className="bg-white rounded-xl p-5 shadow-sm border border-spiritual-sandstone/10">
               <h3 className="font-semibold text-lg mb-3 text-spiritual-maroon">Filter by State</h3>
               <StateFilter
-                states={indianStates}
                 selectedState={selectedState}
                 onStateChange={setSelectedState}
               />
@@ -208,7 +207,7 @@ const AllTemples = () => {
                               <span>From <span className="font-medium">₹{temple.price}</span></span>
                             )}
                           </span>
-                          <CongestionIndicator level={Math.floor(Math.random() * 3)} />
+                          <CongestionIndicator level={temple.congestion || "low"} />
                         </div>
                       </div>
                     </Link>
