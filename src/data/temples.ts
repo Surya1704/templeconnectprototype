@@ -12,6 +12,7 @@ export interface Temple {
   price: number;
   tags: string[];
   description?: string;
+  congestion?: "low" | "moderate" | "high" | "extreme";
 }
 
 export const temples: Temple[] = [
