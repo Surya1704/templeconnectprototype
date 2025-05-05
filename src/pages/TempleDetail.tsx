@@ -1,6 +1,5 @@
-
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { getTempleById } from "@/data/mergeTemples";
 import { CalendarDays, Clock, MapPin, Users, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,18 +12,34 @@ const TempleDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [temple, setTemple] = useState<Temple | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Reset state when ID changes
+    setIsLoading(true);
+    setNotFound(false);
+
     // Simulate API call
     setTimeout(() => {
       if (id) {
         const templeData = getTempleById(id);
-        setTemple(templeData);
+        if (templeData) {
+          setTemple(templeData);
+        } else {
+          console.error(`Temple with ID ${id} not found in the database`);
+          setNotFound(true);
+          toast({
+            title: "Temple not found",
+            description: `We couldn't find the temple with ID ${id}`,
+            variant: "destructive"
+          });
+        }
       }
       setIsLoading(false);
     }, 500);
-  }, [id]);
+  }, [id, toast]);
 
   const handleBooking = () => {
     toast({
@@ -32,6 +47,17 @@ const TempleDetail = () => {
       description: "You will soon be redirected to the booking page.",
     });
   };
+
+  // Handle redirection to all temples if not found
+  useEffect(() => {
+    if (notFound && !isLoading) {
+      // Optional: auto-redirect after a delay
+      // const timeout = setTimeout(() => {
+      //   navigate('/temples');
+      // }, 5000);
+      // return () => clearTimeout(timeout);
+    }
+  }, [notFound, isLoading, navigate]);
 
   if (isLoading) {
     return (
@@ -44,7 +70,7 @@ const TempleDetail = () => {
     );
   }
 
-  if (!temple) {
+  if (notFound || !temple) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center max-w-md px-4">

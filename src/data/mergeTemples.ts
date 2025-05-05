@@ -1,4 +1,3 @@
-
 import { temples as originalTemples, Temple } from './temples';
 import { extendedTemples } from './extendedTemples';
 import { extendedTemples2 } from './extendedTemples2';
@@ -18,7 +17,11 @@ export const allTemples: Temple[] = [
 
 // Update the exported functions to use the merged data
 export const getTempleById = (id: string) => {
-  return allTemples.find((temple) => temple.id === id);
+  const temple = allTemples.find((temple) => temple.id === id);
+  if (!temple) {
+    console.warn(`Temple with ID ${id} not found. Available IDs: ${allTemples.slice(0, 5).map(t => t.id).join(', ')}...`);
+  }
+  return temple;
 };
 
 // Function to filter temples by state
