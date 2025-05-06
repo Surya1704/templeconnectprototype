@@ -45,6 +45,7 @@ const Footer = () => {
               <FooterLink to="/contact" text="Temple Connect Foundation" />
               <FooterLink to="/contact" text="Temple preservation initiatives" />
               <FooterLink to="/contact" text="Cultural heritage programs" />
+              <FooterLink to="/about-us" text="About Us" />
               <FooterLink to="/founder" text="About Our Founder" />
             </ul>
           </div>
@@ -67,6 +68,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <FooterLink to="/contact" text="Newsroom" />
               <FooterLink to="/contact" text="Learn about new features" />
+              <FooterLink to="/about-us" text="Our Mission & Vision" />
               <FooterLink to="/founder" text="Letter from our founder" />
               <FooterLink to="/contact" text="Careers" />
               <FooterLink to="/contact" text="Investors" />

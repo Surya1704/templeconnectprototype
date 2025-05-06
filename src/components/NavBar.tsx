@@ -152,6 +152,7 @@ const NavBar = () => {
             <NavItem to="/prasad-booking" text="Prasad" active={location.pathname === '/prasad-booking'} />
             <NavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
             <NavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
+            <NavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
             <NavItem to="/stay-bookings" text="Stay" active={location.pathname === '/stay-bookings'} />
             <NavItem to="/donations" text="Donate" active={location.pathname === '/donations'} />
           </motion.ul>
@@ -175,6 +176,7 @@ const NavBar = () => {
               <MobileNavItem to="/prasad-booking" text="Prasad Booking" active={location.pathname === '/prasad-booking'} />
               <MobileNavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
               <MobileNavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
+              <MobileNavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
               <MobileNavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
               <MobileNavItem to="/donations" text="Donations" active={location.pathname === '/donations'} />
             </ul>

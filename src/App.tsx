@@ -13,6 +13,7 @@ import StayBookings from "@/pages/StayBookings";
 import Donations from "@/pages/Donations";
 import Contact from "@/pages/Contact";
 import Founder from "@/pages/Founder";
+import AboutUs from "@/pages/AboutUs";
 import PujaTiming from "@/pages/PujaTiming";
 import NotFound from "@/pages/NotFound";
 
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/donations" element={<Donations />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/founder" element={<Founder />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
