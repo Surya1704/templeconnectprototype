@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,7 +13,9 @@ import {
   Bath,
   Search,
   CheckCircle2,
-  Star
+  Star,
+  ExternalLink,
+  Clock
 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -24,6 +27,13 @@ import { format } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { temples } from "@/data/temples";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const StayBookings = () => {
   const { toast } = useToast();
@@ -33,6 +43,7 @@ const StayBookings = () => {
   );
   const [guests, setGuests] = useState(2);
   const [searchQuery, setSearchQuery] = useState("");
+  const [duration, setDuration] = useState("3");
   
   const accommodations = [
     {
@@ -43,10 +54,14 @@ const StayBookings = () => {
       price: 1200,
       rating: 4.8,
       reviews: 124,
-      image: "https://images.unsplash.com/photo-1590073242678-70ee3fc28f17?q=80&w=2121&auto=format&fit=crop",
       amenities: ["Free Wifi", "Temple View", "Vegetarian Meals", "Airport Pickup"],
       distance: "0.2 km from temple",
-      premium: true
+      premium: true,
+      bookingLinks: [
+        { site: "Booking.com", price: 1200, url: "https://www.booking.com" },
+        { site: "MakeMyTrip", price: 1100, url: "https://www.makemytrip.com" },
+        { site: "Goibibo", price: 1150, url: "https://www.goibibo.com" }
+      ]
     },
     {
       id: "2",
@@ -56,10 +71,14 @@ const StayBookings = () => {
       price: 1500,
       rating: 4.6,
       reviews: 89,
-      image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop",
       amenities: ["Free Wifi", "Breakfast Included", "Shuttle Service", "AC Rooms"],
       distance: "0.5 km from temple",
-      premium: false
+      premium: false,
+      bookingLinks: [
+        { site: "Booking.com", price: 1500, url: "https://www.booking.com" },
+        { site: "MakeMyTrip", price: 1400, url: "https://www.makemytrip.com" },
+        { site: "Airbnb", price: 1550, url: "https://www.airbnb.com" }
+      ]
     },
     {
       id: "3",
@@ -69,10 +88,14 @@ const StayBookings = () => {
       price: 2000,
       rating: 4.9,
       reviews: 156,
-      image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=2070&auto=format&fit=crop",
       amenities: ["Free Wifi", "Traditional Decor", "Langar Service", "Guided Tours"],
       distance: "0.3 km from temple",
-      premium: true
+      premium: true,
+      bookingLinks: [
+        { site: "Booking.com", price: 2000, url: "https://www.booking.com" },
+        { site: "MakeMyTrip", price: 1950, url: "https://www.makemytrip.com" },
+        { site: "Agoda", price: 1900, url: "https://www.agoda.com" }
+      ]
     },
     {
       id: "4",
@@ -82,10 +105,14 @@ const StayBookings = () => {
       price: 1800,
       rating: 4.7,
       reviews: 102,
-      image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop",
       amenities: ["Temple View Rooms", "South Indian Breakfast", "Cultural Activities", "AC Rooms"],
       distance: "0.4 km from temple",
-      premium: false
+      premium: false,
+      bookingLinks: [
+        { site: "Booking.com", price: 1800, url: "https://www.booking.com" },
+        { site: "MakeMyTrip", price: 1750, url: "https://www.makemytrip.com" },
+        { site: "Yatra", price: 1780, url: "https://www.yatra.com" }
+      ]
     },
     {
       id: "5",
@@ -95,10 +122,14 @@ const StayBookings = () => {
       price: 2200,
       rating: 4.5,
       reviews: 78,
-      image: "https://images.unsplash.com/photo-1596436889106-be35e843f974?q=80&w=2070&auto=format&fit=crop",
       amenities: ["Beach View", "Free Wifi", "Temple Drop Service", "Traditional Food"],
       distance: "0.6 km from temple",
-      premium: false
+      premium: false,
+      bookingLinks: [
+        { site: "Booking.com", price: 2200, url: "https://www.booking.com" },
+        { site: "MakeMyTrip", price: 2100, url: "https://www.makemytrip.com" },
+        { site: "Cleartrip", price: 2150, url: "https://www.cleartrip.com" }
+      ]
     },
     {
       id: "6",
@@ -108,10 +139,14 @@ const StayBookings = () => {
       price: 1300,
       rating: 4.3,
       reviews: 62,
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop",
       amenities: ["Free Wifi", "Sea View", "Veg Food", "Temple History Tours"],
       distance: "0.3 km from temple",
-      premium: false
+      premium: false,
+      bookingLinks: [
+        { site: "Booking.com", price: 1300, url: "https://www.booking.com" },
+        { site: "MakeMyTrip", price: 1200, url: "https://www.makemytrip.com" },
+        { site: "Goibibo", price: 1250, url: "https://www.goibibo.com" }
+      ]
     },
     {
       id: "7",
@@ -121,10 +156,14 @@ const StayBookings = () => {
       price: 3000,
       rating: 4.6,
       reviews: 48,
-      image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop",
       amenities: ["Heating", "Mountain View", "Guided Treks", "Oxygen Support"],
       distance: "0.8 km from temple",
-      premium: true
+      premium: true,
+      bookingLinks: [
+        { site: "Booking.com", price: 3000, url: "https://www.booking.com" },
+        { site: "MakeMyTrip", price: 2900, url: "https://www.makemytrip.com" },
+        { site: "TripAdvisor", price: 2950, url: "https://www.tripadvisor.com" }
+      ]
     },
     {
       id: "8",
@@ -134,10 +173,14 @@ const StayBookings = () => {
       price: 1600,
       rating: 4.7,
       reviews: 86,
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop",
       amenities: ["Free Wifi", "Cultural Activities", "Traditional Decor", "AC Rooms"],
       distance: "0.5 km from temple",
-      premium: false
+      premium: false,
+      bookingLinks: [
+        { site: "Booking.com", price: 1600, url: "https://www.booking.com" },
+        { site: "MakeMyTrip", price: 1550, url: "https://www.makemytrip.com" },
+        { site: "Expedia", price: 1580, url: "https://www.expedia.com" }
+      ]
     },
   ];
 
@@ -150,10 +193,15 @@ const StayBookings = () => {
       )
     : accommodations;
   
-  const handleBooking = (accommodationName: string) => {
+  // Calculate nights from stay duration
+  const calculateNights = () => {
+    return parseInt(duration);
+  };
+
+  const handleExternalBooking = (site: string, accommodationName: string) => {
     toast({
-      title: "Booking Request Sent",
-      description: `Your stay at ${accommodationName} is being processed. You'll receive confirmation shortly.`,
+      title: "Redirecting to External Booking",
+      description: `You'll be redirected to ${site} to complete your booking for ${accommodationName}.`,
     });
   };
 
@@ -162,13 +210,13 @@ const StayBookings = () => {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Temple Stay Accommodations</h1>
         <p className="text-gray-600 mb-6">
-          Book comfortable stays near sacred temples for your pilgrimage journey
+          Find and compare comfortable stays near sacred temples for your pilgrimage journey
         </p>
         
         {/* Search and filter section */}
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="relative md:col-span-2">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
               <Input
                 placeholder="Search stays, locations, temples..."
@@ -201,28 +249,23 @@ const StayBookings = () => {
             </div>
             
             <div>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-full justify-start text-left font-normal"
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {endDate ? format(endDate, "PPP") : "Check out"}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={endDate}
-                    onSelect={setEndDate}
-                    initialFocus
-                    disabled={(date) => {
-                      return date < new Date();
-                    }}
-                  />
-                </PopoverContent>
-              </Popover>
+              <Select value={duration} onValueChange={setDuration}>
+                <SelectTrigger className="w-full">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-4 w-4" />
+                    <span>{calculateNights()} nights</span>
+                  </div>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">1 night</SelectItem>
+                  <SelectItem value="2">2 nights</SelectItem>
+                  <SelectItem value="3">3 nights</SelectItem>
+                  <SelectItem value="5">5 nights</SelectItem>
+                  <SelectItem value="7">7 nights</SelectItem>
+                  <SelectItem value="10">10 nights</SelectItem>
+                  <SelectItem value="14">14 nights</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             
             <div className="flex items-center gap-2">
@@ -249,51 +292,50 @@ const StayBookings = () => {
           
           <div className="flex justify-end mt-4">
             <Button className="bg-orange-500 hover:bg-orange-600">
-              Search Stays
+              Compare Prices
             </Button>
           </div>
         </div>
       </div>
       
-      {/* Featured stay with image */}
-      <div className="relative rounded-lg overflow-hidden mb-10">
-        <img 
-          src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=2070&auto=format&fit=crop" 
-          alt="Featured Stay"
-          className="w-full h-80 object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 right-0 p-8">
-          <span className="inline-block bg-orange-500 text-white text-sm font-medium px-3 py-1 rounded-full mb-3">
-            Featured Property
-          </span>
-          <h2 className="text-3xl font-bold text-white mb-2">Premium Temple View Suites</h2>
-          <p className="text-white/90 mb-4 max-w-2xl">
-            Luxury accommodations with direct views of sacred temples and special pilgrim benefits
-          </p>
-          
-          <div className="flex flex-wrap gap-4 mb-4 text-white/80">
-            <div className="flex items-center gap-1">
-              <MapPin className="h-4 w-4" />
-              <span>Multiple Locations</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <BedDouble className="h-4 w-4" />
-              <span>Premium Rooms</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Star className="h-4 w-4" />
-              <span>4.8+ Rated</span>
-            </div>
+      {/* Featured stay - replaced image with colored bg */}
+      <div className="relative rounded-lg overflow-hidden mb-10 bg-gradient-to-r from-orange-500 to-amber-500">
+        <div className="p-8 md:p-12 flex flex-col md:flex-row items-center">
+          <div className="bg-white/10 p-8 rounded-xl md:w-1/3 flex items-center justify-center mb-6 md:mb-0">
+            <BedDouble className="h-16 w-16 text-white" />
           </div>
-          
-          <div className="flex gap-3">
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-              Browse Premium Stays
-            </Button>
-            <Button variant="outline" className="border-white/70 text-white hover:bg-white/10">
-              View Benefits
-            </Button>
+          <div className="md:pl-8 md:w-2/3">
+            <span className="inline-block bg-white text-orange-500 text-sm font-medium px-3 py-1 rounded-full mb-3">
+              Featured Property
+            </span>
+            <h2 className="text-3xl font-bold text-white mb-2">Premium Temple View Stays</h2>
+            <p className="text-white/90 mb-4 max-w-2xl">
+              Compare prices across multiple booking platforms and find the best deals for accommodations near sacred temples
+            </p>
+            
+            <div className="flex flex-wrap gap-4 mb-4 text-white/80">
+              <div className="flex items-center gap-1">
+                <MapPin className="h-4 w-4" />
+                <span>Multiple Locations</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <BedDouble className="h-4 w-4" />
+                <span>All Room Types</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Star className="h-4 w-4" />
+                <span>Best Prices Guaranteed</span>
+              </div>
+            </div>
+            
+            <div className="flex gap-3">
+              <Button className="bg-white hover:bg-gray-100 text-orange-500">
+                Browse Premium Stays
+              </Button>
+              <Button variant="outline" className="border-white/70 text-white hover:bg-white/10">
+                View Benefits
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -304,7 +346,7 @@ const StayBookings = () => {
           <TabsTrigger value="all">All Stays</TabsTrigger>
           <TabsTrigger value="premium">Premium</TabsTrigger>
           <TabsTrigger value="budget">Budget Friendly</TabsTrigger>
-          <TabsTrigger value="bookings">My Bookings</TabsTrigger>
+          <TabsTrigger value="bookings">My Comparisons</TabsTrigger>
         </TabsList>
         
         <TabsContent value="all">
@@ -313,7 +355,8 @@ const StayBookings = () => {
               <AccommodationCard 
                 key={accommodation.id} 
                 accommodation={accommodation} 
-                onBooking={handleBooking} 
+                duration={calculateNights()}
+                onExternalBooking={handleExternalBooking} 
               />
             ))}
           </div>
@@ -326,8 +369,9 @@ const StayBookings = () => {
               .map((accommodation) => (
                 <AccommodationCard 
                   key={accommodation.id} 
-                  accommodation={accommodation} 
-                  onBooking={handleBooking} 
+                  accommodation={accommodation}
+                  duration={calculateNights()}
+                  onExternalBooking={handleExternalBooking} 
                 />
               ))}
           </div>
@@ -340,8 +384,9 @@ const StayBookings = () => {
               .map((accommodation) => (
                 <AccommodationCard 
                   key={accommodation.id} 
-                  accommodation={accommodation} 
-                  onBooking={handleBooking} 
+                  accommodation={accommodation}
+                  duration={calculateNights()}
+                  onExternalBooking={handleExternalBooking} 
                 />
               ))}
           </div>
@@ -352,12 +397,12 @@ const StayBookings = () => {
             <div className="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
               <BedDouble className="h-8 w-8 text-orange-500" />
             </div>
-            <h3 className="text-xl font-medium mb-2">No bookings yet</h3>
+            <h3 className="text-xl font-medium mb-2">No saved comparisons yet</h3>
             <p className="text-gray-500 mb-4">
-              You haven't booked any accommodations yet. Browse our stays to find the perfect place for your temple visit.
+              You haven't saved any accommodation comparisons yet. Browse our stays to find and compare prices across multiple booking platforms.
             </p>
             <Button className="bg-orange-500 hover:bg-orange-600">
-              Find Stays
+              Start Comparing
             </Button>
           </div>
         </TabsContent>
@@ -373,9 +418,9 @@ const StayBookings = () => {
               <CheckCircle2 className="h-5 w-5 text-orange-500" />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Early Darshan Access</h4>
+              <h4 className="font-medium mb-1">Best Price Guarantee</h4>
               <p className="text-gray-600 text-sm">
-                Get priority entry for morning temple rituals with our accommodation booking
+                We compare prices across multiple booking platforms to find you the best deals
               </p>
             </div>
           </div>
@@ -385,9 +430,9 @@ const StayBookings = () => {
               <UtensilsCrossed className="h-5 w-5 text-orange-500" />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Complimentary Prasad</h4>
+              <h4 className="font-medium mb-1">Temple Proximity Filter</h4>
               <p className="text-gray-600 text-sm">
-                Enjoy free prasad delivery to your room after temple ceremonies
+                Find accommodations closest to your temple of choice for convenience
               </p>
             </div>
           </div>
@@ -397,9 +442,9 @@ const StayBookings = () => {
               <Bath className="h-5 w-5 text-orange-500" />
             </div>
             <div>
-              <h4 className="font-medium mb-1">Traditional Experience</h4>
+              <h4 className="font-medium mb-1">Flight + Stay Bundles</h4>
               <p className="text-gray-600 text-sm">
-                Authentic accommodations with special pre-temple ritual facilities
+                Coming soon: Complete travel packages with flight and accommodation deals
               </p>
             </div>
           </div>
@@ -412,24 +457,28 @@ const StayBookings = () => {
 // Accommodation Card Component
 const AccommodationCard = ({ 
   accommodation, 
-  onBooking 
+  duration,
+  onExternalBooking 
 }: { 
-  accommodation: any, 
-  onBooking: (accommodationName: string) => void 
+  accommodation: any,
+  duration: number,
+  onExternalBooking: (site: string, accommodationName: string) => void 
 }) => {
+  // Sort booking links by price
+  const sortedBookingLinks = [...accommodation.bookingLinks].sort((a, b) => a.price - b.price);
+  const cheapestBooking = sortedBookingLinks[0];
+  
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative">
-        <img 
-          src={accommodation.image} 
-          alt={accommodation.name} 
-          className="w-full h-52 object-cover"
-        />
-        {accommodation.premium && (
-          <div className="absolute top-2 right-2 bg-amber-100 text-amber-800 text-xs font-medium px-2 py-1 rounded">
-            Premium
-          </div>
-        )}
+      <div className="relative h-52 bg-gradient-to-r from-amber-100 to-orange-100 flex items-center justify-center">
+        <div className="absolute top-2 right-2">
+          {accommodation.premium && (
+            <div className="bg-amber-100 text-amber-800 text-xs font-medium px-2 py-1 rounded">
+              Premium
+            </div>
+          )}
+        </div>
+        <BedDouble className="h-16 w-16 text-orange-300" />
       </div>
       
       <CardContent className="p-5">
@@ -464,19 +513,61 @@ const AccommodationCard = ({
           ))}
         </div>
         
-        <div className="flex justify-between items-end">
-          <div>
-            <span className="text-lg font-semibold">₹{accommodation.price}</span>
-            <span className="text-gray-500 text-sm"> / night</span>
+        {/* Price Comparison Section */}
+        <div className="bg-gray-50 p-3 rounded-lg mb-4">
+          <div className="flex justify-between items-center mb-2">
+            <div className="text-sm font-medium">Price Comparison</div>
+            <div className="text-xs text-gray-500">for {duration} {duration === 1 ? 'night' : 'nights'}</div>
           </div>
           
-          <Button 
-            onClick={() => onBooking(accommodation.name)}
-            className="bg-orange-500 hover:bg-orange-600"
-          >
-            Book Now
-          </Button>
+          <div className="space-y-2">
+            {sortedBookingLinks.map((link, index) => (
+              <div 
+                key={index} 
+                className={`flex justify-between items-center p-2 rounded-md ${index === 0 ? 'bg-green-50 border border-green-100' : ''}`}
+              >
+                <span className="text-sm">{link.site}</span>
+                <div className="flex items-center">
+                  <span className={`font-semibold ${index === 0 ? 'text-green-600' : ''}`}>
+                    ₹{link.price * duration}
+                  </span>
+                  <a 
+                    href={link.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onExternalBooking(link.site, accommodation.name);
+                      window.open(link.url, '_blank');
+                    }}
+                    className="ml-2 text-blue-500 hover:text-blue-700"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+        
+        <a 
+          href={cheapestBooking.url}
+          target="_blank" 
+          rel="noopener noreferrer"
+          onClick={(e) => {
+            e.preventDefault();
+            onExternalBooking(cheapestBooking.site, accommodation.name);
+            window.open(cheapestBooking.url, '_blank');
+          }}
+          className="block w-full"
+        >
+          <Button 
+            className="bg-orange-500 hover:bg-orange-600 w-full"
+          >
+            Book at Best Price (₹{cheapestBooking.price * duration})
+            <ExternalLink className="h-4 w-4 ml-2" />
+          </Button>
+        </a>
       </CardContent>
     </Card>
   );

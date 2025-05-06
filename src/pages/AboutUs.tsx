@@ -8,7 +8,7 @@ const AboutUs = () => {
     <div className="bg-gradient-to-b from-white to-spiritual-ivory min-h-screen">
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/public/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-spiritual-maroon/5 bg-opacity-10"></div>
         <div className="container mx-auto px-4 relative">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -32,12 +32,8 @@ const AboutUs = () => {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="aspect-square rounded-xl overflow-hidden shadow-xl border-8 border-white">
-                <img 
-                  src="/public/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png"
-                  alt="Temple Connect Mission" 
-                  className="w-full h-full object-cover"
-                />
+              <div className="aspect-square rounded-xl overflow-hidden shadow-xl border-8 border-white bg-spiritual-saffron/10 flex items-center justify-center">
+                <Target className="h-32 w-32 text-spiritual-saffron" />
               </div>
             </motion.div>
             
@@ -164,7 +160,7 @@ const AboutUs = () => {
         </div>
       </section>
       
-      {/* Our Founder Section with Link */}
+      {/* Our Founder Section with Link - Keeping founder image as requested */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
