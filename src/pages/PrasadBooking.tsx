@@ -26,7 +26,6 @@ interface PrasadItem {
   name: string;
   description: string;
   price: number;
-  image: string;
   templeId: string;
 }
 
@@ -48,7 +47,6 @@ const prasadItems: PrasadItem[] = [
     name: "Laddu Prasad",
     description: "Traditional sweet offering blessed at the temple",
     price: 151,
-    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=2071&auto=format&fit=crop",
     templeId: "1"
   },
   {
@@ -56,7 +54,6 @@ const prasadItems: PrasadItem[] = [
     name: "Modak Prasad",
     description: "Sweet dumpling offering for special occasions",
     price: 201,
-    image: "https://images.unsplash.com/photo-1631033164481-ab1422ee8c2e?q=80&w=1974&auto=format&fit=crop",
     templeId: "2"
   },
   {
@@ -64,7 +61,6 @@ const prasadItems: PrasadItem[] = [
     name: "Kheer Prasad",
     description: "Sacred rice pudding blessed by priests",
     price: 111,
-    image: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?q=80&w=2070&auto=format&fit=crop",
     templeId: "3"
   },
   {
@@ -72,7 +68,6 @@ const prasadItems: PrasadItem[] = [
     name: "Halwa Prasad",
     description: "Semolina sweet offering for prosperity",
     price: 131,
-    image: "https://images.unsplash.com/photo-1515467837915-15c4777cc36a?q=80&w=1974&auto=format&fit=crop",
     templeId: "1"
   },
   {
@@ -80,7 +75,6 @@ const prasadItems: PrasadItem[] = [
     name: "Panjiri Prasad",
     description: "Nutritious whole wheat offering for strength",
     price: 171,
-    image: "https://images.unsplash.com/photo-1516747773440-e524372a2c5b?q=80&w=1974&auto=format&fit=crop",
     templeId: "2"
   },
   {
@@ -88,7 +82,6 @@ const prasadItems: PrasadItem[] = [
     name: "Chandan Tilak",
     description: "Sacred sandalwood paste for blessings",
     price: 51,
-    image: "https://images.unsplash.com/photo-1612196808214-b7e09f0f0729?q=80&w=1974&auto=format&fit=crop",
     templeId: "4"
   }
 ];
@@ -315,15 +308,9 @@ const PrasadBooking = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {prasadItems.map((item) => (
               <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div className="relative h-48">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute bottom-0 left-0 bg-gradient-to-t from-black/60 to-transparent w-full h-1/2"></div>
-                  <div className="absolute bottom-2 left-2 text-white">
-                    <p className="font-medium">{temples.find(temple => temple.id === item.templeId)?.name}</p>
+                <div className="h-48 bg-orange-100 flex items-center justify-center">
+                  <div className="text-orange-500 text-4xl font-bold">
+                    {item.name.split(' ')[0]}
                   </div>
                 </div>
                 
@@ -419,8 +406,10 @@ const PrasadBooking = () => {
                         const itemDetails = getItemDetails(item.itemId);
                         return itemDetails ? (
                           <div key={item.itemId} className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded overflow-hidden">
-                              <img src={itemDetails.image} alt={itemDetails.name} className="w-full h-full object-cover" />
+                            <div className="w-12 h-12 rounded overflow-hidden bg-orange-100 flex items-center justify-center">
+                              <div className="text-orange-500 font-bold">
+                                {itemDetails.name.charAt(0)}
+                              </div>
                             </div>
                             <div className="flex-grow">
                               <p className="font-medium">{itemDetails.name}</p>

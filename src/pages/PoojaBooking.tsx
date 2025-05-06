@@ -32,7 +32,6 @@ interface PoojaType {
   description: string;
   duration: string;
   price: number;
-  image: string;
   templeId: string;
 }
 
@@ -43,7 +42,6 @@ const poojaTypes: PoojaType[] = [
     description: "Sacred bathing ritual of the deity with various auspicious substances",
     duration: "45 minutes",
     price: 501,
-    image: "https://images.unsplash.com/photo-1609603627865-3da33acafa9a?q=80&w=1990&auto=format&fit=crop",
     templeId: "1"
   },
   {
@@ -52,7 +50,6 @@ const poojaTypes: PoojaType[] = [
     description: "Worship with recitation of 1008 divine names",
     duration: "60 minutes",
     price: 351,
-    image: "https://images.unsplash.com/photo-1608638562346-20d75541bf83?q=80&w=1974&auto=format&fit=crop",
     templeId: "2"
   },
   {
@@ -61,7 +58,6 @@ const poojaTypes: PoojaType[] = [
     description: "Fire ritual to Lord Ganesha for removing obstacles",
     duration: "90 minutes",
     price: 1001,
-    image: "https://images.unsplash.com/photo-1618074392982-9422a2439b95?q=80&w=2070&auto=format&fit=crop",
     templeId: "3"
   },
   {
@@ -70,7 +66,6 @@ const poojaTypes: PoojaType[] = [
     description: "Special lamp offering to the deity with mantra chanting",
     duration: "30 minutes",
     price: 251,
-    image: "https://images.unsplash.com/photo-1617526793955-cbd3a711c78f?q=80&w=1974&auto=format&fit=crop",
     templeId: "1"
   },
   {
@@ -79,7 +74,6 @@ const poojaTypes: PoojaType[] = [
     description: "Ceremony dedicated to Lord Vishnu for prosperity and wellbeing",
     duration: "120 minutes",
     price: 1201,
-    image: "https://images.unsplash.com/photo-1592305577442-e7c451262729?q=80&w=2070&auto=format&fit=crop",
     templeId: "2"
   },
   {
@@ -88,7 +82,6 @@ const poojaTypes: PoojaType[] = [
     description: "Special Abhishekam for Lord Shiva with Vedic mantras",
     duration: "90 minutes",
     price: 1101,
-    image: "https://images.unsplash.com/photo-1621166097506-033a99850f12?q=80&w=1974&auto=format&fit=crop",
     templeId: "4"
   }
 ];
@@ -221,17 +214,15 @@ const PoojaBooking = () => {
                 {temples.slice(0, 6).map((temple) => (
                   <div
                     key={temple.id}
-                    className={`border rounded-lg overflow-hidden cursor-pointer transition-all ${
+                    className={`border rounded-lg overflow-hidden cursor-pointer transition-all p-4 ${
                       selectedTempleId === temple.id ? "ring-2 ring-orange-500" : ""
                     }`}
                     onClick={() => setSelectedTempleId(temple.id)}
                   >
-                    <img 
-                      src={temple.image} 
-                      alt={temple.name} 
-                      className="w-full h-32 object-cover"
-                    />
-                    <div className="p-3">
+                    <div className="h-32 bg-orange-100 flex items-center justify-center mb-3">
+                      <div className="text-4xl font-bold text-orange-500">{temple.name.charAt(0)}</div>
+                    </div>
+                    <div>
                       <h3 className="font-medium text-sm">{temple.name}</h3>
                       <p className="text-xs text-gray-500">{temple.location}</p>
                     </div>
@@ -255,12 +246,8 @@ const PoojaBooking = () => {
                     onClick={() => setSelectedPoojaId(pooja.id)}
                   >
                     <div className="flex h-full">
-                      <div className="w-1/3">
-                        <img 
-                          src={pooja.image} 
-                          alt={pooja.name} 
-                          className="w-full h-full object-cover"
-                        />
+                      <div className="w-1/3 bg-orange-100 flex items-center justify-center">
+                        <div className="text-2xl font-bold text-orange-500">{pooja.name.charAt(0)}</div>
                       </div>
                       <div className="w-2/3 p-3">
                         <div className="flex justify-between">

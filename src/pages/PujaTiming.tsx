@@ -16,11 +16,11 @@ const PujaTiming = () => {
   // Generate puja timings for temples
   const generateTimings = () => {
     const pujaTypes = [
-      { name: "Mangala Aarti", image: "https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?q=80&w=1935&auto=format&fit=crop" },
-      { name: "Abhishekam", image: "https://images.unsplash.com/photo-1592547097938-7942b29d8e8b?q=80&w=1931&auto=format&fit=crop" },
-      { name: "Shayan Aarti", image: "https://images.unsplash.com/photo-1626256083503-d2ee72ee3709?q=80&w=1974&auto=format&fit=crop" },
-      { name: "Bhog Offering", image: "https://images.unsplash.com/photo-1627896157126-41022f16a0a8?q=80&w=2070&auto=format&fit=crop" },
-      { name: "Sandhya Aarti", image: "https://images.unsplash.com/photo-1586473219010-2ffc57b0d282?q=80&w=1965&auto=format&fit=crop" },
+      { name: "Mangala Aarti" },
+      { name: "Abhishekam" },
+      { name: "Shayan Aarti" },
+      { name: "Bhog Offering" },
+      { name: "Sandhya Aarti" },
     ];
     
     return temples.map(temple => {
@@ -32,7 +32,6 @@ const PujaTiming = () => {
           temple: temple.name,
           location: temple.location,
           description: "Early morning ritual offering to the deity with lamps.",
-          image: pujaTypes[0].image,
           isPremium: false
         },
         {
@@ -42,7 +41,6 @@ const PujaTiming = () => {
           temple: temple.name,
           location: temple.location,
           description: "Ritual bathing of the deity with sacred substances.",
-          image: pujaTypes[1].image,
           isPremium: temple.id === "1" || temple.id === "3"
         }
       ];
@@ -55,7 +53,6 @@ const PujaTiming = () => {
           temple: temple.name,
           location: temple.location,
           description: "Evening ritual offering to the deity with lamps and chanting.",
-          image: pujaTypes[4].image,
           isPremium: false
         },
         {
@@ -65,7 +62,6 @@ const PujaTiming = () => {
           temple: temple.name,
           location: temple.location,
           description: "Night ritual before the deity retires to sleep.",
-          image: pujaTypes[2].image,
           isPremium: temple.id === "2" || temple.id === "4"
         }
       ];
@@ -114,15 +110,9 @@ const PujaTiming = () => {
           />
         </div>
         
-        {/* Featured puja schedule section with image */}
-        <div className="relative rounded-lg overflow-hidden mb-10">
-          <img 
-            src="https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?q=80&w=1935&auto=format&fit=crop" 
-            alt="Featured Puja" 
-            className="w-full h-72 object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-8">
+        {/* Featured puja schedule section without image */}
+        <div className="relative rounded-lg overflow-hidden mb-10 bg-gradient-to-t from-black/80 via-black/40 to-orange-500/30 p-4">
+          <div className="p-6">
             <span className="inline-block bg-orange-500 text-white text-sm font-medium px-3 py-1 rounded-full mb-3">
               Special Ceremony
             </span>
@@ -144,7 +134,7 @@ const PujaTiming = () => {
             
             <div className="flex gap-3">
               <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
-                <Link to="/pooja-booking">Book VIP Access</Link>
+                <Link to="/puja-booking">Book VIP Access</Link>
               </Button>
               <Button 
                 variant="outline" 
@@ -235,11 +225,6 @@ const PujaTiming = () => {
               </Button>
             </div>
           </div>
-          <img 
-            src="https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?q=80&w=1935&auto=format&fit=crop" 
-            alt="Calendar Sync" 
-            className="w-full md:w-64 h-40 object-cover rounded-lg"
-          />
         </div>
       </div>
     </div>
@@ -263,12 +248,8 @@ const TempleTimingCard = ({
   return (
     <Card className="overflow-hidden border-none shadow-sm">
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3">
-          <img 
-            src={temple.image} 
-            alt={temple.name} 
-            className="w-full h-full object-cover md:rounded-l-lg"
-          />
+        <div className="md:w-1/3 bg-orange-100 flex items-center justify-center">
+          <div className="p-8 text-orange-500 font-bold text-2xl">{temple.name.charAt(0)}</div>
         </div>
         <CardContent className="p-6 md:w-2/3">
           <div className="flex justify-between items-start mb-4">
@@ -318,11 +299,9 @@ const PujaRow = ({
 }) => (
   <div className="flex justify-between items-center">
     <div className="flex items-center gap-3">
-      <img 
-        src={puja.image} 
-        alt={puja.name} 
-        className="w-10 h-10 rounded-full object-cover"
-      />
+      <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
+        <Clock className="w-5 h-5 text-orange-500" />
+      </div>
       <div>
         <div className="font-medium">
           {puja.name}
