@@ -1,7 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Map, Route } from "lucide-react";
+import { Map } from "lucide-react";
 
 interface TripPlannerButtonProps {
   variant?: "default" | "outline" | "secondary";
