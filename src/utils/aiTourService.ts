@@ -21,6 +21,12 @@ export interface AITripPlan {
   }[];
 }
 
+export interface DressCodeRecommendation {
+  men: string[];
+  women: string[];
+  general: string[];
+}
+
 // Main AI Tour generation function
 export const generateAITour = async (templeName: string, templateTags: string[]): Promise<AITourStep[]> => {
   // For now, we'll use a template-based approach since we don't have an actual AI backend
@@ -57,6 +63,12 @@ export const generateAITour = async (templeName: string, templateTags: string[])
       description: `This temple holds great spiritual significance for devotees. The peaceful environment 
       provides a perfect setting for meditation and spiritual reflection. Many visitors report feeling a 
       sense of calm and connection when visiting.`
+    },
+    {
+      title: "Dress Code & Etiquette",
+      description: `When visiting ${templeName}, it's important to dress modestly and respectfully. 
+      Men should wear shirts with sleeves and full-length pants. Women should wear sarees, salwar kameez, 
+      or long skirts with covered shoulders. Everyone must remove footwear before entering the temple premises.`
     }
   ];
 };
@@ -87,4 +99,29 @@ export const generateAITripPlan = async (
   };
   
   return dummyPlan;
+};
+
+// Function to get dress code recommendations for temples
+export const getTempleDressCode = async (templeName: string, templeType: string): Promise<DressCodeRecommendation> => {
+  console.log(`Generating dress code for: ${templeName}, type: ${templeType}`);
+  
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 500));
+  
+  // Base recommendations
+  const baseRecommendations = {
+    men: ["Shirts with sleeves", "Full-length pants or dhotis", "Avoid leather items inside the temple"],
+    women: ["Sarees, salwar kameez, or long skirts", "Covered shoulders", "Covered head in some temples"],
+    general: ["Remove footwear before entering", "Avoid revealing or tight clothing", "Dress modestly and respectfully"]
+  };
+
+  if (templeType.toLowerCase().includes("modern")) {
+    return {
+      men: ["Formal or smart casual attire", "Full-length pants", "Shirts with sleeves"],
+      women: ["Modest dresses or pants", "Covered shoulders", "Scarves for head covering if needed"],
+      general: ["Remove footwear before entering", "Avoid shorts and sleeveless tops", "Dress modestly"]
+    };
+  }
+
+  return baseRecommendations;
 };

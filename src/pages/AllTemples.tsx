@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
 import GuidedTourButton from "@/components/GuidedTourButton";
 import TripPlannerButton from "@/components/TripPlannerButton";
+import TempleAttireInfo from "@/components/TempleAttireInfo";
 
 const AllTemples = () => {
   const [selectedState, setSelectedState] = useState("All States");
@@ -195,7 +196,7 @@ const AllTemples = () => {
 
                       <div className="p-4">
                         <div className="flex items-center gap-1 mb-3">
-                          {temple.tags.slice(0, 3).map((tag) => (
+                          {temple.tags.slice(0, 2).map((tag) => (
                             <span
                               key={tag}
                               className="bg-spiritual-saffron/10 text-spiritual-maroon text-xs px-2 py-1 rounded-full"
@@ -203,6 +204,7 @@ const AllTemples = () => {
                               {tag}
                             </span>
                           ))}
+                          <TempleAttireInfo templeName={temple.name} templeType={temple.tags[0]} />
                         </div>
                         
                         <div className="flex justify-between items-center mb-3">

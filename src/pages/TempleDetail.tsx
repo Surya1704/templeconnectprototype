@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getTempleById } from "@/data/mergeTemples";
-import { CalendarDays, Clock, MapPin, Users, Info } from "lucide-react";
+import { CalendarDays, Clock, MapPin, Users, Info, Shirt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { Temple } from "@/data/temples";
+import GuidedTourButton from "@/components/GuidedTourButton";
+import TempleAttireInfo from "@/components/TempleAttireInfo";
 
 const TempleDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -191,14 +193,40 @@ const TempleDetail = () => {
                     
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-spiritual-saffron/10 rounded-lg text-spiritual-saffron">
-                        <Info className="w-5 h-5" />
+                        <Shirt className="w-5 h-5" />
                       </div>
                       <div>
                         <h3 className="font-medium text-spiritual-maroon">Dress Code</h3>
-                        <p className="text-sm text-gray-600">Traditional or modest attire</p>
+                        <p className="text-sm text-gray-600">
+                          <TempleAttireInfo templeName={temple.name} templeType={temple.tags[0] || "traditional"} />
+                        </p>
                       </div>
                     </div>
                   </div>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mb-8 p-6 bg-white rounded-xl shadow-sm"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon">AI Features</h2>
+                  <Link to="/ai" className="text-spiritual-ochre hover:text-spiritual-maroon text-sm">Learn more</Link>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <GuidedTourButton 
+                    templeName={temple.name}
+                    templeTags={temple.tags}
+                    className="w-full"
+                  />
+                  <Link to="/trip-planner" className="w-full">
+                    <Button variant="outline" className="w-full">
+                      Plan a Trip Including This Temple
+                    </Button>
+                  </Link>
                 </div>
               </motion.div>
             </div>

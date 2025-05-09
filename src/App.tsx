@@ -17,6 +17,7 @@ import AboutUs from "@/pages/AboutUs";
 import PujaTiming from "@/pages/PujaTiming";
 import NotFound from "@/pages/NotFound";
 import TripPlanner from "@/pages/TripPlanner";
+import AI from "@/pages/AI";
 
 import { Toaster } from "@/components/ui/toaster";
 import "@/App.css";
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/founder" element={<Founder />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/trip-planner" element={<TripPlanner />} />
+          <Route path="/ai" element={<AI />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
