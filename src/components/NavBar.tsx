@@ -154,6 +154,7 @@ const NavBar = () => {
             <NavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
             <NavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
             <NavItem to="/stay-bookings" text="Stay" active={location.pathname === '/stay-bookings'} />
+            <NavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
             <NavItem to="/donations" text="Donate" active={location.pathname === '/donations'} />
           </motion.ul>
         </div>
@@ -178,6 +179,7 @@ const NavBar = () => {
               <MobileNavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
               <MobileNavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
               <MobileNavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
+              <MobileNavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
               <MobileNavItem to="/donations" text="Donations" active={location.pathname === '/donations'} />
             </ul>
             
@@ -232,3 +234,4 @@ const MobileNavItem = ({ to, text, active = false }: { to: string; text: string;
 };
 
 export default NavBar;
+
