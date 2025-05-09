@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Compass, Map, Route, Ai, Shirt } from "lucide-react";
+import { Compass, Map, Route, Brain, Shirt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import GuidedTourButton from "@/components/GuidedTourButton";
@@ -50,7 +50,7 @@ const AI = () => {
               </div>
               <div className="md:w-1/2 flex justify-center">
                 <div className="w-64 h-64 rounded-full bg-spiritual-sandstone/20 flex items-center justify-center">
-                  <Ai className="h-32 w-32 text-spiritual-maroon/40" />
+                  <Brain className="h-32 w-32 text-spiritual-maroon/40" />
                 </div>
               </div>
             </div>
