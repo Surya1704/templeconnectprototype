@@ -65,6 +65,20 @@ const TripPlanner = () => {
     }
   };
   
+  // Navigate to temple details page safely
+  const navigateToTemple = (templeId: string) => {
+    if (!templeId) {
+      toast({
+        title: "Temple not found",
+        description: "This temple information is not available",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    navigate(`/temple/${templeId}`);
+  };
+  
   const handlePlannerSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -229,7 +243,7 @@ const TripPlanner = () => {
                     <div className="border rounded-lg overflow-hidden">
                       {day.temples.map((temple, tIndex) => (
                         <div 
-                          key={temple.id} 
+                          key={`${temple.id}-${tIndex}`} 
                           className={`p-4 flex justify-between items-center gap-4 ${
                             tIndex !== day.temples.length - 1 ? "border-b" : ""
                           }`}
@@ -241,7 +255,7 @@ const TripPlanner = () => {
                           <Button 
                             variant="outline" 
                             className="shrink-0"
-                            onClick={() => navigate(`/temple/${temple.id}`)}
+                            onClick={() => navigateToTemple(temple.id)}
                           >
                             View
                           </Button>

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getTempleById } from "@/data/mergeTemples";
@@ -26,15 +27,26 @@ const TempleDetail = () => {
     // Simulate API call
     setTimeout(() => {
       if (id) {
-        const templeData = getTempleById(id);
-        if (templeData) {
-          setTemple(templeData);
-        } else {
-          console.error(`Temple with ID ${id} not found in the database`);
+        // Try to get the temple data
+        try {
+          const templeData = getTempleById(id);
+          if (templeData) {
+            setTemple(templeData);
+          } else {
+            console.error(`Temple with ID ${id} not found in the database`);
+            setNotFound(true);
+            toast({
+              title: "Temple not found",
+              description: `We couldn't find the temple with ID ${id}`,
+              variant: "destructive"
+            });
+          }
+        } catch (error) {
+          console.error(`Error loading temple with ID ${id}:`, error);
           setNotFound(true);
           toast({
-            title: "Temple not found",
-            description: `We couldn't find the temple with ID ${id}`,
+            title: "Error loading temple",
+            description: "There was an issue loading this temple's information",
             variant: "destructive"
           });
         }
@@ -54,10 +66,10 @@ const TempleDetail = () => {
   useEffect(() => {
     if (notFound && !isLoading) {
       // Optional: auto-redirect after a delay
-      // const timeout = setTimeout(() => {
-      //   navigate('/temples');
-      // }, 5000);
-      // return () => clearTimeout(timeout);
+      const timeout = setTimeout(() => {
+        navigate('/temples');
+      }, 3000);
+      return () => clearTimeout(timeout);
     }
   }, [notFound, isLoading, navigate]);
 
@@ -80,6 +92,7 @@ const TempleDetail = () => {
           <h1 className="text-2xl font-bold text-spiritual-maroon mb-2">Temple Not Found</h1>
           <p className="text-gray-600 mb-6">
             We couldn't find the temple you're looking for. It may have been removed or you might have followed an incorrect link.
+            Redirecting you to all temples...
           </p>
           <Link to="/temples">
             <Button className="bg-spiritual-saffron hover:bg-spiritual-ochre">

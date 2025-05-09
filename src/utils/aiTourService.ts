@@ -1,5 +1,6 @@
 
 import { useToast } from "@/components/ui/use-toast";
+import { getTempleById } from "@/data/mergeTemples";
 
 // Types for AI responses
 export interface AITourStep {
@@ -73,6 +74,13 @@ export const generateAITour = async (templeName: string, templateTags: string[])
   ];
 };
 
+// Helper function to get valid temple IDs for the trip planner
+const getValidTempleId = (index: number): string => {
+  // Use actual temple IDs from the database instead of generating dummy ones
+  const validIds = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  return validIds[index % validIds.length];
+};
+
 // Trip planner AI function
 export const generateAITripPlan = async (
   states: string[], 
@@ -84,17 +92,24 @@ export const generateAITripPlan = async (
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 2000));
   
-  // This would be replaced with actual AI-generated content in a production environment
+  // Generate a plan with valid temple IDs
   const dummyPlan: AITripPlan = {
     days: Array(duration).fill(null).map((_, index) => ({
       day: index + 1,
-      temples: Array(Math.floor(Math.random() * 3) + 2).fill(null).map((_, tIndex) => ({
-        id: `temple-${index}-${tIndex}`,
-        name: `${states[index % states.length]} Temple ${tIndex + 1}`,
-        location: `${states[index % states.length]} City ${tIndex + 1}`,
-        state: states[index % states.length],
-        description: `A beautiful temple with ${preferences ? preferences : "traditional"} architecture.`
-      }))
+      temples: Array(Math.floor(Math.random() * 3) + 2).fill(null).map((_, tIndex) => {
+        const templeId = getValidTempleId(index * 3 + tIndex);
+        const templeData = getTempleById(templeId);
+        
+        return {
+          id: templeId, // Use valid temple ID
+          name: templeData ? templeData.name : `${states[index % states.length]} Temple ${tIndex + 1}`,
+          location: templeData ? templeData.location : `${states[index % states.length]} City ${tIndex + 1}`,
+          state: templeData ? templeData.state : states[index % states.length],
+          description: templeData ? 
+            (templeData.description || `A beautiful temple with ${preferences ? preferences : "traditional"} architecture.`) :
+            `A beautiful temple with ${preferences ? preferences : "traditional"} architecture.`
+        };
+      })
     }))
   };
   
