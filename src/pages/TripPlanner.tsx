@@ -12,6 +12,7 @@ import { indianStates } from "@/data/temples";
 import { Map, CalendarRange, Clock, Route } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
+import { generateAITripPlan, AITripPlan } from "@/utils/aiTourService";
 
 const TripPlanner = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const TripPlanner = () => {
   const [duration, setDuration] = useState<string>("3");
   const [preferences, setPreferences] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [suggestedTrip, setSuggestedTrip] = useState<any>(null);
+  const [suggestedTrip, setSuggestedTrip] = useState<AITripPlan | null>(null);
   
   // Helper function to handle state selection
   const handleStateSelect = (state: string) => {
@@ -35,42 +36,33 @@ const TripPlanner = () => {
   };
   
   // Generate AI trip plan
-  const generateTripPlan = () => {
+  const generateTripPlan = async () => {
     setIsLoading(true);
     
-    // Simulate API call/processing delay
-    setTimeout(() => {
-      // Get temples from selected states
-      const allRecommendedTemples = states.flatMap(state => {
-        const templesInState = filterTemples({ state });
-        return templesInState.slice(0, 3); // Take top 3 temples from each state
-      });
-      
-      // Create trip days based on duration
-      const durationNum = parseInt(duration);
-      const templesPerDay = Math.ceil(allRecommendedTemples.length / durationNum);
-      
-      const tripPlan = Array(durationNum).fill(null).map((_, index) => {
-        const dayTemples = allRecommendedTemples.slice(
-          index * templesPerDay, 
-          Math.min((index + 1) * templesPerDay, allRecommendedTemples.length)
-        );
-        
-        return {
-          day: index + 1,
-          temples: dayTemples
-        };
-      });
+    try {
+      const tripPlan = await generateAITripPlan(
+        states,
+        parseInt(duration),
+        preferences
+      );
       
       setSuggestedTrip(tripPlan);
-      setIsLoading(false);
       setStep(3);
       
       toast({
         title: "Trip Plan Generated",
         description: "Your personalized temple tour has been created!",
       });
-    }, 2000);
+    } catch (error) {
+      console.error("Error generating trip plan:", error);
+      toast({
+        title: "Error",
+        description: "Failed to generate your trip plan. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
   
   const handlePlannerSubmit = (e: React.FormEvent) => {
@@ -223,7 +215,7 @@ const TripPlanner = () => {
             
             {step === 3 && suggestedTrip && (
               <div className="space-y-6">
-                {suggestedTrip.map((day: any, index: number) => (
+                {suggestedTrip.days.map((day, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -235,7 +227,7 @@ const TripPlanner = () => {
                       Day {day.day}
                     </h3>
                     <div className="border rounded-lg overflow-hidden">
-                      {day.temples.map((temple: any, tIndex: number) => (
+                      {day.temples.map((temple, tIndex) => (
                         <div 
                           key={temple.id} 
                           className={`p-4 flex justify-between items-center gap-4 ${
@@ -245,16 +237,6 @@ const TripPlanner = () => {
                           <div>
                             <h4 className="font-medium text-spiritual-maroon">{temple.name}</h4>
                             <p className="text-sm text-gray-600">{temple.location}, {temple.state}</p>
-                            <div className="flex gap-1 mt-1">
-                              {temple.tags.slice(0, 2).map((tag: string) => (
-                                <span 
-                                  key={tag} 
-                                  className="text-xs px-2 py-0.5 bg-spiritual-saffron/10 text-spiritual-maroon rounded-full"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
                           </div>
                           <Button 
                             variant="outline" 
@@ -274,7 +256,7 @@ const TripPlanner = () => {
             {isLoading && (
               <div className="flex flex-col items-center justify-center py-10">
                 <div className="h-12 w-12 rounded-full border-4 border-spiritual-saffron/30 border-t-spiritual-saffron animate-spin mb-4"></div>
-                <p className="text-gray-600">Generating your personalized itinerary...</p>
+                <p className="text-gray-600">Our AI is generating your personalized itinerary...</p>
               </div>
             )}
           </CardContent>

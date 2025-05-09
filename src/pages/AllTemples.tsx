@@ -1,17 +1,19 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { filterTemples } from "@/data/mergeTemples";
 import StateFilter from "@/components/StateFilter";
 import { categories, indianStates } from "@/data/temples";
-import { Search, Map, Compass } from "lucide-react";
+import { Search, Map } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import CongestionIndicator from "@/components/CongestionIndicator";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
+import GuidedTourButton from "@/components/GuidedTourButton";
+import TripPlannerButton from "@/components/TripPlannerButton";
 
 const AllTemples = () => {
   const [selectedState, setSelectedState] = useState("All States");
@@ -19,9 +21,6 @@ const AllTemples = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredTemples, setFilteredTemples] = useState(filterTemples({}));
   const [activeSortOption, setActiveSortOption] = useState("popularity");
-  const [openTourDialog, setOpenTourDialog] = useState(false);
-  const [selectedTempleForTour, setSelectedTempleForTour] = useState<any>(null);
-  const [tourStep, setTourStep] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -46,57 +45,6 @@ const AllTemples = () => {
     return 0;
   });
 
-  // Sample tour data for each temple
-  const generateTourData = (temple: any) => {
-    return [
-      {
-        title: "Welcome to " + temple.name,
-        description: `${temple.name} is one of the most revered temples in ${temple.state}. Located in ${temple.location}, this temple attracts thousands of devotees every year.`
-      },
-      {
-        title: "Historical Significance",
-        description: `This temple has a rich historical background dating back centuries. It showcases ${temple.tags.join(", ")} architectural elements and cultural significance.`
-      },
-      {
-        title: "Main Deity & Sanctum",
-        description: `The main deity is housed in an ornate sanctum sanctorum. Devotees come to seek blessings and offer prayers.`
-      },
-      {
-        title: "Special Rituals",
-        description: `The temple is known for its unique rituals and ceremonies that follow ancient traditions passed down through generations.`
-      },
-      {
-        title: "Visitor Information",
-        description: `The temple is open during ${temple.hours}. The entry fee is ${temple.price > 0 ? "₹" + temple.price : "free"}.`
-      }
-    ];
-  };
-
-  const handleStartTour = (temple: any) => {
-    setSelectedTempleForTour(temple);
-    setTourStep(0);
-    setOpenTourDialog(true);
-  };
-
-  const handleNextStep = () => {
-    if (tourStep < generateTourData(selectedTempleForTour).length - 1) {
-      setTourStep(tourStep + 1);
-    } else {
-      // Tour complete
-      setOpenTourDialog(false);
-      toast({
-        title: "Tour Complete",
-        description: "You've completed the virtual tour of this temple.",
-      });
-    }
-  };
-
-  const handlePrevStep = () => {
-    if (tourStep > 0) {
-      setTourStep(tourStep - 1);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-spiritual-ivory/50 to-white pt-8 pb-20">
       <div className="container mx-auto px-4">
@@ -106,16 +54,19 @@ const AllTemples = () => {
             <p className="text-sm md:text-base text-gray-600 mt-2">Discover sacred destinations across India</p>
           </div>
 
-          <div className="flex w-full md:w-auto items-center gap-2">
-            <Input
-              placeholder="Search temples..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="max-w-xs"
-            />
-            <Button variant="default" size="icon" className="shrink-0 bg-spiritual-saffron hover:bg-spiritual-ochre">
-              <Search className="h-4 w-4" />
-            </Button>
+          <div className="flex flex-wrap gap-4 items-center">
+            <TripPlannerButton variant="secondary" />
+            <div className="flex w-full md:w-auto items-center gap-2">
+              <Input
+                placeholder="Search temples..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="max-w-xs"
+              />
+              <Button variant="default" size="icon" className="shrink-0 bg-spiritual-saffron hover:bg-spiritual-ochre">
+                <Search className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -266,14 +217,12 @@ const AllTemples = () => {
                         </div>
                         
                         <div className="flex gap-2">
-                          <Button 
-                            variant="outline" 
-                            className="w-full flex items-center gap-1"
-                            onClick={() => handleStartTour(temple)}
-                          >
-                            <Compass className="h-4 w-4" />
-                            AI Tour
-                          </Button>
+                          <GuidedTourButton
+                            templeName={temple.name}
+                            templeTags={temple.tags}
+                            variant="outline"
+                            className="w-full"
+                          />
                           <Button 
                             variant="default" 
                             className="w-full bg-spiritual-saffron hover:bg-spiritual-ochre"
@@ -291,60 +240,6 @@ const AllTemples = () => {
           </div>
         </div>
       </div>
-
-      {/* AI Tour Dialog */}
-      <Dialog open={openTourDialog} onOpenChange={setOpenTourDialog}>
-        <DialogContent className="sm:max-w-[600px]">
-          {selectedTempleForTour && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-xl font-cinzel text-spiritual-maroon">
-                  {selectedTempleForTour.name} - Virtual Tour
-                </DialogTitle>
-                <DialogDescription>
-                  Step {tourStep + 1} of {generateTourData(selectedTempleForTour).length}
-                </DialogDescription>
-              </DialogHeader>
-              
-              <div className="py-4">
-                <div className="bg-spiritual-ivory/30 p-6 rounded-lg">
-                  <h3 className="font-bold text-lg text-spiritual-maroon mb-2">
-                    {generateTourData(selectedTempleForTour)[tourStep].title}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {generateTourData(selectedTempleForTour)[tourStep].description}
-                  </p>
-                </div>
-                
-                {/* Tour navigation */}
-                <div className="mt-6 flex justify-between">
-                  <Button 
-                    variant="outline" 
-                    onClick={handlePrevStep}
-                    disabled={tourStep === 0}
-                  >
-                    Previous
-                  </Button>
-                  <div className="flex items-center gap-1">
-                    {generateTourData(selectedTempleForTour).map((_, i) => (
-                      <div 
-                        key={i} 
-                        className={`h-2 w-2 rounded-full ${tourStep === i ? 'bg-spiritual-maroon' : 'bg-gray-300'}`}
-                      ></div>
-                    ))}
-                  </div>
-                  <Button 
-                    onClick={handleNextStep}
-                    className="bg-spiritual-saffron hover:bg-spiritual-ochre"
-                  >
-                    {tourStep === generateTourData(selectedTempleForTour).length - 1 ? 'Finish Tour' : 'Next'}
-                  </Button>
-                </div>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
