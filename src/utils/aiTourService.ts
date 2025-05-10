@@ -28,14 +28,71 @@ export interface DressCodeRecommendation {
   general: string[];
 }
 
+// Get temple-specific tour data
+export const getTempleTourPoints = (templeName: string): Record<string, string> => {
+  // This would normally come from a database, but we'll hardcode some examples
+  const tourPoints: Record<string, Record<string, string>> = {
+    "Brihadishwara Temple": {
+      "Main Entrance": "The towering entrance known as 'gopuram' is an architectural marvel standing at 216 feet high, making it one of the tallest temple towers in India.",
+      "Nandi Mandapam": "The massive monolithic Nandi (bull) statue, carved from a single stone, weighs approximately 25 tons and is one of the largest in India.",
+      "Biggest Shiva Lingam": "This is one of the largest Shiva Lingams in India. The Lingam is made from a single piece of granite stone and represents the formless nature of Lord Shiva.",
+      "Main Sanctum": "The sanctum houses the massive Lingam and is designed so that it's illuminated by natural light during specific times of the day.",
+      "Dancing Hall": "This hall features intricate carvings depicting the 108 poses of the classical dance form Bharatanatyam."
+    },
+    "Meenakshi Temple": {
+      "East Tower": "The eastern tower, with its thousands of colorful sculptures, is dedicated to Lord Shiva.",
+      "Golden Lotus Tank": "This sacred tank is where devotees take ritual baths before worship. It's surrounded by a corridor with 12 intricately carved pillars.",
+      "Hall of Thousand Pillars": "Actually containing 985 pillars, each one is carved with unique designs and when struck, produces a different musical note.",
+      "Main Shrine": "The inner sanctum houses the self-manifested crystal lingam of Lord Sundareshwarar (Shiva).",
+      "Meenakshi Shrine": "This shrine houses the beautiful emerald-colored idol of Goddess Meenakshi, who is believed to have fish-shaped eyes."
+    },
+    "Kashi Vishwanath": {
+      "Main Ghat": "The main entrance facing the Ganges river is considered highly auspicious for ritual bathing before entering the temple.",
+      "Golden Spire": "The temple's main spire is covered with 800 kg of gold, donated by Maharaja Ranjit Singh in the 19th century.",
+      "Jyotirlinga": "This is one of the 12 special Shiva lingams across India believed to be self-manifested and representing infinite nature.",
+      "Gyan Vapi Well": "Located in the temple complex, this well is considered to hold the knowledge of the universe.",
+      "Shringar Gauri Shrine": "This shrine within the complex is dedicated to Goddess Parvati in her beautified form."
+    }
+  };
+  
+  return tourPoints[templeName] || {
+    "Entrance": "The temple entrance features traditional architecture with intricate carvings.",
+    "Main Sanctum": "The main sanctum houses the deity and is the most sacred part of the temple.",
+    "Meditation Area": "A peaceful space designated for quiet reflection and spiritual practices.",
+    "Ceremonial Hall": "Where major religious ceremonies and cultural events take place.",
+    "Sacred Garden": "A beautifully maintained garden with plants mentioned in ancient texts."
+  };
+};
+
 // Main AI Tour generation function
-export const generateAITour = async (templeName: string, templateTags: string[]): Promise<AITourStep[]> => {
-  // For now, we'll use a template-based approach since we don't have an actual AI backend
-  console.log(`Generating AI tour for: ${templeName} with tags: ${templateTags.join(", ")}`);
+export const generateAITour = async (templeName: string, templateTags: string[], specificPoint?: string): Promise<AITourStep[]> => {
+  console.log(`Generating AI tour for: ${templeName} with tags: ${templateTags.join(", ")}, point: ${specificPoint || "all"}`);
   
   // Wait a moment to simulate API call
   await new Promise(resolve => setTimeout(resolve, 1000));
   
+  // If a specific temple point is requested
+  if (specificPoint) {
+    const tourPoints = getTempleTourPoints(templeName);
+    const pointDescription = tourPoints[specificPoint] || 
+      "Detailed information about this specific point is currently being updated by our historians.";
+    
+    return [
+      {
+        title: specificPoint,
+        description: pointDescription,
+        imageUrl: `/lovable-uploads/${Math.floor(Math.random() * 6) + 1}.png`
+      },
+      {
+        title: "Historical Context",
+        description: `This area of ${templeName} has great historical significance. It represents the 
+        ${templateTags.includes("Ancient") ? "ancient" : "traditional"} architectural style and spiritual practices 
+        of the period when the temple was built.`
+      }
+    ];
+  }
+  
+  // Return general tour if no specific point
   return [
     {
       title: `Welcome to ${templeName}`,
