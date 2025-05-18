@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -48,8 +49,8 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Jyotirlinga Collage Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-b from-spiritual-ivory/10 to-spiritual-sandstone/20">
+      {/* Jyotirlinga Collage Section - updated to complement the new design */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-[#221F26]/10 to-spiritual-maroon/10">
         <div className="container mx-auto px-4">
           <JyotirlingsCollage />
         </div>
