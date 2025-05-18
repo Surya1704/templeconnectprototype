@@ -23,7 +23,8 @@ interface JyotirlingaItem {
   image: string;
 }
 
-// Updated Jyotirlinga data with positions matching the Pinterest reference image
+// Corrected Jyotirlinga data with positions and proper image assignments
+// Based on the user's file reference
 const jyotirlingsData: JyotirlingaItem[] = [
   {
     id: "somnath",
@@ -38,7 +39,7 @@ const jyotirlingsData: JyotirlingaItem[] = [
       rotate: "-1deg"
     },
     path: "/jyotirlingas/somnath",
-    image: "/lovable-uploads/127d558a-d34f-4432-858b-dd4edd79280e.png"
+    image: "/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png" // Updated to somnath image
   },
   {
     id: "rameshwaram",
@@ -46,14 +47,14 @@ const jyotirlingsData: JyotirlingaItem[] = [
     location: "Tamil Nadu",
     position: {
       top: "4%",
-      left: "35%",
+      left: "38%",
       width: "30%",
       height: "38%",
       zIndex: 10,
       rotate: "1deg"
     },
     path: "/jyotirlingas/rameshwaram",
-    image: "/lovable-uploads/fb4b3306-65cb-4755-b087-ac2fa92e2f21.png"
+    image: "/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png" // Updated to rameshwaram image
   },
   {
     id: "mallikarjuna",
@@ -61,74 +62,74 @@ const jyotirlingsData: JyotirlingaItem[] = [
     location: "Andhra Pradesh",
     position: {
       top: "5%",
-      left: "64%",
-      width: "30%",
-      height: "36%",
+      left: "72%",
+      width: "26%",
+      height: "34%",
       zIndex: 9,
       rotate: "-1.5deg"
     },
     path: "/jyotirlingas/mallikarjuna",
-    image: "/lovable-uploads/0aa1be60-fc0f-45e0-9ec7-4a331f3dcee1.png"
+    image: "/lovable-uploads/79f0f7ee-07d3-44a6-a1b9-3e35e6530e64.png" // Updated to mallikarjuna image
   },
   {
     id: "mahakaleshwar",
     name: "Mahakaleshwar",
     location: "Madhya Pradesh",
     position: {
-      top: "32%",
-      left: "8%",
+      top: "35%",
+      left: "5%",
       width: "28%",
       height: "34%",
       zIndex: 8,
       rotate: "1deg"
     },
     path: "/jyotirlingas/mahakaleshwar",
-    image: "/lovable-uploads/4c3fd48a-4feb-4ae6-86e1-402971d9cbf8.png"
+    image: "/lovable-uploads/8954a8b9-9631-4a12-8bbb-02d9615d4c76.png" // Updated to mahakaleshwar image
   },
   {
     id: "nageshwar",
     name: "Nageshwar",
     location: "Gujarat",
     position: {
-      top: "28%",
-      left: "36%",
+      top: "32%",
+      left: "38%",
       width: "27%",
       height: "33%",
       zIndex: 11,
       rotate: "-1deg"
     },
     path: "/jyotirlingas/nageshwar",
-    image: "/lovable-uploads/9134455b-48bc-4ef2-a3aa-3d6d5349967b.png"
+    image: "/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png" // Updated to nageshwar image
   },
   {
     id: "kedarnath",
     name: "Kedarnath",
     location: "Uttarakhand",
     position: {
-      top: "26%",
-      left: "62%",
-      width: "30%",
-      height: "38%",
+      top: "28%",
+      left: "70%",
+      width: "28%",
+      height: "36%",
       zIndex: 13,
       rotate: "1.5deg"
     },
     path: "/jyotirlingas/kedarnath",
-    image: "/lovable-uploads/3f5e1ac4-fefe-403b-989a-c8b9bc43f356.png"
+    image: "/lovable-uploads/3da3fd53-32f9-4f5c-b8bf-c1bd7ce55182.png" // Updated to kedarnath image
   },
   {
     id: "omkareshwar",
     name: "Omkareshwar",
     location: "Madhya Pradesh",
     position: {
-      top: "60%",
-      left: "5%",
+      top: "58%",
+      left: "3%",
       width: "30%",
       height: "36%",
       zIndex: 7,
       rotate: "1deg"
     },
     path: "/jyotirlingas/omkareshwar",
-    image: "/lovable-uploads/b5d1a6be-dfa2-40e6-8a33-4ec607278013.png"
+    image: "/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png" // Updated to omkareshwar image
   },
   {
     id: "kashi-vishwanath",
@@ -143,26 +144,26 @@ const jyotirlingsData: JyotirlingaItem[] = [
       rotate: "-1deg"
     },
     path: "/jyotirlingas/kashi-vishwanath",
-    image: "/lovable-uploads/e72f493c-9008-468f-9b12-90b58a945398.png"
+    image: "/lovable-uploads/3b0f9fb1-8f3e-40c1-973e-1ba67b15e7eb.png" // Updated to kashi vishwanath image
   },
   {
     id: "trimbakeshwar",
     name: "Trimbakeshwar",
     location: "Maharashtra",
     position: {
-      top: "56%",
-      left: "62%",
+      top: "60%",
+      left: "66%",
       width: "28%",
       height: "34%",
       zIndex: 9,
       rotate: "1.5deg"
     },
     path: "/jyotirlingas/trimbakeshwar",
-    image: "/lovable-uploads/2ebefee1-c630-49b1-a433-7a7ae77c6683.png"
+    image: "/lovable-uploads/2ebefee1-c630-49b1-a433-7a7ae77c6683.png" // Updated to trimbakeshwar image
   },
   {
     id: "vaidyanath",
-    name: "Vaidyanath",
+    name: "Baidyanath",
     location: "Jharkhand",
     position: {
       top: "38%",
@@ -173,37 +174,37 @@ const jyotirlingsData: JyotirlingaItem[] = [
       transform: "translateY(-5px)"
     },
     path: "/jyotirlingas/vaidyanath",
-    image: "/lovable-uploads/3b0f9fb1-8f3e-40c1-973e-1ba67b15e7eb.png"
+    image: "/lovable-uploads/9134455b-48bc-4ef2-a3aa-3d6d5349967b.png" // Updated to baidyanath image
   },
   {
     id: "bhimashankar",
     name: "Bhimashankar",
     location: "Maharashtra",
     position: {
-      top: "60%",
-      left: "22%",
+      top: "68%",
+      left: "18%",
       width: "28%",
       height: "34%",
       zIndex: 8,
       rotate: "-1deg"
     },
     path: "/jyotirlingas/bhimashankar",
-    image: "/lovable-uploads/3e33b4bd-dd72-46c6-a56c-5ef6f9e88bad.png"
+    image: "/lovable-uploads/3e33b4bd-dd72-46c6-a56c-5ef6f9e88bad.png" // Bhimashankar image
   },
   {
     id: "grishneshwar",
     name: "Grishneshwar",
     location: "Maharashtra",
     position: {
-      top: "68%",
-      left: "42%",
+      top: "72%",
+      left: "48%",
       width: "26%",
       height: "30%",
       zIndex: 8,
       rotate: "1deg"
     },
     path: "/jyotirlingas/grishneshwar",
-    image: "/lovable-uploads/dcb523bf-24f7-4125-8e87-b23cfd0fa61d.png"
+    image: "/lovable-uploads/dcb523bf-24f7-4125-8e87-b23cfd0fa61d.png" // Grishneshwar image
   }
 ];
 
@@ -237,20 +238,20 @@ const JyotirlingsCollage: React.FC = () => {
         }}
       ></div>
 
-      {/* Dark overlay background - adjusted to complement gold and site theme */}
+      {/* Dark overlay background - adjusted to complement gold */}
       <div 
-        className="absolute inset-0 z-1 bg-gradient-to-br from-[#221F26]/75 to-[#2A1E17]/70"
+        className="absolute inset-0 z-1 bg-gradient-to-br from-[#221F26]/80 to-[#2A1E17]/75"
       ></div>
       
       {/* Increased density of moving Sanskrit letters animation - more rows and columns */}
       <div className="absolute inset-0 z-2 overflow-hidden">
-        {Array.from({ length: 15 }).map((_, rowIndex) => (
+        {Array.from({ length: 20 }).map((_, rowIndex) => (
           <motion.div
             key={`sanskrit-row-${rowIndex}`}
             className="absolute whitespace-nowrap text-[#D4AF37]/10 font-cinzel"
             style={{ 
-              top: `${6.5 * rowIndex}%`, 
-              fontSize: `${Math.max(10, Math.min(20, Math.random() * 16))}px`,
+              top: `${5 * rowIndex}%`, 
+              fontSize: `${Math.max(10, Math.min(18, Math.random() * 16))}px`,
             }}
             initial={{ x: rowIndex % 2 === 0 ? "100%" : "-100%" }}
             animate={{ x: rowIndex % 2 === 0 ? "-100%" : "100%" }}
@@ -267,14 +268,14 @@ const JyotirlingsCollage: React.FC = () => {
       
       {/* Diagonal Sanskrit text rows for more coverage */}
       <div className="absolute inset-0 z-2 overflow-hidden">
-        {Array.from({ length: 8 }).map((_, rowIndex) => (
+        {Array.from({ length: 12 }).map((_, rowIndex) => (
           <motion.div
             key={`diagonal-sanskrit-${rowIndex}`}
             className="absolute whitespace-nowrap text-[#D4AF37]/8 font-cinzel"
             style={{ 
-              top: `${10 * rowIndex + 5}%`, 
-              left: `${10 * rowIndex}%`,
-              fontSize: `${Math.max(10, Math.min(18, Math.random() * 14))}px`,
+              top: `${8 * rowIndex + 2}%`, 
+              left: `${8 * rowIndex}%`,
+              fontSize: `${Math.max(10, Math.min(16, Math.random() * 14))}px`,
               transform: `rotate(${30 + (rowIndex * 5)}deg)`,
             }}
             initial={{ x: "100%" }}
@@ -354,7 +355,7 @@ const JyotirlingsCollage: React.FC = () => {
         </div>
       </div>
       
-      {/* Jyotirlinga items - with enhanced styling and paper cutout effect */}
+      {/* Jyotirlinga items - with paper cutout effect and hover-only gold outline */}
       {jyotirlingsData.map((jyotirlinga) => (
         <motion.div
           key={jyotirlinga.id}
