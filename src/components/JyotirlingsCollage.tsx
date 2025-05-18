@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Define the jyotirlinga data structure
 interface JyotirlingaItem {
@@ -23,7 +23,7 @@ interface JyotirlingaItem {
   image: string;
 }
 
-// Jyotirlinga data for the collage with updated image paths to your custom PNG cutouts
+// Jyotirlinga data for the collage
 const jyotirlingsData: JyotirlingaItem[] = [
   {
     id: "somnath",
@@ -209,39 +209,56 @@ const jyotirlingsData: JyotirlingaItem[] = [
 const JyotirlingsCollage: React.FC = () => {
   const navigate = useNavigate();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const isMobile = useIsMobile();
+  
+  const handleInteraction = (id: string, action: 'enter' | 'leave') => {
+    if (action === 'enter') {
+      setHoveredItem(id);
+    } else if (action === 'leave') {
+      setHoveredItem(null);
+    }
+  };
 
   return (
     <div className="relative w-full h-[90vh] md:h-[80vh] overflow-hidden rounded-xl">
-      {/* Sanskrit background texture */}
+      {/* Full-page Sanskrit background texture - now applied evenly across the entire background */}
       <div 
-        className="absolute inset-0 z-0 opacity-10" 
+        className="absolute inset-0 z-0" 
         style={{ 
           backgroundImage: "url('/assets/patterns/sanskrit-bg.png')", 
           backgroundSize: "cover",
-          backgroundPosition: "center"
+          backgroundRepeat: "repeat",
+          backgroundPosition: "center",
+          opacity: 0.08  // Lowered opacity for subtle effect
         }}
-      >
-        {/* Add Sanskrit text layer */}
-        <div className="absolute inset-0 flex items-center justify-center text-8xl text-spiritual-ochre opacity-5 font-bold select-none overflow-hidden">
-          <div className="transform rotate-12">ॐ नमः शिवाय</div>
+      />
+      
+      {/* Sanskrit text overlay layer - maintains the text effect throughout the collage */}
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 flex flex-wrap items-center justify-center gap-x-32 gap-y-32 opacity-5">
+          {Array.from({ length: 9 }).map((_, index) => (
+            <div key={index} className="text-7xl md:text-9xl font-cinzel text-spiritual-ochre font-bold transform rotate-12 select-none">
+              ॐ नमः शिवाय
+            </div>
+          ))}
         </div>
       </div>
       
       {/* Title with Devanagari-inspired font */}
       <div className="absolute top-4 left-0 right-0 z-20 text-center">
-        <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-spiritual-maroon sacred-border pb-2">
+        <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-spiritual-maroon">
           The 12 Jyotirlingas of India
         </h2>
       </div>
       
-      {/* Jyotirlinga items */}
+      {/* Jyotirlinga items - removed white card elements */}
       {jyotirlingsData.map((jyotirlinga) => (
         <motion.div
           key={jyotirlinga.id}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: Math.random() * 0.5 }}
-          className="absolute cursor-pointer group"
+          className="absolute cursor-pointer"
           style={{
             top: jyotirlinga.position.top,
             left: jyotirlinga.position.left,
@@ -251,49 +268,44 @@ const JyotirlingsCollage: React.FC = () => {
             transform: `rotate(${jyotirlinga.position.rotate || '0deg'}) ${jyotirlinga.position.transform || ''}`,
           }}
           onClick={() => navigate(jyotirlinga.path)}
-          onMouseEnter={() => setHoveredItem(jyotirlinga.id)}
-          onMouseLeave={() => setHoveredItem(null)}
+          onMouseEnter={() => !isMobile && handleInteraction(jyotirlinga.id, 'enter')}
+          onMouseLeave={() => !isMobile && handleInteraction(jyotirlinga.id, 'leave')}
+          onTouchStart={() => isMobile && handleInteraction(jyotirlinga.id, 'enter')}
+          onTouchEnd={() => isMobile && setTimeout(() => handleInteraction(jyotirlinga.id, 'leave'), 1500)}
           whileHover={{ scale: 1.05, zIndex: 20, transition: { duration: 0.3 } }}
         >
-          {/* Temple image with torn paper effect border */}
-          <div className="relative w-full h-full">
-            {/* Add torn paper edge effect */}
-            <div className="absolute -inset-1 bg-white/80 rounded-md z-0 transform rotate-0"></div>
-            
-            {/* Image container */}
-            <div 
-              className="w-full h-full relative z-10 overflow-hidden shadow-md" 
-              style={{ filter: "drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15))" }}
-            >
-              <img 
-                src={jyotirlinga.image} 
-                alt={jyotirlinga.name} 
-                className="w-full h-full object-contain"
-              />
-            </div>
-            
-            {/* Hover overlay with temple name and location */}
-            <motion.div 
-              className={cn(
-                "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-white",
-                "transform transition-all duration-300",
-                hoveredItem === jyotirlinga.id ? "opacity-100" : "opacity-0"
-              )}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ 
-                opacity: hoveredItem === jyotirlinga.id ? 1 : 0,
-                y: hoveredItem === jyotirlinga.id ? 0 : 10
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <h3 className="font-cinzel text-lg font-bold">{jyotirlinga.name}</h3>
-              <p className="text-xs opacity-90">{jyotirlinga.location}</p>
-            </motion.div>
+          {/* Direct temple image without any card or border */}
+          <div className="w-full h-full relative z-10 overflow-hidden">
+            <img 
+              src={jyotirlinga.image} 
+              alt={jyotirlinga.name} 
+              className="w-full h-full object-contain"
+              style={{ filter: "drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2))" }} // Subtle shadow for depth
+            />
           </div>
+          
+          {/* Hover overlay with temple name and location */}
+          <motion.div 
+            className={cn(
+              "absolute bottom-0 left-0 right-0 p-3 text-center",
+              "bg-gradient-to-t from-black/70 to-transparent rounded-md backdrop-blur-sm",
+              "transform transition-all duration-300",
+              hoveredItem === jyotirlinga.id ? "opacity-100" : "opacity-0"
+            )}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ 
+              opacity: hoveredItem === jyotirlinga.id ? 1 : 0,
+              y: hoveredItem === jyotirlinga.id ? 0 : 10
+            }}
+            transition={{ duration: 0.2 }}
+          >
+            <h3 className="font-cinzel text-lg font-bold text-white">{jyotirlinga.name}</h3>
+            <p className="text-xs text-white/80 font-cinzel">{jyotirlinga.location}</p>
+          </motion.div>
         </motion.div>
       ))}
       
-      {/* Decorative elements */}
+      {/* Subtle decorative elements for depth and richness */}
       <div className="absolute top-5 left-5 w-40 h-40 rounded-full bg-spiritual-gold/5 blur-2xl"></div>
       <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-spiritual-maroon/5 blur-3xl"></div>
     </div>
