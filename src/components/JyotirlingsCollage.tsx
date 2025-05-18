@@ -183,13 +183,13 @@ const jyotirlingsData: JyotirlingaItem[] = [
     path: "/jyotirlingas/somnath",
     image: "/lovable-uploads/892016ae-9f94-43cc-bb89-eb3d1417f718.png"
   },
-  // Bottom center - large temple (kedarnath)
+  // Bottom center - large temple (kedarnath) - Adjusted position to be higher
   {
     id: "kedarnath",
     name: "Kedarnath",
     location: "Uttarakhand",
     position: {
-      top: "62%",
+      top: "58%",  // Changed from 62% to 58% to move higher
       left: "38%",
       width: "28%",
       height: "34%",
@@ -198,13 +198,13 @@ const jyotirlingsData: JyotirlingaItem[] = [
     path: "/jyotirlingas/kedarnath",
     image: "/lovable-uploads/e8b9989e-1fdb-419c-b37f-05581f37ee79.png"
   },
-  // Bottom edge - Adjusted position to be more centered and avoid margin issues
+  // Bottom edge - Adjusted position to be more centered and higher
   {
     id: "grishneshwar",
     name: "Grishneshwar",
     location: "Maharashtra",
     position: {
-      top: "76%",  // Moved up from 80%
+      top: "72%",  // Changed from 76% to 72% to move higher
       left: "40%",
       width: "24%",
       height: "30%",
