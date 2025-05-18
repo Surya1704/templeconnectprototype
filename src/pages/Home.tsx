@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import TempleCollage from "@/components/TempleCollage";
+import JyotirlingsCollage from "@/components/JyotirlingsCollage";
 import { allTemples } from "@/data/mergeTemples";
 
 const Home = () => {
@@ -66,77 +66,13 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Temple Collage Section */}
+      {/* Jyotirlinga Collage Section - replacing the Temple Collage Section */}
       <section className="py-12 md:py-20 bg-gradient-to-b from-spiritual-ivory/10 to-spiritual-sandstone/20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon">Discover Sacred Temples</h2>
-            <p className="mt-3 text-spiritual-maroon/70">Explore India's divine destinations with our interactive temple gallery</p>
-          </div>
-          
-          <div className="relative">
-            <TempleCollage />
-          </div>
+          <JyotirlingsCollage />
         </div>
       </section>
 
-      {/* Featured Temples Section with Real PNG Images */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon">Featured Temples</h2>
-            <p className="mt-3 text-spiritual-maroon/70">Explore some of our most beloved spiritual destinations</p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {templeData.map((temple, index) => (
-              <motion.div
-                key={temple.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
-                className="bg-spiritual-ivory rounded-lg overflow-hidden shadow-md transition-all duration-300 cursor-pointer"
-                onClick={() => navigate(`/temples/${temple.slug}`)}
-              >
-                <div className="h-56 relative overflow-hidden bg-spiritual-sandstone/30">
-                  <div className="absolute inset-0 flex items-center justify-center p-6">
-                    <img 
-                      src={temple.image} 
-                      alt={temple.name} 
-                      className="object-contain max-h-full max-w-full"
-                    />
-                  </div>
-                  <div className="absolute bottom-3 left-4 text-white">
-                    <h3 className="font-cinzel font-bold text-xl">{temple.name}</h3>
-                    <p className="text-sm opacity-90">{temple.location}</p>
-                  </div>
-                </div>
-                
-                <div className="p-5">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-spiritual-saffron/10 text-spiritual-maroon font-medium text-xs px-3 py-1 rounded-full">
-                      Sacred Site
-                    </span>
-                  </div>
-                  
-                  <Link 
-                    to={`/temples/${temple.slug}`}
-                    className="mt-2 inline-flex items-center text-spiritual-ochre hover:text-spiritual-saffron"
-                  >
-                    <span>Explore</span>
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
       {/* Services Section - simplified without animated icons */}
       <section className="py-16 md:py-24 bg-gradient-to-r from-spiritual-maroon/5 to-spiritual-saffron/5">
         <div className="container mx-auto px-4">

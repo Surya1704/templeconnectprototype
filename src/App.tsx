@@ -20,6 +20,7 @@ import PujaTiming from "@/pages/PujaTiming";
 import NotFound from "@/pages/NotFound";
 import TripPlanner from "@/pages/TripPlanner";
 import AI from "@/pages/AI";
+import JyotirlingaDetail from "@/pages/JyotirlingaDetail";
 
 import { Toaster } from "@/components/ui/toaster";
 import "@/App.css";
@@ -46,6 +47,10 @@ const App = () => {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/trip-planner" element={<TripPlanner />} />
           <Route path="/ai" element={<AI />} />
+          
+          {/* Jyotirlingas routes */}
+          <Route path="/jyotirlingas/:slug" element={<JyotirlingaDetail />} />
+          
           <Route path="*" element={<NotFound />} />
         </Route>
         {/* Routes outside the main layout */}
