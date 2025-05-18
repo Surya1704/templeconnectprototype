@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Dna } from "lucide-react";
 
 const AstrologyPage = () => {
   const { toast } = useToast();
@@ -26,11 +26,6 @@ const AstrologyPage = () => {
   // Remedy form
   const [question, setQuestion] = useState("");
   const [birthDetails, setBirthDetails] = useState("");
-  
-  // DNA testing form
-  const [fullName, setFullName] = useState("");
-  const [familyOrigin, setFamilyOrigin] = useState("");
-  const [dnaKitId, setDnaKitId] = useState("");
   
   const handleBirthChartSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -199,76 +194,6 @@ const AstrologyPage = () => {
     }
   };
 
-  const handleDnaTestSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    
-    try {
-      // Simulate API call
-      setTimeout(() => {
-        const mockResponse = `
-          # DNA Analysis Results for ${fullName}
-
-          ## Ancestry Composition
-          Based on your DNA sample (Kit ID: ${dnaKitId}) and family origin information (${familyOrigin}), here is your ancestry breakdown:
-
-          - 42% South Indian
-          - 28% North Indian
-          - 15% Central Asian
-          - 8% Southeast Asian
-          - 5% Middle Eastern
-          - 2% European
-
-          ## Historical Background
-          Your DNA reveals deep connections to ancient civilizations of the Indian subcontinent. Your ancestors likely migrated through the following regions:
-          
-          - Indus Valley Civilization (3300-1300 BCE)
-          - Ancient Dravidian kingdoms of South India
-          - Mauryan Empire territories
-          - Gupta Dynasty regions
-
-          ## Recommended Temples to Visit Based on Your Heritage
-
-          ### South India
-          - Meenakshi Amman Temple, Madurai, Tamil Nadu
-          - Sri Ranganathaswamy Temple, Trichy, Tamil Nadu
-          - Virupaksha Temple, Hampi, Karnataka
-
-          ### North India
-          - Kashi Vishwanath Temple, Varanasi, Uttar Pradesh
-          - Badrinath Temple, Uttarakhand
-          - Jagannath Temple, Puri, Odisha
-
-          ### Central India
-          - Khajuraho Group of Temples, Madhya Pradesh
-          - Mahakaleshwar Temple, Ujjain, Madhya Pradesh
-
-          ## Spiritual Practices Associated with Your Lineage
-          - Meditation techniques from the Shaiva tradition
-          - Devotional practices of the Vaishnava tradition
-          - Tantric rituals from the eastern Indian traditions
-
-          We recommend performing pilgrimage to these temples to connect with your ancestral roots and spiritual heritage.
-        `;
-        
-        setResult(mockResponse);
-        setLoading(false);
-        
-        toast({
-          title: "DNA Analysis Complete",
-          description: "Your ancestry and temple recommendations are ready.",
-        });
-      }, 2000);
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to analyze DNA sample. Please try again.",
-        variant: "destructive"
-      });
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-12">
@@ -283,11 +208,10 @@ const AstrologyPage = () => {
           <Card>
             <CardContent className="p-6">
               <Tabs defaultValue="birthchart">
-                <TabsList className="grid grid-cols-4 mb-6">
+                <TabsList className="grid grid-cols-3 mb-6">
                   <TabsTrigger value="birthchart">Birth Chart</TabsTrigger>
                   <TabsTrigger value="muhurta">Muhurta</TabsTrigger>
                   <TabsTrigger value="remedies">Remedies</TabsTrigger>
-                  <TabsTrigger value="dna">DNA Analysis</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="birthchart">
@@ -416,69 +340,6 @@ const AstrologyPage = () => {
                     </Button>
                   </form>
                 </TabsContent>
-                
-                <TabsContent value="dna">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Dna className="h-5 w-5 text-orange-500" />
-                    <h3 className="font-medium text-lg">Discover Your Ancestral Temple Connections</h3>
-                  </div>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Our DNA analysis reveals your ancestral roots and recommends specific temples that align with your heritage.
-                    Submit your DNA kit ID along with your details to receive personalized temple recommendations.
-                  </p>
-                  <form onSubmit={handleDnaTestSubmit} className="space-y-4">
-                    <div>
-                      <Label htmlFor="full-name">Full Name</Label>
-                      <Input 
-                        id="full-name" 
-                        type="text" 
-                        placeholder="Your full name" 
-                        required 
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="dna-kit-id">DNA Kit ID</Label>
-                      <Input 
-                        id="dna-kit-id" 
-                        type="text" 
-                        placeholder="e.g., HIND-12345-AB" 
-                        required 
-                        value={dnaKitId}
-                        onChange={(e) => setDnaKitId(e.target.value)}
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="family-origin">Known Family Origin</Label>
-                      <Input 
-                        id="family-origin" 
-                        type="text" 
-                        placeholder="e.g., Southern India, Gujarat, etc." 
-                        required 
-                        value={familyOrigin}
-                        onChange={(e) => setFamilyOrigin(e.target.value)}
-                      />
-                    </div>
-                    
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-orange-500 hover:bg-orange-600"
-                      disabled={loading}
-                    >
-                      {loading ? "Analyzing DNA..." : "Analyze My Heritage"}
-                    </Button>
-                  </form>
-                  
-                  <div className="mt-4 p-3 bg-orange-50 rounded-md">
-                    <p className="text-xs text-gray-600">
-                      Note: For actual DNA testing, purchase our test kit from the temple shop. Enter the 
-                      kit ID after you receive your results by email. This demo shows sample results.
-                    </p>
-                  </div>
-                </TabsContent>
               </Tabs>
             </CardContent>
           </Card>
@@ -600,69 +461,6 @@ const AstrologyPage = () => {
                 <Button asChild size="sm" className="w-full bg-orange-500 hover:bg-orange-600">
                   <a href="#transits">View Transits</a>
                 </Button>
-              </CardContent>
-            </Card>
-          </div>
-          
-          {/* DNA Ancestry Section */}
-          <div className="mt-8">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
-                    <Dna className="h-6 w-6 text-orange-500" />
-                  </div>
-                  <h2 className="text-xl font-bold">DNA Heritage & Temple Connection</h2>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                  <div>
-                    <h3 className="font-medium text-lg mb-3">How DNA Analysis Works</h3>
-                    <p className="text-gray-600 text-sm mb-4">
-                      Our specialized DNA analysis examines specific genetic markers that are unique to different 
-                      geographical regions of India and Southeast Asia. These markers have been mapped to ancient 
-                      migratory patterns and temple traditions.
-                    </p>
-                    <ul className="list-disc pl-5 space-y-2 text-sm text-gray-600">
-                      <li>We analyze over 700,000 genetic markers</li>
-                      <li>Compare your DNA with our reference database of 50,000+ samples</li>
-                      <li>Identify your ancestral regions with 99.7% accuracy</li>
-                      <li>Map your genetic heritage to temple traditions and practices</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="bg-orange-50 p-4 rounded-lg">
-                    <h3 className="font-medium text-lg mb-3">Temple Heritage Connection</h3>
-                    <p className="text-gray-600 text-sm mb-4">
-                      Different temples across India maintain traditions that correspond to various genetic lineages. 
-                      By understanding your DNA, we can recommend temples where:
-                    </p>
-                    <ul className="list-disc pl-5 space-y-2 text-sm text-gray-600">
-                      <li>Your ancestors likely worshipped</li>
-                      <li>Rituals align with your genetic predispositions</li>
-                      <li>Architectural elements resonate with your ancestral memory</li>
-                      <li>Your spiritual connection may be strongest</li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <div className="mt-6 p-4 border border-orange-200 rounded-lg">
-                  <h3 className="font-medium mb-2">DNA Testing Kit</h3>
-                  <div className="flex items-center gap-4">
-                    <div className="h-20 w-20 bg-orange-100 rounded-md flex items-center justify-center">
-                      <Dna className="h-10 w-10 text-orange-500" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-600">
-                        Order our specialized Hindu Heritage DNA Kit and discover which temples align with your ancestry.
-                        Results are processed within 4-6 weeks after sample submission.
-                      </p>
-                      <Button className="mt-3 bg-orange-500 hover:bg-orange-600">
-                        Order DNA Kit
-                      </Button>
-                    </div>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>
