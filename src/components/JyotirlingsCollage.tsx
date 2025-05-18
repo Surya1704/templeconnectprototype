@@ -174,6 +174,21 @@ const jyotirlingsData: JyotirlingaItem[] = [
     },
     path: "/jyotirlingas/baidyanath",
     image: "/lovable-uploads/e4bc4fc3-559b-47cb-ab47-4804b7f32536.png"
+  },
+  {
+    id: "nageshwar",
+    name: "Nageshwar",
+    location: "Gujarat",
+    position: {
+      top: "18%",
+      left: "75%",
+      width: "28%",
+      height: "34%",
+      zIndex: 7,
+      rotate: "0.5deg"
+    },
+    path: "/jyotirlingas/nageshwar",
+    image: "/lovable-uploads/db5bc89b-2553-46ff-a86e-4c0a629e319d.png"
   }
 ];
 
