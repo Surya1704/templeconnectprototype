@@ -145,14 +145,14 @@ const JyotirlingsCollage: React.FC = () => {
             className="absolute whitespace-nowrap text-[#D4AF37]/10 font-cinzel"
             style={{ 
               top: `${5 * rowIndex}%`, 
-              fontSize: `${Math.max(10, Math.min(20, Math.random() * 16))}px`,
+              fontSize: `${Math.max(10, Math.min(20, Math.random() * 16))}px`
             }}
             initial={{ x: rowIndex % 2 === 0 ? "100%" : "-100%" }}
             animate={{ x: rowIndex % 2 === 0 ? "-100%" : "100%" }}
             transition={{
               repeat: Infinity,
               duration: 80 + (rowIndex * 5),
-              ease: "linear",
+              ease: "linear"
             }}
           >
             {sanskritCharacters.repeat(10)}
@@ -170,14 +170,14 @@ const JyotirlingsCollage: React.FC = () => {
               top: `${8 * rowIndex}%`, 
               left: `${8 * rowIndex}%`,
               fontSize: `${Math.max(10, Math.min(18, Math.random() * 14))}px`,
-              transform: `rotate(${30 + (rowIndex * 5)}deg)`,
+              transform: `rotate(${30 + (rowIndex * 5)}deg)`
             }}
             initial={{ x: "100%" }}
             animate={{ x: "-200%" }}
             transition={{
               repeat: Infinity,
               duration: 100 - (rowIndex * 3),
-              ease: "linear",
+              ease: "linear"
             }}
           >
             {sanskritCharacters.repeat(5)}
@@ -193,15 +193,15 @@ const JyotirlingsCollage: React.FC = () => {
             className="absolute whitespace-nowrap text-[#D4AF37]/8 font-cinzel"
             style={{ 
               left: `${8 * colIndex}%`, 
-              writing-mode: "vertical-rl",
-              fontSize: `${Math.max(10, Math.min(16, Math.random() * 12))}px`,
+              writingMode: "vertical-rl",
+              fontSize: `${Math.max(10, Math.min(16, Math.random() * 12))}px`
             }}
             initial={{ y: "-100%" }}
             animate={{ y: "200%" }}
             transition={{
               repeat: Infinity,
               duration: 120 - (colIndex * 4),
-              ease: "linear",
+              ease: "linear"
             }}
           >
             {sanskritCharacters.repeat(3)}
@@ -243,7 +243,7 @@ const JyotirlingsCollage: React.FC = () => {
                     className="absolute text-xl font-cinzel text-spiritual-gold/70"
                     style={{
                       transformOrigin: "0 0",
-                      transform: `translate(${x + 150}px, ${y + 150}px) rotate(${angle + 90}deg)`,
+                      transform: `translate(${x + 150}px, ${y + 150}px) rotate(${angle + 90}deg)`
                     }}
                   >
                     {sanskritMantra[i]}
@@ -287,7 +287,7 @@ const JyotirlingsCollage: React.FC = () => {
             width: jyotirlinga.position.width,
             height: jyotirlinga.position.height,
             zIndex: jyotirlinga.position.zIndex,
-            transform: `rotate(${jyotirlinga.position.rotate || '0deg'}) ${jyotirlinga.position.transform || ''}`,
+            transform: `rotate(${jyotirlinga.position.rotate || '0deg'}) ${jyotirlinga.position.transform || ''}`
           }}
           onClick={() => navigate(jyotirlinga.path)}
           onMouseEnter={() => !isMobile && handleInteraction(jyotirlinga.id, 'enter')}
@@ -363,7 +363,7 @@ const JyotirlingsCollage: React.FC = () => {
               className="absolute top-1 right-1 w-3 h-3 bg-spiritual-gold rounded-full blur-sm z-20"
               animate={{
                 scale: [1, 1.5, 1],
-                opacity: [0.7, 1, 0.7],
+                opacity: [0.7, 1, 0.7]
               }}
               transition={{
                 duration: 1.5,
@@ -385,7 +385,7 @@ const JyotirlingsCollage: React.FC = () => {
           className="absolute w-1 h-1 rounded-full bg-spiritual-gold/80"
           style={{
             top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`
           }}
           animate={{
             y: [0, -10, 0],
@@ -396,7 +396,7 @@ const JyotirlingsCollage: React.FC = () => {
             duration: 3 + Math.random() * 2,
             repeat: Infinity,
             repeatType: "reverse",
-            delay: Math.random() * 2,
+            delay: Math.random() * 2
           }}
         />
       ))}
