@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
+import ForgotPassword from "@/pages/ForgotPassword";
 import AllTemples from "@/pages/AllTemples";
 import TempleDetail from "@/pages/TempleDetail";
 import Events from "@/pages/Events";
@@ -49,6 +50,7 @@ const App = () => {
         </Route>
         {/* Routes outside the main layout */}
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
       <Toaster />
     </>
