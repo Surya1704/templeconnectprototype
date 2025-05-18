@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -143,6 +144,21 @@ const jyotirlingsData: JyotirlingaItem[] = [
     },
     path: "/jyotirlingas/kashi-vishwanath",
     image: "/lovable-uploads/7469bb49-3e14-45b3-b1fe-bd885af89c8a.png"
+  },
+  {
+    id: "omkareshwar",
+    name: "Omkareshwar",
+    location: "Madhya Pradesh",
+    position: {
+      top: "45%",
+      left: "35%",
+      width: "28%",
+      height: "34%",
+      zIndex: 7,
+      rotate: "0.5deg"
+    },
+    path: "/jyotirlingas/omkareshwar",
+    image: "/lovable-uploads/2719bcc9-3630-489d-97b4-8f4a9d1b2de5.png"
   }
 ];
 
