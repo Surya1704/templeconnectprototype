@@ -159,6 +159,21 @@ const jyotirlingsData: JyotirlingaItem[] = [
     },
     path: "/jyotirlingas/omkareshwar",
     image: "/lovable-uploads/2719bcc9-3630-489d-97b4-8f4a9d1b2de5.png"
+  },
+  {
+    id: "baidyanath",
+    name: "Baidyanath",
+    location: "Jharkhand",
+    position: {
+      top: "25%",
+      left: "55%",
+      width: "28%",
+      height: "34%",
+      zIndex: 8,
+      rotate: "-0.75deg"
+    },
+    path: "/jyotirlingas/baidyanath",
+    image: "/lovable-uploads/e4bc4fc3-559b-47cb-ab47-4804b7f32536.png"
   }
 ];
 
