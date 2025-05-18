@@ -23,7 +23,7 @@ interface JyotirlingaItem {
   image: string;
 }
 
-// Updated Jyotirlinga data with only the verified correct images
+// Updated Jyotirlinga data with the verified correct images
 const jyotirlingsData: JyotirlingaItem[] = [
   {
     id: "rameshwaram",
@@ -99,6 +99,21 @@ const jyotirlingsData: JyotirlingaItem[] = [
     },
     path: "/jyotirlingas/bhimashankar",
     image: "/lovable-uploads/3e33b4bd-dd72-46c6-a56c-5ef6f9e88bad.png"
+  },
+  {
+    id: "somnath",
+    name: "Somnath",
+    location: "Gujarat",
+    position: {
+      top: "30%",
+      left: "40%",
+      width: "28%",
+      height: "34%",
+      zIndex: 7,
+      rotate: "0.5deg"
+    },
+    path: "/jyotirlingas/somnath",
+    image: "/lovable-uploads/892016ae-9f94-43cc-bb89-eb3d1417f718.png"
   }
 ];
 
