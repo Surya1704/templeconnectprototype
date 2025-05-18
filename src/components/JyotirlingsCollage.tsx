@@ -23,23 +23,8 @@ interface JyotirlingaItem {
   image: string;
 }
 
-// Updated Jyotirlinga data with positions matching the Pinterest reference image
+// Updated Jyotirlinga data with only the verified correct images
 const jyotirlingsData: JyotirlingaItem[] = [
-  {
-    id: "somnath",
-    name: "Somnath",
-    location: "Gujarat",
-    position: {
-      top: "2%",
-      left: "5%",
-      width: "32%",
-      height: "36%",
-      zIndex: 12,
-      rotate: "-1deg"
-    },
-    path: "/jyotirlingas/somnath",
-    image: "/lovable-uploads/127d558a-d34f-4432-858b-dd4edd79280e.png"
-  },
   {
     id: "rameshwaram",
     name: "Rameshwaram",
@@ -86,66 +71,6 @@ const jyotirlingsData: JyotirlingaItem[] = [
     image: "/lovable-uploads/4c3fd48a-4feb-4ae6-86e1-402971d9cbf8.png"
   },
   {
-    id: "nageshwar",
-    name: "Nageshwar",
-    location: "Gujarat",
-    position: {
-      top: "28%",
-      left: "36%",
-      width: "27%",
-      height: "33%",
-      zIndex: 11,
-      rotate: "-1deg"
-    },
-    path: "/jyotirlingas/nageshwar",
-    image: "/lovable-uploads/9134455b-48bc-4ef2-a3aa-3d6d5349967b.png"
-  },
-  {
-    id: "kedarnath",
-    name: "Kedarnath",
-    location: "Uttarakhand",
-    position: {
-      top: "26%",
-      left: "62%",
-      width: "30%",
-      height: "38%",
-      zIndex: 13,
-      rotate: "1.5deg"
-    },
-    path: "/jyotirlingas/kedarnath",
-    image: "/lovable-uploads/3f5e1ac4-fefe-403b-989a-c8b9bc43f356.png"
-  },
-  {
-    id: "omkareshwar",
-    name: "Omkareshwar",
-    location: "Madhya Pradesh",
-    position: {
-      top: "60%",
-      left: "5%",
-      width: "30%",
-      height: "36%",
-      zIndex: 7,
-      rotate: "1deg"
-    },
-    path: "/jyotirlingas/omkareshwar",
-    image: "/lovable-uploads/b5d1a6be-dfa2-40e6-8a33-4ec607278013.png"
-  },
-  {
-    id: "kashi-vishwanath",
-    name: "Kashi Vishwanath",
-    location: "Uttar Pradesh",
-    position: {
-      top: "58%",
-      left: "34%",
-      width: "28%",
-      height: "38%",
-      zIndex: 10,
-      rotate: "-1deg"
-    },
-    path: "/jyotirlingas/kashi-vishwanath",
-    image: "/lovable-uploads/e72f493c-9008-468f-9b12-90b58a945398.png"
-  },
-  {
     id: "trimbakeshwar",
     name: "Trimbakeshwar",
     location: "Maharashtra",
@@ -161,21 +86,6 @@ const jyotirlingsData: JyotirlingaItem[] = [
     image: "/lovable-uploads/2ebefee1-c630-49b1-a433-7a7ae77c6683.png"
   },
   {
-    id: "vaidyanath",
-    name: "Vaidyanath",
-    location: "Jharkhand",
-    position: {
-      top: "38%",
-      left: "45%",
-      width: "26%",
-      height: "32%",
-      zIndex: 9,
-      transform: "translateY(-5px)"
-    },
-    path: "/jyotirlingas/vaidyanath",
-    image: "/lovable-uploads/3b0f9fb1-8f3e-40c1-973e-1ba67b15e7eb.png"
-  },
-  {
     id: "bhimashankar",
     name: "Bhimashankar",
     location: "Maharashtra",
@@ -189,21 +99,6 @@ const jyotirlingsData: JyotirlingaItem[] = [
     },
     path: "/jyotirlingas/bhimashankar",
     image: "/lovable-uploads/3e33b4bd-dd72-46c6-a56c-5ef6f9e88bad.png"
-  },
-  {
-    id: "grishneshwar",
-    name: "Grishneshwar",
-    location: "Maharashtra",
-    position: {
-      top: "68%",
-      left: "42%",
-      width: "26%",
-      height: "30%",
-      zIndex: 8,
-      rotate: "1deg"
-    },
-    path: "/jyotirlingas/grishneshwar",
-    image: "/lovable-uploads/dcb523bf-24f7-4125-8e87-b23cfd0fa61d.png"
   }
 ];
 
@@ -244,12 +139,12 @@ const JyotirlingsCollage: React.FC = () => {
       
       {/* Increased density of moving Sanskrit letters animation - more rows and columns */}
       <div className="absolute inset-0 z-2 overflow-hidden">
-        {Array.from({ length: 15 }).map((_, rowIndex) => (
+        {Array.from({ length: 20 }).map((_, rowIndex) => (
           <motion.div
             key={`sanskrit-row-${rowIndex}`}
             className="absolute whitespace-nowrap text-[#D4AF37]/10 font-cinzel"
             style={{ 
-              top: `${6.5 * rowIndex}%`, 
+              top: `${5 * rowIndex}%`, 
               fontSize: `${Math.max(10, Math.min(20, Math.random() * 16))}px`,
             }}
             initial={{ x: rowIndex % 2 === 0 ? "100%" : "-100%" }}
@@ -267,13 +162,13 @@ const JyotirlingsCollage: React.FC = () => {
       
       {/* Diagonal Sanskrit text rows for more coverage */}
       <div className="absolute inset-0 z-2 overflow-hidden">
-        {Array.from({ length: 8 }).map((_, rowIndex) => (
+        {Array.from({ length: 12 }).map((_, rowIndex) => (
           <motion.div
             key={`diagonal-sanskrit-${rowIndex}`}
             className="absolute whitespace-nowrap text-[#D4AF37]/8 font-cinzel"
             style={{ 
-              top: `${10 * rowIndex + 5}%`, 
-              left: `${10 * rowIndex}%`,
+              top: `${8 * rowIndex}%`, 
+              left: `${8 * rowIndex}%`,
               fontSize: `${Math.max(10, Math.min(18, Math.random() * 14))}px`,
               transform: `rotate(${30 + (rowIndex * 5)}deg)`,
             }}
@@ -286,6 +181,30 @@ const JyotirlingsCollage: React.FC = () => {
             }}
           >
             {sanskritCharacters.repeat(5)}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Additional vertical Sanskrit text */}
+      <div className="absolute inset-0 z-2 overflow-hidden">
+        {Array.from({ length: 12 }).map((_, colIndex) => (
+          <motion.div
+            key={`vertical-sanskrit-${colIndex}`}
+            className="absolute whitespace-nowrap text-[#D4AF37]/8 font-cinzel"
+            style={{ 
+              left: `${8 * colIndex}%`, 
+              writing-mode: "vertical-rl",
+              fontSize: `${Math.max(10, Math.min(16, Math.random() * 12))}px`,
+            }}
+            initial={{ y: "-100%" }}
+            animate={{ y: "200%" }}
+            transition={{
+              repeat: Infinity,
+              duration: 120 - (colIndex * 4),
+              ease: "linear",
+            }}
+          >
+            {sanskritCharacters.repeat(3)}
           </motion.div>
         ))}
       </div>
@@ -385,7 +304,7 @@ const JyotirlingsCollage: React.FC = () => {
           <div className="w-full h-full relative group">
             {/* Only show gold outline on hover */}
             <motion.div 
-              className="absolute inset-0 rounded-md border-2 border-transparent transition-all duration-300"
+              className="absolute inset-0 rounded-md border-2 border-transparent"
               animate={{
                 borderColor: hoveredItem === jyotirlinga.id ? "#D4AF37" : "transparent",
                 boxShadow: hoveredItem === jyotirlinga.id ? "0 0 15px rgba(212, 175, 55, 0.6)" : "none"
@@ -460,7 +379,7 @@ const JyotirlingsCollage: React.FC = () => {
       <div className="absolute inset-0 pointer-events-none border-2 border-spiritual-gold/60 rounded-xl"></div>
       
       {/* Additional particles/sparkles for divine effect */}
-      {Array.from({ length: 15 }).map((_, i) => (
+      {Array.from({ length: 20 }).map((_, i) => (
         <motion.div
           key={`sparkle-${i}`}
           className="absolute w-1 h-1 rounded-full bg-spiritual-gold/80"
@@ -481,6 +400,15 @@ const JyotirlingsCollage: React.FC = () => {
           }}
         />
       ))}
+      
+      {/* Placeholder message for missing temples */}
+      {jyotirlingsData.length < 12 && (
+        <div className="absolute bottom-6 left-0 right-0 text-center z-20">
+          <p className="text-spiritual-gold/80 text-sm">
+            {`${jyotirlingsData.length} of 12 Jyotirlinga images verified. Awaiting remaining images.`}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
