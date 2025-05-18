@@ -25,11 +25,11 @@ interface JyotirlingaItem {
 
 // Jyotirlinga data arranged in a diamond/pyramid formation
 const jyotirlingsData: JyotirlingaItem[] = [
-  // Top large temple
+  // Top large temple - REPLACED Somnath with Rameshwaram
   {
-    id: "somnath",
-    name: "Somnath",
-    location: "Gujarat",
+    id: "rameshwaram",
+    name: "Rameshwaram",
+    location: "Tamil Nadu",
     position: {
       top: "2%",
       left: "38%",
@@ -37,8 +37,8 @@ const jyotirlingsData: JyotirlingaItem[] = [
       height: "36%",
       zIndex: 10,
     },
-    path: "/jyotirlingas/somnath",
-    image: "/lovable-uploads/892016ae-9f94-43cc-bb89-eb3d1417f718.png"
+    path: "/jyotirlingas/rameshwaram",
+    image: "/lovable-uploads/fb4b3306-65cb-4755-b087-ac2fa92e2f21.png"
   },
   // Upper row - left (medium)
   {
@@ -167,11 +167,11 @@ const jyotirlingsData: JyotirlingaItem[] = [
     path: "/jyotirlingas/bhimashankar",
     image: "/lovable-uploads/3e33b4bd-dd72-46c6-a56c-5ef6f9e88bad.png"
   },
-  // Lower row - right (medium)
+  // Lower row - right (medium) - Moved Somnath here
   {
-    id: "rameshwaram",
-    name: "Rameshwaram",
-    location: "Tamil Nadu",
+    id: "somnath",
+    name: "Somnath",
+    location: "Gujarat",
     position: {
       top: "65%",
       left: "65%",
@@ -180,8 +180,8 @@ const jyotirlingsData: JyotirlingaItem[] = [
       zIndex: 8,
       rotate: "0.75deg"
     },
-    path: "/jyotirlingas/rameshwaram",
-    image: "/lovable-uploads/fb4b3306-65cb-4755-b087-ac2fa92e2f21.png"
+    path: "/jyotirlingas/somnath",
+    image: "/lovable-uploads/892016ae-9f94-43cc-bb89-eb3d1417f718.png"
   },
   // Bottom center - large temple (kedarnath)
   {
@@ -198,13 +198,13 @@ const jyotirlingsData: JyotirlingaItem[] = [
     path: "/jyotirlingas/kedarnath",
     image: "/lovable-uploads/e8b9989e-1fdb-419c-b37f-05581f37ee79.png"
   },
-  // Bottom edge - medium temple
+  // Bottom edge - Adjusted position to be more centered and avoid margin issues
   {
     id: "grishneshwar",
     name: "Grishneshwar",
     location: "Maharashtra",
     position: {
-      top: "80%",
+      top: "76%",  // Moved up from 80%
       left: "40%",
       width: "24%",
       height: "30%",
