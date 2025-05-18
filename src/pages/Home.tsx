@@ -1,26 +1,28 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import TempleCollage from "@/components/TempleCollage";
-import { allTemples } from "@/data/mergeTemples";
 
 const Home = () => {
   const navigate = useNavigate();
-  const featuredTemples = allTemples.slice(0, 6);
   
-  // Temple data with proper image paths
+  // Temple data with proper image paths and slugs that match the routing system
   const templeData = [
-    { name: "Golden Temple", image: "/assets/temples/golden-temple.png", slug: "golden-temple", location: "Amritsar, Punjab" },
-    { name: "Meenakshi Temple", image: "/assets/temples/meenakshi-temple.png", slug: "meenakshi-temple", location: "Madurai, Tamil Nadu" },
-    { name: "Kedarnath", image: "/assets/temples/kedarnath-temple.png", slug: "kedarnath", location: "Uttarakhand" },
-    { name: "Jagannath Puri", image: "/assets/temples/jagannath-puri.png", slug: "jagannath-puri", location: "Odisha" },
-    { name: "Kashi Vishwanath", image: "/assets/temples/kashi-vishwanath.png", slug: "kashi-vishwanath", location: "Varanasi, Uttar Pradesh" },
-    { name: "Tirupati Balaji", image: "/assets/temples/tirupati-balaji.png", slug: "tirupati-balaji", location: "Andhra Pradesh" },
-    { name: "Badrinath", image: "/assets/temples/badrinath-temple.png", slug: "badrinath", location: "Uttarakhand" },
-    { name: "Brihadeeswara", image: "/assets/temples/brihadeeswara-temple.png", slug: "brihadeeswara", location: "Thanjavur, Tamil Nadu" },
+    { name: "Golden Temple", image: "/assets/temples/golden-temple.png", slug: "golden-temple", id: "24", location: "Amritsar, Punjab" },
+    { name: "Meenakshi Temple", image: "/assets/temples/meenakshi-temple.png", slug: "meenakshi-temple", id: "25", location: "Madurai, Tamil Nadu" },
+    { name: "Kedarnath", image: "/assets/temples/kedarnath-temple.png", slug: "kedarnath", id: "28", location: "Uttarakhand" },
+    { name: "Jagannath Puri", image: "/assets/temples/jagannath-puri.png", slug: "jagannath-puri", id: "29", location: "Odisha" },
+    { name: "Kashi Vishwanath", image: "/assets/temples/kashi-vishwanath.png", slug: "kashi-vishwanath", id: "72", location: "Varanasi, Uttar Pradesh" },
+    { name: "Brihadeeswara", image: "/assets/temples/brihadeeswara-temple.png", slug: "brihadeeswara", id: "34", location: "Thanjavur, Tamil Nadu" },
+    { name: "Tirupati Balaji", image: "/assets/temples/tirupati-balaji.png", slug: "tirupati-balaji", id: "93", location: "Andhra Pradesh" },
+    { name: "Badrinath", image: "/assets/temples/badrinath-temple.png", slug: "badrinath", id: "30", location: "Uttarakhand" },
   ];
+
+  // Function to handle temple navigation - both ID and slug-based routing will work
+  const handleTempleClick = (temple) => {
+    navigate(`/temple/${temple.id}`);
+  };
 
   return (
     <div className="min-h-screen">
@@ -66,7 +68,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Temple Collage Section */}
+      {/* Temple Collage Section with Actual PNG Images */}
       <section className="py-12 md:py-20 bg-gradient-to-b from-spiritual-ivory/10 to-spiritual-sandstone/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -74,13 +76,60 @@ const Home = () => {
             <p className="mt-3 text-spiritual-maroon/70">Explore India's divine destinations with our interactive temple gallery</p>
           </div>
           
-          <div className="relative">
-            <TempleCollage />
+          {/* Temple Collage - replacing the TempleCollage component with our own implementation */}
+          <div className="relative h-[90vh] bg-spiritual-ivory/30 rounded-xl overflow-hidden">
+            {templeData.map((temple, index) => (
+              <motion.div
+                key={temple.slug}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="absolute cursor-pointer group"
+                onClick={() => handleTempleClick(temple)}
+                style={{
+                  top: [
+                    "5%", "15%", "10%", "42%", 
+                    "50%", "45%", "75%", "70%"
+                  ][index],
+                  left: [
+                    "10%", "38%", "70%", "5%", 
+                    "35%", "65%", "20%", "50%"
+                  ][index],
+                  width: [
+                    "25%", "30%", "22%", "28%", 
+                    "25%", "30%", "26%", "28%"
+                  ][index],
+                  height: "auto",
+                  zIndex: [2, 3, 1, 4, 2, 3, 5, 1][index],
+                  transform: [
+                    "rotate(-2deg)", "rotate(0deg)", "rotate(3deg)", "rotate(-1deg)",
+                    "rotate(1deg)", "rotate(-2deg)", "rotate(0deg)", "rotate(2deg)"
+                  ][index]
+                }}
+              >
+                <div className="relative rounded-lg overflow-hidden border-4 border-spiritual-gold/40 shadow-lg transition-all duration-300 hover:border-spiritual-gold hover:shadow-2xl">
+                  <div className="aspect-[4/3] bg-white flex items-center justify-center">
+                    <img 
+                      src={temple.image} 
+                      alt={temple.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-spiritual-maroon to-transparent p-4">
+                    <h3 className="font-cinzel text-xl md:text-2xl font-bold text-white drop-shadow-md">
+                      {temple.name}
+                    </h3>
+                    <p className="text-white/90 text-sm">{temple.location}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Temples Section with Real PNG Images */}
+      {/* Featured Temples Section */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -98,38 +147,38 @@ const Home = () => {
                 viewport={{ once: true, margin: "-100px" }}
                 whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
                 className="bg-spiritual-ivory rounded-lg overflow-hidden shadow-md transition-all duration-300 cursor-pointer"
-                onClick={() => navigate(`/temples/${temple.slug}`)}
+                onClick={() => handleTempleClick(temple)}
               >
-                <div className="h-56 relative overflow-hidden bg-spiritual-sandstone/30">
-                  <div className="absolute inset-0 flex items-center justify-center p-6">
-                    <img 
-                      src={temple.image} 
-                      alt={temple.name} 
-                      className="object-contain max-h-full max-w-full"
-                    />
-                  </div>
-                  <div className="absolute bottom-3 left-4 text-white">
-                    <h3 className="font-cinzel font-bold text-xl">{temple.name}</h3>
-                    <p className="text-sm opacity-90">{temple.location}</p>
-                  </div>
+                <div className="h-56 relative overflow-hidden bg-white">
+                  <img 
+                    src={temple.image} 
+                    alt={temple.name} 
+                    className="w-full h-full object-contain p-2"
+                  />
                 </div>
                 
                 <div className="p-5">
-                  <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-cinzel font-bold text-xl text-spiritual-maroon">{temple.name}</h3>
+                  <p className="text-sm text-gray-600">{temple.location}</p>
+                  
+                  <div className="mt-4 flex items-center justify-between">
                     <span className="bg-spiritual-saffron/10 text-spiritual-maroon font-medium text-xs px-3 py-1 rounded-full">
                       Sacred Site
                     </span>
+                    
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleTempleClick(temple);
+                      }}
+                      className="text-spiritual-ochre hover:text-spiritual-saffron flex items-center"
+                    >
+                      <span>Explore</span>
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </button>
                   </div>
-                  
-                  <Link 
-                    to={`/temples/${temple.slug}`}
-                    className="mt-2 inline-flex items-center text-spiritual-ochre hover:text-spiritual-saffron"
-                  >
-                    <span>Explore</span>
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -137,7 +186,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Services Section - simplified without animated icons */}
+      {/* Services Section */}
       <section className="py-16 md:py-24 bg-gradient-to-r from-spiritual-maroon/5 to-spiritual-saffron/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -244,7 +293,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Testimonials - simplified without subtle animations */}
+      {/* Testimonials */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -299,7 +348,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Call To Action - simplified without animated background */}
+      {/* Call To Action */}
       <section className="py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-spiritual-maroon to-spiritual-ochre opacity-90 z-0"></div>
         
