@@ -55,7 +55,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Services Section - simplified without animated icons */}
+      {/* Services Section */}
       <section className="py-16 md:py-24 bg-gradient-to-r from-spiritual-maroon/5 to-spiritual-saffron/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -163,7 +163,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Testimonials - simplified without subtle animations */}
+      {/* Testimonials */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -219,7 +219,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Call To Action - simplified without animated background */}
+      {/* Call To Action */}
       <section className="py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-spiritual-maroon to-spiritual-ochre opacity-90 z-0"></div>
         

@@ -23,7 +23,7 @@ interface JyotirlingaItem {
   image: string;
 }
 
-// Jyotirlinga data for the collage
+// Jyotirlinga data for the collage - same data with slight position adjustments
 const jyotirlingsData: JyotirlingaItem[] = [
   {
     id: "somnath",
@@ -45,12 +45,13 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Mallikarjuna",
     location: "Andhra Pradesh",
     position: {
-      top: "15%",
-      left: "38%",
+      top: "12%",
+      left: "40%",
       width: "25%",
       height: "35%",
-      zIndex: 3,
-      rotate: "1deg"
+      zIndex: 8,
+      rotate: "1deg",
+      transform: "translateY(-5px)"
     },
     path: "/jyotirlingas/mallikarjuna",
     image: "/lovable-uploads/0aa1be60-fc0f-45e0-9ec7-4a331f3dcee1.png"
@@ -60,7 +61,7 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Mahakaleshwar",
     location: "Madhya Pradesh",
     position: {
-      top: "10%",
+      top: "8%",
       left: "70%",
       width: "22%",
       height: "30%",
@@ -75,11 +76,11 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Omkareshwar",
     location: "Madhya Pradesh",
     position: {
-      top: "42%",
+      top: "38%",
       left: "5%",
       width: "24%",
       height: "28%",
-      zIndex: 4,
+      zIndex: 7,
       rotate: "-1deg"
     },
     path: "/jyotirlingas/omkareshwar",
@@ -90,11 +91,11 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Kedarnath",
     location: "Uttarakhand",
     position: {
-      top: "25%",
+      top: "20%",
       left: "45%",
       width: "25%",
       height: "35%",
-      zIndex: 2,
+      zIndex: 9,
       rotate: "1deg"
     },
     path: "/jyotirlingas/kedarnath",
@@ -105,11 +106,11 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Bhimashankar",
     location: "Maharashtra",
     position: {
-      top: "42%",
-      left: "65%",
+      top: "35%",
+      left: "68%",
       width: "30%",
       height: "30%",
-      zIndex: 3,
+      zIndex: 4,
       rotate: "-2deg"
     },
     path: "/jyotirlingas/bhimashankar",
@@ -120,8 +121,8 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Kashi Vishwanath",
     location: "Uttar Pradesh",
     position: {
-      top: "65%",
-      left: "10%",
+      top: "60%",
+      left: "13%",
       width: "26%",
       height: "35%",
       zIndex: 8,
@@ -134,8 +135,8 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Trimbakeshwar",
     location: "Maharashtra",
     position: {
-      top: "70%",
-      left: "38%",
+      top: "65%",
+      left: "40%",
       width: "24%",
       height: "28%",
       zIndex: 7,
@@ -149,7 +150,7 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Vaidyanath",
     location: "Jharkhand",
     position: {
-      top: "50%",
+      top: "47%",
       left: "35%",
       width: "22%",
       height: "25%",
@@ -164,8 +165,8 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Nageshwar",
     location: "Gujarat",
     position: {
-      top: "30%",
-      left: "22%",
+      top: "27%",
+      left: "25%",
       width: "24%",
       height: "32%",
       zIndex: 9,
@@ -179,8 +180,8 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Rameshwaram",
     location: "Tamil Nadu",
     position: {
-      top: "65%",
-      left: "68%",
+      top: "60%",
+      left: "70%",
       width: "25%",
       height: "32%",
       zIndex: 8,
@@ -194,8 +195,8 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Grishneshwar",
     location: "Maharashtra",
     position: {
-      top: "58%",
-      left: "5%",
+      top: "55%",
+      left: "8%",
       width: "22%",
       height: "30%",
       zIndex: 5,
@@ -219,8 +220,20 @@ const JyotirlingsCollage: React.FC = () => {
     }
   };
 
+  // Sanskrit mantra for the rotating text
+  const sanskritMantra = "यद् यद् यः करोति तत् तत् एव प्रतिपद्यते";
+
   return (
     <div className="relative w-full h-[90vh] md:h-[80vh] overflow-hidden rounded-xl">
+      {/* Rich gold textured background */}
+      <div 
+        className="absolute inset-0 z-0" 
+        style={{ 
+          background: "linear-gradient(to right bottom, #D4AF37/10, #B8860B/10, #FFC300/10, #B87333/10)",
+          opacity: 0.4
+        }}
+      ></div>
+      
       {/* Full-page Sanskrit background texture - now applied evenly across the entire background */}
       <div 
         className="absolute inset-0 z-0" 
@@ -244,14 +257,71 @@ const JyotirlingsCollage: React.FC = () => {
         </div>
       </div>
       
+      {/* Central rotating mandala with Sanskrit text */}
+      <div className="absolute inset-0 z-1 pointer-events-none">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ 
+              duration: 60, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+            className="w-[400px] h-[400px] opacity-10"
+          >
+            <div className="relative w-full h-full">
+              {/* Create a circular path for the text */}
+              {Array.from({ length: sanskritMantra.length }).map((_, i) => {
+                const angle = (i * 360) / sanskritMantra.length;
+                const radian = (angle * Math.PI) / 180;
+                const radius = 180; // Radius of the circle
+                const x = radius * Math.cos(radian);
+                const y = radius * Math.sin(radian);
+                
+                return (
+                  <div 
+                    key={i}
+                    className="absolute text-2xl font-cinzel text-spiritual-gold/70"
+                    style={{
+                      transformOrigin: "0 0",
+                      transform: `translate(${x + 200}px, ${y + 200}px) rotate(${angle + 90}deg)`,
+                    }}
+                  >
+                    {sanskritMantra[i]}
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+          
+          {/* Central mandala */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-spiritual-gold/5 flex items-center justify-center">
+            <motion.div
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.5, 0.8, 0.5] 
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+              className="w-20 h-20 rounded-full bg-spiritual-gold/10 flex items-center justify-center text-4xl"
+            >
+              ॐ
+            </motion.div>
+          </div>
+        </div>
+      </div>
+      
       {/* Title with Devanagari-inspired font */}
       <div className="absolute top-4 left-0 right-0 z-20 text-center">
-        <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-spiritual-maroon">
+        <h2 className="font-cinzel text-3xl md:text-4xl font-bold text-spiritual-maroon drop-shadow-sm">
           The 12 Jyotirlingas of India
         </h2>
       </div>
       
-      {/* Jyotirlinga items - removed white card elements */}
+      {/* Jyotirlinga items - now with enhanced styling and effects */}
       {jyotirlingsData.map((jyotirlinga) => (
         <motion.div
           key={jyotirlinga.id}
@@ -274,13 +344,28 @@ const JyotirlingsCollage: React.FC = () => {
           onTouchEnd={() => isMobile && setTimeout(() => handleInteraction(jyotirlinga.id, 'leave'), 1500)}
           whileHover={{ scale: 1.05, zIndex: 20, transition: { duration: 0.3 } }}
         >
-          {/* Direct temple image without any card or border */}
-          <div className="w-full h-full relative z-10 overflow-hidden">
+          {/* Temple image with divine glow effect */}
+          <div className="w-full h-full relative z-10">
+            {/* Divine glow/halo effect behind the image */}
+            <motion.div 
+              className="absolute inset-0 -m-3 rounded-full bg-spiritual-gold/30 blur-xl"
+              animate={{ 
+                opacity: [0.2, 0.4, 0.2],
+                scale: [0.9, 1, 0.9] 
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            />
+            
+            {/* The temple image itself */}
             <img 
               src={jyotirlinga.image} 
               alt={jyotirlinga.name} 
-              className="w-full h-full object-contain"
-              style={{ filter: "drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2))" }} // Subtle shadow for depth
+              className="w-full h-full object-contain relative z-10"
+              style={{ filter: "drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2))" }}
             />
           </div>
           
@@ -299,15 +384,57 @@ const JyotirlingsCollage: React.FC = () => {
             }}
             transition={{ duration: 0.2 }}
           >
-            <h3 className="font-cinzel text-lg font-bold text-white">{jyotirlinga.name}</h3>
+            <h3 className="font-cinzel text-lg font-bold text-white drop-shadow-md">{jyotirlinga.name}</h3>
             <p className="text-xs text-white/80 font-cinzel">{jyotirlinga.location}</p>
           </motion.div>
+          
+          {/* Subtle sparkle effect */}
+          {hoveredItem === jyotirlinga.id && (
+            <motion.div
+              className="absolute top-0 right-0 w-4 h-4 bg-spiritual-gold rounded-full blur-sm"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "reverse"
+              }}
+            />
+          )}
         </motion.div>
       ))}
       
-      {/* Subtle decorative elements for depth and richness */}
+      {/* Decorative golden border around the canvas */}
+      <div className="absolute inset-0 pointer-events-none border-2 border-spiritual-gold/30 rounded-xl"></div>
+      
+      {/* Additional decorative elements for divine atmosphere */}
       <div className="absolute top-5 left-5 w-40 h-40 rounded-full bg-spiritual-gold/5 blur-2xl"></div>
       <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-spiritual-maroon/5 blur-3xl"></div>
+      
+      {/* Particles/sparkles for divine effect */}
+      {Array.from({ length: 15 }).map((_, i) => (
+        <motion.div
+          key={`sparkle-${i}`}
+          className="absolute w-1 h-1 rounded-full bg-spiritual-gold/60"
+          style={{
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -10, 0],
+            opacity: [0.3, 0.7, 0.3],
+            scale: [1, 1.5, 1]
+          }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            repeatType: "reverse",
+            delay: Math.random() * 2,
+          }}
+        />
+      ))}
     </div>
   );
 };
