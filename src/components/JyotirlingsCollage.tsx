@@ -128,6 +128,21 @@ const jyotirlingsData: JyotirlingaItem[] = [
     },
     path: "/jyotirlingas/kedarnath",
     image: "/lovable-uploads/e8b9989e-1fdb-419c-b37f-05581f37ee79.png"
+  },
+  {
+    id: "kashi-vishwanath",
+    name: "Kashi Vishwanath",
+    location: "Uttar Pradesh",
+    position: {
+      top: "15%",
+      left: "10%",
+      width: "28%",
+      height: "34%",
+      zIndex: 8,
+      rotate: "1deg"
+    },
+    path: "/jyotirlingas/kashi-vishwanath",
+    image: "/lovable-uploads/7469bb49-3e14-45b3-b1fe-bd885af89c8a.png"
   }
 ];
 
