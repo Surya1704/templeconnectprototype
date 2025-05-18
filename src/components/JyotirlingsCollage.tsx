@@ -189,6 +189,21 @@ const jyotirlingsData: JyotirlingaItem[] = [
     },
     path: "/jyotirlingas/nageshwar",
     image: "/lovable-uploads/db5bc89b-2553-46ff-a86e-4c0a629e319d.png"
+  },
+  {
+    id: "grishneshwar",
+    name: "Grishneshwar",
+    location: "Maharashtra",
+    position: {
+      top: "75%",
+      left: "70%",
+      width: "28%",
+      height: "34%",
+      zIndex: 6,
+      rotate: "-0.5deg"
+    },
+    path: "/jyotirlingas/grishneshwar",
+    image: "/lovable-uploads/d168a39e-e3c3-46d9-bc2b-ce2460e09c78.png"
   }
 ];
 
