@@ -45,18 +45,18 @@ const NavBar = () => {
             to="/" 
             className="flex items-center text-spiritual-maroon font-bold transition-transform hover:scale-105"
           >
-            {/* Temple outline logo */}
+            {/* Temple logo with flipping animation */}
             <motion.div 
               initial={{ rotateY: 0 }}
               animate={{ rotateY: 360 }}
               transition={{ duration: 2, repeatDelay: 5, repeat: Infinity, ease: "easeInOut" }}
               className="mr-2"
             >
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3L4 9V21H20V9L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M9 21V12H15V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M12 3V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <img 
+                src="/lovable-uploads/3da3fd53-32f9-4f5c-b8bf-c1bd7ce55182.png" 
+                alt="Temple Logo" 
+                className="w-8 h-8"
+              />
             </motion.div>
             <span className="text-xl font-cinzel">
               Temple<span className="text-spiritual-saffron">Connect</span>
