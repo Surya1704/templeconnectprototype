@@ -20,117 +20,126 @@ interface TempleCollageItem {
   path: string;
 }
 
-// Rearranged temple data for better composition
+// Rearranged temple data in a diamond/pyramid shape
 const templeData: TempleCollageItem[] = [
+  // Top - large temple
   {
     id: "temple-1",
     name: "Golden Temple",
     description: "Sacred Sikh shrine in Amritsar",
     position: {
-      top: "8%",
-      left: "10%",
-      width: "25%",
-      height: "35%",
-      zIndex: 3,
-      rotate: "-1deg"
+      top: "2%",
+      left: "35%",
+      width: "30%",
+      height: "38%",
+      zIndex: 5,
+      rotate: "-0.5deg"
     },
-    path: "/temple/24" // Updated to match temple ID
+    path: "/temple/24"
   },
+  // Middle row - left side (medium)
   {
     id: "temple-2",
     name: "Meenakshi Temple",
     description: "Iconic temple with colorful gopurams",
     position: {
-      top: "12%",
-      left: "40%",
-      width: "30%",
-      height: "38%",
-      zIndex: 4,
+      top: "25%",
+      left: "15%",
+      width: "25%",
+      height: "32%",
+      zIndex: 3,
+      rotate: "1deg"
     },
-    path: "/temple/25" // Updated to match temple ID
+    path: "/temple/25"
   },
+  // Middle row - center (detailed)
   {
     id: "temple-3",
     name: "Kedarnath Temple",
     description: "Ancient shrine in the Himalayas",
     position: {
-      top: "7%",
-      left: "72%",
+      top: "28%",
+      left: "40%",
       width: "22%",
       height: "30%",
-      zIndex: 2,
-      rotate: "2deg"
+      zIndex: 4,
     },
-    path: "/temple/28" // Updated to match temple ID
+    path: "/temple/28"
   },
+  // Middle row - right side (medium)
   {
     id: "temple-4",
     name: "Jagannath Puri",
     description: "Famous for its annual Rath Yatra",
     position: {
-      top: "45%",
-      left: "8%",
-      width: "28%",
-      height: "38%",
+      top: "25%",
+      left: "62%",
+      width: "25%",
+      height: "32%",
       zIndex: 3,
-      rotate: "-1.5deg"
+      rotate: "-1deg"
     },
-    path: "/temple/29" // Updated to match temple ID
+    path: "/temple/29"
   },
+  // Lower middle - left (detailed)
   {
     id: "temple-5",
     name: "Kashi Vishwanath",
     description: "One of the most famous Hindu temples",
     position: {
       top: "48%",
-      left: "38%",
-      width: "25%",
-      height: "35%",
-      zIndex: 5,
-      rotate: "1deg"
+      left: "20%",
+      width: "24%",
+      height: "32%",
+      zIndex: 4,
+      rotate: "-0.5deg"
     },
-    path: "/temple/72" // Updated to match temple ID
+    path: "/temple/72"
   },
+  // Lower middle - right (detailed)
   {
     id: "temple-6",
     name: "Brihadeeswara Temple",
     description: "UNESCO World Heritage site in Thanjavur",
     position: {
-      top: "42%",
-      left: "68%",
-      width: "28%",
-      height: "40%",
-      zIndex: 2,
-      rotate: "-1deg"
+      top: "48%",
+      left: "56%",
+      width: "24%",
+      height: "32%",
+      zIndex: 4,
+      rotate: "0.5deg"
     },
-    path: "/temple/34" // Updated to match temple ID
+    path: "/temple/34"
   },
+  // Lower row - left (medium)
   {
     id: "temple-7",
     name: "Tirupati Balaji",
     description: "World's richest temple",
     position: {
-      top: "78%",
-      left: "18%",
-      width: "26%",
-      height: "35%",
-      zIndex: 4,
+      top: "68%",
+      left: "15%",
+      width: "25%",
+      height: "33%",
+      zIndex: 3,
+      rotate: "1deg"
     },
-    path: "/temple/93" // Updated to match temple ID
+    path: "/temple/93"
   },
+  // Bottom - large temple
   {
     id: "temple-8",
     name: "Badrinath Temple",
     description: "Sacred to Lord Vishnu",
     position: {
-      top: "72%",
-      left: "52%",
-      width: "28%",
+      top: "62%",
+      left: "35%",
+      width: "30%",
       height: "38%",
-      zIndex: 3,
-      rotate: "1.5deg"
+      zIndex: 5,
+      rotate: "-0.5deg"
     },
-    path: "/temple/30" // Updated to match temple ID
+    path: "/temple/30"
   }
 ];
 
