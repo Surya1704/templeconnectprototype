@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -114,6 +113,21 @@ const jyotirlingsData: JyotirlingaItem[] = [
     },
     path: "/jyotirlingas/somnath",
     image: "/lovable-uploads/892016ae-9f94-43cc-bb89-eb3d1417f718.png"
+  },
+  {
+    id: "kedarnath",
+    name: "Kedarnath",
+    location: "Uttarakhand",
+    position: {
+      top: "40%",
+      left: "70%",
+      width: "28%",
+      height: "34%",
+      zIndex: 6,
+      rotate: "-0.5deg"
+    },
+    path: "/jyotirlingas/kedarnath",
+    image: "/lovable-uploads/e8b9989e-1fdb-419c-b37f-05581f37ee79.png"
   }
 ];
 
