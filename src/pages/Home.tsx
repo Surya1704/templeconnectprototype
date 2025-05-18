@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -9,16 +9,6 @@ import { allTemples } from "@/data/mergeTemples";
 const Home = () => {
   const navigate = useNavigate();
   const featuredTemples = allTemples.slice(0, 6);
-  const [diyaIntensity, setDiyaIntensity] = useState(0.6);
-  
-  // Animation for flickering diyas
-  useEffect(() => {
-    const flickerInterval = setInterval(() => {
-      setDiyaIntensity(prev => 0.6 + Math.random() * 0.4); // Random flicker effect
-    }, 700);
-    
-    return () => clearInterval(flickerInterval);
-  }, []);
   
   // Temple data with proper image paths
   const templeData = [
@@ -33,76 +23,9 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen overflow-hidden">
-      {/* Hero section with animated elements */}
+    <div className="min-h-screen">
+      {/* Hero section - simplified without animations and background text */}
       <section className="relative bg-gradient-to-b from-spiritual-sandstone/20 to-spiritual-ivory/30 py-16 md:py-24">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute inset-0 z-0 overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTQgMjRjMCAxNC40LTExLjYgMjYtMjYgMjZTMiAzOC40IDIgMjRDMiA5LjYgMTMuNiAtMiAyOCAtMnMyNiAxMS42IDI2IDI2eiIgZmlsbD0iI2M3NWIxYiIgZmlsbC1vcGFjaXR5PSIwLjAzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-30" />
-        </motion.div>
-        
-        {/* Animated diyas on the sides */}
-        <div className="absolute top-1/4 left-8 md:left-16 lg:left-32 hidden md:block">
-          <motion.div 
-            className="w-8 h-8 rounded-full bg-gradient-to-t from-spiritual-saffron to-spiritual-ochre"
-            animate={{ boxShadow: `0 0 ${20 * diyaIntensity}px ${10 * diyaIntensity}px rgba(255, 119, 34, ${diyaIntensity})` }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div 
-              className="w-2 h-4 bg-spiritual-ochre absolute top-0 left-3 rounded-full"
-              animate={{ 
-                height: [4, 6, 4],
-                opacity: [0.8, 1, 0.8]
-              }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-          </motion.div>
-        </div>
-        
-        <div className="absolute top-1/4 right-8 md:right-16 lg:right-32 hidden md:block">
-          <motion.div 
-            className="w-8 h-8 rounded-full bg-gradient-to-t from-spiritual-saffron to-spiritual-ochre"
-            animate={{ boxShadow: `0 0 ${20 * diyaIntensity}px ${10 * diyaIntensity}px rgba(255, 119, 34, ${diyaIntensity})` }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div 
-              className="w-2 h-4 bg-spiritual-ochre absolute top-0 left-3 rounded-full"
-              animate={{ 
-                height: [4, 6, 4],
-                opacity: [0.8, 1, 0.8]
-              }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }}
-            />
-          </motion.div>
-        </div>
-        
-        {/* Animated flag on temple top */}
-        <motion.div
-          className="absolute top-10 left-1/2 transform -translate-x-1/2 hidden lg:block"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          <div className="w-1 h-16 bg-spiritual-maroon/60">
-            <motion.div 
-              className="w-10 h-5 origin-left bg-gradient-to-r from-spiritual-ochre to-spiritual-saffron"
-              animate={{ 
-                skewY: [0, 3, 0, -2, 0],
-                rotateZ: [0, 2, 0, -1, 0]
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </div>
-        </motion.div>
-        
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
@@ -185,7 +108,6 @@ const Home = () => {
                       className="object-contain max-h-full max-w-full"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   <div className="absolute bottom-3 left-4 text-white">
                     <h3 className="font-cinzel font-bold text-xl">{temple.name}</h3>
                     <p className="text-sm opacity-90">{temple.location}</p>
@@ -215,7 +137,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Services Section with animated icons */}
+      {/* Services Section - simplified without animated icons */}
       <section className="py-16 md:py-24 bg-gradient-to-r from-spiritual-maroon/5 to-spiritual-saffron/5">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -230,16 +152,7 @@ const Home = () => {
                 description: "Skip the queues with pre-booked temple visits",
                 link: "/temples",
                 icon: (
-                  <motion.svg 
-                    animate={{
-                      y: [0, -5, 0],
-                      opacity: [0.8, 1, 0.8],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
+                  <svg 
                     width="40" 
                     height="40" 
                     viewBox="0 0 24 24" 
@@ -248,7 +161,7 @@ const Home = () => {
                   >
                     <path d="M19 10V19C19 19.5523 18.5523 20 18 20H6C5.44772 20 5 19.5523 5 19V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M21 10H3L12 3L21 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </motion.svg>
+                  </svg>
                 )
               },
               {
@@ -256,17 +169,7 @@ const Home = () => {
                 description: "Arrange religious ceremonies remotely",
                 link: "/puja-booking",
                 icon: (
-                  <motion.svg 
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      opacity: [0.8, 1, 0.8],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.5
-                    }}
+                  <svg 
                     width="40" 
                     height="40" 
                     viewBox="0 0 24 24" 
@@ -276,7 +179,7 @@ const Home = () => {
                     <path d="M12 14C8.68629 14 6 11.3137 6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 11.3137 15.3137 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12 14V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M9 18H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </motion.svg>
+                  </svg>
                 )
               },
               {
@@ -284,16 +187,7 @@ const Home = () => {
                 description: "Receive blessed offerings at your doorstep",
                 link: "/prasad-booking",
                 icon: (
-                  <motion.svg 
-                    animate={{
-                      rotate: [0, 10, 0, -10, 0],
-                    }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1
-                    }}
+                  <svg 
                     width="40" 
                     height="40" 
                     viewBox="0 0 24 24" 
@@ -302,7 +196,7 @@ const Home = () => {
                   >
                     <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </motion.svg>
+                  </svg>
                 )
               },
               {
@@ -310,17 +204,7 @@ const Home = () => {
                 description: "Find accommodations near spiritual sites",
                 link: "/stay-bookings",
                 icon: (
-                  <motion.svg 
-                    animate={{
-                      y: [0, -3, 0],
-                      x: [0, 3, 0, -3, 0],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1.5
-                    }}
+                  <svg 
                     width="40" 
                     height="40" 
                     viewBox="0 0 24 24" 
@@ -333,7 +217,7 @@ const Home = () => {
                     <path d="M9 9H10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M9 13H10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M9 17H10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </motion.svg>
+                  </svg>
                 )
               }
             ].map((service, index) => (
@@ -360,7 +244,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Testimonials with subtle animations */}
+      {/* Testimonials - simplified without subtle animations */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -398,24 +282,14 @@ const Home = () => {
                   y: -5
                 }}
               >
-                <motion.div 
-                  className="text-spiritual-saffron mb-4"
-                  animate={{ 
-                    rotate: [0, 360],
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
+                <div className="text-spiritual-saffron mb-4">
                   <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 11H6C5.44772 11 5 10.5523 5 10V6C5 5.44772 5.44772 5 6 5H10C10.5523 5 11 5.44772 11 6V10C11 10.5523 10.5523 11 10 11Z" fill="currentColor"/>
                     <path d="M18 11H14C13.4477 11 13 10.5523 13 10V6C13 5.44772 13.4477 5 14 5H18C18.5523 5 19 5.44772 19 6V10C19 10.5523 18.5523 11 18 11Z" fill="currentColor"/>
                     <path d="M10 19H6C5.44772 19 5 18.5523 5 18V14C5 13.4477 5.44772 13 6 13H10C10.5523 13 11 13.4477 11 14V18C11 18.5523 10.5523 19 10 19Z" fill="currentColor"/>
                     <path d="M18 19H14C13.4477 19 13 18.5523 13 18V14C13 13.4477 13.4477 13 14 13H18C18.5523 13 19 13.4477 19 14V18C19 18.5523 18.5523 19 18 19Z" fill="currentColor"/>
                   </svg>
-                </motion.div>
+                </div>
                 <p className="italic text-gray-600 mb-4">{testimonial.quote}</p>
                 <div className="font-medium text-spiritual-maroon">{testimonial.name}</div>
                 <div className="text-sm text-gray-500">{testimonial.location}</div>
@@ -425,33 +299,9 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Call To Action with animated background */}
+      {/* Call To Action - simplified without animated background */}
       <section className="py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-spiritual-maroon to-spiritual-ochre opacity-90 z-0"></div>
-        
-        {/* Animated particles */}
-        {Array.from({ length: 15 }).map((_, i) => (
-          <motion.div
-            key={`particle-${i}`}
-            className="absolute rounded-full bg-white/10 z-10"
-            style={{
-              width: Math.random() * 8 + 2,
-              height: Math.random() * 8 + 2,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -100],
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{
-              duration: 5 + Math.random() * 10,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeOut"
-            }}
-          />
-        ))}
         
         <div className="container mx-auto px-4 text-center relative z-20">
           <h2 className="text-3xl md:text-4xl font-cinzel font-bold mb-6 text-white">Begin Your Spiritual Journey Today</h2>
