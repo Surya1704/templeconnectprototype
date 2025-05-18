@@ -2,6 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
+import Login from "@/pages/Login";
 import AllTemples from "@/pages/AllTemples";
 import TempleDetail from "@/pages/TempleDetail";
 import Events from "@/pages/Events";
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/temples" element={<AllTemples />} />
           <Route path="/temple/:id" element={<TempleDetail />} />
+          <Route path="/temples/:slug" element={<TempleDetail />} />
           <Route path="/events" element={<Events />} />
           <Route path="/puja-timings" element={<PujaTiming />} />
           <Route path="/puja-booking" element={<PoojaBooking />} />
@@ -45,6 +47,8 @@ const App = () => {
           <Route path="/ai" element={<AI />} />
           <Route path="*" element={<NotFound />} />
         </Route>
+        {/* Routes outside the main layout */}
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Toaster />
     </>

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
@@ -119,8 +119,8 @@ const NavBar = () => {
           </Button>
         </div>
         
-        {/* Right side action button */}
-        <div className="ml-4 hidden md:block">
+        {/* Right side action buttons */}
+        <div className="hidden md:flex items-center space-x-4">
           <Link to="/contact">
             <Button 
               variant="outline" 
@@ -128,6 +128,18 @@ const NavBar = () => {
               className="border-spiritual-saffron text-spiritual-saffron hover:bg-spiritual-saffron/5 transition-all hover:shadow-md"
             >
               List Your Temple
+            </Button>
+          </Link>
+          
+          {/* Login Button */}
+          <Link to="/login">
+            <Button 
+              variant="default" 
+              size="sm"
+              className="bg-spiritual-maroon text-white hover:bg-spiritual-maroon/90 transition-all flex items-center gap-2"
+            >
+              <User size={16} />
+              Login
             </Button>
           </Link>
         </div>
@@ -181,6 +193,8 @@ const NavBar = () => {
               <MobileNavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
               <MobileNavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
               <MobileNavItem to="/donations" text="Donations" active={location.pathname === '/donations'} />
+              {/* Add Login to mobile menu */}
+              <MobileNavItem to="/login" text="Login" active={location.pathname === '/login'} />
             </ul>
             
             <div className="mt-4 pt-4 border-t">
@@ -234,4 +248,3 @@ const MobileNavItem = ({ to, text, active = false }: { to: string; text: string;
 };
 
 export default NavBar;
-
