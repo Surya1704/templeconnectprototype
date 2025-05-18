@@ -49,9 +49,15 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Jyotirlinga Collage Section - updated to complement the new design */}
-      <section className="py-12 md:py-16 bg-gradient-to-b from-[#221F26]/10 to-spiritual-maroon/10">
-        <div className="container mx-auto px-4">
+      {/* Jyotirlinga Collage Section - updated with section title */}
+      <section className="py-10 md:py-14 bg-gradient-to-b from-[#221F26]/5 to-spiritual-maroon/5">
+        <div className="container mx-auto px-4 mb-6">
+          <div className="text-center mb-4">
+            <h2 className="font-cinzel text-2xl md:text-3xl font-bold text-spiritual-maroon">
+              Explore the Sacred Jyotirlingas
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-spiritual-gold to-transparent mx-auto mt-2"></div>
+          </div>
           <JyotirlingsCollage />
         </div>
       </section>

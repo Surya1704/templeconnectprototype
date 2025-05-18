@@ -23,19 +23,34 @@ interface JyotirlingaItem {
   image: string;
 }
 
-// Updated Jyotirlinga data for Pinterest-style collage with overlapping images
+// Updated Jyotirlinga data for Pinterest-style collage with positions matching the reference image
 const jyotirlingsData: JyotirlingaItem[] = [
+  {
+    id: "rameshwaram",
+    name: "Rameshwaram",
+    location: "Tamil Nadu",
+    position: {
+      top: "2%",
+      left: "5%",
+      width: "30%",
+      height: "38%",
+      zIndex: 12,
+      rotate: "-1deg"
+    },
+    path: "/jyotirlingas/rameshwaram",
+    image: "/lovable-uploads/fb4b3306-65cb-4755-b087-ac2fa92e2f21.png"
+  },
   {
     id: "somnath",
     name: "Somnath",
     location: "Gujarat",
     position: {
-      top: "5%",
-      left: "8%",
+      top: "4%",
+      left: "35%",
       width: "28%",
-      height: "32%",
-      zIndex: 5,
-      rotate: "-3deg"
+      height: "34%",
+      zIndex: 10,
+      rotate: "2deg"
     },
     path: "/jyotirlingas/somnath",
     image: "/lovable-uploads/127d558a-d34f-4432-858b-dd4edd79280e.png"
@@ -45,12 +60,12 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Mallikarjuna",
     location: "Andhra Pradesh",
     position: {
-      top: "10%",
-      left: "38%",
-      width: "28%",
-      height: "35%",
-      zIndex: 8,
-      rotate: "2deg"
+      top: "6%",
+      left: "64%",
+      width: "30%",
+      height: "36%",
+      zIndex: 9,
+      rotate: "-1.5deg"
     },
     path: "/jyotirlingas/mallikarjuna",
     image: "/lovable-uploads/0aa1be60-fc0f-45e0-9ec7-4a331f3dcee1.png"
@@ -60,12 +75,12 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Mahakaleshwar",
     location: "Madhya Pradesh",
     position: {
-      top: "3%",
-      left: "68%",
-      width: "25%",
-      height: "30%",
-      zIndex: 6,
-      rotate: "3deg"
+      top: "32%",
+      left: "8%",
+      width: "26%",
+      height: "32%",
+      zIndex: 8,
+      rotate: "1deg"
     },
     path: "/jyotirlingas/mahakaleshwar",
     image: "/lovable-uploads/4c3fd48a-4feb-4ae6-86e1-402971d9cbf8.png"
@@ -75,12 +90,12 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Omkareshwar",
     location: "Madhya Pradesh",
     position: {
-      top: "36%",
-      left: "3%",
+      top: "30%",
+      left: "34%",
       width: "26%",
-      height: "30%",
-      zIndex: 7,
-      rotate: "-2deg"
+      height: "34%",
+      zIndex: 11,
+      rotate: "-1deg"
     },
     path: "/jyotirlingas/omkareshwar",
     image: "/lovable-uploads/b5d1a6be-dfa2-40e6-8a33-4ec607278013.png"
@@ -90,12 +105,12 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Kedarnath",
     location: "Uttarakhand",
     position: {
-      top: "17%",
-      left: "44%",
-      width: "27%",
-      height: "35%",
-      zIndex: 10,
-      rotate: "1deg"
+      top: "26%",
+      left: "60%",
+      width: "30%",
+      height: "38%",
+      zIndex: 13,
+      rotate: "1.5deg"
     },
     path: "/jyotirlingas/kedarnath",
     image: "/lovable-uploads/3f5e1ac4-fefe-403b-989a-c8b9bc43f356.png"
@@ -105,12 +120,12 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Bhimashankar",
     location: "Maharashtra",
     position: {
-      top: "33%",
-      left: "65%",
+      top: "62%",
+      left: "4%",
       width: "30%",
-      height: "32%",
-      zIndex: 4,
-      rotate: "-2deg"
+      height: "36%",
+      zIndex: 7,
+      rotate: "1deg"
     },
     path: "/jyotirlingas/bhimashankar",
     image: "/lovable-uploads/3e33b4bd-dd72-46c6-a56c-5ef6f9e88bad.png"
@@ -121,11 +136,11 @@ const jyotirlingsData: JyotirlingaItem[] = [
     location: "Uttar Pradesh",
     position: {
       top: "58%",
-      left: "10%",
+      left: "34%",
       width: "28%",
-      height: "36%",
-      zIndex: 8,
-      rotate: "1deg"
+      height: "38%",
+      zIndex: 10,
+      rotate: "-1deg"
     },
     path: "/jyotirlingas/kashi-vishwanath",
     image: "/lovable-uploads/e72f493c-9008-468f-9b12-90b58a945398.png"
@@ -135,12 +150,12 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Trimbakeshwar",
     location: "Maharashtra",
     position: {
-      top: "65%",
-      left: "38%",
-      width: "26%",
-      height: "30%",
-      zIndex: 7,
-      rotate: "2deg"
+      top: "56%",
+      left: "62%",
+      width: "28%",
+      height: "34%",
+      zIndex: 9,
+      rotate: "1.5deg"
     },
     path: "/jyotirlingas/trimbakeshwar",
     image: "/lovable-uploads/2ebefee1-c630-49b1-a433-7a7ae77c6683.png"
@@ -150,10 +165,10 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Vaidyanath",
     location: "Jharkhand",
     position: {
-      top: "43%",
-      left: "32%",
+      top: "40%",
+      left: "45%",
       width: "24%",
-      height: "28%",
+      height: "30%",
       zIndex: 9,
       transform: "translateY(-5px)"
     },
@@ -165,10 +180,10 @@ const jyotirlingsData: JyotirlingaItem[] = [
     name: "Nageshwar",
     location: "Gujarat",
     position: {
-      top: "25%",
-      left: "23%",
-      width: "26%",
-      height: "34%",
+      top: "18%",
+      left: "18%",
+      width: "28%",
+      height: "36%",
       zIndex: 9,
       rotate: "-1deg"
     },
@@ -176,31 +191,16 @@ const jyotirlingsData: JyotirlingaItem[] = [
     image: "/lovable-uploads/9134455b-48bc-4ef2-a3aa-3d6d5349967b.png"
   },
   {
-    id: "rameshwaram",
-    name: "Rameshwaram",
-    location: "Tamil Nadu",
-    position: {
-      top: "56%",
-      left: "68%",
-      width: "28%",
-      height: "35%",
-      zIndex: 8,
-      rotate: "2deg"
-    },
-    path: "/jyotirlingas/rameshwaram",
-    image: "/lovable-uploads/fb4b3306-65cb-4755-b087-ac2fa92e2f21.png"
-  },
-  {
     id: "grishneshwar",
     name: "Grishneshwar",
     location: "Maharashtra",
     position: {
-      top: "50%",
-      left: "6%",
-      width: "24%",
+      top: "66%",
+      left: "28%",
+      width: "26%",
       height: "32%",
-      zIndex: 5,
-      rotate: "2deg"
+      zIndex: 8,
+      rotate: "1deg"
     },
     path: "/jyotirlingas/grishneshwar",
     image: "/lovable-uploads/dcb523bf-24f7-4125-8e87-b23cfd0fa61d.png"
@@ -228,13 +228,22 @@ const JyotirlingsCollage: React.FC = () => {
 
   return (
     <div className="relative w-full h-[85vh] md:h-[75vh] overflow-hidden rounded-xl">
-      {/* Darker background with suitable color that complements the website */}
+      {/* Gold background inspired by the Meenakshi Temple image */}
       <div 
-        className="absolute inset-0 z-0 bg-gradient-to-br from-spiritual-maroon/10 to-[#221F26]/60"
+        className="absolute inset-0 z-0"
+        style={{
+          background: "linear-gradient(135deg, #f7e9bf 0%, #D4AF37 60%, #f0d882 100%)",
+          opacity: 0.15
+        }}
+      ></div>
+
+      {/* Dark overlay background */}
+      <div 
+        className="absolute inset-0 z-1 bg-gradient-to-br from-[#221F26]/60 to-spiritual-maroon/20"
       ></div>
       
-      {/* Moving Sanskrit letters animation */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      {/* Moving Sanskrit letters animation - horizontal scroll */}
+      <div className="absolute inset-0 z-2 overflow-hidden">
         {Array.from({ length: 10 }).map((_, rowIndex) => (
           <motion.div
             key={`sanskrit-row-${rowIndex}`}
@@ -264,7 +273,7 @@ const JyotirlingsCollage: React.FC = () => {
       </div>
       
       {/* Central rotating mandala with Sanskrit text */}
-      <div className="absolute inset-0 z-1 pointer-events-none">
+      <div className="absolute inset-0 z-3 pointer-events-none">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <motion.div
             animate={{ rotate: 360 }}
@@ -320,7 +329,7 @@ const JyotirlingsCollage: React.FC = () => {
         </div>
       </div>
       
-      {/* Jyotirlinga items - now with enhanced styling and paper cutout effect */}
+      {/* Jyotirlinga items - with enhanced styling and paper cutout effect */}
       {jyotirlingsData.map((jyotirlinga) => (
         <motion.div
           key={jyotirlinga.id}
@@ -349,21 +358,21 @@ const JyotirlingsCollage: React.FC = () => {
         >
           {/* Image wrapper with paper cutout effect */}
           <div className="w-full h-full relative group">
-            {/* Strong gold outline on hover */}
+            {/* Strong gold outline on hover - enhanced */}
             <motion.div 
               className={cn(
                 "absolute inset-0 rounded-md",
                 "border-2 transition-all duration-300",
-                hoveredItem === jyotirlinga.id ? "border-spiritual-gold shadow-[0_0_15px_rgba(212,175,55,0.5)]" : "border-transparent"
+                hoveredItem === jyotirlinga.id ? "border-spiritual-gold shadow-[0_0_15px_rgba(212,175,55,0.5)]" : "border-spiritual-gold/40"
               )}
               animate={{
-                borderColor: hoveredItem === jyotirlinga.id ? "rgb(212, 175, 55)" : "transparent",
+                borderColor: hoveredItem === jyotirlinga.id ? "rgb(212, 175, 55)" : "rgba(212, 175, 55, 0.4)",
                 boxShadow: hoveredItem === jyotirlinga.id ? "0 0 15px rgba(212, 175, 55, 0.5)" : "none"
               }}
             />
             
             {/* Paper cutout effect - subtle white border */}
-            <div className="absolute inset-0 rounded-md bg-white opacity-5"></div>
+            <div className="absolute inset-0 rounded-md bg-white opacity-10"></div>
             
             {/* The temple image itself */}
             <img 
@@ -390,7 +399,7 @@ const JyotirlingsCollage: React.FC = () => {
             />
           </div>
           
-          {/* Hover overlay with temple name and location - fixed for all temples */}
+          {/* Hover overlay with temple name and location */}
           <motion.div 
             className={cn(
               "absolute bottom-0 left-0 right-0 p-2 text-center",
@@ -427,13 +436,13 @@ const JyotirlingsCollage: React.FC = () => {
       ))}
       
       {/* Decorative golden border around the canvas */}
-      <div className="absolute inset-0 pointer-events-none border border-spiritual-gold/30 rounded-xl"></div>
+      <div className="absolute inset-0 pointer-events-none border-2 border-spiritual-gold/60 rounded-xl"></div>
       
       {/* Additional particles/sparkles for divine effect */}
       {Array.from({ length: 12 }).map((_, i) => (
         <motion.div
           key={`sparkle-${i}`}
-          className="absolute w-1 h-1 rounded-full bg-spiritual-gold/60"
+          className="absolute w-1 h-1 rounded-full bg-spiritual-gold/80"
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
