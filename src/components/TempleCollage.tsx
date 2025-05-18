@@ -20,19 +20,19 @@ interface TempleCollageItem {
   path: string;
 }
 
-// Sample temple data for the collage - updating paths to match IDs in the database
+// Rearranged temple data for better composition
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
     name: "Golden Temple",
     description: "Sacred Sikh shrine in Amritsar",
     position: {
-      top: "5%",
+      top: "8%",
       left: "10%",
       width: "25%",
       height: "35%",
-      zIndex: 2,
-      rotate: "-2deg"
+      zIndex: 3,
+      rotate: "-1deg"
     },
     path: "/temple/24" // Updated to match temple ID
   },
@@ -41,11 +41,11 @@ const templeData: TempleCollageItem[] = [
     name: "Meenakshi Temple",
     description: "Iconic temple with colorful gopurams",
     position: {
-      top: "15%",
-      left: "38%",
+      top: "12%",
+      left: "40%",
       width: "30%",
-      height: "40%",
-      zIndex: 3,
+      height: "38%",
+      zIndex: 4,
     },
     path: "/temple/25" // Updated to match temple ID
   },
@@ -54,12 +54,12 @@ const templeData: TempleCollageItem[] = [
     name: "Kedarnath Temple",
     description: "Ancient shrine in the Himalayas",
     position: {
-      top: "10%",
-      left: "70%",
+      top: "7%",
+      left: "72%",
       width: "22%",
       height: "30%",
-      zIndex: 1,
-      rotate: "3deg"
+      zIndex: 2,
+      rotate: "2deg"
     },
     path: "/temple/28" // Updated to match temple ID
   },
@@ -68,12 +68,12 @@ const templeData: TempleCollageItem[] = [
     name: "Jagannath Puri",
     description: "Famous for its annual Rath Yatra",
     position: {
-      top: "42%",
-      left: "5%",
+      top: "45%",
+      left: "8%",
       width: "28%",
       height: "38%",
-      zIndex: 4,
-      rotate: "-1deg"
+      zIndex: 3,
+      rotate: "-1.5deg"
     },
     path: "/temple/29" // Updated to match temple ID
   },
@@ -82,11 +82,11 @@ const templeData: TempleCollageItem[] = [
     name: "Kashi Vishwanath",
     description: "One of the most famous Hindu temples",
     position: {
-      top: "50%",
-      left: "35%",
+      top: "48%",
+      left: "38%",
       width: "25%",
       height: "35%",
-      zIndex: 2,
+      zIndex: 5,
       rotate: "1deg"
     },
     path: "/temple/72" // Updated to match temple ID
@@ -96,12 +96,12 @@ const templeData: TempleCollageItem[] = [
     name: "Brihadeeswara Temple",
     description: "UNESCO World Heritage site in Thanjavur",
     position: {
-      top: "45%",
-      left: "65%",
-      width: "30%",
-      height: "42%",
-      zIndex: 3,
-      rotate: "-2deg"
+      top: "42%",
+      left: "68%",
+      width: "28%",
+      height: "40%",
+      zIndex: 2,
+      rotate: "-1deg"
     },
     path: "/temple/34" // Updated to match temple ID
   },
@@ -110,11 +110,11 @@ const templeData: TempleCollageItem[] = [
     name: "Tirupati Balaji",
     description: "World's richest temple",
     position: {
-      top: "75%",
-      left: "20%",
+      top: "78%",
+      left: "18%",
       width: "26%",
       height: "35%",
-      zIndex: 5,
+      zIndex: 4,
     },
     path: "/temple/93" // Updated to match temple ID
   },
@@ -123,12 +123,12 @@ const templeData: TempleCollageItem[] = [
     name: "Badrinath Temple",
     description: "Sacred to Lord Vishnu",
     position: {
-      top: "70%",
-      left: "50%",
+      top: "72%",
+      left: "52%",
       width: "28%",
       height: "38%",
-      zIndex: 1,
-      rotate: "2deg"
+      zIndex: 3,
+      rotate: "1.5deg"
     },
     path: "/temple/30" // Updated to match temple ID
   }
