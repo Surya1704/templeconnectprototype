@@ -1,4 +1,6 @@
+
 import React from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -204,10 +206,13 @@ const JyotirlingsCollage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-[90vh] overflow-hidden bg-gradient-to-b from-spiritual-gold/10 to-spiritual-gold/5 rounded-xl">
+    <div className="relative w-full h-[90vh] overflow-hidden bg-gradient-to-b from-spiritual-saffron/30 via-spiritual-ochre/30 to-spiritual-maroon/20 rounded-xl">
       {jyotirlingsData.map((jyotirlinga) => (
-        <div
+        <motion.div
           key={jyotirlinga.id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: Math.random() * 0.5 }}
           className="absolute cursor-pointer group"
           style={{
             top: jyotirlinga.position.top,
@@ -218,17 +223,32 @@ const JyotirlingsCollage: React.FC = () => {
             transform: jyotirlinga.position.rotate ? `rotate(${jyotirlinga.position.rotate})` : 'none'
           }}
           onClick={() => navigate(jyotirlinga.path)}
+          whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.3 } }}
         >
           <div className={cn(
             "w-full h-full rounded-lg overflow-hidden border-4 border-spiritual-gold/40 shadow-lg",
-            "transition-all duration-300 group-hover:border-spiritual-gold group-hover:shadow-xl group-hover:scale-110 group-hover:z-50"
+            "transition-all duration-300 group-hover:border-spiritual-gold group-hover:shadow-2xl"
           )}>
             {/* Temple image */}
             <div className="w-full h-full relative">
+              {/* Fallback temple icon if image fails to load */}
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-spiritual-sandstone to-spiritual-ivory">
+                <div className="w-16 h-20 relative">
+                  <div className="absolute inset-0 bg-spiritual-ochre/50 rounded-t-2xl"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-12 h-12 rounded-t-full bg-spiritual-maroon/40"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5 h-5 rounded-full bg-spiritual-gold/60"></div>
+                </div>
+              </div>
+              
+              {/* Actual temple image */}
               <img 
                 src={jyotirlinga.imageSrc} 
                 alt={`${jyotirlinga.name} Temple`} 
                 className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => {
+                  // If image fails to load, show the default icon (already visible)
+                  e.currentTarget.style.opacity = '0';
+                }}
               />
               
               {/* Overlay with temple name */}
@@ -236,6 +256,10 @@ const JyotirlingsCollage: React.FC = () => {
                 <h3 className="font-cinzel text-lg font-bold text-white mb-1 drop-shadow-sm">
                   {jyotirlinga.name}
                 </h3>
+                
+                <p className="text-xs font-sans text-white/90 mb-2">
+                  {jyotirlinga.description}
+                </p>
                 
                 <div className="mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="text-xs px-2 py-1 bg-spiritual-gold/30 rounded-full text-white font-medium">
@@ -245,18 +269,53 @@ const JyotirlingsCollage: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
+      ))}
+      
+      {/* Decorative elements */}
+      <div className="absolute top-5 left-5 w-40 h-40 rounded-full bg-spiritual-gold/5 blur-2xl"></div>
+      <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-spiritual-maroon/5 blur-3xl"></div>
+      <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-spiritual-ochre/5 blur-xl"></div>
+      
+      {/* Animated particle effect for divine ambiance */}
+      {Array.from({ length: 12 }).map((_, i) => (
+        <motion.div
+          key={`particle-${i}`}
+          className="absolute w-1 h-1 rounded-full bg-spiritual-gold/40"
+          style={{
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -10, 0],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            repeatType: "reverse",
+            delay: Math.random() * 2,
+          }}
+        />
       ))}
       
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center">
-        <p className="text-spiritual-maroon/70 text-sm mb-2">
+        <motion.p 
+          className="text-spiritual-maroon/70 text-sm mb-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+        >
           Click on any Jyotirlinga to start your spiritual journey
-        </p>
-        <div>
+        </motion.p>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 5L12 19M12 19L5 12M12 19L19 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-spiritual-maroon/60"/>
           </svg>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
