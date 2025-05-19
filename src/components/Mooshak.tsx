@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -181,24 +182,35 @@ const Mooshak: React.FC = () => {
               }}
             />
             
-            {/* Golden mouse silhouette - custom SVG */}
+            {/* More realistic mouse SVG */}
             <svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
               fill="#F5BD1F"
             >
-              {/* Mouse body */}
-              <path d="M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z" />
-
-              {/* Eye */}
-              <circle cx="40" cy="40" r="3" fill="white" />
-
+              {/* Mouse body - more mouse-shaped */}
+              <path d="M35,50 C30,30 35,20 47,25 C55,15 70,20 75,35 C85,55 80,75 65,80 C50,85 30,70 35,50 Z" />
+              
+              {/* Eyes */}
+              <circle cx="45" cy="38" r="2.5" fill="white" />
+              <circle cx="55" cy="38" r="2" fill="white" />
+              
+              {/* Nose */}
+              <ellipse cx="50" cy="45" rx="2" ry="1.5" fill="white" opacity="0.7" />
+              
+              {/* Ears */}
+              <ellipse cx="40" cy="25" rx="5" ry="7" fill="#F5BD1F" stroke="white" strokeWidth="0.5" />
+              <ellipse cx="60" cy="25" rx="5" ry="7" fill="#F5BD1F" stroke="white" strokeWidth="0.5" />
+              
               {/* Tail */}
-              <path d="M70,50 C80,55 85,70 80,75" stroke="white" strokeWidth="2" fill="none" />
-
-              {/* Ear/whisker detail */}
-              <path d="M35,28 C37,22 43,20 45,25" stroke="white" strokeWidth="1.5" fill="none" />
+              <path d="M75,60 C85,65 88,75 85,80" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" />
+              
+              {/* Whiskers */}
+              <path d="M45,45 C40,44 35,45 30,47" stroke="white" strokeWidth="0.7" fill="none" />
+              <path d="M45,47 C40,47 35,49 30,52" stroke="white" strokeWidth="0.7" fill="none" />
+              <path d="M55,45 C60,44 65,45 70,47" stroke="white" strokeWidth="0.7" fill="none" />
+              <path d="M55,47 C60,47 65,49 70,52" stroke="white" strokeWidth="0.7" fill="none" />
             </svg>
           </div>
         </motion.div>
@@ -276,7 +288,7 @@ const Mooshak: React.FC = () => {
               }}
             />
             
-            {/* Golden mouse silhouette - custom SVG */}
+            {/* More realistic golden mouse SVG */}
             <motion.svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
@@ -284,37 +296,98 @@ const Mooshak: React.FC = () => {
               fill="#F5BD1F"
             >
               <motion.path
-                d="M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z"
+                d="M35,50 C30,30 35,20 47,25 C55,15 70,20 75,35 C85,55 80,75 65,80 C50,85 30,70 35,50 Z"
                 animate={isRunning ? { 
                   d: [
-                    "M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z",
-                    "M30,43 C25,33 30,23 40,28 C45,18 60,13 70,28 C85,48 80,73 60,78 C45,80 25,68 30,43 Z",
-                    "M30,47 C25,37 30,27 40,32 C45,22 60,17 70,32 C85,52 80,77 60,82 C45,84 25,72 30,47 Z",
-                    "M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z"
+                    "M35,50 C30,30 35,20 47,25 C55,15 70,20 75,35 C85,55 80,75 65,80 C50,85 30,70 35,50 Z",
+                    "M35,48 C30,28 35,18 47,23 C55,13 70,18 75,33 C85,53 80,73 65,78 C50,83 30,68 35,48 Z",
+                    "M35,52 C30,32 35,22 47,27 C55,17 70,22 75,37 C85,57 80,77 65,82 C50,87 30,72 35,52 Z",
+                    "M35,50 C30,30 35,20 47,25 C55,15 70,20 75,35 C85,55 80,75 65,80 C50,85 30,70 35,50 Z"
                   ]
                 } : {}}
                 transition={{ duration: 0.4, repeat: Infinity }}
               />
-              <circle cx="40" cy="40" r="3" fill="white" />
+              
+              {/* Eyes - both eyes visible */}
+              <motion.circle 
+                cx="45" 
+                cy="38" 
+                r="2.5" 
+                fill="white"
+                animate={isRunning ? { cy: [38, 36, 40, 38] } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }} 
+              />
+              <motion.circle 
+                cx="55" 
+                cy="38" 
+                r="2" 
+                fill="white"
+                animate={isRunning ? { cy: [38, 36, 40, 38] } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }} 
+              />
+              
+              {/* Nose */}
+              <motion.ellipse 
+                cx="50" 
+                cy="45" 
+                rx="2" 
+                ry="1.5" 
+                fill="white" 
+                opacity="0.7"
+                animate={isRunning ? { cy: [45, 44, 46, 45] } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }}
+              />
+              
+              {/* Ears */}
+              <motion.ellipse 
+                cx="40" 
+                cy="25" 
+                rx="5" 
+                ry="7" 
+                fill="#F5BD1F" 
+                stroke="white" 
+                strokeWidth="0.5"
+                animate={isRunning ? { 
+                  cy: [25, 23, 27, 25],
+                  rx: [5, 4.5, 5.5, 5] 
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }}
+              />
+              <motion.ellipse 
+                cx="60" 
+                cy="25" 
+                rx="5" 
+                ry="7" 
+                fill="#F5BD1F" 
+                stroke="white" 
+                strokeWidth="0.5"
+                animate={isRunning ? { 
+                  cy: [25, 23, 27, 25],
+                  rx: [5, 4.5, 5.5, 5] 
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }}
+              />
+              
+              {/* Tail */}
               <motion.path
-                d="M70,50 C80,55 85,70 80,75"
+                d="M75,60 C85,65 88,75 85,80"
                 fill="none"
                 stroke="white"
                 strokeWidth="2"
                 strokeLinecap="round"
                 animate={isRunning ? {
                   d: [
-                    "M70,50 C80,55 85,70 80,75",
-                    "M70,50 C85,55 90,65 85,70",
-                    "M70,50 C75,60 80,75 75,80",
-                    "M70,50 C80,55 85,70 80,75"
+                    "M75,60 C85,65 88,75 85,80",
+                    "M75,60 C88,65 92,72 88,77",
+                    "M75,60 C83,68 86,78 82,83",
+                    "M75,60 C85,65 88,75 85,80"
                   ]
                 } : {
                   d: [
-                    "M70,50 C80,55 85,70 80,75",
-                    "M70,50 C82,57 87,67 82,72",
-                    "M70,50 C78,58 83,72 78,77",
-                    "M70,50 C80,55 85,70 80,75"
+                    "M75,60 C85,65 88,75 85,80",
+                    "M75,60 C86,66 89,73 86,78",
+                    "M75,60 C84,66 87,76 84,81",
+                    "M75,60 C85,65 88,75 85,80"
                   ]
                 }}
                 transition={{ 
@@ -323,18 +396,64 @@ const Mooshak: React.FC = () => {
                   repeatType: "loop"
                 }}
               />
-              <motion.path
-                d="M35,28 C37,22 43,20 45,25"
+              
+              {/* Whiskers */}
+              <motion.path 
+                d="M45,45 C40,44 35,45 30,47" 
+                stroke="white" 
+                strokeWidth="0.7" 
                 fill="none"
-                stroke="white"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                animate={isRunning ? {
+                animate={isRunning ? { 
                   d: [
-                    "M35,28 C37,22 43,20 45,25",
-                    "M35,26 C37,20 43,18 45,23",
-                    "M35,30 C37,24 43,22 45,27",
-                    "M35,28 C37,22 43,20 45,25"
+                    "M45,45 C40,44 35,45 30,47",
+                    "M45,44 C40,43 35,44 30,46",
+                    "M45,46 C40,45 35,46 30,48",
+                    "M45,45 C40,44 35,45 30,47"
+                  ]
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }}
+              />
+              <motion.path 
+                d="M45,47 C40,47 35,49 30,52" 
+                stroke="white" 
+                strokeWidth="0.7" 
+                fill="none"
+                animate={isRunning ? { 
+                  d: [
+                    "M45,47 C40,47 35,49 30,52",
+                    "M45,46 C40,46 35,48 30,51",
+                    "M45,48 C40,48 35,50 30,53",
+                    "M45,47 C40,47 35,49 30,52"
+                  ]
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }}
+              />
+              <motion.path 
+                d="M55,45 C60,44 65,45 70,47" 
+                stroke="white" 
+                strokeWidth="0.7" 
+                fill="none"
+                animate={isRunning ? { 
+                  d: [
+                    "M55,45 C60,44 65,45 70,47",
+                    "M55,44 C60,43 65,44 70,46",
+                    "M55,46 C60,45 65,46 70,48",
+                    "M55,45 C60,44 65,45 70,47"
+                  ]
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }}
+              />
+              <motion.path 
+                d="M55,47 C60,47 65,49 70,52" 
+                stroke="white" 
+                strokeWidth="0.7" 
+                fill="none"
+                animate={isRunning ? { 
+                  d: [
+                    "M55,47 C60,47 65,49 70,52",
+                    "M55,46 C60,46 65,48 70,51",
+                    "M55,48 C60,48 65,50 70,53",
+                    "M55,47 C60,47 65,49 70,52"
                   ]
                 } : {}}
                 transition={{ duration: 0.4, repeat: Infinity }}
