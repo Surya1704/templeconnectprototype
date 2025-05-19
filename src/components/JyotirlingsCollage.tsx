@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +20,7 @@ interface JyotirlingsCollageItem {
   imageSrc: string;
 }
 
-// Data for the 12 Jyotirlingas with images
+// Data for the 12 Jyotirlingas with updated image sources
 const jyotirlingsData: JyotirlingsCollageItem[] = [
   {
     id: "jyotirlinga-1",
@@ -36,7 +35,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "-2deg"
     },
     path: "/temple/somnath",
-    imageSrc: "/assets/temples/somnath.png"
+    imageSrc: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png"
   },
   {
     id: "jyotirlinga-2",
@@ -50,7 +49,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 3,
     },
     path: "/temple/mallikarjuna",
-    imageSrc: "/assets/temples/mallikarjuna.png"
+    imageSrc: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png"
   },
   {
     id: "jyotirlinga-3",
@@ -65,7 +64,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "3deg"
     },
     path: "/temple/mahakaleshwar",
-    imageSrc: "/assets/temples/mahakaleshwar.png"
+    imageSrc: "/lovable-uploads/b668b893-dac5-4d67-9be0-425045941429.png"
   },
   {
     id: "jyotirlinga-4",
@@ -80,7 +79,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "-1deg"
     },
     path: "/temple/omkareshwar",
-    imageSrc: "/assets/temples/omkareshwar.png"
+    imageSrc: "/lovable-uploads/bff90acf-434f-4b5d-a02a-f8cd060e2ec9.png"
   },
   {
     id: "jyotirlinga-5",
@@ -95,7 +94,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "1deg"
     },
     path: "/temple/kedarnath",
-    imageSrc: "/assets/temples/kedarnath-temple.png"
+    imageSrc: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png"
   },
   {
     id: "jyotirlinga-6",
@@ -110,7 +109,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "-2deg"
     },
     path: "/temple/bhimashankar",
-    imageSrc: "/assets/temples/bhimashankar.png"
+    imageSrc: "/lovable-uploads/bed64bd3-3688-44d2-9bad-a6918b67c9a6.png"
   },
   {
     id: "jyotirlinga-7",
@@ -124,7 +123,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 5,
     },
     path: "/temple/kashi-vishwanath",
-    imageSrc: "/assets/temples/kashi-vishwanath.png"
+    imageSrc: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png"
   },
   {
     id: "jyotirlinga-8",
@@ -139,7 +138,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "2deg"
     },
     path: "/temple/trimbakeshwar",
-    imageSrc: "/assets/temples/trimbakeshwar.png"
+    imageSrc: "/lovable-uploads/3c73bbb4-d8d9-439c-bac6-16dfc1940d71.png"
   },
   {
     id: "jyotirlinga-9",
@@ -154,7 +153,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "1deg"
     },
     path: "/temple/vaidyanath",
-    imageSrc: "/assets/temples/vaidyanath.png"
+    imageSrc: "/lovable-uploads/3e630441-b218-447f-a772-6d16110739b2.png"
   },
   {
     id: "jyotirlinga-10",
@@ -169,7 +168,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "-1.5deg"
     },
     path: "/temple/nageshwar",
-    imageSrc: "/assets/temples/nageshwar.png"
+    imageSrc: "/lovable-uploads/f6e17f2f-fd67-45c1-8f9b-bdd05ef346ce.png"
   },
   {
     id: "jyotirlinga-11",
@@ -183,7 +182,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 3,
     },
     path: "/temple/rameshwaram",
-    imageSrc: "/assets/temples/rameshwaram.png"
+    imageSrc: "/lovable-uploads/c868ae47-1318-4239-9e0b-8e11ffd2ab53.png"
   },
   {
     id: "jyotirlinga-12",
@@ -198,7 +197,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       rotate: "2deg"
     },
     path: "/temple/grishneshwar",
-    imageSrc: "/assets/temples/grishneshwar.png"
+    imageSrc: "/lovable-uploads/55fb5f1f-b855-4295-a028-e2385fe97d48.png"
   }
 ];
 

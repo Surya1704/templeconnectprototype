@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import JyotirlingsCollage from "@/components/JyotirlingsCollage";
@@ -11,91 +10,91 @@ import {
 } from "@/components/ui/carousel";
 
 const Jyotirlingas = () => {
-  // Array of jyotirlinga details for the carousel
+  // Array of jyotirlinga details for the carousel with updated image paths
   const jyotirlingsDetails = [
     {
       id: "somnath",
       name: "Somnath",
       location: "Gujarat",
       description: "First Jyotirlinga, destroyed and rebuilt multiple times throughout history",
-      image: "/assets/temples/somnath.png"
+      image: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png"
     },
     {
       id: "mallikarjuna",
       name: "Mallikarjuna",
       location: "Andhra Pradesh",
       description: "Located on Sri Sailam mountain, one of the 12 Jyotirlingas",
-      image: "/assets/temples/mallikarjuna.png"
+      image: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png"
     },
     {
       id: "mahakaleshwar",
       name: "Mahakaleshwar",
       location: "Madhya Pradesh",
       description: "One of the most sacred Jyotirlingas, situated in Ujjain",
-      image: "/assets/temples/mahakaleshwar.png"
+      image: "/lovable-uploads/b668b893-dac5-4d67-9be0-425045941429.png"
     },
     {
       id: "omkareshwar",
       name: "Omkareshwar",
       location: "Madhya Pradesh",
       description: "Temple located on an island in Narmada river",
-      image: "/assets/temples/omkareshwar.png"
+      image: "/lovable-uploads/bff90acf-434f-4b5d-a02a-f8cd060e2ec9.png"
     },
     {
       id: "kedarnath",
       name: "Kedarnath",
       location: "Uttarakhand",
       description: "Located in the Himalayan ranges at an altitude of 3,583 m",
-      image: "/assets/temples/kedarnath-temple.png"
+      image: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png"
     },
     {
       id: "bhimashankar",
       name: "Bhimashankar",
       location: "Maharashtra",
       description: "Situated in the Sahyadri range, origin of river Bhima",
-      image: "/assets/temples/bhimashankar.png"
+      image: "/lovable-uploads/bed64bd3-3688-44d2-9bad-a6918b67c9a6.png"
     },
     {
       id: "kashi-vishwanath",
       name: "Kashi Vishwanath",
       location: "Uttar Pradesh",
       description: "One of the most famous Hindu temples dedicated to Lord Shiva",
-      image: "/assets/temples/kashi-vishwanath.png"
+      image: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png"
     },
     {
       id: "trimbakeshwar",
       name: "Trimbakeshwar",
       location: "Maharashtra",
       description: "Famous for its three-faced embodiment of Lord Shiva",
-      image: "/assets/temples/trimbakeshwar.png"
+      image: "/lovable-uploads/3c73bbb4-d8d9-439c-bac6-16dfc1940d71.png"
     },
     {
       id: "vaidyanath",
       name: "Vaidyanath",
       location: "Jharkhand",
       description: "Temple dedicated to Lord Shiva as the 'Lord of Physicians'",
-      image: "/assets/temples/vaidyanath.png"
+      image: "/lovable-uploads/3e630441-b218-447f-a772-6d16110739b2.png"
     },
     {
       id: "nageshwar",
       name: "Nageshwar",
       location: "Gujarat",
       description: "Protector from all poisons and toxins",
-      image: "/assets/temples/nageshwar.png"
+      image: "/lovable-uploads/f6e17f2f-fd67-45c1-8f9b-bdd05ef346ce.png"
     },
     {
       id: "rameshwaram",
       name: "Rameshwaram",
       location: "Tamil Nadu",
       description: "Located at the southern tip of India with significant connection to Ramayana",
-      image: "/assets/temples/rameshwaram.png"
+      image: "/lovable-uploads/c868ae47-1318-4239-9e0b-8e11ffd2ab53.png"
     },
     {
       id: "grishneshwar",
       name: "Grishneshwar",
       location: "Maharashtra",
       description: "The last or 12th Jyotirlinga, located near Ellora caves",
-      image: "/assets/temples/grishneshwar.png"
+      image: "/lovable-uploads/55fb5f1f-b855-4295-a028-e2385fe97d48.png"
     }
   ];
 
