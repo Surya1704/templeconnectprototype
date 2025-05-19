@@ -1,6 +1,4 @@
-
 import React from "react";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -208,11 +206,8 @@ const JyotirlingsCollage: React.FC = () => {
   return (
     <div className="relative w-full h-[90vh] overflow-hidden bg-gradient-to-b from-spiritual-saffron/30 via-spiritual-ochre/30 to-spiritual-maroon/20 rounded-xl">
       {jyotirlingsData.map((jyotirlinga) => (
-        <motion.div
+        <div
           key={jyotirlinga.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: Math.random() * 0.5 }}
           className="absolute cursor-pointer group"
           style={{
             top: jyotirlinga.position.top,
@@ -223,7 +218,6 @@ const JyotirlingsCollage: React.FC = () => {
             transform: jyotirlinga.position.rotate ? `rotate(${jyotirlinga.position.rotate})` : 'none'
           }}
           onClick={() => navigate(jyotirlinga.path)}
-          whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.3 } }}
         >
           <div className={cn(
             "w-full h-full rounded-lg overflow-hidden border-4 border-spiritual-gold/40 shadow-lg",
@@ -255,7 +249,7 @@ const JyotirlingsCollage: React.FC = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       ))}
       
       {/* Decorative elements */}
@@ -263,69 +257,15 @@ const JyotirlingsCollage: React.FC = () => {
       <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-spiritual-maroon/5 blur-3xl"></div>
       <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-spiritual-ochre/5 blur-xl"></div>
       
-      {/* Sanskrit Animation - floating characters */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 15 }).map((_, i) => (
-          <motion.div
-            key={`sanskrit-${i}`}
-            className="absolute text-spiritual-gold/20 text-3xl font-bold"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `-5%`,
-            }}
-            animate={{
-              left: ["0%", "110%"],
-            }}
-            transition={{
-              duration: 30 + Math.random() * 40,
-              repeat: Infinity,
-              delay: Math.random() * 20,
-            }}
-          >
-            {["ॐ", "॥", "श्री", "नमः", "शिवाय", "हरिः", "ॐ"][Math.floor(Math.random() * 7)]}
-          </motion.div>
-        ))}
-      </div>
-      
-      {/* Animated particle effect for divine ambiance */}
-      {Array.from({ length: 12 }).map((_, i) => (
-        <motion.div
-          key={`particle-${i}`}
-          className="absolute w-1 h-1 rounded-full bg-spiritual-gold/40"
-          style={{
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [0, -10, 0],
-            opacity: [0.4, 0.8, 0.4],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            repeatType: "reverse",
-            delay: Math.random() * 2,
-          }}
-        />
-      ))}
-      
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center">
-        <motion.p 
-          className="text-spiritual-maroon/70 text-sm mb-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        >
+        <p className="text-spiritual-maroon/70 text-sm mb-2">
           Click on any Jyotirlinga to start your spiritual journey
-        </motion.p>
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
+        </p>
+        <div>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 5L12 19M12 19L5 12M12 19L19 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-spiritual-maroon/60"/>
           </svg>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

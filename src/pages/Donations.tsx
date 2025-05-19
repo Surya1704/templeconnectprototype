@@ -18,7 +18,7 @@ import {
   Smartphone, 
   Globe, 
   Bitcoin,
-  HandPraying
+  Pray
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
