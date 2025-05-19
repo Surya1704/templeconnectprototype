@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FlowerLotus } from "lucide-react"; // Changed from Lotus to FlowerLotus which exists in lucide-react
+import { Flower } from "lucide-react"; // Changed from FlowerLotus to Flower which exists in lucide-react
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -117,7 +117,7 @@ const PoojaBooking = () => {
                   </Select>
                 </div>
                 <Button type="submit" className="w-full">
-                  Book Now <FlowerLotus className="ml-2 h-4 w-4" />
+                  Book Now <Flower className="ml-2 h-4 w-4" />
                 </Button>
               </form>
             </CardContent>

@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Candle } from "lucide-react"; // Changed from Prayer to Candle which exists in lucide-react
+import { Flower } from "lucide-react"; // Changed from Candle to Flower which exists in lucide-react
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -89,11 +89,11 @@ const PujaTiming = () => {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-center space-x-3">
-                    <Candle className="h-5 w-5 text-spiritual-gold" />
+                    <Flower className="h-5 w-5 text-spiritual-gold" />
                     <span>Abhishekam: 6:00 AM - 7:00 AM</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Candle className="h-5 w-5 text-spiritual-gold" />
+                    <Flower className="h-5 w-5 text-spiritual-gold" />
                     <span>Suprabhatam: 7:00 AM - 7:30 AM</span>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ const PujaTiming = () => {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-center space-x-3">
-                    <Candle className="h-5 w-5 text-spiritual-gold" />
+                    <Flower className="h-5 w-5 text-spiritual-gold" />
                     <span>Ucha Kala Puja: 12:00 PM - 12:30 PM</span>
                   </div>
                 </div>
@@ -117,11 +117,11 @@ const PujaTiming = () => {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-center space-x-3">
-                    <Candle className="h-5 w-5 text-spiritual-gold" />
+                    <Flower className="h-5 w-5 text-spiritual-gold" />
                     <span>Pradosham: 6:00 PM - 7:00 PM</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <Candle className="h-5 w-5 text-spiritual-gold" />
+                    <Flower className="h-5 w-5 text-spiritual-gold" />
                     <span>Sayana Aarti: 8:30 PM - 9:00 PM</span>
                   </div>
                 </div>
