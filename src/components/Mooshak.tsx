@@ -8,7 +8,6 @@ const Mooshak: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isStill, setIsStill] = useState(false);
   const [showLabel, setShowLabel] = useState(false);
-  const [mood, setMood] = useState<"default" | "happy" | "surprised">("default");
   const [showMantra, setShowMantra] = useState(false);
   const stillTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mantraTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -84,7 +83,7 @@ const Mooshak: React.FC = () => {
     };
   }, []);
 
-  // Track click for sparkle effects and mood changes
+  // Track click for sparkle effects
   const [clickPosition, setClickPosition] = useState<{x: number, y: number} | null>(null);
   const [sparkles, setSparkles] = useState<Array<{id: number, x: number, y: number}>>([]);
   
@@ -105,12 +104,6 @@ const Mooshak: React.FC = () => {
     }
     setSparkles(newSparkles);
     
-    // Change mood to happy
-    setMood("happy");
-    setTimeout(() => {
-      setMood("default");
-    }, 1500);
-    
     // Clear sparkles after animation
     setTimeout(() => {
       setClickPosition(null);
@@ -124,20 +117,6 @@ const Mooshak: React.FC = () => {
       window.removeEventListener("click", handleClick);
     };
   }, []);
-
-  // Randomly change mood occasionally for extra charm
-  useEffect(() => {
-    const moodInterval = setInterval(() => {
-      if (Math.random() > 0.7 && isStill) {
-        const moods: Array<"happy" | "surprised"> = ["happy", "surprised"];
-        const newMood = moods[Math.floor(Math.random() * moods.length)];
-        setMood(newMood);
-        setTimeout(() => setMood("default"), 2000);
-      }
-    }, 5000);
-    
-    return () => clearInterval(moodInterval);
-  }, [isStill]);
 
   // Get random mantra
   const getRandomMantra = () => {
@@ -161,7 +140,7 @@ const Mooshak: React.FC = () => {
           }}
         >
           <div className="w-full h-full relative">
-            {/* Animated glow effect resembling a diya light */}
+            {/* Animated glow effect */}
             <motion.div 
               className="absolute -inset-4 rounded-full bg-gradient-radial from-spiritual-gold/40 to-transparent"
               animate={{ 
@@ -175,117 +154,50 @@ const Mooshak: React.FC = () => {
               }}
             />
             
-            {/* Ornate Golden Mooshak SVG based on reference image */}
+            {/* Simple Golden Mouse SVG based on reference image */}
             <svg
-              viewBox="0 0 800 800"
+              viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="12"
+                stroke="#F0B93A"
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M400,180 C380,130 320,120 280,140 C240,160 220,200 220,240 C220,280 240,320 280,340 C240,360 200,400 180,460 C160,520 180,600 240,660 C300,720 380,740 460,700 C540,660 580,580 560,500 C540,420 480,380 420,360 C460,340 480,300 480,260 C480,220 460,180 420,160 C380,140 340,150 320,180 Z"
+                d="M35,30 C25,25 15,30 15,40 C15,50 25,55 35,55 C25,60 20,75 30,85 C40,95 55,90 65,80 C75,70 75,55 65,50 C75,45 75,30 65,25 C55,20 45,25 35,30 Z"
               />
-              
-              {/* Crown/headpiece */}
               <path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="10"
+                stroke="#F0B93A"
+                strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M380,180 C380,140 400,120 420,100 C440,80 460,60 480,80 C500,100 520,120 540,100 C560,80 580,60 600,80 C620,100 640,120 660,100"
+                d="M65,25 C75,15 85,20 85,30"
               />
-              
-              {/* Eye */}
-              <circle cx="300" cy="240" r="15" fill="#D4AF37" />
-              
-              {/* Ear */}
               <path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="10"
+                stroke="#F0B93A"
+                strokeWidth="3"
                 strokeLinecap="round"
-                d="M480,260 C520,240 560,260 600,220"
+                strokeLinejoin="round"
+                d="M30,85 C20,95 10,90 10,80"
               />
-              
-              {/* Smile */}
               <path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="8"
+                stroke="#F0B93A"
+                strokeWidth="2"
                 strokeLinecap="round"
-                d="M280,280 C300,300 340,300 360,280"
+                d="M30,75 C30,80 35,80 35,75 M50,75 C50,80 55,80 55,75"
               />
-              
-              {/* Decorative collar */}
+              <circle cx="25" cy="40" r="3" fill="#F0B93A" />
               <path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="10"
+                stroke="#F0B93A"
+                strokeWidth="2"
                 strokeLinecap="round"
-                strokeDasharray="5,10"
-                d="M240,340 C280,380 360,400 420,360"
-              />
-              
-              {/* Body pattern dots */}
-              <circle cx="360" cy="460" r="8" fill="#D4AF37" />
-              <circle cx="400" cy="520" r="8" fill="#D4AF37" />
-              <circle cx="460" cy="480" r="8" fill="#D4AF37" />
-              <circle cx="320" cy="500" r="8" fill="#D4AF37" />
-              <circle cx="380" cy="560" r="8" fill="#D4AF37" />
-              
-              {/* Decorative patterns on the body */}
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="8"
-                strokeLinecap="round"
-                d="M320,440 C340,420 380,420 400,440 C420,460 440,460 460,440"
-              />
-              
-              {/* Tail */}
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="10"
-                strokeLinecap="round"
-                d="M240,660 C180,700 140,680 120,640 C100,600 120,560 160,540"
-              />
-              
-              {/* Paws/feet */}
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="8"
-                strokeLinecap="round"
-                d="M260,640 C260,660 270,670 290,670 M340,670 C340,690 350,700 370,700 M420,660 C420,680 430,690 450,690"
-              />
-              
-              {/* Ornate decorative patterns */}
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="6"
-                strokeDasharray="4,8"
-                d="M340,380 C360,400 400,400 420,380"
-              />
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="6"
-                strokeDasharray="4,8"
-                d="M280,520 C300,540 340,540 360,520"
-              />
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="6"
-                strokeDasharray="4,8"
-                d="M380,580 C400,600 440,600 460,580"
+                d="M25,50 C30,52 35,50 40,48"
               />
             </svg>
           </div>
@@ -315,13 +227,13 @@ const Mooshak: React.FC = () => {
 
   return (
     <>
-      {/* Mooshak cursor follower with enhanced animations */}
+      {/* Mooshak cursor follower */}
       <motion.div
         ref={mooshakRef}
         className="fixed z-10 pointer-events-none"
         animate={{
-          x: mousePosition.x - 40, // Half the width of the mooshak
-          y: mousePosition.y - 40, // Half the height of the mooshak
+          x: mousePosition.x - 30, // Half the width of the mooshak
+          y: mousePosition.y - 30, // Half the height of the mooshak
           opacity: isVisible ? 1 : 0,
           scale: isStill ? 1.1 : 1,
         }}
@@ -333,10 +245,9 @@ const Mooshak: React.FC = () => {
         }}
       >
         <motion.div
-          className="w-20 h-20"
+          className="w-16 h-16"
           animate={{ 
-            rotate: [0, 5, -5, 0], 
-            scale: [1, 1.05, 1]
+            rotate: [0, 3, -3, 0], 
           }}
           transition={{
             duration: 2,
@@ -345,7 +256,7 @@ const Mooshak: React.FC = () => {
           }}
         >
           <div className="w-full h-full relative">
-            {/* Enhanced diya-like glow effect */}
+            {/* Glow effect */}
             <motion.div 
               className="absolute -inset-4 rounded-full bg-gradient-radial from-spiritual-gold/40 to-transparent"
               animate={{ 
@@ -358,61 +269,34 @@ const Mooshak: React.FC = () => {
                 repeatType: "reverse"
               }}
             />
-            <div className="absolute inset-0 animate-pulse rounded-full bg-spiritual-saffron/20 opacity-75"></div>
-            <div className="absolute w-[130%] h-[130%] -left-[15%] -top-[15%] rounded-full bg-spiritual-gold/30 blur-md animate-pulse"></div>
-            <div className="absolute w-[110%] h-[110%] -left-[5%] -top-[5%] rounded-full bg-spiritual-gold/40 blur-sm"></div>
+            <div className="absolute inset-0 animate-pulse rounded-full bg-spiritual-gold/20 opacity-75"></div>
             
-            {/* Ornate Golden Mooshak SVG based on reference image */}
+            {/* Simple Golden Mouse SVG based on reference image */}
             <svg
-              viewBox="0 0 800 800"
-              className="w-full h-full filter drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
+              viewBox="0 0 100 100"
+              className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="12"
+                stroke="#F0B93A"
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M400,180 C380,130 320,120 280,140 C240,160 220,200 220,240 C220,280 240,320 280,340 C240,360 200,400 180,460 C160,520 180,600 240,660 C300,720 380,740 460,700 C540,660 580,580 560,500 C540,420 480,380 420,360 C460,340 480,300 480,260 C480,220 460,180 420,160 C380,140 340,150 320,180 Z"
+                d="M35,30 C25,25 15,30 15,40 C15,50 25,55 35,55 C25,60 20,75 30,85 C40,95 55,90 65,80 C75,70 75,55 65,50 C75,45 75,30 65,25 C55,20 45,25 35,30 Z"
               />
-              
-              {/* Crown/headpiece */}
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M380,180 C380,140 400,120 420,100 C440,80 460,60 480,80 C500,100 520,120 540,100 C560,80 580,60 600,80 C620,100 640,120 660,100"
-              />
-              
-              {/* Eye - animating based on mood */}
-              <motion.circle 
-                cx="300" 
-                cy="240" 
-                r="15" 
-                fill="#D4AF37"
-                animate={
-                  mood === "happy" ? { cy: [240, 235, 240] } :
-                  mood === "surprised" ? { r: 20 } :
-                  {}
-                }
-                transition={{ duration: 0.5 }}
-              />
-              
-              {/* Ear with wiggle animation */}
               <motion.path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="10"
+                stroke="#F0B93A"
+                strokeWidth="3"
                 strokeLinecap="round"
-                d="M480,260 C520,240 560,260 600,220"
+                strokeLinejoin="round"
+                d="M65,25 C75,15 85,20 85,30"
                 animate={{ 
                   d: [
-                    "M480,260 C520,240 560,260 600,220",
-                    "M480,260 C520,235 565,255 600,215", 
-                    "M480,260 C520,240 560,260 600,220"
+                    "M65,25 C75,15 85,20 85,30",
+                    "M65,25 C75,13 85,18 85,28", 
+                    "M65,25 C75,15 85,20 85,30"
                   ] 
                 }}
                 transition={{
@@ -422,60 +306,18 @@ const Mooshak: React.FC = () => {
                   ease: "easeInOut"
                 }}
               />
-              
-              {/* Smile - changes with mood */}
               <motion.path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="8"
+                stroke="#F0B93A"
+                strokeWidth="3"
                 strokeLinecap="round"
-                d="M280,280 C300,300 340,300 360,280"
-                animate={
-                  mood === "happy" ? { d: "M280,280 C300,310 340,310 360,280" } :
-                  mood === "surprised" ? { d: "M280,290 C300,300 340,300 360,290" } :
-                  { d: "M280,280 C300,300 340,300 360,280" }
-                }
-                transition={{ duration: 0.5 }}
-              />
-              
-              {/* Decorative collar */}
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="10"
-                strokeLinecap="round"
-                strokeDasharray="5,10"
-                d="M240,340 C280,380 360,400 420,360"
-              />
-              
-              {/* Body pattern dots */}
-              <circle cx="360" cy="460" r="8" fill="#D4AF37" />
-              <circle cx="400" cy="520" r="8" fill="#D4AF37" />
-              <circle cx="460" cy="480" r="8" fill="#D4AF37" />
-              <circle cx="320" cy="500" r="8" fill="#D4AF37" />
-              <circle cx="380" cy="560" r="8" fill="#D4AF37" />
-              
-              {/* Decorative patterns on the body */}
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="8"
-                strokeLinecap="round"
-                d="M320,440 C340,420 380,420 400,440 C420,460 440,460 460,440"
-              />
-              
-              {/* Tail with animation */}
-              <motion.path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="10"
-                strokeLinecap="round"
-                d="M240,660 C180,700 140,680 120,640 C100,600 120,560 160,540"
+                strokeLinejoin="round"
+                d="M30,85 C20,95 10,90 10,80"
                 animate={{ 
                   d: [
-                    "M240,660 C180,700 140,680 120,640 C100,600 120,560 160,540",
-                    "M240,660 C190,710 145,685 125,635 C105,595 125,550 165,535",
-                    "M240,660 C180,700 140,680 120,640 C100,600 120,560 160,540"
+                    "M30,85 C20,95 10,90 10,80",
+                    "M30,85 C20,97 10,92 10,82", 
+                    "M30,85 C20,95 10,90 10,80"
                   ] 
                 }}
                 transition={{ 
@@ -485,47 +327,32 @@ const Mooshak: React.FC = () => {
                   ease: "easeInOut"
                 }}
               />
-              
-              {/* Paws/feet */}
               <path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="8"
+                stroke="#F0B93A"
+                strokeWidth="2"
                 strokeLinecap="round"
-                d="M260,640 C260,660 270,670 290,670 M340,670 C340,690 350,700 370,700 M420,660 C420,680 430,690 450,690"
+                d="M30,75 C30,80 35,80 35,75 M50,75 C50,80 55,80 55,75"
               />
-              
-              {/* Ornate decorative patterns */}
-              <path
+              <circle cx="25" cy="40" r="3" fill="#F0B93A" />
+              <motion.path
                 fill="none"
-                stroke="#D4AF37"
-                strokeWidth="6"
-                strokeDasharray="4,8"
-                d="M340,380 C360,400 400,400 420,380"
-              />
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="6"
-                strokeDasharray="4,8"
-                d="M280,520 C300,540 340,540 360,520"
-              />
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="6"
-                strokeDasharray="4,8"
-                d="M380,580 C400,600 440,600 460,580"
-              />
-              
-              {/* Extra embellishments to match reference image */}
-              <path
-                fill="none"
-                stroke="#D4AF37"
-                strokeWidth="6"
+                stroke="#F0B93A"
+                strokeWidth="2"
                 strokeLinecap="round"
-                strokeDasharray="2,6"
-                d="M300,400 C320,420 350,420 370,400"
+                d="M25,50 C30,52 35,50 40,48"
+                animate={{ 
+                  d: [
+                    "M25,50 C30,52 35,50 40,48",
+                    "M25,50 C30,53 35,51 40,49",
+                    "M25,50 C30,52 35,50 40,48"
+                  ] 
+                }}
+                transition={{ 
+                  duration: 1.5,
+                  repeat: Infinity,
+                  repeatType: "mirror"
+                }}
               />
             </svg>
           </div>
