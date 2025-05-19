@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ImageWithFallbackProps {
   src: string;
@@ -16,21 +16,35 @@ const ImageWithFallback = ({
   className = "",
   onClick,
 }: ImageWithFallbackProps) => {
-  const [imgSrc, setImgSrc] = useState(src);
+  const [imgSrc, setImgSrc] = useState<string>(fallbackSrc); // Start with fallback
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const onError = () => {
-    if (!hasError) {
+  // Set the source when component mounts or src changes
+  useEffect(() => {
+    setIsLoading(true);
+    setHasError(false);
+    
+    // Create a new image to test loading
+    const img = new Image();
+    img.src = src;
+    
+    img.onload = () => {
+      setImgSrc(src);
+      setIsLoading(false);
+    };
+    
+    img.onerror = () => {
       console.log(`Image failed to load: ${src}, using fallback: ${fallbackSrc}`);
-      setImgSrc(fallbackSrc);
       setHasError(true);
-    }
-  };
-
-  const onLoad = () => {
-    setIsLoading(false);
-  };
+      setIsLoading(false);
+    };
+    
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [src, fallbackSrc]);
 
   return (
     <div className={`relative ${className}`}>
@@ -40,11 +54,9 @@ const ImageWithFallback = ({
         </div>
       )}
       <img
-        src={imgSrc}
+        src={hasError ? fallbackSrc : imgSrc}
         alt={alt}
         className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
-        onError={onError}
-        onLoad={onLoad}
         onClick={onClick}
       />
     </div>

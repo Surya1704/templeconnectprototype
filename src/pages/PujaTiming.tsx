@@ -9,6 +9,7 @@ import { temples } from "@/data/temples";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import ImageWithFallback from "@/components/ImageWithFallback";
+import { getTempleImages } from "@/data/mergeTemples";
 
 const PujaTiming = () => {
   const { toast } = useToast();
@@ -70,7 +71,8 @@ const PujaTiming = () => {
       return {
         temple,
         morningPujas,
-        eveningPujas
+        eveningPujas,
+        images: getTempleImages(temple.id)
       };
     });
   };
@@ -111,40 +113,48 @@ const PujaTiming = () => {
           />
         </div>
         
-        {/* Featured puja schedule section without image */}
-        <div className="relative rounded-lg overflow-hidden mb-10 bg-gradient-to-t from-black/80 via-black/40 to-orange-500/30 p-4">
-          <div className="p-6">
-            <span className="inline-block bg-orange-500 text-white text-sm font-medium px-3 py-1 rounded-full mb-3">
-              Special Ceremony
-            </span>
-            <h2 className="text-3xl font-bold text-white mb-2">Kashi Vishwanath Shringar</h2>
-            <div className="flex flex-wrap gap-4 mb-4 text-white/80">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                <span>Today</span>
+        {/* Featured puja schedule section with image */}
+        <div className="relative rounded-lg overflow-hidden mb-10">
+          <ImageWithFallback
+            src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg"
+            alt="Featured Puja Ceremony"
+            className="w-full h-72 object-cover"
+            fallbackSrc="/lovable-uploads/placeholder.svg"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-orange-500/30 p-4">
+            <div className="p-6 h-full flex flex-col justify-end">
+              <span className="inline-block bg-orange-500 text-white text-sm font-medium px-3 py-1 rounded-full mb-3">
+                Special Ceremony
+              </span>
+              <h2 className="text-3xl font-bold text-white mb-2">Kashi Vishwanath Shringar</h2>
+              <div className="flex flex-wrap gap-4 mb-4 text-white/80">
+                <div className="flex items-center gap-1">
+                  <Calendar className="h-4 w-4" />
+                  <span>Today</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="h-4 w-4" />
+                  <span>8:00 PM - 9:30 PM</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <MapPin className="h-4 w-4" />
+                  <span>Varanasi, Uttar Pradesh</span>
+                </div>
               </div>
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
-                <span>8:00 PM - 9:30 PM</span>
+              
+              <div className="flex gap-3">
+                <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
+                  <Link to="/puja-booking">Book VIP Access</Link>
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="border-white/70 text-white hover:bg-white/10"
+                  onClick={() => handleReminder("Shringar Ceremony", "Kashi Vishwanath")}
+                >
+                  <Bell className="h-4 w-4 mr-2" />
+                  Set Reminder
+                </Button>
               </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="h-4 w-4" />
-                <span>Varanasi, Uttar Pradesh</span>
-              </div>
-            </div>
-            
-            <div className="flex gap-3">
-              <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
-                <Link to="/puja-booking">Book VIP Access</Link>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-white/70 text-white hover:bg-white/10"
-                onClick={() => handleReminder("Shringar Ceremony", "Kashi Vishwanath")}
-              >
-                <Bell className="h-4 w-4 mr-2" />
-                Set Reminder
-              </Button>
             </div>
           </div>
         </div>
@@ -226,6 +236,14 @@ const PujaTiming = () => {
               </Button>
             </div>
           </div>
+          <div className="hidden md:block">
+            <ImageWithFallback
+              src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a96-diwali.jpg"
+              alt="Calendar integration"
+              className="w-48 h-48 object-cover rounded-lg"
+              fallbackSrc="/lovable-uploads/placeholder.svg"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -240,17 +258,30 @@ const TempleTimingCard = ({
   data: { 
     temple: any, 
     morningPujas: any[], 
-    eveningPujas: any[] 
+    eveningPujas: any[],
+    images?: string[]
   },
   onReminder: (pujaName: string, templeName: string) => void
 }) => {
-  const { temple, morningPujas, eveningPujas } = data;
+  const { temple, morningPujas, eveningPujas, images = [] } = data;
+  const templeImage = images && images.length > 0 ? images[0] : null;
   
   return (
     <Card className="overflow-hidden border-none shadow-sm">
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3 bg-orange-100 flex items-center justify-center">
-          <div className="p-8 text-orange-500 font-bold text-2xl">{temple.name.charAt(0)}</div>
+        <div className="md:w-1/3 bg-orange-100">
+          {templeImage ? (
+            <ImageWithFallback
+              src={templeImage}
+              alt={temple.name}
+              className="w-full h-full object-cover min-h-[160px]"
+              fallbackSrc="/lovable-uploads/placeholder.svg"
+            />
+          ) : (
+            <div className="p-8 text-orange-500 font-bold text-2xl h-full flex items-center justify-center">
+              {temple.name.charAt(0)}
+            </div>
+          )}
         </div>
         <CardContent className="p-6 md:w-2/3">
           <div className="flex justify-between items-start mb-4">
@@ -290,7 +321,7 @@ const TempleTimingCard = ({
   );
 };
 
-// Individual Puja Row Component - Always show buttons without hover dependency
+// Individual Puja Row Component - Always show buttons, not dependent on hover
 const PujaRow = ({ 
   puja, 
   onReminder 
@@ -316,6 +347,7 @@ const PujaRow = ({
       </div>
     </div>
     <div className="flex gap-2">
+      {/* Always visible buttons (not dependent on hover) */}
       <Button 
         size="sm" 
         variant="ghost" 

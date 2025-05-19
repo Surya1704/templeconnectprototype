@@ -1,7 +1,6 @@
 
 import { useState } from "react";
 import { getTempleImages } from "@/data/mergeTemples";
-import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
