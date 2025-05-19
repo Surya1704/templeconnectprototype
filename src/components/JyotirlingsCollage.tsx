@@ -205,7 +205,7 @@ const JyotirlingsCollage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-[90vh] overflow-hidden bg-white rounded-xl">
+    <div className="relative w-full h-[90vh] overflow-hidden bg-gradient-to-b from-spiritual-gold/10 to-spiritual-gold/5 rounded-xl">
       {jyotirlingsData.map((jyotirlinga) => (
         <div
           key={jyotirlinga.id}
@@ -222,7 +222,7 @@ const JyotirlingsCollage: React.FC = () => {
         >
           <div className={cn(
             "w-full h-full rounded-lg overflow-hidden border-4 border-spiritual-gold/40 shadow-lg",
-            "transition-all duration-300 group-hover:border-spiritual-gold group-hover:shadow-2xl"
+            "transition-all duration-300 group-hover:border-spiritual-gold group-hover:shadow-2xl group-hover:scale-105"
           )}>
             {/* Temple image */}
             <div className="w-full h-full relative">
