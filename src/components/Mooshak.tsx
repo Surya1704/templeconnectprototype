@@ -9,10 +9,13 @@ const Mooshak: React.FC = () => {
   const [isStill, setIsStill] = useState(false);
   const [showLabel, setShowLabel] = useState(false);
   const [showMantra, setShowMantra] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
+  const [lastMoveTime, setLastMoveTime] = useState(0);
   const stillTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mantraTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mooshakRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const prevPositionRef = useRef({ x: 0, y: 0 });
 
   // Sanskrit mantras to show when idle
   const mantras = [
@@ -23,10 +26,32 @@ const Mooshak: React.FC = () => {
     "एकदन्ताय"
   ];
 
-  // Track mouse position and stillness
+  // Track mouse position, stillness and running state
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      const currentPosition = { x: e.clientX, y: e.clientY };
+      const prevPosition = prevPositionRef.current;
+      
+      // Calculate distance moved
+      const deltaX = currentPosition.x - prevPosition.x;
+      const deltaY = currentPosition.y - prevPosition.y;
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      
+      // Update mouse position
+      setMousePosition(currentPosition);
+      prevPositionRef.current = currentPosition;
+      
+      // Determine if mouse is running based on speed
+      const now = Date.now();
+      const timeDelta = now - lastMoveTime;
+      setLastMoveTime(now);
+      
+      // Only set running if moving fast enough (more than 5px in less than 100ms)
+      if (distance > 5 && timeDelta < 100) {
+        setIsRunning(true);
+        // Reset running state after a brief delay if no movement
+        setTimeout(() => setIsRunning(false), 150);
+      }
       
       // Reset the stillness timeout
       if (stillTimeoutRef.current) {
@@ -65,7 +90,7 @@ const Mooshak: React.FC = () => {
         clearTimeout(mantraTimeoutRef.current);
       }
     };
-  }, []);
+  }, [lastMoveTime]);
 
   // Handle scroll to hide when scrolling past hero section
   useEffect(() => {
@@ -154,50 +179,58 @@ const Mooshak: React.FC = () => {
               }}
             />
             
-            {/* Simple Golden Mouse SVG based on reference image */}
+            {/* Golden Mouse SVG */}
             <svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
             >
+              {/* Mouse body */}
               <path
                 fill="none"
                 stroke="#F0B93A"
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M35,30 C25,25 15,30 15,40 C15,50 25,55 35,55 C25,60 20,75 30,85 C40,95 55,90 65,80 C75,70 75,55 65,50 C75,45 75,30 65,25 C55,20 45,25 35,30 Z"
+                d="M30,40 Q40,30 50,40 Q60,50 70,40 Q80,30 70,20 Q60,10 50,15 Q40,20 30,15 Q20,10 15,20 Q10,30 20,40 Q25,45 30,40 Z"
               />
+              
+              {/* Legs */}
+              <path
+                fill="none"
+                stroke="#F0B93A"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                d="M25,40 L20,50 M40,40 L35,50 M60,40 L65,50 M75,40 L80,50"
+              />
+              
+              {/* Tail */}
               <path
                 fill="none"
                 stroke="#F0B93A"
                 strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M65,25 C75,15 85,20 85,30"
+                d="M15,25 Q5,35 10,45 Q15,50 20,45"
               />
+              
+              {/* Eyes */}
+              <circle cx="30" cy="25" r="2" fill="#F0B93A" />
+              <circle cx="45" cy="25" r="2" fill="#F0B93A" />
+              
+              {/* Nose */}
+              <path
+                fill="#F0B93A"
+                d="M35,30 Q38,33 40,30 Q38,28 35,30 Z"
+              />
+              
+              {/* Whiskers */}
               <path
                 fill="none"
                 stroke="#F0B93A"
-                strokeWidth="3"
+                strokeWidth="1"
                 strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M30,85 C20,95 10,90 10,80"
-              />
-              <path
-                fill="none"
-                stroke="#F0B93A"
-                strokeWidth="2"
-                strokeLinecap="round"
-                d="M30,75 C30,80 35,80 35,75 M50,75 C50,80 55,80 55,75"
-              />
-              <circle cx="25" cy="40" r="3" fill="#F0B93A" />
-              <path
-                fill="none"
-                stroke="#F0B93A"
-                strokeWidth="2"
-                strokeLinecap="round"
-                d="M25,50 C30,52 35,50 40,48"
+                d="M38,28 L45,26 M38,30 L45,30 M38,32 L45,34 M32,28 L25,26 M32,30 L25,30 M32,32 L25,34"
               />
             </svg>
           </div>
@@ -232,22 +265,28 @@ const Mooshak: React.FC = () => {
         ref={mooshakRef}
         className="fixed z-10 pointer-events-none"
         animate={{
-          x: mousePosition.x - 30, // Half the width of the mooshak
-          y: mousePosition.y - 30, // Half the height of the mooshak
+          x: mousePosition.x - 30,
+          y: mousePosition.y - 30,
           opacity: isVisible ? 1 : 0,
           scale: isStill ? 1.1 : 1,
+          rotateZ: isRunning ? [0, -5, 5, 0] : 0,
         }}
         transition={{
           type: "spring",
           damping: 25,
           stiffness: 120,
           mass: 0.6,
+          rotateZ: {
+            duration: 0.3,
+            repeat: isRunning ? Infinity : 0,
+            repeatType: "loop"
+          }
         }}
       >
         <motion.div
           className="w-16 h-16"
           animate={{ 
-            rotate: [0, 3, -3, 0], 
+            rotate: isStill ? [0, 3, -3, 0] : 0, 
           }}
           transition={{
             duration: 2,
@@ -271,90 +310,153 @@ const Mooshak: React.FC = () => {
             />
             <div className="absolute inset-0 animate-pulse rounded-full bg-spiritual-gold/20 opacity-75"></div>
             
-            {/* Simple Golden Mouse SVG based on reference image */}
-            <svg
+            {/* Golden Mouse SVG with running animation */}
+            <motion.svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
             >
+              {/* Mouse body */}
               <path
                 fill="none"
                 stroke="#F0B93A"
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M35,30 C25,25 15,30 15,40 C15,50 25,55 35,55 C25,60 20,75 30,85 C40,95 55,90 65,80 C75,70 75,55 65,50 C75,45 75,30 65,25 C55,20 45,25 35,30 Z"
+                d="M30,40 Q40,30 50,40 Q60,50 70,40 Q80,30 70,20 Q60,10 50,15 Q40,20 30,15 Q20,10 15,20 Q10,30 20,40 Q25,45 30,40 Z"
               />
+              
+              {/* Front left leg with running animation */}
+              <motion.path
+                fill="none"
+                stroke="#F0B93A"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                animate={isRunning ? {
+                  d: [
+                    "M25,40 L20,50", 
+                    "M25,40 L20,45", 
+                    "M25,40 L25,50", 
+                    "M25,40 L20,50"
+                  ]
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity, repeatType: "loop" }}
+                d="M25,40 L20,50"
+              />
+              
+              {/* Front right leg with running animation */}
+              <motion.path
+                fill="none"
+                stroke="#F0B93A"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                animate={isRunning ? {
+                  d: [
+                    "M40,40 L35,50",
+                    "M40,40 L40,50",
+                    "M40,40 L35,45",
+                    "M40,40 L35,50"
+                  ]
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity, repeatType: "loop", delay: 0.1 }}
+                d="M40,40 L35,50"
+              />
+              
+              {/* Back left leg with running animation */}
+              <motion.path
+                fill="none"
+                stroke="#F0B93A"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                animate={isRunning ? {
+                  d: [
+                    "M60,40 L65,50",
+                    "M60,40 L60,50",
+                    "M60,40 L65,45",
+                    "M60,40 L65,50"
+                  ]
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity, repeatType: "loop", delay: 0.2 }}
+                d="M60,40 L65,50"
+              />
+              
+              {/* Back right leg with running animation */}
+              <motion.path
+                fill="none"
+                stroke="#F0B93A"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                animate={isRunning ? {
+                  d: [
+                    "M75,40 L80,50",
+                    "M75,40 L75,50",
+                    "M75,40 L80,45",
+                    "M75,40 L80,50"
+                  ]
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity, repeatType: "loop", delay: 0.3 }}
+                d="M75,40 L80,50"
+              />
+              
+              {/* Animated tail */}
               <motion.path
                 fill="none"
                 stroke="#F0B93A"
                 strokeWidth="3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M65,25 C75,15 85,20 85,30"
-                animate={{ 
+                animate={isRunning ? {
                   d: [
-                    "M65,25 C75,15 85,20 85,30",
-                    "M65,25 C75,13 85,18 85,28", 
-                    "M65,25 C75,15 85,20 85,30"
-                  ] 
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.path
-                fill="none"
-                stroke="#F0B93A"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M30,85 C20,95 10,90 10,80"
-                animate={{ 
+                    "M15,25 Q5,35 10,45 Q15,50 20,45", 
+                    "M15,25 Q0,35 5,45 Q10,55 20,45",
+                    "M15,25 Q5,40 15,45 Q20,50 20,45",
+                    "M15,25 Q5,35 10,45 Q15,50 20,45"
+                  ]
+                } : {
                   d: [
-                    "M30,85 C20,95 10,90 10,80",
-                    "M30,85 C20,97 10,92 10,82", 
-                    "M30,85 C20,95 10,90 10,80"
-                  ] 
+                    "M15,25 Q5,35 10,45 Q15,50 20,45",
+                    "M15,25 Q10,40 15,45 Q20,50 20,45",
+                    "M15,25 Q5,35 10,45 Q15,50 20,45" 
+                  ]
                 }}
                 transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  ease: "easeInOut"
+                  duration: isRunning ? 0.5 : 2,
+                  repeat: Infinity, 
+                  repeatType: "loop"
                 }}
               />
+              
+              {/* Eyes */}
+              <circle cx="30" cy="25" r="2" fill="#F0B93A" />
+              <circle cx="45" cy="25" r="2" fill="#F0B93A" />
+              
+              {/* Nose */}
               <path
-                fill="none"
-                stroke="#F0B93A"
-                strokeWidth="2"
-                strokeLinecap="round"
-                d="M30,75 C30,80 35,80 35,75 M50,75 C50,80 55,80 55,75"
+                fill="#F0B93A"
+                d="M35,30 Q38,33 40,30 Q38,28 35,30 Z"
               />
-              <circle cx="25" cy="40" r="3" fill="#F0B93A" />
+              
+              {/* Whiskers */}
               <motion.path
                 fill="none"
                 stroke="#F0B93A"
-                strokeWidth="2"
+                strokeWidth="1"
                 strokeLinecap="round"
-                d="M25,50 C30,52 35,50 40,48"
-                animate={{ 
+                animate={isRunning ? {
                   d: [
-                    "M25,50 C30,52 35,50 40,48",
-                    "M25,50 C30,53 35,51 40,49",
-                    "M25,50 C30,52 35,50 40,48"
-                  ] 
-                }}
+                    "M38,28 L45,26 M38,30 L45,30 M38,32 L45,34 M32,28 L25,26 M32,30 L25,30 M32,32 L25,34",
+                    "M38,28 L45,27 M38,30 L45,31 M38,32 L45,35 M32,28 L25,27 M32,30 L25,31 M32,32 L25,35",
+                    "M38,28 L45,26 M38,30 L45,30 M38,32 L45,34 M32,28 L25,26 M32,30 L25,30 M32,32 L25,34"
+                  ]
+                } : {}}
                 transition={{ 
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: "mirror"
+                  duration: 0.3, 
+                  repeat: Infinity, 
+                  repeatType: "reverse" 
                 }}
+                d="M38,28 L45,26 M38,30 L45,30 M38,32 L45,34 M32,28 L25,26 M32,30 L25,30 M32,32 L25,34"
               />
-            </svg>
+            </motion.svg>
           </div>
         </motion.div>
 
