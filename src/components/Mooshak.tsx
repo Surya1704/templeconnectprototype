@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -182,33 +181,24 @@ const Mooshak: React.FC = () => {
               }}
             />
             
-            {/* Golden mouse silhouette based on reference image */}
+            {/* Golden mouse silhouette - custom SVG */}
             <svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
+              fill="#F5BD1F"
             >
-              <path
-                d="M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z"
-                fill="#F5BD1F"
-                stroke="rgba(255,215,0,0.7)"
-                strokeWidth="1"
-              />
-              <circle cx="40" cy="40" r="3" fill="#FFFFFF" fillOpacity="0.8" />
-              <path
-                d="M70,50 C80,55 85,70 80,75"
-                fill="none"
-                stroke="#F5BD1F"
-                strokeWidth="8"
-                strokeLinecap="round"
-              />
-              <path
-                d="M35,28 C37,22 43,20 45,25"
-                fill="none"
-                stroke="#F5BD1F"
-                strokeWidth="6"
-                strokeLinecap="round"
-              />
+              {/* Mouse body */}
+              <path d="M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z" />
+
+              {/* Eye */}
+              <circle cx="40" cy="40" r="3" fill="white" />
+
+              {/* Tail */}
+              <path d="M70,50 C80,55 85,70 80,75" stroke="white" strokeWidth="2" fill="none" />
+
+              {/* Ear/whisker detail */}
+              <path d="M35,28 C37,22 43,20 45,25" stroke="white" strokeWidth="1.5" fill="none" />
             </svg>
           </div>
         </motion.div>
@@ -272,7 +262,7 @@ const Mooshak: React.FC = () => {
           }}
         >
           <div className="w-full h-full relative">
-            {/* Glow effect */}
+            {/* Glowing radial background */}
             <motion.div 
               className="absolute -inset-4 rounded-full bg-gradient-radial from-spiritual-gold/40 to-transparent"
               animate={{ 
@@ -286,17 +276,15 @@ const Mooshak: React.FC = () => {
               }}
             />
             
-            {/* Golden mouse silhouette based on reference image */}
+            {/* Golden mouse silhouette - custom SVG */}
             <motion.svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
+              fill="#F5BD1F"
             >
               <motion.path
                 d="M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z"
-                fill="#F5BD1F"
-                stroke="rgba(255,215,0,0.7)"
-                strokeWidth="1"
                 animate={isRunning ? { 
                   d: [
                     "M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z",
@@ -307,12 +295,12 @@ const Mooshak: React.FC = () => {
                 } : {}}
                 transition={{ duration: 0.4, repeat: Infinity }}
               />
-              <circle cx="40" cy="40" r="3" fill="#FFFFFF" fillOpacity="0.8" />
+              <circle cx="40" cy="40" r="3" fill="white" />
               <motion.path
                 d="M70,50 C80,55 85,70 80,75"
                 fill="none"
-                stroke="#F5BD1F"
-                strokeWidth="8"
+                stroke="white"
+                strokeWidth="2"
                 strokeLinecap="round"
                 animate={isRunning ? {
                   d: [
@@ -338,8 +326,8 @@ const Mooshak: React.FC = () => {
               <motion.path
                 d="M35,28 C37,22 43,20 45,25"
                 fill="none"
-                stroke="#F5BD1F"
-                strokeWidth="6"
+                stroke="white"
+                strokeWidth="1.5"
                 strokeLinecap="round"
                 animate={isRunning ? {
                   d: [
