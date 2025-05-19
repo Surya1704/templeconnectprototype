@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Flower } from "lucide-react"; // Changed from Candle to Flower which exists in lucide-react
+import { Flower } from "lucide-react"; // Using Flower icon from lucide-react
 import { Button } from "@/components/ui/button";
 import {
   Card,

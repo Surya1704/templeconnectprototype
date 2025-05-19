@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -222,7 +221,7 @@ const JyotirlingsCollage: React.FC = () => {
         >
           <div className={cn(
             "w-full h-full rounded-lg overflow-hidden border-4 border-spiritual-gold/40 shadow-lg",
-            "transition-all duration-300 group-hover:border-spiritual-gold group-hover:shadow-2xl group-hover:scale-105"
+            "transition-all duration-300 group-hover:border-spiritual-gold group-hover:shadow-xl group-hover:scale-110 group-hover:z-50"
           )}>
             {/* Temple image */}
             <div className="w-full h-full relative">
@@ -237,10 +236,6 @@ const JyotirlingsCollage: React.FC = () => {
                 <h3 className="font-cinzel text-lg font-bold text-white mb-1 drop-shadow-sm">
                   {jyotirlinga.name}
                 </h3>
-                
-                <p className="text-xs font-sans text-white/90 mb-2">
-                  {jyotirlinga.description}
-                </p>
                 
                 <div className="mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span className="text-xs px-2 py-1 bg-spiritual-gold/30 rounded-full text-white font-medium">
