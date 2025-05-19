@@ -182,38 +182,33 @@ const Mooshak: React.FC = () => {
               }}
             />
             
-            {/* Simple gold outline mouse (like reference image) */}
+            {/* Golden mouse silhouette based on reference image */}
             <svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="#F5BD1F"
-              strokeWidth="2"
             >
-              {/* Mouse body - simple outline like reference */}
-              <path d="M40,50 C40,65 55,80 70,65 C85,50 75,20 60,25 C45,30 40,35 40,50 Z" />
-              
-              {/* Head and face */}
-              <path d="M25,45 C15,35 20,25 30,30 C40,35 40,45 40,50" />
-              
-              {/* Ear */}
-              <path d="M38,33 C40,25 45,25 47,30" />
-              
-              {/* Eye */}
-              <circle cx="25" cy="40" r="1.5" fill="#F5BD1F" />
-              
-              {/* Nose */}
-              <path d="M18,43 C20,42 22,43 20,45" />
-              
-              {/* Front leg */}
-              <path d="M45,65 C45,70 45,75 48,80" />
-              
-              {/* Back leg */}
-              <path d="M65,65 C65,70 65,75 68,80" />
-              
-              {/* Tail */}
-              <path d="M70,55 C80,60 85,70 80,75" />
+              <path
+                d="M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z"
+                fill="#F5BD1F"
+                stroke="rgba(255,215,0,0.7)"
+                strokeWidth="1"
+              />
+              <circle cx="40" cy="40" r="3" fill="#FFFFFF" fillOpacity="0.8" />
+              <path
+                d="M70,50 C80,55 85,70 80,75"
+                fill="none"
+                stroke="#F5BD1F"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              <path
+                d="M35,28 C37,22 43,20 45,25"
+                fill="none"
+                stroke="#F5BD1F"
+                strokeWidth="6"
+                strokeLinecap="round"
+              />
             </svg>
           </div>
         </motion.div>
@@ -290,120 +285,48 @@ const Mooshak: React.FC = () => {
                 repeatType: "reverse"
               }}
             />
-            <div className="absolute inset-0 animate-pulse rounded-full bg-spiritual-gold/20 opacity-75"></div>
             
-            {/* Simple gold outline mouse with animation */}
+            {/* Golden mouse silhouette based on reference image */}
             <motion.svg
               viewBox="0 0 100 100"
               className="w-full h-full drop-shadow-[0_0_8px_rgba(255,215,0,0.7)]"
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="#F5BD1F"
-              strokeWidth="2.5"
             >
-              {/* Mouse body */}
-              <motion.path 
-                d="M40,50 C40,65 55,80 70,65 C85,50 75,20 60,25 C45,30 40,35 40,50 Z" 
+              <motion.path
+                d="M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z"
+                fill="#F5BD1F"
+                stroke="rgba(255,215,0,0.7)"
+                strokeWidth="1"
                 animate={isRunning ? { 
                   d: [
-                    "M40,50 C40,65 55,80 70,65 C85,50 75,20 60,25 C45,30 40,35 40,50 Z",
-                    "M40,48 C40,63 55,78 70,63 C85,48 75,22 60,27 C45,32 40,33 40,48 Z",
-                    "M40,52 C40,67 55,82 70,67 C85,52 75,18 60,23 C45,28 40,37 40,52 Z",
-                    "M40,50 C40,65 55,80 70,65 C85,50 75,20 60,25 C45,30 40,35 40,50 Z"
+                    "M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z",
+                    "M30,43 C25,33 30,23 40,28 C45,18 60,13 70,28 C85,48 80,73 60,78 C45,80 25,68 30,43 Z",
+                    "M30,47 C25,37 30,27 40,32 C45,22 60,17 70,32 C85,52 80,77 60,82 C45,84 25,72 30,47 Z",
+                    "M30,45 C25,35 30,25 40,30 C45,20 60,15 70,30 C85,50 80,75 60,80 C45,82 25,70 30,45 Z"
                   ]
                 } : {}}
                 transition={{ duration: 0.4, repeat: Infinity }}
               />
-              
-              {/* Head and face */}
-              <motion.path 
-                d="M25,45 C15,35 20,25 30,30 C40,35 40,45 40,50" 
-                animate={isRunning ? {
-                  d: [
-                    "M25,45 C15,35 20,25 30,30 C40,35 40,45 40,50",
-                    "M25,43 C15,33 20,23 30,28 C40,33 40,43 40,48",
-                    "M25,47 C15,37 20,27 30,32 C40,37 40,47 40,52",
-                    "M25,45 C15,35 20,25 30,30 C40,35 40,45 40,50"
-                  ]
-                } : {}}
-                transition={{ duration: 0.4, repeat: Infinity }}
-              />
-              
-              {/* Ear with animation */}
-              <motion.path 
-                d="M38,33 C40,25 45,25 47,30"
-                animate={isRunning ? {
-                  d: [
-                    "M38,33 C40,25 45,25 47,30",
-                    "M38,31 C40,23 45,23 47,28",
-                    "M38,35 C40,27 45,27 47,32",
-                    "M38,33 C40,25 45,25 47,30"
-                  ]
-                } : {}}
-                transition={{ duration: 0.4, repeat: Infinity }}
-              />
-              
-              {/* Eye */}
-              <circle cx="25" cy="40" r="1.5" fill="#F5BD1F" />
-              
-              {/* Nose */}
-              <motion.path 
-                d="M18,43 C20,42 22,43 20,45"
-                animate={isRunning ? {
-                  d: [
-                    "M18,43 C20,42 22,43 20,45",
-                    "M18,41 C20,40 22,41 20,43",
-                    "M18,45 C20,44 22,45 20,47",
-                    "M18,43 C20,42 22,43 20,45"
-                  ]
-                } : {}}
-                transition={{ duration: 0.4, repeat: Infinity }}
-              />
-              
-              {/* Front leg with running animation */}
+              <circle cx="40" cy="40" r="3" fill="#FFFFFF" fillOpacity="0.8" />
               <motion.path
-                d="M45,65 C45,70 45,75 48,80"
+                d="M70,50 C80,55 85,70 80,75"
+                fill="none"
+                stroke="#F5BD1F"
+                strokeWidth="8"
+                strokeLinecap="round"
                 animate={isRunning ? {
                   d: [
-                    "M45,65 C45,70 45,75 48,80",
-                    "M45,65 C48,68 50,70 52,75",
-                    "M45,65 C42,70 40,75 43,80",
-                    "M45,65 C45,70 45,75 48,80"
-                  ]
-                } : {}}
-                transition={{ duration: 0.4, repeat: Infinity }}
-              />
-              
-              {/* Back leg with running animation */}
-              <motion.path
-                d="M65,65 C65,70 65,75 68,80"
-                animate={isRunning ? {
-                  d: [
-                    "M65,65 C65,70 65,75 68,80",
-                    "M65,65 C68,68 70,70 72,75",
-                    "M65,65 C62,70 60,75 63,80",
-                    "M65,65 C65,70 65,75 68,80"
-                  ]
-                } : {}}
-                transition={{ duration: 0.4, repeat: Infinity, delay: 0.2 }}
-              />
-              
-              {/* Tail with wagging animation */}
-              <motion.path
-                d="M70,55 C80,60 85,70 80,75"
-                animate={isRunning ? {
-                  d: [
-                    "M70,55 C80,60 85,70 80,75",
-                    "M70,55 C80,55 90,65 85,75",
-                    "M70,55 C75,65 80,75 75,80",
-                    "M70,55 C80,60 85,70 80,75"
+                    "M70,50 C80,55 85,70 80,75",
+                    "M70,50 C85,55 90,65 85,70",
+                    "M70,50 C75,60 80,75 75,80",
+                    "M70,50 C80,55 85,70 80,75"
                   ]
                 } : {
                   d: [
-                    "M70,55 C80,60 85,70 80,75",
-                    "M70,55 C82,62 87,68 82,73",
-                    "M70,55 C78,58 83,72 78,77",
-                    "M70,55 C80,60 85,70 80,75"
+                    "M70,50 C80,55 85,70 80,75",
+                    "M70,50 C82,57 87,67 82,72",
+                    "M70,50 C78,58 83,72 78,77",
+                    "M70,50 C80,55 85,70 80,75"
                   ]
                 }}
                 transition={{ 
@@ -411,6 +334,22 @@ const Mooshak: React.FC = () => {
                   repeat: Infinity, 
                   repeatType: "loop"
                 }}
+              />
+              <motion.path
+                d="M35,28 C37,22 43,20 45,25"
+                fill="none"
+                stroke="#F5BD1F"
+                strokeWidth="6"
+                strokeLinecap="round"
+                animate={isRunning ? {
+                  d: [
+                    "M35,28 C37,22 43,20 45,25",
+                    "M35,26 C37,20 43,18 45,23",
+                    "M35,30 C37,24 43,22 45,27",
+                    "M35,28 C37,22 43,20 45,25"
+                  ]
+                } : {}}
+                transition={{ duration: 0.4, repeat: Infinity }}
               />
             </motion.svg>
           </div>
