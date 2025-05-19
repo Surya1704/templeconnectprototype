@@ -42,19 +42,19 @@ const TempleImageGallery = ({ templeId }: TempleImageGalleryProps) => {
         fallbackSrc="/placeholder.svg"
       />
       
-      {/* Navigation Arrows - Always Visible */}
-      <div className="absolute inset-0 flex items-center justify-between">
+      {/* Navigation Arrows - Always Visible with better contrast */}
+      <div className="absolute inset-0 flex items-center justify-between px-2 pointer-events-none">
         <Button
           variant="ghost"
           onClick={handlePrevious}
-          className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white"
+          className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white pointer-events-auto"
         >
           <ChevronLeft size={24} />
         </Button>
         <Button
           variant="ghost"
           onClick={handleNext}
-          className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white"
+          className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white pointer-events-auto"
         >
           <ChevronRight size={24} />
         </Button>
