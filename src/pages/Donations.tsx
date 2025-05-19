@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { BadgeIndianRupee, Building, Users, CheckCircle2, BadgeDollarSign } from "lucide-react";
+import { BadgeIndianRupee, Building, Users, CheckCircle2, BadgeDollarSign, CreditCard, Banknote, Smartphone, Globe } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { temples } from "@/data/temples";
@@ -16,7 +16,7 @@ type DonationFormValues = {
   templeId: string;
   amount: string;
   customAmount: string;
-  paymentMethod: "card" | "upi";
+  paymentMethod: "card" | "upi" | "netbanking" | "wallet" | "international";
 };
 
 const DonationPage = () => {
@@ -200,17 +200,38 @@ const DonationPage = () => {
                                 <RadioGroupItem value="card" />
                               </FormControl>
                               <FormLabel className="font-normal cursor-pointer flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 mr-2 text-orange-600"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                                <CreditCard className="h-5 w-5 mr-2 text-orange-600" />
                                 Credit/Debit Card
                               </FormLabel>
                             </FormItem>
+                            
                             <FormItem className="flex items-center space-x-3 space-y-0 border rounded-md p-4">
                               <FormControl>
                                 <RadioGroupItem value="upi" />
                               </FormControl>
                               <FormLabel className="font-normal cursor-pointer flex items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 mr-2 text-orange-600"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                                <Smartphone className="h-5 w-5 mr-2 text-orange-600" />
                                 UPI/Mobile Wallet
+                              </FormLabel>
+                            </FormItem>
+                            
+                            <FormItem className="flex items-center space-x-3 space-y-0 border rounded-md p-4">
+                              <FormControl>
+                                <RadioGroupItem value="netbanking" />
+                              </FormControl>
+                              <FormLabel className="font-normal cursor-pointer flex items-center">
+                                <Banknote className="h-5 w-5 mr-2 text-orange-600" />
+                                Net Banking
+                              </FormLabel>
+                            </FormItem>
+                            
+                            <FormItem className="flex items-center space-x-3 space-y-0 border rounded-md p-4">
+                              <FormControl>
+                                <RadioGroupItem value="international" />
+                              </FormControl>
+                              <FormLabel className="font-normal cursor-pointer flex items-center">
+                                <Globe className="h-5 w-5 mr-2 text-orange-600" />
+                                International Payment
                               </FormLabel>
                             </FormItem>
                           </RadioGroup>

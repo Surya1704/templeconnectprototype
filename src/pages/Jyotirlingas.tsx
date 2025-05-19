@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import JyotirlingsCollage from "@/components/JyotirlingsCollage";
 import {
@@ -10,6 +11,8 @@ import {
 } from "@/components/ui/carousel";
 
 const Jyotirlingas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   // Array of jyotirlinga details for the carousel with updated image paths
   const jyotirlingsDetails = [
     {
@@ -98,9 +101,113 @@ const Jyotirlingas = () => {
     }
   ];
 
+  // Initialize mandala animation
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Create mandala
+    const mandalas: {
+      x: number;
+      y: number;
+      radius: number;
+      rotation: number;
+      rotationSpeed: number;
+      opacity: number;
+    }[] = [];
+
+    for (let i = 0; i < 10; i++) {
+      mandalas.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 100 + 20,
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() * 0.002) - 0.001,
+        opacity: Math.random() * 0.3 + 0.05
+      });
+    }
+
+    const drawMandala = (x: number, y: number, radius: number, rotation: number, opacity: number) => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotation);
+      ctx.globalAlpha = opacity;
+      ctx.strokeStyle = '#D4AF37';
+      ctx.lineWidth = 1;
+
+      // Draw multiple circles
+      for (let i = 0; i < 6; i++) {
+        ctx.beginPath();
+        ctx.arc(0, 0, radius * (0.2 + i * 0.15), 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Draw spokes
+      for (let i = 0; i < 12; i++) {
+        const angle = (i / 12) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(radius * Math.cos(angle), radius * Math.sin(angle));
+        ctx.stroke();
+      }
+
+      // Draw petals
+      for (let i = 0; i < 8; i++) {
+        const angle = (i / 8) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.ellipse(
+          radius * 0.5 * Math.cos(angle),
+          radius * 0.5 * Math.sin(angle),
+          radius * 0.3,
+          radius * 0.1,
+          angle,
+          0,
+          Math.PI * 2
+        );
+        ctx.stroke();
+      }
+
+      ctx.restore();
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      mandalas.forEach(mandala => {
+        drawMandala(mandala.x, mandala.y, mandala.radius, mandala.rotation, mandala.opacity);
+        mandala.rotation += mandala.rotationSpeed;
+      });
+      
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    // Handle resize
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-spiritual-ivory/50 py-12">
-      <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-spiritual-ivory/50 py-12 relative">
+      {/* Mandala animation background */}
+      <canvas 
+        ref={canvasRef} 
+        className="absolute inset-0 z-0 w-full h-full"
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -124,7 +231,7 @@ const Jyotirlingas = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-md"
+          className="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm p-8 rounded-lg shadow-md"
         >
           <h2 className="text-2xl font-cinzel font-bold text-spiritual-maroon mb-6 text-center">
             About The 12 Jyotirlingas

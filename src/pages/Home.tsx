@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,7 @@ import JyotirlingsCollage from "@/components/JyotirlingsCollage";
 
 const Home = () => {
   const navigate = useNavigate();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   
   // Jyotirlinga data for the featured section
   const jyotirlingsData = [
@@ -20,12 +20,94 @@ const Home = () => {
     { name: "Trimbakeshwar", image: "/public/assets/temples/brihadeeswara-temple.png", slug: "trimbakeshwar", location: "Maharashtra" },
   ];
 
+  // Sanskrit texts for animation
+  const sanskritTexts = [
+    'ॐ', 'नमः शिवाय', 'शिव', 'हर हर महादेव', 'जय भोलेनाथ', 'त्र्यम्बकम्', 
+    'महादेव', 'रुद्र', 'शंकर', 'विश्वनाथ', 'केदारनाथ', 'सोमनाथ', 'वैद्यनाथ'
+  ];
+
+  // Initialize Sanskrit text particles animation
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles: {
+      x: number;
+      y: number;
+      size: number;
+      speed: number;
+      text: string;
+      opacity: number;
+      color: string;
+    }[] = [];
+
+    // Create particles
+    const createParticles = () => {
+      for (let i = 0; i < 35; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 20 + 10,
+          speed: Math.random() * 1 + 0.2,
+          text: sanskritTexts[Math.floor(Math.random() * sanskritTexts.length)],
+          opacity: Math.random() * 0.5 + 0.1,
+          color: `rgba(212, 175, 55, ${Math.random() * 0.3 + 0.1})`
+        });
+      }
+    };
+
+    createParticles();
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        ctx.fillStyle = particle.color;
+        ctx.font = `${particle.size}px 'Arial'`;
+        ctx.globalAlpha = particle.opacity;
+        ctx.fillText(particle.text, particle.x, particle.y);
+        
+        particle.x += particle.speed;
+        
+        if (particle.x > canvas.width) {
+          particle.x = -50;
+          particle.y = Math.random() * canvas.height;
+        }
+      });
+      
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    // Resize handler
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="min-h-screen overflow-hidden">
       {/* Hero section */}
       <section className="relative min-h-screen bg-gradient-to-b from-spiritual-maroon via-spiritual-ochre to-spiritual-saffron overflow-hidden">
+        {/* Sanskrit text animation canvas */}
+        <canvas 
+          ref={canvasRef} 
+          className="absolute inset-0 z-0 w-full h-full"
+        />
+
         {/* Content */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="container mx-auto px-6 py-24 text-center">
             <motion.div
               initial={{ opacity: 0 }}
@@ -78,7 +160,7 @@ const Home = () => {
                 <Button asChild size="lg" className="bg-white text-spiritual-maroon hover:bg-spiritual-ivory font-cinzel text-lg px-8">
                   <Link to="/temples">Explore Temples</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-cinzel text-lg px-8">
+                <Button asChild size="lg" className="bg-white/80 text-spiritual-maroon hover:bg-white font-cinzel text-lg px-8 transition-all">
                   <Link to="/puja-booking">Book Pooja</Link>
                 </Button>
               </motion.div>
@@ -87,7 +169,7 @@ const Home = () => {
         </div>
         
         {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10">
           <div className="flex flex-col items-center">
             <span className="text-sm mb-2">Scroll to explore</span>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -222,9 +304,10 @@ const Home = () => {
                 link: "/puja-booking",
                 icon: (
                   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 14C8.68629 14 6 11.3137 6 8C6 4.68629 8.68629 2 12 2C15.3137 2 18 4.68629 18 8C18 11.3137 15.3137 14 12 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M12 14V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M9 18H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 7.5C12 9.5 10.5 11 8.5 11C6.5 11 5 9.5 5 7.5C5 5.5 6.5 4 8.5 4C10.5 4 12 5.5 12 7.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M8.5 14C5.46243 14 3 16.4624 3 19.5V20H14V19.5C14 16.4624 11.5376 14 8.5 14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M17 11L19 13L21 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M19 13V4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 )
               },
@@ -240,7 +323,7 @@ const Home = () => {
                 )
               },
               {
-                title: "Temple Stay Bookings", 
+                title: "Stay Bookings", 
                 description: "Find accommodations near spiritual sites",
                 link: "/stay-bookings",
                 icon: (

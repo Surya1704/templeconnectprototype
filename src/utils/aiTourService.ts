@@ -1,5 +1,5 @@
 
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { getTempleById } from "@/data/mergeTemples";
 
 // Types for AI responses
@@ -52,6 +52,27 @@ export const getTempleTourPoints = (templeName: string): Record<string, string> 
       "Jyotirlinga": "This is one of the 12 special Shiva lingams across India believed to be self-manifested and representing infinite nature.",
       "Gyan Vapi Well": "Located in the temple complex, this well is considered to hold the knowledge of the universe.",
       "Shringar Gauri Shrine": "This shrine within the complex is dedicated to Goddess Parvati in her beautified form."
+    },
+    "Somnath Temple": {
+      "Main Shrine": "Houses the sacred Jyotirlinga of Lord Somnath, one of the 12 sacred Jyotirlingas in India.",
+      "Prabhas Patan Museum": "Displays artifacts excavated from the ruins of the old temple, showcasing its rich historical significance.",
+      "Bhalka Tirth": "The sacred site where Lord Krishna is believed to have been accidentally wounded by a hunter's arrow.",
+      "Surya Temple": "An ancient temple dedicated to the Sun God, showcasing exquisite architectural details.",
+      "Dehotsarga": "The place where Lord Krishna is said to have left his mortal body and ascended to his heavenly abode."
+    },
+    "Kedarnath Temple": {
+      "Main Sanctum": "Houses the conical shaped Shiva Lingam, which is the main object of worship and one of the 12 Jyotirlingas.",
+      "Mandakini River": "The sacred river that flows near the temple, believed to absolve devotees of their sins.",
+      "Bhairav Temple": "Dedicated to Bhairava, a fierce manifestation of Lord Shiva who is considered the protector of the area.",
+      "Gandhi Sarovar": "A glacial lake located at an altitude of about 3,900 meters, named after Mahatma Gandhi.",
+      "Chorabari Tal": "A glacier-fed lake that offers spectacular views of the surrounding Himalayan peaks."
+    },
+    "Mahakaleshwar Temple": {
+      "Bhasm Aarti": "The famous ritual where Lord Shiva is worshipped with holy ash at dawn, unique to this temple.",
+      "Nandi Hall": "Houses a large statue of Nandi, the bull mount of Lord Shiva, facing the main shrine.",
+      "Omkareshwar Setu": "The bridge connecting the temple to the main city area, offering beautiful views.",
+      "Underground Garbhagriha": "The unique underground sanctum sanctorum where the Jyotirlinga resides.",
+      "Temple Tank": "The sacred water body where devotees take ritual baths before entering the temple."
     }
   };
   
@@ -81,7 +102,7 @@ export const generateAITour = async (templeName: string, templateTags: string[],
       {
         title: specificPoint,
         description: pointDescription,
-        imageUrl: `/lovable-uploads/${Math.floor(Math.random() * 6) + 1}.png`
+        imageUrl: `/lovable-uploads/${Math.floor(Math.random() * 12) + 1}.png`
       },
       {
         title: "Historical Context",
@@ -92,12 +113,28 @@ export const generateAITour = async (templeName: string, templateTags: string[],
     ];
   }
   
+  // Generate custom content based on temple name
+  let customDescription = "";
+  let customImage = "";
+  
+  if (templeName.toLowerCase().includes("somnath")) {
+    customDescription = "Somnath Temple is the first among the twelve Jyotirlingas, located in Prabhas Patan, Gujarat. The temple has been destroyed and rebuilt multiple times throughout history.";
+    customImage = "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png";
+  } else if (templeName.toLowerCase().includes("kedarnath")) {
+    customDescription = "Kedarnath Temple is located in the Himalayan ranges at an altitude of 3,583 meters. It is one of the most remote Jyotirlingas and remains closed during winter months due to heavy snowfall.";
+    customImage = "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png";
+  } else if (templeName.toLowerCase().includes("kashi") || templeName.toLowerCase().includes("vishwanath")) {
+    customDescription = "The Kashi Vishwanath Temple is one of the most famous Hindu temples dedicated to Lord Shiva, located in Varanasi. It stands on the western bank of the holy river Ganga.";
+    customImage = "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png";
+  }
+  
   // Return general tour if no specific point
   return [
     {
       title: `Welcome to ${templeName}`,
-      description: `${templeName} is a beautiful temple known for ${templateTags.slice(0, 2).join(" and ")}. 
-      As you begin your tour, take a moment to appreciate the stunning architecture and spiritual atmosphere.`
+      description: customDescription || `${templeName} is a beautiful temple known for ${templateTags.slice(0, 2).join(" and ")}. 
+      As you begin your tour, take a moment to appreciate the stunning architecture and spiritual atmosphere.`,
+      imageUrl: customImage || undefined
     },
     {
       title: "Historical Background",
@@ -196,4 +233,37 @@ export const getTempleDressCode = async (templeName: string, templeType: string)
   }
 
   return baseRecommendations;
+};
+
+// Create a function to simulate location-based tours for Jyotirlingas
+export const getJyotirlinga = (name: string): any => {
+  const jyotirlingas = [
+    {
+      id: "somnath",
+      name: "Somnath",
+      location: "Gujarat",
+      description: "First Jyotirlinga, destroyed and rebuilt multiple times throughout history",
+      image: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png",
+      history: "The Somnath temple has been destroyed and reconstructed several times in the past. The present temple was reconstructed in the Chalukya style of Hindu temple architecture and completed in 1951."
+    },
+    {
+      id: "mallikarjuna",
+      name: "Mallikarjuna",
+      location: "Andhra Pradesh",
+      description: "Located on Sri Sailam mountain, one of the 12 Jyotirlingas",
+      image: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png",
+      history: "The Mallikarjuna Temple is situated on a mountain on the bank of the Krishna river. The temple represents the southern Jyotirlinga of Lord Shiva."
+    },
+    {
+      id: "mahakaleshwar",
+      name: "Mahakaleshwar",
+      location: "Madhya Pradesh",
+      description: "One of the most sacred Jyotirlingas, situated in Ujjain",
+      image: "/lovable-uploads/b668b893-dac5-4d67-9be0-425045941429.png",
+      history: "The Mahakaleshwar Jyotirlinga is a revered shrine dedicated to Lord Shiva and one of the twelve Jyotirlingas. It is located in the ancient city of Ujjain."
+    },
+    // Add more Jyotirlinga details here
+  ];
+
+  return jyotirlingas.find(j => j.name.toLowerCase() === name.toLowerCase()) || jyotirlingas[0];
 };
