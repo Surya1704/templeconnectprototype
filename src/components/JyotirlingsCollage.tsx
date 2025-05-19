@@ -231,24 +231,10 @@ const JyotirlingsCollage: React.FC = () => {
           )}>
             {/* Temple image */}
             <div className="w-full h-full relative">
-              {/* Fallback temple icon if image fails to load */}
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-spiritual-sandstone to-spiritual-ivory">
-                <div className="w-16 h-20 relative">
-                  <div className="absolute inset-0 bg-spiritual-ochre/50 rounded-t-2xl"></div>
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-12 h-12 rounded-t-full bg-spiritual-maroon/40"></div>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5 h-5 rounded-full bg-spiritual-gold/60"></div>
-                </div>
-              </div>
-              
-              {/* Actual temple image */}
               <img 
                 src={jyotirlinga.imageSrc} 
                 alt={`${jyotirlinga.name} Temple`} 
                 className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => {
-                  // If image fails to load, show the default icon (already visible)
-                  e.currentTarget.style.opacity = '0';
-                }}
               />
               
               {/* Overlay with temple name */}
@@ -276,6 +262,30 @@ const JyotirlingsCollage: React.FC = () => {
       <div className="absolute top-5 left-5 w-40 h-40 rounded-full bg-spiritual-gold/5 blur-2xl"></div>
       <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-spiritual-maroon/5 blur-3xl"></div>
       <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-spiritual-ochre/5 blur-xl"></div>
+      
+      {/* Sanskrit Animation - floating characters */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {Array.from({ length: 15 }).map((_, i) => (
+          <motion.div
+            key={`sanskrit-${i}`}
+            className="absolute text-spiritual-gold/20 text-3xl font-bold"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `-5%`,
+            }}
+            animate={{
+              left: ["0%", "110%"],
+            }}
+            transition={{
+              duration: 30 + Math.random() * 40,
+              repeat: Infinity,
+              delay: Math.random() * 20,
+            }}
+          >
+            {["ॐ", "॥", "श्री", "नमः", "शिवाय", "हरिः", "ॐ"][Math.floor(Math.random() * 7)]}
+          </motion.div>
+        ))}
+      </div>
       
       {/* Animated particle effect for divine ambiance */}
       {Array.from({ length: 12 }).map((_, i) => (

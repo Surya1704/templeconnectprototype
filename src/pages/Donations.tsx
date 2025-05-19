@@ -7,7 +7,19 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { BadgeIndianRupee, Building, Users, CheckCircle2, BadgeDollarSign, CreditCard, Banknote, Smartphone, Globe } from "lucide-react";
+import { 
+  BadgeIndianRupee, 
+  Building, 
+  Users, 
+  CheckCircle2, 
+  BadgeDollarSign, 
+  CreditCard, 
+  Banknote, 
+  Smartphone, 
+  Globe, 
+  Bitcoin,
+  HandPraying
+} from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { temples } from "@/data/temples";
@@ -16,7 +28,7 @@ type DonationFormValues = {
   templeId: string;
   amount: string;
   customAmount: string;
-  paymentMethod: "card" | "upi" | "netbanking" | "wallet" | "international";
+  paymentMethod: "card" | "upi" | "netbanking" | "wallet" | "international" | "crypto";
 };
 
 const DonationPage = () => {
@@ -222,6 +234,16 @@ const DonationPage = () => {
                               <FormLabel className="font-normal cursor-pointer flex items-center">
                                 <Banknote className="h-5 w-5 mr-2 text-orange-600" />
                                 Net Banking
+                              </FormLabel>
+                            </FormItem>
+                            
+                            <FormItem className="flex items-center space-x-3 space-y-0 border rounded-md p-4">
+                              <FormControl>
+                                <RadioGroupItem value="crypto" />
+                              </FormControl>
+                              <FormLabel className="font-normal cursor-pointer flex items-center">
+                                <Bitcoin className="h-5 w-5 mr-2 text-orange-600" />
+                                Cryptocurrency
                               </FormLabel>
                             </FormItem>
                             
