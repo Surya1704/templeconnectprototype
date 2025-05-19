@@ -215,7 +215,21 @@ const Mooshak: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mantra appears after long stillness on mobile too */}
+        {/* Label for Mooshak on mobile */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1 }}
+          className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap"
+        >
+          <div className="bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full">
+            <p className="text-spiritual-gold font-cinzel text-sm drop-shadow-[0_0_2px_rgba(255,255,255,0.7)]">
+              Mooshak: Lord Ganesha's Divine Companion
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Mantra appears on mobile too */}
         <AnimatePresence>
           {showMantra && (
             <motion.div
@@ -480,6 +494,20 @@ const Mooshak: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Fixed label that always shows regardless of stillness */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap"
+        >
+          <div className="bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full">
+            <p className="text-spiritual-gold font-cinzel text-sm drop-shadow-[0_0_2px_rgba(255,255,255,0.7)]">
+              Mooshak: Lord Ganesha's Divine Companion
+            </p>
+          </div>
+        </motion.div>
 
         {/* Mantra that appears on longer stillness */}
         <AnimatePresence>
