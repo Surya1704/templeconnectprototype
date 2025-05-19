@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import JyotirlingsCollage from "@/components/JyotirlingsCollage";
+import Mooshak from "@/components/Mooshak";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -99,12 +100,15 @@ const Home = () => {
   return (
     <div className="min-h-screen overflow-hidden">
       {/* Hero section */}
-      <section className="relative min-h-screen bg-gradient-to-b from-spiritual-maroon via-spiritual-ochre to-spiritual-saffron overflow-hidden">
+      <section className="relative min-h-screen bg-gradient-to-b from-spiritual-maroon via-spiritual-ochre to-spiritual-saffron overflow-hidden hero-section">
         {/* Sanskrit text animation canvas */}
         <canvas 
           ref={canvasRef} 
           className="absolute inset-0 z-0 w-full h-full"
         />
+
+        {/* Mooshak cursor follower */}
+        <Mooshak />
 
         {/* Content */}
         <div className="absolute inset-0 flex items-center justify-center z-10">
