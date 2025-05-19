@@ -3,136 +3,184 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import TempleCollage from "@/components/TempleCollage";
-import { allTemples } from "@/data/mergeTemples";
+import JyotirlingsCollage from "@/components/JyotirlingsCollage";
 
 const Home = () => {
   const navigate = useNavigate();
-  const featuredTemples = allTemples.slice(0, 6);
   
-  // Temple data with proper image paths
-  const templeData = [
-    { name: "Golden Temple", image: "/public/assets/temples/golden-temple.png", slug: "golden-temple", location: "Amritsar, Punjab" },
-    { name: "Meenakshi Temple", image: "/public/assets/temples/meenakshi-temple.png", slug: "meenakshi-temple", location: "Madurai, Tamil Nadu" },
-    { name: "Kedarnath", image: "/public/assets/temples/kedarnath-temple.png", slug: "kedarnath", location: "Uttarakhand" },
-    { name: "Jagannath Puri", image: "/public/assets/temples/jagannath-puri.png", slug: "jagannath-puri", location: "Odisha" },
-    { name: "Kashi Vishwanath", image: "/public/assets/temples/kashi-vishwanath.png", slug: "kashi-vishwanath", location: "Varanasi, Uttar Pradesh" },
-    { name: "Tirupati Balaji", image: "/public/assets/temples/tirupati-balaji.png", slug: "tirupati-balaji", location: "Andhra Pradesh" },
-    { name: "Badrinath", image: "/public/assets/temples/badrinath-temple.png", slug: "badrinath", location: "Uttarakhand" },
-    { name: "Brihadeeswara", image: "/public/assets/temples/brihadeeswara-temple.png", slug: "brihadeeswara", location: "Thanjavur, Tamil Nadu" },
+  // Jyotirlinga data for the featured section
+  const jyotirlingsData = [
+    { name: "Somnath", image: "/public/assets/temples/golden-temple.png", slug: "somnath", location: "Gujarat" },
+    { name: "Mallikarjuna", image: "/public/assets/temples/meenakshi-temple.png", slug: "mallikarjuna", location: "Andhra Pradesh" },
+    { name: "Mahakaleshwar", image: "/public/assets/temples/kedarnath-temple.png", slug: "mahakaleshwar", location: "Madhya Pradesh" },
+    { name: "Omkareshwar", image: "/public/assets/temples/jagannath-puri.png", slug: "omkareshwar", location: "Madhya Pradesh" },
+    { name: "Kedarnath", image: "/public/assets/temples/kashi-vishwanath.png", slug: "kedarnath", location: "Uttarakhand" },
+    { name: "Bhimashankar", image: "/public/assets/temples/tirupati-balaji.png", slug: "bhimashankar", location: "Maharashtra" },
+    { name: "Kashi Vishwanath", image: "/public/assets/temples/badrinath-temple.png", slug: "kashi-vishwanath", location: "Uttar Pradesh" },
+    { name: "Trimbakeshwar", image: "/public/assets/temples/brihadeeswara-temple.png", slug: "trimbakeshwar", location: "Maharashtra" },
   ];
 
   return (
     <div className="min-h-screen overflow-hidden">
       {/* Hero section */}
-      <section className="relative bg-gradient-to-b from-spiritual-sandstone/20 to-spiritual-ivory/30 py-16 md:py-24">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute inset-0 z-0 overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNTQgMjRjMCAxNC40LTExLjYgMjYtMjYgMjZTMiAzOC40IDIgMjRDMiA5LjYgMTMuNiAtMiAyOCAtMnMyNiAxMS42IDI2IDI2eiIgZmlsbD0iI2M3NWIxYiIgZmlsbC1vcGFjaXR5PSIwLjAzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=')] opacity-30" />
-        </motion.div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h1 
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-cinzel font-bold text-spiritual-maroon mb-6"
-            >
-              Connect with<br />
-              <span className="text-spiritual-ochre">Sacred India</span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xl md:text-2xl text-spiritual-maroon/80 mb-8"
-            >
-              Discover temples, book darshan, order prasad, and<br className="hidden md:block" />
-              connect with spiritual traditions seamlessly
-            </motion.p>
-            
+      <section className="relative min-h-screen bg-gradient-to-b from-spiritual-maroon via-spiritual-ochre to-spiritual-saffron overflow-hidden">
+        {/* Content */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="container mx-auto px-6 py-24 text-center">
             <motion.div
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="max-w-4xl mx-auto"
             >
-              <Link to="/temples" className="px-8 py-3 bg-spiritual-saffron text-white rounded-lg font-medium shadow-lg hover:bg-spiritual-ochre transition-colors duration-300">
-                Find Temples
-              </Link>
+              <motion.div 
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="mb-6"
+              >
+                <div className="w-24 h-24 mx-auto mb-6">
+                  <div className="w-full h-full rounded-full bg-spiritual-gold/20 p-4 animate-glow">
+                    <div className="w-full h-full rounded-full bg-spiritual-gold/30 p-3">
+                      <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+                        <span className="font-cinzel text-2xl text-spiritual-maroon">ॐ</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
               
-              <Link to="/puja-booking" className="px-8 py-3 bg-white text-spiritual-maroon border border-spiritual-maroon/30 rounded-lg font-medium shadow-sm hover:bg-spiritual-maroon hover:text-white transition-colors duration-300">
-                Book Puja Online
-              </Link>
+              <motion.h1 
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                className="text-5xl md:text-7xl font-cinzel font-bold text-white mb-6 drop-shadow-lg"
+              >
+                Temple<span className="text-spiritual-gold">Connect</span>
+              </motion.h1>
+              
+              <motion.p 
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-xl md:text-2xl text-spiritual-ivory/90 mb-10 max-w-3xl mx-auto"
+              >
+                Your sacred journey to India's divine temples begins here.
+                Explore, worship, and connect with centuries of spiritual heritage.
+              </motion.p>
+              
+              <motion.div 
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="flex flex-col sm:flex-row justify-center gap-4"
+              >
+                <Button asChild size="lg" className="bg-white text-spiritual-maroon hover:bg-spiritual-ivory font-cinzel text-lg px-8">
+                  <Link to="/temples">Explore Temples</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-cinzel text-lg px-8">
+                  <Link to="/puja-booking">Book Pooja</Link>
+                </Button>
+              </motion.div>
             </motion.div>
           </div>
         </div>
-      </section>
-      
-      {/* Temple Collage Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-b from-spiritual-ivory/10 to-spiritual-sandstone/20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon">Discover Sacred Temples</h2>
-            <p className="mt-3 text-spiritual-maroon/70">Explore India's divine destinations with our interactive temple gallery</p>
-          </div>
-          
-          <div className="relative">
-            <TempleCollage />
+        
+        {/* Scroll indicator */}
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+          <div className="flex flex-col items-center">
+            <span className="text-sm mb-2">Scroll to explore</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5L12 19M12 19L19 12M12 19L5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
         </div>
       </section>
 
-      {/* Featured Temples Section with Real PNG Images */}
+      {/* Jyotirlings Collage Section */}
+      <section className="py-12 md:py-20 bg-gradient-to-b from-spiritual-ivory/10 to-spiritual-sandstone/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon mb-4"
+            >
+              The 12 Sacred Jyotirlingas
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mt-3 text-spiritual-maroon/70 max-w-3xl mx-auto"
+            >
+              Discover the divine manifestations of Lord Shiva across India
+            </motion.p>
+          </div>
+          
+          <div className="relative">
+            <JyotirlingsCollage />
+          </div>
+          
+          <div className="text-center mt-8">
+            <Button asChild className="bg-spiritual-maroon hover:bg-spiritual-maroon/90 transition-all">
+              <Link to="/jyotirlingas">Learn More About Jyotirlingas</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Jyotirlingas Section */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon">Featured Temples</h2>
-            <p className="mt-3 text-spiritual-maroon/70">Explore some of our most beloved spiritual destinations</p>
+            <h2 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon">Featured Jyotirlingas</h2>
+            <p className="mt-3 text-spiritual-maroon/70">Explore some of the most revered Jyotirlingas in India</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {templeData.map((temple, index) => (
+            {jyotirlingsData.map((jyotirlinga, index) => (
               <motion.div
-                key={temple.slug}
+                key={jyotirlinga.slug}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
                 className="bg-spiritual-ivory rounded-lg overflow-hidden shadow-md transition-all duration-300 cursor-pointer"
-                onClick={() => navigate(`/temples/${temple.slug}`)}
+                onClick={() => navigate(`/temple/${jyotirlinga.slug}`)}
               >
-                <div className="h-56 relative overflow-hidden bg-spiritual-sandstone/30">
+                <div className="h-56 relative overflow-hidden bg-spiritual-maroon/10">
                   <div className="absolute inset-0 flex items-center justify-center p-6">
-                    <img 
-                      src={temple.image} 
-                      alt={temple.name} 
-                      className="object-contain max-h-full max-w-full"
-                    />
+                    <div className="relative w-24 h-32">
+                      {/* Stylized temple icon */}
+                      <div className="absolute inset-0 bg-spiritual-gold/30 rounded-t-xl"></div>
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-16 rounded-t-full bg-spiritual-ochre/40"></div>
+                      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-spiritual-maroon/30"></div>
+                      <div className="absolute top-6 left-1/2 -translate-x-1/2 text-center text-spiritual-maroon font-bold">
+                        ॐ
+                      </div>
+                    </div>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   <div className="absolute bottom-3 left-4 text-white">
-                    <h3 className="font-cinzel font-bold text-xl">{temple.name}</h3>
-                    <p className="text-sm opacity-90">{temple.location}</p>
+                    <h3 className="font-cinzel font-bold text-xl">{jyotirlinga.name}</h3>
+                    <p className="text-sm opacity-90">{jyotirlinga.location}</p>
                   </div>
                 </div>
                 
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-3">
                     <span className="bg-spiritual-saffron/10 text-spiritual-maroon font-medium text-xs px-3 py-1 rounded-full">
-                      Sacred Site
+                      Jyotirlinga
                     </span>
                   </div>
                   
                   <Link 
-                    to={`/temples/${temple.slug}`}
+                    to={`/temple/${jyotirlinga.slug}`}
                     className="mt-2 inline-flex items-center text-spiritual-ochre hover:text-spiritual-saffron"
                   >
                     <span>Explore</span>
@@ -229,64 +277,13 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Testimonials */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon">Devotee Stories</h2>
-            <p className="mt-3 text-spiritual-maroon/70">Hear from pilgrims who've used TempleConnect</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Radha Sharma",
-                location: "Mumbai",
-                quote: "TempleConnect made our family pilgrimage to Varanasi so much smoother. We booked all our temple visits in advance and avoided the long queues."
-              },
-              {
-                name: "Karthik Iyer",
-                location: "Bangalore",
-                quote: "I was able to arrange a special puja for my parents' anniversary at Tirupati Temple from abroad. The service was excellent and they sent me videos of the ceremony."
-              },
-              {
-                name: "Anjali Patel",
-                location: "Ahmedabad",
-                quote: "The prasad delivery service is a blessing for my elderly parents who can't travel easily. They receive authentic temple prasad regularly."
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                className="bg-spiritual-ivory p-6 rounded-lg"
-              >
-                <div className="text-spiritual-saffron mb-4">
-                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 11H6C5.44772 11 5 10.5523 5 10V6C5 5.44772 5.44772 5 6 5H10C10.5523 5 11 5.44772 11 6V10C11 10.5523 10.5523 11 10 11Z" fill="currentColor"/>
-                    <path d="M18 11H14C13.4477 11 13 10.5523 13 10V6C13 5.44772 13.4477 5 14 5H18C18.5523 5 19 5.44772 19 6V10C19 10.5523 18.5523 11 18 11Z" fill="currentColor"/>
-                    <path d="M10 19H6C5.44772 19 5 18.5523 5 18V14C5 13.4477 5.44772 13 6 13H10C10.5523 13 11 13.4477 11 14V18C11 18.5523 10.5523 19 10 19Z" fill="currentColor"/>
-                    <path d="M18 19H14C13.4477 19 13 18.5523 13 18V14C13 13.4477 13.4477 13 14 13H18C18.5523 13 19 13.4477 19 14V18C19 18.5523 18.5523 19 18 19Z" fill="currentColor"/>
-                  </svg>
-                </div>
-                <p className="italic text-gray-600 mb-4">{testimonial.quote}</p>
-                <div className="font-medium text-spiritual-maroon">{testimonial.name}</div>
-                <div className="text-sm text-gray-500">{testimonial.location}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
       {/* Call To Action */}
       <section className="py-16 bg-gradient-to-r from-spiritual-maroon to-spiritual-ochre text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-cinzel font-bold mb-6">Begin Your Spiritual Journey Today</h2>
           <p className="text-xl max-w-3xl mx-auto mb-8 opacity-90">TempleConnect brings ancient traditions and modern convenience together, making your spiritual journey seamless and memorable.</p>
-          <Link to="/temples" className="px-8 py-3 bg-white text-spiritual-maroon rounded-lg font-medium shadow-lg hover:bg-spiritual-ivory transition-colors duration-300">
-            Explore Temples
+          <Link to="/jyotirlingas" className="px-8 py-3 bg-white text-spiritual-maroon rounded-lg font-medium shadow-lg hover:bg-spiritual-ivory transition-colors duration-300">
+            Explore Jyotirlingas
           </Link>
         </div>
       </section>
