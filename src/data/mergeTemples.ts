@@ -5,6 +5,7 @@ import { extendedTemples2 } from './extendedTemples2';
 import { extendedTemples3 } from './extendedTemples3';
 import { extendedTemples4 } from './extendedTemples4';
 import { extendedTemples5 } from './extendedTemples5';
+import { templeDetails, TempleDetails } from './templeDetails';
 
 // This merges all the temple data into one array
 export const allTemples: Temple[] = [
@@ -45,6 +46,15 @@ export const getTempleById = (id: string) => {
   }
   
   return temple;
+};
+
+// Function to get detailed information about a temple
+export const getTempleDetails = (id: string): TempleDetails | undefined => {
+  // If the ID is a name slug, convert it to numeric ID
+  const numericId = templeNameToIdMap[id.toLowerCase()] || id;
+  
+  // Find the temple details
+  return templeDetails[numericId];
 };
 
 // Function to filter temples by state
