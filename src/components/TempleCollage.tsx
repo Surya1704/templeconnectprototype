@@ -34,7 +34,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    path: "/temple/24" // Numeric ID
+    path: "/temple/1" // Numeric ID
   },
   {
     id: "temple-2",
@@ -47,7 +47,7 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    path: "/temple/25" // Numeric ID
+    path: "/temple/2" // Numeric ID
   },
   {
     id: "temple-3",
@@ -61,7 +61,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "3deg"
     },
-    path: "/temple/28" // Numeric ID
+    path: "/temple/3" // Numeric ID
   },
   {
     id: "temple-4",
@@ -75,7 +75,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    path: "/temple/29" // Numeric ID
+    path: "/temple/4" // Numeric ID
   },
   {
     id: "temple-5",
@@ -89,7 +89,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/30" // Numeric ID
+    path: "/temple/5" // Numeric ID
   },
   {
     id: "temple-6",
@@ -103,7 +103,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    path: "/temple/34" // Numeric ID
+    path: "/temple/6" // Numeric ID
   },
   {
     id: "temple-7",
@@ -116,7 +116,7 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    path: "/temple/31" // Numeric ID
+    path: "/temple/7" // Numeric ID
   },
   {
     id: "temple-8",
@@ -130,7 +130,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    path: "/temple/32" // Numeric ID
+    path: "/temple/8" // Numeric ID
   }
 ];
 
@@ -178,7 +178,7 @@ const TempleCollage: React.FC = () => {
                 {temple.description}
               </p>
               
-              <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="mt-2 opacity-100 transition-opacity duration-300">
                 <span className="text-xs px-2 py-1 bg-spiritual-gold/20 rounded-full text-spiritual-maroon font-medium">
                   Explore Now
                 </span>

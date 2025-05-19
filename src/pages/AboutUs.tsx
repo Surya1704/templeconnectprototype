@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -160,7 +161,7 @@ const AboutUs = () => {
         </div>
       </section>
       
-      {/* Our Founder Section with Link - Keeping founder image as requested */}
+      {/* Fix the Founder image display in aboutUs page */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
@@ -183,7 +184,7 @@ const AboutUs = () => {
                 <div className="w-full md:w-1/3">
                   <div className="rounded-xl overflow-hidden border-4 border-white shadow-lg">
                     <img 
-                      src="/public/lovable-uploads/79f0f7ee-07d3-44a6-a1b9-3e35e6530e64.png"
+                      src="/lovable-uploads/79f0f7ee-07d3-44a6-a1b9-3e35e6530e64.png"
                       alt="Surya Rajesh - Founder" 
                       className="w-full h-auto"
                     />

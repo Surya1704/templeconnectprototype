@@ -37,10 +37,13 @@ export const getTempleById = (id: string) => {
   // If the ID is a name slug, convert it to numeric ID
   const numericId = templeNameToIdMap[id.toLowerCase()] || id;
   
+  // Find the temple by ID
   const temple = allTemples.find((temple) => temple.id === numericId);
+  
   if (!temple) {
-    console.warn(`Temple with ID ${id} not found. Available IDs: ${allTemples.slice(0, 5).map(t => t.id).join(', ')}...`);
+    console.warn(`Temple with ID ${id} (mapped to ${numericId}) not found. Available IDs: ${allTemples.slice(0, 5).map(t => t.id).join(', ')}...`);
   }
+  
   return temple;
 };
 

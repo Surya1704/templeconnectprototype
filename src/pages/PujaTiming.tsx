@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Calendar, Clock, MapPin, Bell, Calendar as CalendarIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -289,7 +288,7 @@ const TempleTimingCard = ({
   );
 };
 
-// Individual Puja Row Component
+// Individual Puja Row Component - Fix to always show buttons
 const PujaRow = ({ 
   puja, 
   onReminder 
@@ -328,7 +327,7 @@ const PujaRow = ({
         asChild 
         className={puja.isPremium ? "bg-amber-500 hover:bg-amber-600" : "bg-orange-500 hover:bg-orange-600"}
       >
-        <Link to="/pooja-booking">
+        <Link to="/puja-booking">
           {puja.isPremium ? "Book VIP" : "Book"}
         </Link>
       </Button>

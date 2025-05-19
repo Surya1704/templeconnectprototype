@@ -13,7 +13,7 @@ const Founder = () => {
           className="bg-white rounded-2xl shadow-xl overflow-hidden"
         >
           <div className="grid md:grid-cols-2 gap-0">
-            {/* Founder Image Section */}
+            {/* Founder Image Section - Fix the image path */}
             <div className="bg-gradient-to-br from-spiritual-maroon/10 to-spiritual-saffron/10 p-8 flex items-center justify-center">
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -22,7 +22,7 @@ const Founder = () => {
                 className="rounded-2xl overflow-hidden shadow-lg border-4 border-white"
               >
                 <img
-                  src="/public/lovable-uploads/79f0f7ee-07d3-44a6-a1b9-3e35e6530e64.png"
+                  src="/lovable-uploads/79f0f7ee-07d3-44a6-a1b9-3e35e6530e64.png"
                   alt="Surya Rajesh - Founder of TempleConnect"
                   className="w-full h-auto object-cover"
                 />

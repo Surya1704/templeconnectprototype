@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +20,7 @@ interface JyotirlingsCollageItem {
   imageSrc: string;
 }
 
-// Data for the 12 Jyotirlingas with updated paths using numeric IDs matching our database
+// Data for the 12 Jyotirlingas with paths using name-based routing
 const jyotirlingsData: JyotirlingsCollageItem[] = [
   {
     id: "jyotirlinga-1",
@@ -35,7 +34,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    path: "/temple/24", // Using numeric ID
+    path: "/temple/24", // Using numeric ID that exists in database
     imageSrc: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png"
   },
   {
@@ -261,7 +260,7 @@ const JyotirlingsCollage: React.FC = () => {
                   {jyotirlinga.description}
                 </p>
                 
-                <div className="mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="opacity-100 transition-opacity duration-300">
                   <span className="text-xs px-2 py-1 bg-spiritual-gold/30 rounded-full text-white font-medium">
                     Explore Now
                   </span>
