@@ -1,8 +1,11 @@
 
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getTempleById } from "@/data/mergeTemples";
-import { CalendarDays, Clock, MapPin, Users, Info, Shirt, Landmark, Compass, Bus, Plane, Train } from "lucide-react";
+import { getTempleById, getTempleDetails } from "@/data/mergeTemples";
+import { 
+  CalendarDays, Clock, MapPin, Users, Shirt, 
+  Landmark, Compass, Bus, Plane, Train 
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -11,7 +14,10 @@ import { useToast } from "@/hooks/use-toast";
 import { Temple } from "@/data/temples";
 import GuidedTourButton from "@/components/GuidedTourButton";
 import TempleAttireInfo from "@/components/TempleAttireInfo";
-import { templeDetails, TempleDetails } from "@/data/templeDetails";
+import { TempleDetails } from "@/data/templeDetails";
+import TempleImageGallery from "@/components/TempleImageGallery";
+import MobileOptimizedLayout from "@/components/MobileOptimizedLayout";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const TempleDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,6 +27,7 @@ const TempleDetail = () => {
   const [notFound, setNotFound] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     // Reset state when ID changes
@@ -38,7 +45,7 @@ const TempleDetail = () => {
           if (templeData) {
             setTemple(templeData);
             // Get extended temple details if available
-            const detailedInfo = templeDetails[templeData.id];
+            const detailedInfo = getTempleDetails(id);
             if (detailedInfo) {
               setDetails(detailedInfo);
             }
@@ -118,16 +125,16 @@ const TempleDetail = () => {
     <div className="min-h-screen bg-spiritual-ivory/20 pb-16">
       {/* Temple Header */}
       <div className="bg-gradient-to-r from-spiritual-maroon to-spiritual-ochre text-white">
-        <div className="container mx-auto px-4 py-16">
+        <MobileOptimizedLayout className="py-8 md:py-16">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
               <div>
-                <h1 className="text-3xl md:text-4xl font-cinzel font-bold">{temple.name}</h1>
+                <h1 className="text-2xl md:text-4xl font-cinzel font-bold">{temple.name}</h1>
                 <div className="flex items-center mt-3 text-white/80">
                   <MapPin className="w-4 h-4 mr-1" />
                   <span>{temple.location}</span>
@@ -141,21 +148,31 @@ const TempleDetail = () => {
               </div>
             </div>
             
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-6 flex flex-wrap gap-2 md:gap-4">
               {temple.tags.map((tag) => (
-                <span key={tag} className="bg-white/10 rounded-full px-4 py-1.5 text-sm">
+                <span key={tag} className="bg-white/10 rounded-full px-3 py-1 text-sm">
                   {tag}
                 </span>
               ))}
             </div>
           </motion.div>
-        </div>
+        </MobileOptimizedLayout>
       </div>
       
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
+      <MobileOptimizedLayout className="py-6 md:py-8">
         <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Temple Images Gallery */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+          >
+            <TempleImageGallery templeId={temple.id} />
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {/* Left Column */}
             <div className="md:col-span-2">
               <motion.div 
@@ -164,7 +181,7 @@ const TempleDetail = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <Tabs defaultValue="about" className="mb-8">
-                  <TabsList className="grid grid-cols-4 mb-4">
+                  <TabsList className="grid grid-cols-2 sm:grid-cols-4 mb-4">
                     <TabsTrigger value="about">About</TabsTrigger>
                     <TabsTrigger value="history">History</TabsTrigger>
                     <TabsTrigger value="travel">Travel</TabsTrigger>
@@ -172,7 +189,7 @@ const TempleDetail = () => {
                   </TabsList>
                   
                   {/* About Tab */}
-                  <TabsContent value="about" className="bg-white rounded-xl shadow-sm p-6">
+                  <TabsContent value="about" className="bg-white rounded-xl shadow-sm p-4 md:p-6">
                     <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon mb-4">About {temple.name}</h2>
                     <p className="text-gray-700 leading-relaxed">
                       {details?.significance || temple.description || `${temple.name} is a beautiful religious site located in ${temple.location}. The temple attracts thousands of devotees every year who come to seek blessings and experience the spiritual ambiance of this sacred place.`}
@@ -240,7 +257,7 @@ const TempleDetail = () => {
                   </TabsContent>
                   
                   {/* History Tab */}
-                  <TabsContent value="history" className="bg-white rounded-xl shadow-sm p-6">
+                  <TabsContent value="history" className="bg-white rounded-xl shadow-sm p-4 md:p-6">
                     <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon mb-4">History of {temple.name}</h2>
                     {details?.history ? (
                       <div className="text-gray-700 leading-relaxed space-y-4">
@@ -263,7 +280,7 @@ const TempleDetail = () => {
                   </TabsContent>
                   
                   {/* Travel Tab */}
-                  <TabsContent value="travel" className="bg-white rounded-xl shadow-sm p-6">
+                  <TabsContent value="travel" className="bg-white rounded-xl shadow-sm p-4 md:p-6">
                     <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon mb-4">How to Reach {temple.name}</h2>
                     
                     <div className="space-y-4">
@@ -331,7 +348,7 @@ const TempleDetail = () => {
                   </TabsContent>
                   
                   {/* Visiting Info Tab */}
-                  <TabsContent value="visit" className="bg-white rounded-xl shadow-sm p-6">
+                  <TabsContent value="visit" className="bg-white rounded-xl shadow-sm p-4 md:p-6">
                     <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon mb-4">Visiting Information</h2>
                     
                     <div className="space-y-4">
@@ -388,7 +405,7 @@ const TempleDetail = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
-                  className="mb-8 p-6 bg-white rounded-xl shadow-sm"
+                  className="mb-8 p-4 md:p-6 bg-white rounded-xl shadow-sm"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon">AI Features</h2>
@@ -411,14 +428,14 @@ const TempleDetail = () => {
             </div>
             
             {/* Right Column */}
-            <div>
+            <div className={`${isMobile ? "order-first mb-6" : ""}`}>
               <motion.div 
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: isMobile ? 0 : 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="bg-white rounded-xl shadow-sm overflow-hidden sticky top-24"
               >
-                <div className="p-6">
+                <div className="p-4 md:p-6">
                   <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon mb-4">Book Your Visit</h2>
                   
                   <div className="flex items-center justify-between mb-4">
@@ -448,17 +465,12 @@ const TempleDetail = () => {
                   >
                     Order Prasad Online
                   </Button>
-                  
-                  <div className="mt-6 bg-spiritual-saffron/5 rounded-lg p-4 text-sm text-gray-600">
-                    <p className="mb-2 font-medium text-spiritual-maroon">COVID-19 Information</p>
-                    <p>Temperature checks and masks required. Please check current guidelines.</p>
-                  </div>
                 </div>
               </motion.div>
             </div>
           </div>
         </div>
-      </div>
+      </MobileOptimizedLayout>
     </div>
   );
 };

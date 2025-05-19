@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Search, Filter, ImageIcon, Upload } from "lucide-react";
+import { Search, Filter, ImageIcon, Upload, Check, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
   Dialog,
@@ -11,6 +11,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import MobileOptimizedLayout from "@/components/MobileOptimizedLayout";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { motion } from "framer-motion";
 
 const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -20,23 +23,25 @@ const Gallery = () => {
   const [imageDescription, setImageDescription] = useState("");
   const [imageCategory, setImageCategory] = useState("Architecture");
   const [imageLocation, setImageLocation] = useState("");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const isMobile = useIsMobile();
   
-  // Gallery items without images
+  // Gallery items with actual images
   const galleryItems = [
     {
       id: 1,
       title: "Varanasi Kashi Vishwanath Temple",
       category: "Architecture",
       location: "Uttar Pradesh",
-      color: "bg-spiritual-maroon/80",
-      status: "approved" // Adding status to each item
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg",
+      status: "approved"
     },
     {
       id: 2,
       title: "Tirupati Balaji Temple",
       category: "Architecture",
       location: "Andhra Pradesh",
-      color: "bg-spiritual-saffron/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg",
       status: "approved"
     },
     {
@@ -44,7 +49,7 @@ const Gallery = () => {
       title: "Golden Temple During Festival",
       category: "Festival",
       location: "Punjab",
-      color: "bg-amber-500/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg",
       status: "approved"
     },
     {
@@ -52,7 +57,7 @@ const Gallery = () => {
       title: "Meenakshi Temple Rituals",
       category: "Rituals",
       location: "Tamil Nadu",
-      color: "bg-emerald-600/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a90-meenakshirituals.jpg",
       status: "approved"
     },
     {
@@ -60,7 +65,7 @@ const Gallery = () => {
       title: "Lord Jagannath Deity",
       category: "Deities",
       location: "Odisha",
-      color: "bg-indigo-600/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a91-jagannath.jpg",
       status: "approved"
     },
     {
@@ -68,7 +73,7 @@ const Gallery = () => {
       title: "Somnath Temple Interior",
       category: "Interior",
       location: "Gujarat",
-      color: "bg-orange-500/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a32-somnath3.jpg",
       status: "approved"
     },
     {
@@ -76,7 +81,7 @@ const Gallery = () => {
       title: "Badrinath Temple",
       category: "Architecture",
       location: "Uttarakhand",
-      color: "bg-purple-600/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a92-badrinath.jpg",
       status: "approved"
     },
     {
@@ -84,7 +89,7 @@ const Gallery = () => {
       title: "Kedarnath Festival Celebration",
       category: "Festival",
       location: "Uttarakhand",
-      color: "bg-rose-500/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg",
       status: "approved"
     },
     {
@@ -92,7 +97,7 @@ const Gallery = () => {
       title: "Brihadeeswara Temple Rituals",
       category: "Rituals",
       location: "Tamil Nadu",
-      color: "bg-blue-600/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a93-brihadeeswara.jpg",
       status: "pending"
     },
     {
@@ -100,7 +105,7 @@ const Gallery = () => {
       title: "Konark Sun Temple",
       category: "Architecture",
       location: "Odisha",
-      color: "bg-teal-600/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a94-konark.jpg",
       status: "approved"
     },
     {
@@ -108,7 +113,7 @@ const Gallery = () => {
       title: "Rameshwaram Temple Interior",
       category: "Interior",
       location: "Tamil Nadu",
-      color: "bg-cyan-600/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a35-rameshwaram3.jpg",
       status: "approved"
     },
     {
@@ -116,14 +121,18 @@ const Gallery = () => {
       title: "Akshardham Temple Deity",
       category: "Deities",
       location: "Delhi",
-      color: "bg-pink-600/80",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a95-akshardham.jpg",
       status: "pending"
     }
   ];
   
+  // Display only approved images in the gallery
   const filteredItems = activeCategory === "all" 
     ? galleryItems.filter(item => item.status === "approved")
     : galleryItems.filter(item => item.category === activeCategory && item.status === "approved");
+    
+  // Also show pending images for admin interface
+  const pendingItems = galleryItems.filter(item => item.status === "pending");
     
   const categories = ["all", ...Array.from(new Set(galleryItems.map(item => item.category)))];
 
@@ -163,29 +172,41 @@ const Gallery = () => {
     }
 
     // In a real app, this would be an API call to upload the image
-    // For now, we just show a success message
     toast({
       title: "Image submitted for approval",
       description: "Thank you for your contribution. Your image will be reviewed before being added to the gallery.",
     });
     
-    // Reset form
+    // Reset form and close dialog
     setImageFile(null);
     setImagePreview(null);
     setImageDescription("");
     setImageLocation("");
+    setIsDialogOpen(false);
+  };
+
+  // Handle approval/rejection of pending images
+  const handleImageModeration = (id: number, approved: boolean) => {
+    toast({
+      title: approved ? "Image approved" : "Image rejected",
+      description: approved 
+        ? "The image has been added to the gallery" 
+        : "The image has been rejected and won't be displayed",
+    });
+    
+    // In a real app, this would update the database
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-2">Temple Gallery</h1>
+    <MobileOptimizedLayout className="py-6 md:py-8">
+      <h1 className="text-2xl md:text-3xl font-bold mb-2">Temple Gallery</h1>
       <p className="text-gray-600 mb-6">
-        Explore stunning descriptions of temples, festivals, rituals, and more
+        Explore stunning images of temples, festivals, rituals, and more
       </p>
       
-      <div className="flex flex-col md:flex-row justify-between items-start mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
         {/* Search & Filter */}
-        <div className="bg-white rounded-lg shadow p-4 mb-4 md:mb-0 w-full md:w-2/3">
+        <div className="bg-white rounded-lg shadow p-4 mb-4 md:mb-0 w-full">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-grow">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -223,9 +244,9 @@ const Gallery = () => {
         </div>
         
         {/* Upload Button */}
-        <Dialog>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-spiritual-maroon hover:bg-spiritual-maroon/90 flex items-center gap-2">
+            <Button className="bg-spiritual-maroon hover:bg-spiritual-maroon/90 flex items-center gap-2 whitespace-nowrap">
               <Upload className="h-4 w-4" />
               Upload Image
             </Button>
@@ -238,7 +259,7 @@ const Gallery = () => {
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleImageSubmit} className="space-y-4">
-              <div className="grid w-full max-w-sm items-center gap-1.5">
+              <div className="grid w-full items-center gap-1.5">
                 <label htmlFor="image-upload" className="text-sm font-medium">
                   Select Image
                 </label>
@@ -316,9 +337,13 @@ const Gallery = () => {
               </div>
               
               <div className="flex justify-end gap-2 pt-4">
-                <DialogTrigger asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogTrigger>
+                <Button 
+                  type="button" 
+                  variant="outline"
+                  onClick={() => setIsDialogOpen(false)}
+                >
+                  Cancel
+                </Button>
                 <Button type="submit" className="bg-spiritual-maroon hover:bg-spiritual-maroon/90">
                   Submit for Approval
                 </Button>
@@ -328,16 +353,24 @@ const Gallery = () => {
         </Dialog>
       </div>
       
-      {/* Featured Collection - Modified to always show explore button */}
+      {/* Featured Collection - Modified to be more mobile-friendly */}
       <div className="relative mb-10 rounded-lg overflow-hidden">
-        <div className="w-full h-64 bg-gradient-to-r from-orange-500 to-amber-500 flex items-center justify-center">
-          <ImageIcon className="h-16 w-16 text-white/40" />
+        <div className="w-full h-48 md:h-64 bg-gradient-to-r from-orange-500 to-amber-500 flex items-center justify-center">
+          {isMobile ? (
+            <ImageIcon className="h-16 w-16 text-white/40" />
+          ) : (
+            <img 
+              src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a96-diwali.jpg" 
+              alt="Festival of Lights" 
+              className="w-full h-full object-cover opacity-40"
+            />
+          )}
         </div>
-        <div className="absolute inset-0 p-8 flex flex-col justify-center text-white">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2">Featured Collection: Festival of Lights</h2>
-          <p className="mb-4 max-w-2xl">
+        <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-center text-white">
+          <h2 className="text-xl md:text-3xl font-bold mb-2">Featured Collection: Festival of Lights</h2>
+          <p className="mb-4 max-w-2xl text-sm md:text-base">
             Explore our curated collection of temple celebrations during Diwali, with stunning 
-            descriptions of temples illuminated by thousands of lamps.
+            images of temples illuminated by thousands of lamps.
           </p>
           <div>
             <Button variant="outline" className="border-white text-white hover:bg-white/20">
@@ -347,15 +380,86 @@ const Gallery = () => {
         </div>
       </div>
       
-      {/* Gallery Grid - Modified to always show details button */}
+      {/* Admin Section - Pending Approval Images */}
+      {pendingItems.length > 0 && (
+        <div className="mb-10">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold text-spiritual-maroon">Pending Approval</h2>
+            <span className="bg-yellow-100 text-yellow-800 text-xs py-1 px-2 rounded-full">
+              {pendingItems.length} pending
+            </span>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {pendingItems.map((item) => (
+              <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
+                <div className="relative h-48">
+                  <img 
+                    src={item.image} 
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.src = "/lovable-uploads/placeholder.svg";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-white text-sm mb-2">Pending Review</div>
+                      <div className="flex justify-center gap-2">
+                        <Button 
+                          size="sm" 
+                          className="bg-green-500 hover:bg-green-600 rounded-full h-8 w-8 p-0"
+                          onClick={() => handleImageModeration(item.id, true)}
+                        >
+                          <Check size={16} />
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="destructive"
+                          className="rounded-full h-8 w-8 p-0"
+                          onClick={() => handleImageModeration(item.id, false)}
+                        >
+                          <X size={16} />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="text-xs font-medium text-orange-500 mb-1">
+                    {item.category} • {item.location}
+                  </div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {/* Gallery Grid - With actual images */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredItems.map((item) => (
-          <div 
-            key={item.id} 
+        {filteredItems.map((item, index) => (
+          <motion.div 
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
             className="group relative overflow-hidden bg-gray-100 rounded-lg hover:shadow-lg transition-shadow"
           >
-            <div className={`w-full h-64 ${item.color} flex items-center justify-center`}>
-              <ImageIcon className="h-12 w-12 text-white/40" />
+            <div className="w-full h-64">
+              <img 
+                src={item.image} 
+                alt={item.title}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = "/lovable-uploads/placeholder.svg";
+                }}
+              />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-4">
               <div>
@@ -368,7 +472,7 @@ const Gallery = () => {
                 </Button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       
@@ -383,7 +487,7 @@ const Gallery = () => {
           Load More Items
         </Button>
       </div>
-    </div>
+    </MobileOptimizedLayout>
   );
 };
 
