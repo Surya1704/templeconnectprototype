@@ -27,6 +27,7 @@ import TemplePositionTool from "./pages/TemplePositionTool";
 import TempleEditor from "./pages/TempleEditor";
 import AI from "./pages/AI";
 import Layout from "./components/Layout";
+import Jyotirlingas from "./pages/Jyotirlingas";
 
 // Toast provider
 import { Toaster } from "./components/ui/sonner";
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/jyotirlingas/:id" element={<JyotirlingaDetail />} />
+        <Route path="/jyotirlingas" element={<Jyotirlingas />} />
         <Route path="/puja-timing" element={<PujaTiming />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/donations" element={<Donations />} />

@@ -159,13 +159,14 @@ const NavBar = () => {
           >
             <NavItem to="/" text="Home" active={location.pathname === '/'} />
             <NavItem to="/temples" text="Temples" active={location.pathname === '/temples'} />
+            <NavItem to="/jyotirlingas" text="Jyotirlingas" active={location.pathname === '/jyotirlingas'} />
             <NavItem to="/events" text="Events" active={location.pathname === '/events'} />
-            <NavItem to="/puja-timings" text="Puja" active={location.pathname === '/puja-timings'} />
+            <NavItem to="/puja-timing" text="Puja" active={location.pathname === '/puja-timing'} />
             <NavItem to="/prasad-booking" text="Prasad" active={location.pathname === '/prasad-booking'} />
             <NavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
             <NavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
             <NavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
-            <NavItem to="/stay-bookings" text="Stay" active={location.pathname === '/stay-bookings'} />
+            <NavItem to="/stay-booking" text="Stay" active={location.pathname === '/stay-booking'} />
             <NavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
             <NavItem to="/donations" text="Donate" active={location.pathname === '/donations'} />
           </motion.ul>
@@ -184,13 +185,14 @@ const NavBar = () => {
             <ul className="flex flex-col space-y-2">
               <MobileNavItem to="/" text="Home" active={location.pathname === '/'} />
               <MobileNavItem to="/temples" text="Temples" active={location.pathname === '/temples'} />
+              <MobileNavItem to="/jyotirlingas" text="Jyotirlingas" active={location.pathname === '/jyotirlingas'} />
               <MobileNavItem to="/events" text="Events" active={location.pathname === '/events'} />
-              <MobileNavItem to="/puja-timings" text="Puja Timings" active={location.pathname === '/puja-timings'} />
+              <MobileNavItem to="/puja-timing" text="Puja Timings" active={location.pathname === '/puja-timing'} />
               <MobileNavItem to="/prasad-booking" text="Prasad Booking" active={location.pathname === '/prasad-booking'} />
               <MobileNavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
               <MobileNavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
               <MobileNavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
-              <MobileNavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
+              <MobileNavItem to="/stay-booking" text="Stay Bookings" active={location.pathname === '/stay-booking'} />
               <MobileNavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
               <MobileNavItem to="/donations" text="Donations" active={location.pathname === '/donations'} />
               {/* Add Login to mobile menu */}
