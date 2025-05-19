@@ -18,9 +18,10 @@ interface JyotirlingsCollageItem {
     rotate?: string;
   };
   path: string;
+  imageSrc: string;
 }
 
-// Data for the 12 Jyotirlingas
+// Data for the 12 Jyotirlingas with images
 const jyotirlingsData: JyotirlingsCollageItem[] = [
   {
     id: "jyotirlinga-1",
@@ -34,7 +35,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    path: "/temple/somnath"
+    path: "/temple/somnath",
+    imageSrc: "/assets/temples/somnath.png"
   },
   {
     id: "jyotirlinga-2",
@@ -47,7 +49,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    path: "/temple/mallikarjuna"
+    path: "/temple/mallikarjuna",
+    imageSrc: "/assets/temples/mallikarjuna.png"
   },
   {
     id: "jyotirlinga-3",
@@ -61,7 +64,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 1,
       rotate: "3deg"
     },
-    path: "/temple/mahakaleshwar"
+    path: "/temple/mahakaleshwar",
+    imageSrc: "/assets/temples/mahakaleshwar.png"
   },
   {
     id: "jyotirlinga-4",
@@ -75,7 +79,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    path: "/temple/omkareshwar"
+    path: "/temple/omkareshwar",
+    imageSrc: "/assets/temples/omkareshwar.png"
   },
   {
     id: "jyotirlinga-5",
@@ -89,7 +94,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/kedarnath"
+    path: "/temple/kedarnath",
+    imageSrc: "/assets/temples/kedarnath-temple.png"
   },
   {
     id: "jyotirlinga-6",
@@ -103,7 +109,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    path: "/temple/bhimashankar"
+    path: "/temple/bhimashankar",
+    imageSrc: "/assets/temples/bhimashankar.png"
   },
   {
     id: "jyotirlinga-7",
@@ -116,7 +123,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    path: "/temple/kashi-vishwanath"
+    path: "/temple/kashi-vishwanath",
+    imageSrc: "/assets/temples/kashi-vishwanath.png"
   },
   {
     id: "jyotirlinga-8",
@@ -130,7 +138,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    path: "/temple/trimbakeshwar"
+    path: "/temple/trimbakeshwar",
+    imageSrc: "/assets/temples/trimbakeshwar.png"
   },
   {
     id: "jyotirlinga-9",
@@ -144,7 +153,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/vaidyanath"
+    path: "/temple/vaidyanath",
+    imageSrc: "/assets/temples/vaidyanath.png"
   },
   {
     id: "jyotirlinga-10",
@@ -158,7 +168,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 4,
       rotate: "-1.5deg"
     },
-    path: "/temple/nageshwar"
+    path: "/temple/nageshwar",
+    imageSrc: "/assets/temples/nageshwar.png"
   },
   {
     id: "jyotirlinga-11",
@@ -171,7 +182,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "36%",
       zIndex: 3,
     },
-    path: "/temple/rameshwaram"
+    path: "/temple/rameshwaram",
+    imageSrc: "/assets/temples/rameshwaram.png"
   },
   {
     id: "jyotirlinga-12",
@@ -185,7 +197,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "2deg"
     },
-    path: "/temple/grishneshwar"
+    path: "/temple/grishneshwar",
+    imageSrc: "/assets/temples/grishneshwar.png"
   }
 ];
 
@@ -214,29 +227,45 @@ const JyotirlingsCollage: React.FC = () => {
         >
           <div className={cn(
             "w-full h-full rounded-lg overflow-hidden border-4 border-spiritual-gold/40 shadow-lg",
-            "bg-gradient-to-br from-spiritual-sandstone to-spiritual-ivory",
             "transition-all duration-300 group-hover:border-spiritual-gold group-hover:shadow-2xl"
           )}>
-            <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center">
-              {/* Temple icon representation */}
-              <div className="w-16 h-20 mb-2 mx-auto relative">
-                <div className="absolute inset-0 bg-spiritual-ochre/50 rounded-t-2xl"></div>
-                <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-12 h-12 rounded-t-full bg-spiritual-maroon/40"></div>
-                <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5 h-5 rounded-full bg-spiritual-gold/60"></div>
+            {/* Temple image */}
+            <div className="w-full h-full relative">
+              {/* Fallback temple icon if image fails to load */}
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-spiritual-sandstone to-spiritual-ivory">
+                <div className="w-16 h-20 relative">
+                  <div className="absolute inset-0 bg-spiritual-ochre/50 rounded-t-2xl"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-12 h-12 rounded-t-full bg-spiritual-maroon/40"></div>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5 h-5 rounded-full bg-spiritual-gold/60"></div>
+                </div>
               </div>
               
-              <h3 className="font-cinzel text-lg font-bold text-spiritual-maroon mb-1 drop-shadow-sm">
-                {jyotirlinga.name}
-              </h3>
+              {/* Actual temple image */}
+              <img 
+                src={jyotirlinga.imageSrc} 
+                alt={`${jyotirlinga.name} Temple`} 
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => {
+                  // If image fails to load, show the default icon (already visible)
+                  e.currentTarget.style.opacity = '0';
+                }}
+              />
               
-              <p className="text-xs font-sans text-spiritual-maroon/70">
-                {jyotirlinga.description}
-              </p>
-              
-              <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-xs px-2 py-1 bg-spiritual-gold/20 rounded-full text-spiritual-maroon font-medium">
-                  Explore Now
-                </span>
+              {/* Overlay with temple name */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center justify-end p-3">
+                <h3 className="font-cinzel text-lg font-bold text-white mb-1 drop-shadow-sm">
+                  {jyotirlinga.name}
+                </h3>
+                
+                <p className="text-xs font-sans text-white/90 mb-2">
+                  {jyotirlinga.description}
+                </p>
+                
+                <div className="mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-xs px-2 py-1 bg-spiritual-gold/30 rounded-full text-white font-medium">
+                    Explore Now
+                  </span>
+                </div>
               </div>
             </div>
           </div>
