@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +21,7 @@ interface JyotirlingsCollageItem {
   imageSrc: string;
 }
 
-// Data for the 12 Jyotirlingas with updated image sources
+// Data for the 12 Jyotirlingas with updated image sources and swapped Mallikarjuna with Rameshwaram
 const jyotirlingsData: JyotirlingsCollageItem[] = [
   {
     id: "jyotirlinga-1",
@@ -39,8 +40,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
   },
   {
     id: "jyotirlinga-2",
-    name: "Mallikarjuna",
-    description: "Located on Sri Sailam mountain",
+    name: "Rameshwaram", // Swapped with Mallikarjuna
+    description: "Located at the southern tip of India with significant connection to Ramayana",
     position: {
       top: "15%",
       left: "38%",
@@ -48,8 +49,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    path: "/temple/mallikarjuna",
-    imageSrc: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png"
+    path: "/temple/rameshwaram",
+    imageSrc: "/lovable-uploads/c868ae47-1318-4239-9e0b-8e11ffd2ab53.png"
   },
   {
     id: "jyotirlinga-3",
@@ -172,8 +173,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
   },
   {
     id: "jyotirlinga-11",
-    name: "Rameshwaram",
-    description: "Located at the southern tip of India",
+    name: "Mallikarjuna", // Swapped with Rameshwaram
+    description: "Located on Sri Sailam mountain, one of the 12 Jyotirlingas",
     position: {
       top: "60%",
       left: "10%",
@@ -181,8 +182,8 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "36%",
       zIndex: 3,
     },
-    path: "/temple/rameshwaram",
-    imageSrc: "/lovable-uploads/c868ae47-1318-4239-9e0b-8e11ffd2ab53.png"
+    path: "/temple/mallikarjuna",
+    imageSrc: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png"
   },
   {
     id: "jyotirlinga-12",

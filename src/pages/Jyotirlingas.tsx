@@ -176,13 +176,33 @@ const Jyotirlingas = () => {
       ctx.restore();
     };
 
+    // Draw floating Sanskrit letters
+    const drawSanskritLetters = () => {
+      const sanskritSymbols = ["ॐ", "॰", "ः", "अ", "आ", "इ", "ई", "उ", "ऊ", "ऋ", "ॠ", "ऌ", "ॡ", "ए", "ऐ"];
+      ctx.font = "20px serif";
+      ctx.fillStyle = "rgba(212, 175, 55, 0.2)";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      
+      for (let i = 0; i < 30; i++) {
+        const x = (i * canvas.width / 15) % canvas.width;
+        const y = 100 + Math.sin(Date.now() * 0.001 + i * 0.5) * 50;
+        const symbol = sanskritSymbols[Math.floor(Math.random() * sanskritSymbols.length)];
+        ctx.fillText(symbol, x, y);
+      }
+    };
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      // Draw mandalas
       mandalas.forEach(mandala => {
         drawMandala(mandala.x, mandala.y, mandala.radius, mandala.rotation, mandala.opacity);
         mandala.rotation += mandala.rotationSpeed;
       });
+      
+      // Draw Sanskrit letters
+      drawSanskritLetters();
       
       requestAnimationFrame(animate);
     };
