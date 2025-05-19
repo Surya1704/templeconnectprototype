@@ -39,22 +39,22 @@ const TempleImageGallery = ({ templeId }: TempleImageGalleryProps) => {
         src={images[currentImageIndex]}
         alt="Temple"
         className="w-full h-full object-cover"
-        fallbackSrc="/lovable-uploads/placeholder.svg"
+        fallbackSrc="/placeholder.svg"
       />
       
       {/* Navigation Arrows - Always Visible */}
-      <div className="absolute inset-0 flex items-center justify-between pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-between">
         <Button
           variant="ghost"
           onClick={handlePrevious}
-          className="h-12 w-12 rounded-full bg-black/30 hover:bg-black/50 text-white pointer-events-auto"
+          className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white"
         >
           <ChevronLeft size={24} />
         </Button>
         <Button
           variant="ghost"
           onClick={handleNext}
-          className="h-12 w-12 rounded-full bg-black/30 hover:bg-black/50 text-white pointer-events-auto"
+          className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white"
         >
           <ChevronRight size={24} />
         </Button>

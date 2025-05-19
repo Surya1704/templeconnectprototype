@@ -12,15 +12,14 @@ interface ImageWithFallbackProps {
 const ImageWithFallback = ({
   src,
   alt,
-  fallbackSrc = "/lovable-uploads/placeholder.svg",
+  fallbackSrc = "/placeholder.svg",
   className = "",
   onClick,
 }: ImageWithFallbackProps) => {
-  const [imgSrc, setImgSrc] = useState<string>(fallbackSrc); // Start with fallback
+  const [imgSrc, setImgSrc] = useState<string>(src);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Set the source when component mounts or src changes
+  
   useEffect(() => {
     setIsLoading(true);
     setHasError(false);
@@ -32,10 +31,12 @@ const ImageWithFallback = ({
     img.onload = () => {
       setImgSrc(src);
       setIsLoading(false);
+      console.log(`Image loaded successfully: ${src}`);
     };
     
     img.onerror = () => {
       console.log(`Image failed to load: ${src}, using fallback: ${fallbackSrc}`);
+      setImgSrc(fallbackSrc);
       setHasError(true);
       setIsLoading(false);
     };
@@ -54,9 +55,15 @@ const ImageWithFallback = ({
         </div>
       )}
       <img
-        src={hasError ? fallbackSrc : imgSrc}
+        src={imgSrc}
         alt={alt}
         className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
+        onError={() => {
+          if (!hasError) {
+            setImgSrc(fallbackSrc);
+            setHasError(true);
+          }
+        }}
         onClick={onClick}
       />
     </div>

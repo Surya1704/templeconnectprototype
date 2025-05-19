@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Calendar, Clock, MapPin, Bell, Calendar as CalendarIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -119,7 +118,7 @@ const PujaTiming = () => {
             src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg"
             alt="Featured Puja Ceremony"
             className="w-full h-72 object-cover"
-            fallbackSrc="/lovable-uploads/placeholder.svg"
+            fallbackSrc="/placeholder.svg"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-orange-500/30 p-4">
             <div className="p-6 h-full flex flex-col justify-end">
@@ -169,6 +168,7 @@ const PujaTiming = () => {
           <TabsTrigger value="favorite">My Favorites</TabsTrigger>
         </TabsList>
         
+        {/* Tab contents */}
         <TabsContent value="all">
           <div className="space-y-8">
             {filteredTimings.map((item) => (
@@ -241,7 +241,7 @@ const PujaTiming = () => {
               src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a96-diwali.jpg"
               alt="Calendar integration"
               className="w-48 h-48 object-cover rounded-lg"
-              fallbackSrc="/lovable-uploads/placeholder.svg"
+              fallbackSrc="/placeholder.svg"
             />
           </div>
         </div>
@@ -275,7 +275,7 @@ const TempleTimingCard = ({
               src={templeImage}
               alt={temple.name}
               className="w-full h-full object-cover min-h-[160px]"
-              fallbackSrc="/lovable-uploads/placeholder.svg"
+              fallbackSrc="/placeholder.svg"
             />
           ) : (
             <div className="p-8 text-orange-500 font-bold text-2xl h-full flex items-center justify-center">
@@ -321,7 +321,7 @@ const TempleTimingCard = ({
   );
 };
 
-// Individual Puja Row Component - Always show buttons, not dependent on hover
+// Individual Puja Row Component - Always show buttons
 const PujaRow = ({ 
   puja, 
   onReminder 
@@ -346,8 +346,8 @@ const PujaRow = ({
         <div className="text-sm text-gray-600">{puja.time}</div>
       </div>
     </div>
+    {/* Always visible buttons - no hover dependency */}
     <div className="flex gap-2">
-      {/* Always visible buttons (not dependent on hover) */}
       <Button 
         size="sm" 
         variant="ghost" 
