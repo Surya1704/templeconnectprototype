@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -204,7 +205,7 @@ const JyotirlingsCollage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-[90vh] overflow-hidden bg-gradient-to-b from-spiritual-saffron/30 via-spiritual-ochre/30 to-spiritual-maroon/20 rounded-xl">
+    <div className="relative w-full h-[90vh] overflow-hidden bg-white rounded-xl">
       {jyotirlingsData.map((jyotirlinga) => (
         <div
           key={jyotirlinga.id}
@@ -251,11 +252,6 @@ const JyotirlingsCollage: React.FC = () => {
           </div>
         </div>
       ))}
-      
-      {/* Decorative elements */}
-      <div className="absolute top-5 left-5 w-40 h-40 rounded-full bg-spiritual-gold/5 blur-2xl"></div>
-      <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-spiritual-maroon/5 blur-3xl"></div>
-      <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-spiritual-ochre/5 blur-xl"></div>
       
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center">
         <p className="text-spiritual-maroon/70 text-sm mb-2">
