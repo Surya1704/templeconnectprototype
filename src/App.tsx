@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 // Pages
@@ -23,16 +23,17 @@ import Founder from "./pages/Founder";
 import Index from "./pages/Index";
 import PrasadBooking from "./pages/PrasadBooking";
 import StayBookings from "./pages/StayBookings";
-import TemplePositionTool from "./pages/TemplePositionTool"; // Add the new import
+import TemplePositionTool from "./pages/TemplePositionTool";
 import TempleEditor from "./pages/TempleEditor";
 import AI from "./pages/AI";
+import Layout from "./components/Layout";
 
 // Toast provider
 import { Toaster } from "./components/ui/sonner";
 
 const App = () => {
   return (
-    <Router>
+    <>
       <Toaster richColors position="top-right" />
       <Routes>
         <Route path="/" element={<Index />} />
@@ -54,12 +55,12 @@ const App = () => {
         <Route path="/founder" element={<Founder />} />
         <Route path="/prasad-booking" element={<PrasadBooking />} />
         <Route path="/stay-booking" element={<StayBookings />} />
-        <Route path="/temple-position-tool" element={<TemplePositionTool />} /> {/* Add the new route */}
+        <Route path="/temple-position-tool" element={<TemplePositionTool />} />
         <Route path="/temple-editor" element={<TempleEditor />} />
         <Route path="/ai" element={<AI />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </Router>
+    </>
   );
 };
 
