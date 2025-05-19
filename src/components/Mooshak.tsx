@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -49,11 +48,11 @@ const Mooshak: React.FC = () => {
       const timeDelta = now - lastMoveTime;
       setLastMoveTime(now);
       
-      // Only set running if moving fast enough (more than 5px in less than 100ms)
-      if (distance > 5 && timeDelta < 100) {
+      // Only set running if moving fast enough (more than 4px in less than 80ms) - adjusted for faster response
+      if (distance > 4 && timeDelta < 80) {
         setIsRunning(true);
-        // Reset running state after a brief delay if no movement
-        setTimeout(() => setIsRunning(false), 150);
+        // Reset running state after a brief delay if no movement - reduced for faster response
+        setTimeout(() => setIsRunning(false), 100);
       }
       
       // Reset the stillness timeout
@@ -266,9 +265,9 @@ const Mooshak: React.FC = () => {
         }}
         transition={{
           type: "spring",
-          damping: 25,
-          stiffness: 120,
-          mass: 0.6,
+          damping: 18, // Reduced from 25 for faster movement
+          stiffness: 200, // Increased from 120 for more responsive follow
+          mass: 0.5, // Reduced from 0.6 for lighter feel and faster movement
           rotateZ: {
             duration: 0.3,
             repeat: isRunning ? Infinity : 0,
