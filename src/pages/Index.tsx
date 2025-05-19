@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -86,7 +85,7 @@ const Index = () => {
               
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center gap-4">
                 <Button asChild size="lg" className="bg-white text-spiritual-maroon hover:bg-spiritual-ivory font-cinzel text-lg px-8">
-                  <Link to="/all-temples">Explore Temples</Link>
+                  <Link to="/temples">Explore Temples</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-cinzel text-lg px-8">
                   <Link to="/pooja-booking">Book Pooja</Link>
@@ -353,7 +352,7 @@ const Index = () => {
               className="flex flex-col sm:flex-row justify-center gap-4"
             >
               <Button asChild size="lg" className="bg-white text-spiritual-maroon hover:bg-spiritual-ivory font-cinzel text-lg px-8">
-                <Link to="/all-temples">Explore Temples</Link>
+                <Link to="/temples">Explore Temples</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-cinzel text-lg px-8">
                 <Link to="/pooja-booking">Book Pooja</Link>
