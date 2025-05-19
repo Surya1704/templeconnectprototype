@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -89,9 +90,6 @@ const Index = () => {
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-cinzel text-lg px-8">
                   <Link to="/pooja-booking">Book Pooja</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-cinzel text-lg px-8">
-                  <Link to="/temple-editor">Temple Editor</Link>
                 </Button>
               </motion.div>
             </motion.div>

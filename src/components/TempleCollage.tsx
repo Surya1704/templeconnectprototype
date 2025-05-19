@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 // Define the temple data structure
 interface TempleCollageItem {
@@ -19,126 +20,117 @@ interface TempleCollageItem {
   path: string;
 }
 
-// Rearranged temple data in a tighter diamond/pyramid shape
+// Sample temple data for the collage - updating paths to match IDs in the database
 const templeData: TempleCollageItem[] = [
-  // Top - large temple
   {
     id: "temple-1",
     name: "Golden Temple",
     description: "Sacred Sikh shrine in Amritsar",
     position: {
-      top: "0%",
-      left: "38%",
+      top: "5%",
+      left: "10%",
       width: "25%",
-      height: "32%",
-      zIndex: 5,
-      rotate: "-0.5deg"
+      height: "35%",
+      zIndex: 2,
+      rotate: "-2deg"
     },
-    path: "/temple/24"
+    path: "/temple/24" // Updated to match temple ID
   },
-  // Middle row - left side (medium)
   {
     id: "temple-2",
     name: "Meenakshi Temple",
     description: "Iconic temple with colorful gopurams",
     position: {
-      top: "18%",
-      left: "18%",
-      width: "22%",
-      height: "28%",
+      top: "15%",
+      left: "38%",
+      width: "30%",
+      height: "40%",
       zIndex: 3,
-      rotate: "1deg"
     },
-    path: "/temple/25"
+    path: "/temple/25" // Updated to match temple ID
   },
-  // Middle row - center (detailed)
   {
     id: "temple-3",
     name: "Kedarnath Temple",
     description: "Ancient shrine in the Himalayas",
     position: {
-      top: "20%",
-      left: "42%",
-      width: "18%",
-      height: "24%",
-      zIndex: 4,
+      top: "10%",
+      left: "70%",
+      width: "22%",
+      height: "30%",
+      zIndex: 1,
+      rotate: "3deg"
     },
-    path: "/temple/28"
+    path: "/temple/28" // Updated to match temple ID
   },
-  // Middle row - right side (medium)
   {
     id: "temple-4",
     name: "Jagannath Puri",
     description: "Famous for its annual Rath Yatra",
     position: {
-      top: "18%",
-      left: "62%",
-      width: "22%",
-      height: "28%",
-      zIndex: 3,
+      top: "42%",
+      left: "5%",
+      width: "28%",
+      height: "38%",
+      zIndex: 4,
       rotate: "-1deg"
     },
-    path: "/temple/29"
+    path: "/temple/29" // Updated to match temple ID
   },
-  // Lower middle - left (detailed)
   {
     id: "temple-5",
     name: "Kashi Vishwanath",
     description: "One of the most famous Hindu temples",
     position: {
-      top: "40%",
-      left: "25%",
-      width: "20%",
-      height: "26%",
-      zIndex: 4,
-      rotate: "-0.5deg"
+      top: "50%",
+      left: "35%",
+      width: "25%",
+      height: "35%",
+      zIndex: 2,
+      rotate: "1deg"
     },
-    path: "/temple/72"
+    path: "/temple/72" // Updated to match temple ID
   },
-  // Lower middle - right (detailed)
   {
     id: "temple-6",
     name: "Brihadeeswara Temple",
     description: "UNESCO World Heritage site in Thanjavur",
     position: {
-      top: "40%",
-      left: "56%",
-      width: "20%",
-      height: "26%",
-      zIndex: 4,
-      rotate: "0.5deg"
+      top: "45%",
+      left: "65%",
+      width: "30%",
+      height: "42%",
+      zIndex: 3,
+      rotate: "-2deg"
     },
-    path: "/temple/34"
+    path: "/temple/34" // Updated to match temple ID
   },
-  // Lower row - left (medium)
   {
     id: "temple-7",
     name: "Tirupati Balaji",
     description: "World's richest temple",
     position: {
-      top: "55%",
-      left: "18%",
-      width: "22%",
-      height: "28%",
-      zIndex: 3,
-      rotate: "1deg"
+      top: "75%",
+      left: "20%",
+      width: "26%",
+      height: "35%",
+      zIndex: 5,
     },
-    path: "/temple/93"
+    path: "/temple/93" // Updated to match temple ID
   },
-  // Bottom - large temple
   {
     id: "temple-8",
     name: "Badrinath Temple",
     description: "Sacred to Lord Vishnu",
     position: {
-      top: "50%",
-      left: "40%",
-      width: "25%",
-      height: "32%",
-      zIndex: 5,
-      rotate: "-0.5deg"
+      top: "70%",
+      left: "50%",
+      width: "28%",
+      height: "38%",
+      zIndex: 1,
+      rotate: "2deg"
     },
-    path: "/temple/30"
+    path: "/temple/30" // Updated to match temple ID
   }
 ];
 
@@ -153,7 +145,7 @@ const TempleCollage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: Math.random() * 0.5 }}
-          className="absolute cursor-pointer"
+          className="absolute cursor-pointer group"
           style={{
             top: temple.position.top,
             left: temple.position.left,
@@ -163,14 +155,34 @@ const TempleCollage: React.FC = () => {
             transform: temple.position.rotate ? `rotate(${temple.position.rotate})` : 'none'
           }}
           onClick={() => navigate(temple.path)}
-          whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.2 } }}
+          whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.3 } }}
         >
-          {/* Temple visual representation - using decorative elements since we use stylized graphics */}
-          <div className="w-full h-full flex flex-col items-center justify-center">
-            <div className="w-16 h-20 mb-2 mx-auto relative">
-              <div className="absolute inset-0 bg-spiritual-maroon/70 rounded-t-2xl"></div>
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-12 h-12 rounded-t-full bg-spiritual-ochre/80"></div>
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5 h-5 rounded-full bg-spiritual-gold/90"></div>
+          <div className={cn(
+            "w-full h-full rounded-lg overflow-hidden border-4 border-spiritual-gold/40 shadow-lg",
+            "bg-gradient-to-br from-spiritual-sandstone to-spiritual-ivory",
+            "transition-all duration-300 group-hover:border-spiritual-gold group-hover:shadow-2xl"
+          )}>
+            <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center">
+              {/* Temple visual representation - using decorative elements since we can't use images */}
+              <div className="w-16 h-20 mb-2 mx-auto relative">
+                <div className="absolute inset-0 bg-spiritual-maroon/20 rounded-t-2xl"></div>
+                <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-12 h-12 rounded-t-full bg-spiritual-ochre/30"></div>
+                <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5 h-5 rounded-full bg-spiritual-gold/40"></div>
+              </div>
+              
+              <h3 className="font-cinzel text-lg font-bold text-spiritual-maroon mb-1 drop-shadow-sm">
+                {temple.name}
+              </h3>
+              
+              <p className="text-xs font-sans text-spiritual-maroon/70">
+                {temple.description}
+              </p>
+              
+              <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-xs px-2 py-1 bg-spiritual-gold/20 rounded-full text-spiritual-maroon font-medium">
+                  Explore Now
+                </span>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -202,6 +214,25 @@ const TempleCollage: React.FC = () => {
           }}
         />
       ))}
+      
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center">
+        <motion.p 
+          className="text-spiritual-maroon/70 text-sm mb-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+        >
+          Click on any temple to start your spiritual journey
+        </motion.p>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5L12 19M12 19L5 12M12 19L19 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-spiritual-maroon/60"/>
+          </svg>
+        </motion.div>
+      </div>
     </div>
   );
 };

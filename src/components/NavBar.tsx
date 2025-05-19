@@ -45,18 +45,18 @@ const NavBar = () => {
             to="/" 
             className="flex items-center text-spiritual-maroon font-bold transition-transform hover:scale-105"
           >
-            {/* Temple logo with flipping animation */}
+            {/* Temple outline logo */}
             <motion.div 
               initial={{ rotateY: 0 }}
               animate={{ rotateY: 360 }}
               transition={{ duration: 2, repeatDelay: 5, repeat: Infinity, ease: "easeInOut" }}
               className="mr-2"
             >
-              <img 
-                src="/lovable-uploads/3da3fd53-32f9-4f5c-b8bf-c1bd7ce55182.png" 
-                alt="Temple Logo" 
-                className="w-8 h-8"
-              />
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3L4 9V21H20V9L12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 21V12H15V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M12 3V6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </motion.div>
             <span className="text-xl font-cinzel">
               Temple<span className="text-spiritual-saffron">Connect</span>
@@ -159,14 +159,13 @@ const NavBar = () => {
           >
             <NavItem to="/" text="Home" active={location.pathname === '/'} />
             <NavItem to="/temples" text="Temples" active={location.pathname === '/temples'} />
-            <NavItem to="/jyotirlingas" text="Jyotirlingas" active={location.pathname === '/jyotirlingas'} />
             <NavItem to="/events" text="Events" active={location.pathname === '/events'} />
-            <NavItem to="/puja-timing" text="Puja" active={location.pathname === '/puja-timing'} />
+            <NavItem to="/puja-timings" text="Puja" active={location.pathname === '/puja-timings'} />
             <NavItem to="/prasad-booking" text="Prasad" active={location.pathname === '/prasad-booking'} />
             <NavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
             <NavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
             <NavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
-            <NavItem to="/stay-booking" text="Stay" active={location.pathname === '/stay-booking'} />
+            <NavItem to="/stay-bookings" text="Stay" active={location.pathname === '/stay-bookings'} />
             <NavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
             <NavItem to="/donations" text="Donate" active={location.pathname === '/donations'} />
           </motion.ul>
@@ -185,14 +184,13 @@ const NavBar = () => {
             <ul className="flex flex-col space-y-2">
               <MobileNavItem to="/" text="Home" active={location.pathname === '/'} />
               <MobileNavItem to="/temples" text="Temples" active={location.pathname === '/temples'} />
-              <MobileNavItem to="/jyotirlingas" text="Jyotirlingas" active={location.pathname === '/jyotirlingas'} />
               <MobileNavItem to="/events" text="Events" active={location.pathname === '/events'} />
-              <MobileNavItem to="/puja-timing" text="Puja Timings" active={location.pathname === '/puja-timing'} />
+              <MobileNavItem to="/puja-timings" text="Puja Timings" active={location.pathname === '/puja-timings'} />
               <MobileNavItem to="/prasad-booking" text="Prasad Booking" active={location.pathname === '/prasad-booking'} />
               <MobileNavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
               <MobileNavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
               <MobileNavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
-              <MobileNavItem to="/stay-booking" text="Stay Bookings" active={location.pathname === '/stay-booking'} />
+              <MobileNavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
               <MobileNavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
               <MobileNavItem to="/donations" text="Donations" active={location.pathname === '/donations'} />
               {/* Add Login to mobile menu */}
