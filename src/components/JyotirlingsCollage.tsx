@@ -21,7 +21,7 @@ interface JyotirlingsCollageItem {
   imageSrc: string;
 }
 
-// Data for the 12 Jyotirlingas with updated image sources and swapped Mallikarjuna with Rameshwaram
+// Data for the 12 Jyotirlingas with updated paths using numeric IDs matching our database
 const jyotirlingsData: JyotirlingsCollageItem[] = [
   {
     id: "jyotirlinga-1",
@@ -35,12 +35,12 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    path: "/temple/somnath",
+    path: "/temple/24", // Using numeric ID
     imageSrc: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png"
   },
   {
     id: "jyotirlinga-2",
-    name: "Rameshwaram", // Swapped with Mallikarjuna
+    name: "Rameshwaram",
     description: "Located at the southern tip of India with significant connection to Ramayana",
     position: {
       top: "15%",
@@ -49,7 +49,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    path: "/temple/rameshwaram",
+    path: "/temple/25", // Using numeric ID
     imageSrc: "/lovable-uploads/c868ae47-1318-4239-9e0b-8e11ffd2ab53.png"
   },
   {
@@ -64,7 +64,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 1,
       rotate: "3deg"
     },
-    path: "/temple/mahakaleshwar",
+    path: "/temple/26", // Using numeric ID
     imageSrc: "/lovable-uploads/b668b893-dac5-4d67-9be0-425045941429.png"
   },
   {
@@ -79,7 +79,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    path: "/temple/omkareshwar",
+    path: "/temple/27", // Using numeric ID
     imageSrc: "/lovable-uploads/bff90acf-434f-4b5d-a02a-f8cd060e2ec9.png"
   },
   {
@@ -94,7 +94,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/kedarnath",
+    path: "/temple/28", // Using numeric ID
     imageSrc: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png"
   },
   {
@@ -109,7 +109,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    path: "/temple/bhimashankar",
+    path: "/temple/29", // Using numeric ID
     imageSrc: "/lovable-uploads/bed64bd3-3688-44d2-9bad-a6918b67c9a6.png"
   },
   {
@@ -123,7 +123,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    path: "/temple/kashi-vishwanath",
+    path: "/temple/30", // Using numeric ID
     imageSrc: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png"
   },
   {
@@ -138,7 +138,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    path: "/temple/trimbakeshwar",
+    path: "/temple/31", // Using numeric ID
     imageSrc: "/lovable-uploads/3c73bbb4-d8d9-439c-bac6-16dfc1940d71.png"
   },
   {
@@ -153,7 +153,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/vaidyanath",
+    path: "/temple/32", // Using numeric ID
     imageSrc: "/lovable-uploads/3e630441-b218-447f-a772-6d16110739b2.png"
   },
   {
@@ -168,12 +168,12 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 4,
       rotate: "-1.5deg"
     },
-    path: "/temple/nageshwar",
+    path: "/temple/33", // Using numeric ID
     imageSrc: "/lovable-uploads/f6e17f2f-fd67-45c1-8f9b-bdd05ef346ce.png"
   },
   {
     id: "jyotirlinga-11",
-    name: "Mallikarjuna", // Swapped with Rameshwaram
+    name: "Mallikarjuna",
     description: "Located on Sri Sailam mountain, one of the 12 Jyotirlingas",
     position: {
       top: "60%",
@@ -182,7 +182,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "36%",
       zIndex: 3,
     },
-    path: "/temple/mallikarjuna",
+    path: "/temple/34", // Using numeric ID
     imageSrc: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png"
   },
   {
@@ -197,7 +197,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "2deg"
     },
-    path: "/temple/grishneshwar",
+    path: "/temple/35", // Using numeric ID
     imageSrc: "/lovable-uploads/55fb5f1f-b855-4295-a028-e2385fe97d48.png"
   }
 ];

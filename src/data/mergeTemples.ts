@@ -1,3 +1,4 @@
+
 import { temples as originalTemples, Temple } from './temples';
 import { extendedTemples } from './extendedTemples';
 import { extendedTemples2 } from './extendedTemples2';
@@ -15,9 +16,28 @@ export const allTemples: Temple[] = [
   ...extendedTemples5
 ];
 
-// Update the exported functions to use the merged data
+// Map of temple name slugs to IDs for easier lookup
+const templeNameToIdMap: Record<string, string> = {
+  "somnath": "24",
+  "rameshwaram": "25",
+  "mahakaleshwar": "26",
+  "omkareshwar": "27",
+  "kedarnath": "28",
+  "bhimashankar": "29",
+  "kashi-vishwanath": "30",
+  "trimbakeshwar": "31",
+  "vaidyanath": "32",
+  "nageshwar": "33",
+  "mallikarjuna": "34",
+  "grishneshwar": "35"
+};
+
+// Enhanced getTempleById to support both numeric IDs and name-based IDs
 export const getTempleById = (id: string) => {
-  const temple = allTemples.find((temple) => temple.id === id);
+  // If the ID is a name slug, convert it to numeric ID
+  const numericId = templeNameToIdMap[id.toLowerCase()] || id;
+  
+  const temple = allTemples.find((temple) => temple.id === numericId);
   if (!temple) {
     console.warn(`Temple with ID ${id} not found. Available IDs: ${allTemples.slice(0, 5).map(t => t.id).join(', ')}...`);
   }

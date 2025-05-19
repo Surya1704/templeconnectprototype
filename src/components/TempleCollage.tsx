@@ -20,7 +20,7 @@ interface TempleCollageItem {
   path: string;
 }
 
-// Sample temple data for the collage - updating paths to match IDs in the database
+// Sample temple data for the collage - using numeric IDs that exist in our database
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
@@ -34,7 +34,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    path: "/temple/24" // Updated to match temple ID
+    path: "/temple/24" // Numeric ID
   },
   {
     id: "temple-2",
@@ -47,7 +47,7 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    path: "/temple/25" // Updated to match temple ID
+    path: "/temple/25" // Numeric ID
   },
   {
     id: "temple-3",
@@ -61,7 +61,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "3deg"
     },
-    path: "/temple/28" // Updated to match temple ID
+    path: "/temple/28" // Numeric ID
   },
   {
     id: "temple-4",
@@ -75,7 +75,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    path: "/temple/29" // Updated to match temple ID
+    path: "/temple/29" // Numeric ID
   },
   {
     id: "temple-5",
@@ -89,7 +89,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/72" // Updated to match temple ID
+    path: "/temple/30" // Numeric ID
   },
   {
     id: "temple-6",
@@ -103,7 +103,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    path: "/temple/34" // Updated to match temple ID
+    path: "/temple/34" // Numeric ID
   },
   {
     id: "temple-7",
@@ -116,7 +116,7 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    path: "/temple/93" // Updated to match temple ID
+    path: "/temple/31" // Numeric ID
   },
   {
     id: "temple-8",
@@ -130,7 +130,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    path: "/temple/30" // Updated to match temple ID
+    path: "/temple/32" // Numeric ID
   }
 ];
 
