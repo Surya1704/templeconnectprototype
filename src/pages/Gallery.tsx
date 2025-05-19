@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, ImageIcon, Upload, Check, X } from "lucide-react";
@@ -14,6 +13,7 @@ import {
 import MobileOptimizedLayout from "@/components/MobileOptimizedLayout";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { motion } from "framer-motion";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -359,7 +359,7 @@ const Gallery = () => {
           {isMobile ? (
             <ImageIcon className="h-16 w-16 text-white/40" />
           ) : (
-            <img 
+            <ImageWithFallback 
               src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a96-diwali.jpg" 
               alt="Festival of Lights" 
               className="w-full h-full object-cover opacity-40"
@@ -394,15 +394,11 @@ const Gallery = () => {
             {pendingItems.map((item) => (
               <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
                 <div className="relative h-48">
-                  <img 
+                  <ImageWithFallback 
                     src={item.image} 
                     alt={item.title}
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.onerror = null;
-                      target.src = "/lovable-uploads/placeholder.svg";
-                    }}
+                    fallbackSrc="/lovable-uploads/placeholder.svg"
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                     <div className="text-center">
@@ -450,15 +446,11 @@ const Gallery = () => {
             className="group relative overflow-hidden bg-gray-100 rounded-lg hover:shadow-lg transition-shadow"
           >
             <div className="w-full h-64">
-              <img 
+              <ImageWithFallback 
                 src={item.image} 
                 alt={item.title}
                 className="w-full h-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.onerror = null;
-                  target.src = "/lovable-uploads/placeholder.svg";
-                }}
+                fallbackSrc="/lovable-uploads/placeholder.svg"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-4">

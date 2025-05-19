@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Calendar, Clock, MapPin, Bell, Calendar as CalendarIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { temples } from "@/data/temples";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 const PujaTiming = () => {
   const { toast } = useToast();
@@ -288,7 +290,7 @@ const TempleTimingCard = ({
   );
 };
 
-// Individual Puja Row Component - Fix to always show buttons
+// Individual Puja Row Component - Always show buttons without hover dependency
 const PujaRow = ({ 
   puja, 
   onReminder 

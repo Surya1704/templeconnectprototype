@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import ImageWithFallback from "./ImageWithFallback";
 
 interface TempleImageGalleryProps {
   templeId: string;
@@ -35,42 +36,33 @@ const TempleImageGallery = ({ templeId }: TempleImageGalleryProps) => {
   return (
     <div className="relative w-full h-72 md:h-96 overflow-hidden rounded-xl">
       {/* Main Image */}
-      <motion.img
-        key={currentImageIndex}
+      <ImageWithFallback
         src={images[currentImageIndex]}
         alt="Temple"
         className="w-full h-full object-cover"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        onError={(e) => {
-          // Fallback for image load errors
-          const target = e.target as HTMLImageElement;
-          target.onerror = null;
-          target.src = "/lovable-uploads/placeholder.svg";
-        }}
+        fallbackSrc="/lovable-uploads/placeholder.svg"
       />
       
-      {/* Navigation Arrows */}
-      <div className="absolute inset-0 flex items-center justify-between">
+      {/* Navigation Arrows - Always Visible */}
+      <div className="absolute inset-0 flex items-center justify-between pointer-events-none">
         <Button
           variant="ghost"
           onClick={handlePrevious}
-          className="h-12 w-12 rounded-full bg-black/20 hover:bg-black/40 text-white"
+          className="h-12 w-12 rounded-full bg-black/30 hover:bg-black/50 text-white pointer-events-auto"
         >
           <ChevronLeft size={24} />
         </Button>
         <Button
           variant="ghost"
           onClick={handleNext}
-          className="h-12 w-12 rounded-full bg-black/20 hover:bg-black/40 text-white"
+          className="h-12 w-12 rounded-full bg-black/30 hover:bg-black/50 text-white pointer-events-auto"
         >
           <ChevronRight size={24} />
         </Button>
       </div>
       
       {/* Image Counter */}
-      <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+      <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
         {currentImageIndex + 1} / {images.length}
       </div>
       
