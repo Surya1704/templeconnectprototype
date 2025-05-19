@@ -16,7 +16,7 @@ const ImageWithFallback = ({
   className = "",
   onClick,
 }: ImageWithFallbackProps) => {
-  const [imgSrc, setImgSrc] = useState<string>(src);
+  const [imgSrc, setImgSrc] = useState<string>(fallbackSrc);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   

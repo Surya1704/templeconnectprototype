@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Calendar, Clock, MapPin, Bell, Calendar as CalendarIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -171,7 +172,7 @@ const PujaTiming = () => {
         {/* Tab contents */}
         <TabsContent value="all">
           <div className="space-y-8">
-            {filteredTimings.map((item) => (
+            {filteredTimings.slice(0, 5).map((item) => (
               <TempleTimingCard key={item.temple.id} data={item} onReminder={handleReminder} />
             ))}
           </div>
@@ -181,6 +182,7 @@ const PujaTiming = () => {
           <div className="space-y-8">
             {filteredTimings
               .filter(item => ["Uttar Pradesh", "Punjab", "Uttarakhand", "Delhi"].includes(item.temple.state))
+              .slice(0, 5)
               .map((item) => (
                 <TempleTimingCard key={item.temple.id} data={item} onReminder={handleReminder} />
               ))}
@@ -191,6 +193,7 @@ const PujaTiming = () => {
           <div className="space-y-8">
             {filteredTimings
               .filter(item => ["Tamil Nadu", "Karnataka", "Andhra Pradesh", "Kerala"].includes(item.temple.state))
+              .slice(0, 5)
               .map((item) => (
                 <TempleTimingCard key={item.temple.id} data={item} onReminder={handleReminder} />
               ))}

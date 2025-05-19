@@ -20,6 +20,7 @@ import NotFound from "@/pages/NotFound";
 import TripPlanner from "@/pages/TripPlanner";
 import AI from "@/pages/AI";
 import Jyotirlingas from "@/pages/Jyotirlingas";
+import TempleStore from "@/pages/TempleStore";
 
 import { Toaster } from "@/components/ui/toaster";
 import "@/App.css";
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/events" element={<Events />} />
           <Route path="/puja-timings" element={<PujaTiming />} />
           <Route path="/puja-booking" element={<PoojaBooking />} />
+          <Route path="/store" element={<TempleStore />} />
           <Route path="/prasad-booking" element={<PrasadBooking />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/astrology" element={<Astrology />} />
