@@ -11,7 +11,7 @@ const MobileOptimizedLayout = ({ children, className = "" }: MobileOptimizedLayo
   const isMobile = useIsMobile();
   
   return (
-    <div className={`${isMobile ? "px-4" : "container mx-auto px-4"} ${className}`}>
+    <div className={`${isMobile ? "px-4 py-2" : "container mx-auto px-4 py-4"} ${className}`}>
       {children}
     </div>
   );

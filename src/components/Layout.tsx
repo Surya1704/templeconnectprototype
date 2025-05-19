@@ -11,7 +11,7 @@ const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />
-      <main className={`flex-grow ${isMobile ? 'pt-2' : 'pt-4'}`}>
+      <main className={`flex-grow ${isMobile ? 'pt-2 pb-16' : 'pt-4 pb-20'}`}>
         <Outlet />
       </main>
       <Footer />
