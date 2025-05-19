@@ -8,6 +8,7 @@ interface TempleCollageItem {
   id: string;
   name: string;
   description: string;
+  imageSrc: string; 
   position: {
     top: string;
     left: string;
@@ -19,13 +20,14 @@ interface TempleCollageItem {
   path: string;
 }
 
-// Rearranged temple data in a tighter diamond/pyramid shape
+// Rearranged temple data with actual image sources
 const templeData: TempleCollageItem[] = [
   // Top - large temple
   {
     id: "temple-1",
     name: "Golden Temple",
     description: "Sacred Sikh shrine in Amritsar",
+    imageSrc: "/lovable-uploads/9134455b-48bc-4ef2-a3aa-3d6d5349967b.png",
     position: {
       top: "0%",
       left: "38%",
@@ -41,6 +43,7 @@ const templeData: TempleCollageItem[] = [
     id: "temple-2",
     name: "Meenakshi Temple",
     description: "Iconic temple with colorful gopurams",
+    imageSrc: "/lovable-uploads/e72f493c-9008-468f-9b12-90b58a945398.png",
     position: {
       top: "18%",
       left: "18%",
@@ -56,6 +59,7 @@ const templeData: TempleCollageItem[] = [
     id: "temple-3",
     name: "Kedarnath Temple",
     description: "Ancient shrine in the Himalayas",
+    imageSrc: "/lovable-uploads/fb4b3306-65cb-4755-b087-ac2fa92e2f21.png",
     position: {
       top: "20%",
       left: "42%",
@@ -70,6 +74,7 @@ const templeData: TempleCollageItem[] = [
     id: "temple-4",
     name: "Jagannath Puri",
     description: "Famous for its annual Rath Yatra",
+    imageSrc: "/lovable-uploads/db5bc89b-2553-46ff-a86e-4c0a629e319d.png",
     position: {
       top: "18%",
       left: "62%",
@@ -85,6 +90,7 @@ const templeData: TempleCollageItem[] = [
     id: "temple-5",
     name: "Kashi Vishwanath",
     description: "One of the most famous Hindu temples",
+    imageSrc: "/lovable-uploads/2ebefee1-c630-49b1-a433-7a7ae77c6683.png",
     position: {
       top: "40%",
       left: "25%",
@@ -100,6 +106,7 @@ const templeData: TempleCollageItem[] = [
     id: "temple-6",
     name: "Brihadeeswara Temple",
     description: "UNESCO World Heritage site in Thanjavur",
+    imageSrc: "/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png",
     position: {
       top: "40%",
       left: "56%",
@@ -115,6 +122,7 @@ const templeData: TempleCollageItem[] = [
     id: "temple-7",
     name: "Tirupati Balaji",
     description: "World's richest temple",
+    imageSrc: "/lovable-uploads/e8b9989e-1fdb-419c-b37f-05581f37ee79.png",
     position: {
       top: "55%",
       left: "18%",
@@ -130,6 +138,7 @@ const templeData: TempleCollageItem[] = [
     id: "temple-8",
     name: "Badrinath Temple",
     description: "Sacred to Lord Vishnu",
+    imageSrc: "/lovable-uploads/dcb523bf-24f7-4125-8e87-b23cfd0fa61d.png",
     position: {
       top: "50%",
       left: "40%",
@@ -153,7 +162,7 @@ const TempleCollage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: Math.random() * 0.5 }}
-          className="absolute cursor-pointer"
+          className="absolute cursor-pointer hover:shadow-lg"
           style={{
             top: temple.position.top,
             left: temple.position.left,
@@ -165,12 +174,21 @@ const TempleCollage: React.FC = () => {
           onClick={() => navigate(temple.path)}
           whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.2 } }}
         >
-          {/* Temple visual representation - using decorative elements since we use stylized graphics */}
-          <div className="w-full h-full flex flex-col items-center justify-center">
-            <div className="w-16 h-20 mb-2 mx-auto relative">
-              <div className="absolute inset-0 bg-spiritual-maroon/70 rounded-t-2xl"></div>
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-12 h-12 rounded-t-full bg-spiritual-ochre/80"></div>
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 w-5 h-5 rounded-full bg-spiritual-gold/90"></div>
+          {/* Temple image with overlay */}
+          <div className="w-full h-full rounded-lg overflow-hidden shadow-md relative">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+            <img 
+              src={temple.imageSrc} 
+              alt={temple.name} 
+              className="w-full h-full object-cover rounded-lg"
+              onError={(e) => {
+                // Fallback if image fails to load
+                e.currentTarget.src = "/placeholder.svg";
+              }}
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-3 text-white z-20">
+              <h3 className="font-bold text-lg">{temple.name}</h3>
+              <p className="text-sm text-white/80">{temple.description}</p>
             </div>
           </div>
         </motion.div>
