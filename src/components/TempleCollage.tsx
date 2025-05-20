@@ -22,7 +22,7 @@ interface TempleCollageItem {
   imageSrc: string;
 }
 
-// Updated temple data for the collage with correctly linked temple IDs
+// Updated temple data for the collage with correctly linked temple IDs for Jyotirlingas
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",

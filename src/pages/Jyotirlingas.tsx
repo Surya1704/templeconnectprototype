@@ -202,7 +202,7 @@ const Jyotirlingas = () => {
             </p>
             <p>
               The twelve Jyotirlingas are: Somnath, Mallikarjuna, Mahakaleshwar, Omkareshwar, Kedarnath, Bhimashankar, 
-              Kashi Vishwanath, Trimbakeshwar, Vaidyanath, Nageshwar, Rameshwaram, and Grishneshwar.
+              Kashi Vishwanath, Trimbakeshwar, Baidyanath, Nageshwar, Rameshwaram, and Grishneshwar.
             </p>
           </div>
         </motion.div>

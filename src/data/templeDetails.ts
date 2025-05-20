@@ -203,9 +203,9 @@ export const templeDetails: Record<string, TempleDetails> = {
     nearbyAttractions: ["Kushavarta Kund", "Brahmagiri Hill", "Anjaneri Fort", "Gangadwar"]
   },
 
-  "32": { // Vaidyanath 
+  "32": { // Baidyanath 
     id: "32",
-    history: "The Baidyanath or Vaidyanath Temple has a history dating back over 1,500 years. According to Hindu mythology, it is where Ravana (the demon king from Ramayana) offered his ten heads to Lord Shiva as a sacrifice. The name Vaidyanath comes from 'Vaidya' meaning physician, as Shiva cured Ravana here. Historically, the temple has received patronage from various dynasties including the Gupta and Pala rulers.",
+    history: "The Baidyanath or Baidyanath Temple has a history dating back over 1,500 years. According to Hindu mythology, it is where Ravana (the demon king from Ramayana) offered his ten heads to Lord Shiva as a sacrifice. The name Baidyanath comes from 'Vaidya' meaning physician, as Shiva cured Ravana here. Historically, the temple has received patronage from various dynasties including the Gupta and Pala rulers.",
     significance: "It is one of the twelve Jyotirlingas and also one of the 51 Shakti Peethas, making it doubly sacred. According to legend, Sati's heart fell here after her body was cut into pieces by Lord Vishnu's Sudarshan Chakra.",
     architecture: "The main temple is built in the Nagara style with a 72-foot high shikhara (tower). The complex contains 22 temples dedicated to various deities. The main shrine houses the cylindrical lingam made of black stone.",
     travelInfo: {
