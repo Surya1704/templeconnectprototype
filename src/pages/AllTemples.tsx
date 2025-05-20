@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { filterTemples, getTempleImages } from "@/data/mergeTemples";
+import { filterTemples, getTempleImages, allTemples } from "@/data/mergeTemples";
 import StateFilter from "@/components/StateFilter";
 import { categories, indianStates } from "@/data/temples";
 import { Search, Map, ChevronDown } from "lucide-react";
@@ -28,18 +28,49 @@ const AllTemples = () => {
   const [selectedState, setSelectedState] = useState("All States");
   const [selectedTag, setSelectedTag] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredTemples, setFilteredTemples] = useState(filterTemples({}));
+  const [filteredTemples, setFilteredTemples] = useState([]);
   const [activeSortOption, setActiveSortOption] = useState("popularity");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { toast } = useToast();
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    setFilteredTemples(filterTemples({
+    // Get all temples first
+    let temples = filterTemples({
       state: selectedState,
       tag: selectedTag,
       search: searchQuery,
-    }));
+    });
+    
+    // Make sure all Jyotirlinga temples (IDs 24-35) are included
+    const jyotirlingaIds = Array.from({ length: 12 }, (_, i) => (i + 24).toString());
+    const jyotirlingas = jyotirlingaIds.map(id => 
+      allTemples.find(temple => temple.id === id)
+    ).filter(Boolean);
+    
+    // Combine filtered temples with jyotirlingas, removing duplicates
+    const combinedTemples = [...temples];
+    
+    // Add any missing jyotirlingas
+    jyotirlingas.forEach(jyotirlinga => {
+      if (!combinedTemples.some(temple => temple.id === jyotirlinga.id)) {
+        // Only add if it matches the filter criteria or if no state filter is applied
+        if (selectedState === "All States" || jyotirlinga.state === selectedState) {
+          // Only add if it matches the tag filter or if no tag filter is applied
+          if (!selectedTag || jyotirlinga.tags.includes(selectedTag)) {
+            // Only add if it matches the search query or if no search query is applied
+            if (!searchQuery || 
+                jyotirlinga.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                jyotirlinga.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                jyotirlinga.state.toLowerCase().includes(searchQuery.toLowerCase())) {
+              combinedTemples.push(jyotirlinga);
+            }
+          }
+        }
+      }
+    });
+    
+    setFilteredTemples(combinedTemples);
   }, [selectedState, selectedTag, searchQuery]);
 
   // Sorted based on selected option
