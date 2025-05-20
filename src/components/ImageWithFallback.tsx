@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface ImageWithFallbackProps {
   src: string;
@@ -16,16 +16,18 @@ const ImageWithFallback = ({
   className = "",
   onClick,
 }: ImageWithFallbackProps) => {
-  const [imgSrc, setImgSrc] = useState<string>(src);
+  const [currentSrc, setCurrentSrc] = useState<string>(src);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const imgRef = useRef<HTMLImageElement>(null);
   
+  // Reset states when src changes
   useEffect(() => {
     setIsLoading(true);
     setHasError(false);
-    setImgSrc(src); // Set initial source to the provided src
+    setCurrentSrc(src);
     
-    // Create a new image to test loading
+    // Create a new image to preload
     const img = new Image();
     img.src = src;
     
@@ -36,7 +38,7 @@ const ImageWithFallback = ({
     
     img.onerror = () => {
       console.log(`Image failed to load: ${src}, using fallback: ${fallbackSrc}`);
-      setImgSrc(fallbackSrc);
+      setCurrentSrc(fallbackSrc);
       setHasError(true);
       setIsLoading(false);
     };
@@ -48,12 +50,22 @@ const ImageWithFallback = ({
   }, [src, fallbackSrc]);
 
   const handleError = () => {
-    if (!hasError) {
-      console.log(`Image error event triggered for: ${imgSrc}, using fallback: ${fallbackSrc}`);
-      setImgSrc(fallbackSrc);
+    console.log(`Handling error for image: ${currentSrc}`);
+    if (!hasError && currentSrc !== fallbackSrc) {
+      console.log(`Setting fallback image: ${fallbackSrc}`);
+      setCurrentSrc(fallbackSrc);
       setHasError(true);
     }
   };
+
+  // Fix the issue with the direct image rendering
+  useEffect(() => {
+    if (imgRef.current) {
+      // Force reload the image if it's already in the DOM
+      const imgElement = imgRef.current;
+      imgElement.src = currentSrc;
+    }
+  }, [currentSrc]);
 
   return (
     <div className={`relative ${className}`}>
@@ -63,9 +75,10 @@ const ImageWithFallback = ({
         </div>
       )}
       <img
-        src={imgSrc}
+        ref={imgRef}
+        src={currentSrc}
         alt={alt}
-        className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
+        className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'} w-full h-full object-cover`}
         onError={handleError}
         onClick={onClick}
       />

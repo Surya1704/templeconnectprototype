@@ -1,10 +1,11 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getTempleImages } from "@/data/mergeTemples";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ImageWithFallback from "./ImageWithFallback";
+import { toast } from "@/components/ui/use-toast";
 
 interface TempleImageGalleryProps {
   templeId: string;
@@ -12,8 +13,30 @@ interface TempleImageGalleryProps {
 
 const TempleImageGallery = ({ templeId }: TempleImageGalleryProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = getTempleImages(templeId);
+  const [images, setImages] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
   const isMobile = useIsMobile();
+  
+  useEffect(() => {
+    try {
+      const fetchedImages = getTempleImages(templeId);
+      console.log(`Fetched images for temple ${templeId}:`, fetchedImages);
+      setImages(fetchedImages);
+      
+      if (fetchedImages.length === 0) {
+        console.warn(`No images found for temple ID: ${templeId}`);
+      }
+    } catch (error) {
+      console.error(`Error fetching images for temple ${templeId}:`, error);
+      toast({
+        title: "Error",
+        description: "Failed to load temple images",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [templeId]);
   
   const handlePrevious = () => {
     setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -22,6 +45,15 @@ const TempleImageGallery = ({ templeId }: TempleImageGalleryProps) => {
   const handleNext = () => {
     setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
+  
+  // If loading, show loading state
+  if (loading) {
+    return (
+      <div className="w-full h-72 md:h-96 bg-spiritual-sandstone/30 rounded-xl flex items-center justify-center">
+        <div className="animate-pulse text-gray-500">Loading images...</div>
+      </div>
+    );
+  }
   
   // If no images, show placeholder
   if (!images || images.length === 0) {
@@ -37,7 +69,7 @@ const TempleImageGallery = ({ templeId }: TempleImageGalleryProps) => {
       {/* Main Image */}
       <ImageWithFallback
         src={images[currentImageIndex]}
-        alt="Temple"
+        alt={`Temple Image ${currentImageIndex + 1}`}
         className="w-full h-full object-cover"
         fallbackSrc="/placeholder.svg"
       />
