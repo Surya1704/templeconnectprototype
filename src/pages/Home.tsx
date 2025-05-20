@@ -9,16 +9,16 @@ const Home = () => {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
-  // Jyotirlinga data for the featured section
+  // Jyotirlinga data for the featured section with correct IDs
   const jyotirlingsData = [
-    { name: "Somnath", image: "/public/assets/temples/golden-temple.png", slug: "somnath", location: "Gujarat" },
-    { name: "Mallikarjuna", image: "/public/assets/temples/meenakshi-temple.png", slug: "mallikarjuna", location: "Andhra Pradesh" },
-    { name: "Mahakaleshwar", image: "/public/assets/temples/kedarnath-temple.png", slug: "mahakaleshwar", location: "Madhya Pradesh" },
-    { name: "Omkareshwar", image: "/public/assets/temples/jagannath-puri.png", slug: "omkareshwar", location: "Madhya Pradesh" },
-    { name: "Kedarnath", image: "/public/assets/temples/kashi-vishwanath.png", slug: "kedarnath", location: "Uttarakhand" },
-    { name: "Bhimashankar", image: "/public/assets/temples/tirupati-balaji.png", slug: "bhimashankar", location: "Maharashtra" },
-    { name: "Kashi Vishwanath", image: "/public/assets/temples/badrinath-temple.png", slug: "kashi-vishwanath", location: "Uttar Pradesh" },
-    { name: "Trimbakeshwar", image: "/public/assets/temples/brihadeeswara-temple.png", slug: "trimbakeshwar", location: "Maharashtra" },
+    { name: "Somnath", image: "/public/assets/temples/golden-temple.png", templeId: "24", location: "Gujarat" },
+    { name: "Mallikarjuna", image: "/public/assets/temples/meenakshi-temple.png", templeId: "34", location: "Andhra Pradesh" },
+    { name: "Mahakaleshwar", image: "/public/assets/temples/kedarnath-temple.png", templeId: "26", location: "Madhya Pradesh" },
+    { name: "Omkareshwar", image: "/public/assets/temples/jagannath-puri.png", templeId: "27", location: "Madhya Pradesh" },
+    { name: "Kedarnath", image: "/public/assets/temples/kashi-vishwanath.png", templeId: "28", location: "Uttarakhand" },
+    { name: "Bhimashankar", image: "/public/assets/temples/tirupati-balaji.png", templeId: "29", location: "Maharashtra" },
+    { name: "Kashi Vishwanath", image: "/public/assets/temples/badrinath-temple.png", templeId: "30", location: "Uttar Pradesh" },
+    { name: "Trimbakeshwar", image: "/public/assets/temples/brihadeeswara-temple.png", templeId: "31", location: "Maharashtra" },
   ];
 
   // Sanskrit texts for animation
@@ -230,14 +230,14 @@ const Home = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {jyotirlingsData.map((jyotirlinga, index) => (
               <motion.div
-                key={jyotirlinga.slug}
+                key={jyotirlinga.templeId}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 whileHover={{ scale: 1.03, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
                 className="bg-spiritual-ivory rounded-lg overflow-hidden shadow-md transition-all duration-300 cursor-pointer"
-                onClick={() => navigate(`/temple/${jyotirlinga.slug}`)}
+                onClick={() => navigate(`/temple/${jyotirlinga.templeId}`)}
               >
                 <div className="h-56 relative overflow-hidden bg-spiritual-maroon/10">
                   <div className="absolute inset-0 flex items-center justify-center p-6">
@@ -266,7 +266,7 @@ const Home = () => {
                   </div>
                   
                   <Link 
-                    to={`/temple/${jyotirlinga.slug}`}
+                    to={`/temple/${jyotirlinga.templeId}`}
                     className="mt-2 inline-flex items-center text-spiritual-ochre hover:text-spiritual-saffron"
                   >
                     <span>Explore</span>

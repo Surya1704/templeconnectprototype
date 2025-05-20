@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -17,10 +16,10 @@ interface TempleCollageItem {
     zIndex: number;
     rotate?: string;
   };
-  path: string;
+  templeId: string;
 }
 
-// Sample temple data for the collage - using numeric IDs that exist in our database
+// Sample temple data for the collage with corrected temple IDs
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
@@ -34,7 +33,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    path: "/temple/1" // Numeric ID
+    templeId: "1" // Numeric ID
   },
   {
     id: "temple-2",
@@ -47,7 +46,7 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    path: "/temple/2" // Numeric ID
+    templeId: "2" // Numeric ID
   },
   {
     id: "temple-3",
@@ -61,7 +60,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "3deg"
     },
-    path: "/temple/3" // Numeric ID
+    templeId: "28" // Updated to correct Jyotirlinga ID
   },
   {
     id: "temple-4",
@@ -75,7 +74,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    path: "/temple/4" // Numeric ID
+    templeId: "4" // Numeric ID
   },
   {
     id: "temple-5",
@@ -89,7 +88,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/5" // Numeric ID
+    templeId: "30" // Updated to correct Jyotirlinga ID
   },
   {
     id: "temple-6",
@@ -103,7 +102,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    path: "/temple/6" // Numeric ID
+    templeId: "6" // Numeric ID
   },
   {
     id: "temple-7",
@@ -116,7 +115,7 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    path: "/temple/7" // Numeric ID
+    templeId: "7" // Numeric ID
   },
   {
     id: "temple-8",
@@ -130,7 +129,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    path: "/temple/8" // Numeric ID
+    templeId: "8" // Numeric ID
   }
 ];
 
@@ -154,7 +153,7 @@ const TempleCollage: React.FC = () => {
             zIndex: temple.position.zIndex,
             transform: temple.position.rotate ? `rotate(${temple.position.rotate})` : 'none'
           }}
-          onClick={() => navigate(temple.path)}
+          onClick={() => navigate(`/temple/${temple.templeId}`)}
           whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.3 } }}
         >
           <div className={cn(

@@ -1,7 +1,9 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import ImageWithFallback from "./ImageWithFallback";
 
 // Define the jyotirlinga data structure
 interface JyotirlingsCollageItem {
@@ -16,11 +18,11 @@ interface JyotirlingsCollageItem {
     zIndex: number;
     rotate?: string;
   };
-  path: string;
+  templeId: string; // Numeric ID to directly link to the correct temple
   imageSrc: string;
 }
 
-// Data for the 12 Jyotirlingas with paths using name-based routing
+// Updated data for the 12 Jyotirlingas with correct temple IDs
 const jyotirlingsData: JyotirlingsCollageItem[] = [
   {
     id: "jyotirlinga-1",
@@ -34,7 +36,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    path: "/temple/24", // Using numeric ID that exists in database
+    templeId: "24", // Correct numeric ID for Somnath
     imageSrc: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png"
   },
   {
@@ -48,7 +50,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    path: "/temple/25", // Using numeric ID
+    templeId: "25", // Correct numeric ID for Rameshwaram
     imageSrc: "/lovable-uploads/c868ae47-1318-4239-9e0b-8e11ffd2ab53.png"
   },
   {
@@ -63,7 +65,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 1,
       rotate: "3deg"
     },
-    path: "/temple/26", // Using numeric ID
+    templeId: "26", // Correct numeric ID for Mahakaleshwar
     imageSrc: "/lovable-uploads/b668b893-dac5-4d67-9be0-425045941429.png"
   },
   {
@@ -78,7 +80,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    path: "/temple/27", // Using numeric ID
+    templeId: "27", // Correct numeric ID for Omkareshwar
     imageSrc: "/lovable-uploads/bff90acf-434f-4b5d-a02a-f8cd060e2ec9.png"
   },
   {
@@ -93,7 +95,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/28", // Using numeric ID
+    templeId: "28", // Correct numeric ID for Kedarnath
     imageSrc: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png"
   },
   {
@@ -108,7 +110,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    path: "/temple/29", // Using numeric ID
+    templeId: "29", // Correct numeric ID for Bhimashankar
     imageSrc: "/lovable-uploads/bed64bd3-3688-44d2-9bad-a6918b67c9a6.png"
   },
   {
@@ -122,7 +124,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    path: "/temple/30", // Using numeric ID
+    templeId: "30", // Correct numeric ID for Kashi Vishwanath
     imageSrc: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png"
   },
   {
@@ -137,7 +139,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    path: "/temple/31", // Using numeric ID
+    templeId: "31", // Correct numeric ID for Trimbakeshwar
     imageSrc: "/lovable-uploads/3c73bbb4-d8d9-439c-bac6-16dfc1940d71.png"
   },
   {
@@ -152,7 +154,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    path: "/temple/32", // Using numeric ID
+    templeId: "32", // Correct numeric ID for Vaidyanath
     imageSrc: "/lovable-uploads/3e630441-b218-447f-a772-6d16110739b2.png"
   },
   {
@@ -167,7 +169,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 4,
       rotate: "-1.5deg"
     },
-    path: "/temple/33", // Using numeric ID
+    templeId: "33", // Correct numeric ID for Nageshwar
     imageSrc: "/lovable-uploads/f6e17f2f-fd67-45c1-8f9b-bdd05ef346ce.png"
   },
   {
@@ -181,7 +183,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       height: "36%",
       zIndex: 3,
     },
-    path: "/temple/34", // Using numeric ID
+    templeId: "34", // Correct numeric ID for Mallikarjuna
     imageSrc: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png"
   },
   {
@@ -196,7 +198,7 @@ const jyotirlingsData: JyotirlingsCollageItem[] = [
       zIndex: 2,
       rotate: "2deg"
     },
-    path: "/temple/35", // Using numeric ID
+    templeId: "35", // Correct numeric ID for Grishneshwar
     imageSrc: "/lovable-uploads/55fb5f1f-b855-4295-a028-e2385fe97d48.png"
   }
 ];
@@ -221,7 +223,7 @@ const JyotirlingsCollage: React.FC = () => {
             zIndex: jyotirlinga.position.zIndex,
             transform: jyotirlinga.position.rotate ? `rotate(${jyotirlinga.position.rotate})` : 'none'
           }}
-          onClick={() => navigate(jyotirlinga.path)}
+          onClick={() => navigate(`/temple/${jyotirlinga.templeId}`)} // Use the correct templeId directly
           whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.3 } }}
         >
           <div className={cn(
@@ -240,14 +242,11 @@ const JyotirlingsCollage: React.FC = () => {
               </div>
               
               {/* Actual temple image */}
-              <img 
+              <ImageWithFallback 
                 src={jyotirlinga.imageSrc} 
                 alt={`${jyotirlinga.name} Temple`} 
                 className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => {
-                  // If image fails to load, show the default icon (already visible)
-                  e.currentTarget.style.opacity = '0';
-                }}
+                fallbackSrc="/placeholder.svg"
               />
               
               {/* Overlay with temple name */}
