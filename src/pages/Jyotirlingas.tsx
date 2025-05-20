@@ -104,6 +104,15 @@ const Jyotirlingas = () => {
 
   return (
     <div className="min-h-screen bg-spiritual-ivory/50 py-12 relative">
+      {/* Om symbol image - adding directly from user upload */}
+      <div className="absolute top-10 right-10 opacity-10 pointer-events-none z-0">
+        <img 
+          src="/lovable-uploads/960cbaec-20d3-4cc9-b47c-b237a3a0301d.png" 
+          alt="Om Symbol" 
+          className="w-64 h-64"
+        />
+      </div>
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

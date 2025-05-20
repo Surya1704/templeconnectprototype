@@ -4,21 +4,62 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import JyotirlingsCollage from "@/components/JyotirlingsCollage";
 import Mooshak from "@/components/Mooshak";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 const Home = () => {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
-  // Jyotirlinga data for the featured section with correct IDs
+  // Jyotirlinga data for the featured section with correct IDs and images
   const jyotirlingsData = [
-    { name: "Somnath", image: "/public/assets/temples/golden-temple.png", templeId: "24", location: "Gujarat" },
-    { name: "Mallikarjuna", image: "/public/assets/temples/meenakshi-temple.png", templeId: "34", location: "Andhra Pradesh" },
-    { name: "Mahakaleshwar", image: "/public/assets/temples/kedarnath-temple.png", templeId: "26", location: "Madhya Pradesh" },
-    { name: "Omkareshwar", image: "/public/assets/temples/jagannath-puri.png", templeId: "27", location: "Madhya Pradesh" },
-    { name: "Kedarnath", image: "/public/assets/temples/kashi-vishwanath.png", templeId: "28", location: "Uttarakhand" },
-    { name: "Bhimashankar", image: "/public/assets/temples/tirupati-balaji.png", templeId: "29", location: "Maharashtra" },
-    { name: "Kashi Vishwanath", image: "/public/assets/temples/badrinath-temple.png", templeId: "30", location: "Uttar Pradesh" },
-    { name: "Trimbakeshwar", image: "/public/assets/temples/brihadeeswara-temple.png", templeId: "31", location: "Maharashtra" },
+    { 
+      name: "Somnath", 
+      image: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png", 
+      templeId: "24", 
+      location: "Gujarat" 
+    },
+    { 
+      name: "Mallikarjuna", 
+      image: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png", 
+      templeId: "34", 
+      location: "Andhra Pradesh" 
+    },
+    { 
+      name: "Mahakaleshwar", 
+      image: "/lovable-uploads/b668b893-dac5-4d67-9be0-425045941429.png", 
+      templeId: "26", 
+      location: "Madhya Pradesh" 
+    },
+    { 
+      name: "Omkareshwar", 
+      image: "/lovable-uploads/bff90acf-434f-4b5d-a02a-f8cd060e2ec9.png", 
+      templeId: "27", 
+      location: "Madhya Pradesh" 
+    },
+    { 
+      name: "Kedarnath", 
+      image: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png", 
+      templeId: "28", 
+      location: "Uttarakhand" 
+    },
+    { 
+      name: "Bhimashankar", 
+      image: "/lovable-uploads/bed64bd3-3688-44d2-9bad-a6918b67c9a6.png", 
+      templeId: "29", 
+      location: "Maharashtra" 
+    },
+    { 
+      name: "Kashi Vishwanath", 
+      image: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png", 
+      templeId: "30", 
+      location: "Uttar Pradesh" 
+    },
+    { 
+      name: "Trimbakeshwar", 
+      image: "/lovable-uploads/3c73bbb4-d8d9-439c-bac6-16dfc1940d71.png", 
+      templeId: "31", 
+      location: "Maharashtra" 
+    },
   ];
 
   // Sanskrit texts for animation
@@ -240,18 +281,15 @@ const Home = () => {
                 onClick={() => navigate(`/temple/${jyotirlinga.templeId}`)}
               >
                 <div className="h-56 relative overflow-hidden bg-spiritual-maroon/10">
-                  <div className="absolute inset-0 flex items-center justify-center p-6">
-                    <div className="relative w-24 h-32">
-                      {/* Stylized temple icon */}
-                      <div className="absolute inset-0 bg-spiritual-gold/30 rounded-t-xl"></div>
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-16 rounded-t-full bg-spiritual-ochre/40"></div>
-                      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-spiritual-maroon/30"></div>
-                      <div className="absolute top-6 left-1/2 -translate-x-1/2 text-center text-spiritual-maroon font-bold">
-                        ॐ
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  {/* Use actual temple image */}
+                  <ImageWithFallback
+                    src={jyotirlinga.image}
+                    alt={`${jyotirlinga.name} Temple`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    fallbackSrc="/placeholder.svg"
+                  />
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-3 left-4 text-white">
                     <h3 className="font-cinzel font-bold text-xl">{jyotirlinga.name}</h3>
                     <p className="text-sm opacity-90">{jyotirlinga.location}</p>
