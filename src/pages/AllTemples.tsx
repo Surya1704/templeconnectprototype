@@ -45,7 +45,8 @@ const AllTemples = () => {
   // Sorted based on selected option
   const sortedTemples = [...filteredTemples].sort((a, b) => {
     if (activeSortOption === "popularity") {
-      return b.rating - a.rating;
+      // Sort by name as a fallback since we're removing ratings
+      return a.name.localeCompare(b.name);
     } else if (activeSortOption === "price-low") {
       return a.price - b.price;
     } else if (activeSortOption === "price-high") {
@@ -168,7 +169,7 @@ const AllTemples = () => {
                       <SelectValue placeholder="Sort by" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="popularity">Sort by Popularity</SelectItem>
+                      <SelectItem value="popularity">Sort Alphabetically</SelectItem>
                       <SelectItem value="price-low">Price: Low to High</SelectItem>
                       <SelectItem value="price-high">Price: High to Low</SelectItem>
                       <SelectItem value="name">Sort Alphabetically</SelectItem>
@@ -262,7 +263,7 @@ const AllTemples = () => {
                     <SelectValue placeholder="Sort by" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="popularity">Sort by Popularity</SelectItem>
+                    <SelectItem value="popularity">Sort Alphabetically</SelectItem>
                     <SelectItem value="price-low">Price: Low to High</SelectItem>
                     <SelectItem value="price-high">Price: High to Low</SelectItem>
                     <SelectItem value="name">Sort Alphabetically</SelectItem>
@@ -297,12 +298,7 @@ const AllTemples = () => {
                               className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                            <div className="absolute top-3 right-3">
-                              <div className="flex items-center gap-1 bg-white/90 rounded-full py-1 px-2">
-                                <span className="text-spiritual-ochre">★</span>
-                                <span className="text-sm font-medium">{temple.rating}</span>
-                              </div>
-                            </div>
+                            {/* Rating removed */}
                             <div className="absolute bottom-3 left-3 text-white">
                               <h3 className="font-bold text-lg">{temple.name}</h3>
                               <p className="text-sm text-white/90">{temple.location}</p>
@@ -400,10 +396,7 @@ const AllTemples = () => {
                           <div>
                             <div className="flex justify-between items-start">
                               <h3 className="font-bold text-base">{temple.name}</h3>
-                              <div className="flex items-center gap-1 bg-spiritual-saffron/10 rounded-full py-0.5 px-1.5">
-                                <span className="text-spiritual-ochre text-xs">★</span>
-                                <span className="text-xs font-medium">{temple.rating}</span>
-                              </div>
+                              {/* Rating removed */}
                             </div>
                             <p className="text-xs text-gray-600 mb-1">{temple.location}</p>
                             <div className="flex flex-wrap gap-1 mb-1">
