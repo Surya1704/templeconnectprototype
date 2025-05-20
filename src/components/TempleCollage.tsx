@@ -22,7 +22,7 @@ interface TempleCollageItem {
   imageSrc: string;
 }
 
-// Updated temple data for the collage with correct temple IDs
+// Updated temple data for the collage with correctly linked temple IDs
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
@@ -36,7 +36,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    templeId: "3", // Corrected ID for Golden Temple
+    templeId: "3", // Correct ID for Golden Temple
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg"
   },
   {
@@ -50,7 +50,7 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    templeId: "4", // Corrected ID for Meenakshi Temple
+    templeId: "4", // Correct ID for Meenakshi Temple
     imageSrc: "/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png"
   },
   {
@@ -80,7 +80,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    templeId: "5", // Corrected ID for Jagannath Puri
+    templeId: "5", // Correct ID for Jagannath Puri
     imageSrc: "/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png"
   },
   {
@@ -110,7 +110,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    templeId: "9", // Corrected ID for Brihadeeswara Temple
+    templeId: "9", // Correct ID for Brihadeeswara Temple
     imageSrc: "/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png"
   },
   {
@@ -124,7 +124,7 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    templeId: "2", // Corrected ID for Tirupati Balaji
+    templeId: "2", // Correct ID for Tirupati Balaji
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg"
   },
   {
@@ -139,7 +139,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    templeId: "7", // Corrected ID for Badrinath Temple
+    templeId: "7", // Correct ID for Badrinath Temple
     imageSrc: "/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png"
   }
 ];
