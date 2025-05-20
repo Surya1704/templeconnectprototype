@@ -8,7 +8,7 @@ import { getTempleById } from "@/data/mergeTemples";
 import GuidedTourButton from "@/components/GuidedTourButton";
 import { useToast } from "@/components/ui/use-toast";
 
-// Updated featured temple IDs to include only non-jyotirlinga temples
+// Featured temple IDs (non-jyotirlinga temples)
 const FEATURED_TEMPLE_IDS = ["1", "2", "3", "4", "5"];
 
 interface TempleSelectorProps {
