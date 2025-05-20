@@ -74,7 +74,7 @@ const Jyotirlingas = () => {
     },
     {
       id: "32", // Numeric ID that matches the database
-      name: "Vaidyanath",
+      name: "Baidyanath", // Changed from "Vaidyanath" to "Baidyanath"
       location: "Jharkhand",
       description: "Temple dedicated to Lord Shiva as the 'Lord of Physicians'",
       image: "/lovable-uploads/3e630441-b218-447f-a772-6d16110739b2.png"

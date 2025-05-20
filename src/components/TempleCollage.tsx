@@ -22,7 +22,7 @@ interface TempleCollageItem {
   imageSrc: string;
 }
 
-// Sample temple data for the collage with corrected temple IDs and added images
+// Updated temple data for the collage with correct temple IDs
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
@@ -36,7 +36,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    templeId: "1", // Numeric ID
+    templeId: "3", // Corrected ID for Golden Temple
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg"
   },
   {
@@ -50,7 +50,7 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    templeId: "2", // Numeric ID
+    templeId: "4", // Corrected ID for Meenakshi Temple
     imageSrc: "/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png"
   },
   {
@@ -65,7 +65,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "3deg"
     },
-    templeId: "28", // Updated to correct Jyotirlinga ID
+    templeId: "28", // Correct Jyotirlinga ID for Kedarnath
     imageSrc: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png"
   },
   {
@@ -80,7 +80,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    templeId: "4", // Numeric ID
+    templeId: "5", // Corrected ID for Jagannath Puri
     imageSrc: "/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png"
   },
   {
@@ -95,7 +95,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    templeId: "30", // Updated to correct Jyotirlinga ID
+    templeId: "30", // Correct Jyotirlinga ID for Kashi Vishwanath
     imageSrc: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png"
   },
   {
@@ -110,7 +110,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    templeId: "6", // Numeric ID
+    templeId: "9", // Corrected ID for Brihadeeswara Temple
     imageSrc: "/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png"
   },
   {
@@ -124,7 +124,7 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    templeId: "7", // Numeric ID
+    templeId: "2", // Corrected ID for Tirupati Balaji
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg"
   },
   {
@@ -139,7 +139,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    templeId: "8", // Numeric ID
+    templeId: "7", // Corrected ID for Badrinath Temple
     imageSrc: "/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png"
   }
 ];

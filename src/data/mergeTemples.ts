@@ -1,3 +1,4 @@
+
 import { temples as originalTemples, Temple } from './temples';
 import { extendedTemples } from './extendedTemples';
 import { extendedTemples2 } from './extendedTemples2';
@@ -26,7 +27,7 @@ const templeNameToIdMap: Record<string, string> = {
   "bhimashankar": "29",
   "kashi-vishwanath": "30",
   "trimbakeshwar": "31",
-  "vaidyanath": "32",
+  "baidyanath": "32", // Changed from "vaidyanath" to "baidyanath"
   "nageshwar": "33",
   "mallikarjuna": "34",
   "grishneshwar": "35"
