@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { filterTemples, getTempleImages, allTemples } from "@/data/mergeTemples";
@@ -35,42 +34,71 @@ const AllTemples = () => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    // Get all temples first
-    let temples = filterTemples({
+    // First, ensure we have all 12 Jyotirlinga temples (IDs 24-35)
+    const jyotirlingaIds = Array.from({ length: 12 }, (_, i) => (i + 24).toString());
+    
+    // Get all jyotirlinga temples that exist in our data
+    const jyotirlingas = jyotirlingaIds
+      .map(id => allTemples.find(temple => temple.id === id))
+      .filter(Boolean);
+    
+    // Get filtered temples based on user selections
+    const filteredByUserCriteria = filterTemples({
       state: selectedState,
       tag: selectedTag,
       search: searchQuery,
     });
     
-    // Make sure all Jyotirlinga temples (IDs 24-35) are included
-    const jyotirlingaIds = Array.from({ length: 12 }, (_, i) => (i + 24).toString());
-    const jyotirlingas = jyotirlingaIds.map(id => 
-      allTemples.find(temple => temple.id === id)
-    ).filter(Boolean);
+    // Create a map of temple IDs for quick lookup
+    const filteredTempleMap = new Map();
+    filteredByUserCriteria.forEach(temple => {
+      filteredTempleMap.set(temple.id, temple);
+    });
     
-    // Combine filtered temples with jyotirlingas, removing duplicates
-    const combinedTemples = [...temples];
+    // Final set of temples to display
+    const finalTemples = [...filteredByUserCriteria];
     
-    // Add any missing jyotirlingas
+    // Always include all Jyotirlinga temples that match the filters
     jyotirlingas.forEach(jyotirlinga => {
-      if (!combinedTemples.some(temple => temple.id === jyotirlinga.id)) {
-        // Only add if it matches the filter criteria or if no state filter is applied
-        if (selectedState === "All States" || jyotirlinga.state === selectedState) {
-          // Only add if it matches the tag filter or if no tag filter is applied
-          if (!selectedTag || jyotirlinga.tags.includes(selectedTag)) {
-            // Only add if it matches the search query or if no search query is applied
-            if (!searchQuery || 
-                jyotirlinga.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                jyotirlinga.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                jyotirlinga.state.toLowerCase().includes(searchQuery.toLowerCase())) {
-              combinedTemples.push(jyotirlinga);
-            }
+      // Check if this jyotirlinga is already included
+      if (!filteredTempleMap.has(jyotirlinga.id)) {
+        let shouldInclude = true;
+        
+        // Apply state filter if selected
+        if (selectedState !== "All States" && jyotirlinga.state !== selectedState) {
+          shouldInclude = false;
+        }
+        
+        // Apply tag filter if selected
+        if (selectedTag && !jyotirlinga.tags.includes(selectedTag)) {
+          shouldInclude = false;
+        }
+        
+        // Apply search filter if provided
+        if (searchQuery) {
+          const searchLower = searchQuery.toLowerCase();
+          if (
+            !jyotirlinga.name.toLowerCase().includes(searchLower) &&
+            !jyotirlinga.location.toLowerCase().includes(searchLower) &&
+            !jyotirlinga.state.toLowerCase().includes(searchLower)
+          ) {
+            shouldInclude = false;
           }
+        }
+        
+        if (shouldInclude) {
+          finalTemples.push(jyotirlinga);
         }
       }
     });
     
-    setFilteredTemples(combinedTemples);
+    console.log("Jyotirlinga IDs in filtered results:", 
+      finalTemples
+        .filter(temple => jyotirlingaIds.includes(temple.id))
+        .map(temple => `${temple.id} (${temple.name})`)
+    );
+    
+    setFilteredTemples(finalTemples);
   }, [selectedState, selectedTag, searchQuery]);
 
   // Sorted based on selected option
@@ -329,7 +357,6 @@ const AllTemples = () => {
                               className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                            {/* Rating removed */}
                             <div className="absolute bottom-3 left-3 text-white">
                               <h3 className="font-bold text-lg">{temple.name}</h3>
                               <p className="text-sm text-white/90">{temple.location}</p>
@@ -427,7 +454,6 @@ const AllTemples = () => {
                           <div>
                             <div className="flex justify-between items-start">
                               <h3 className="font-bold text-base">{temple.name}</h3>
-                              {/* Rating removed */}
                             </div>
                             <p className="text-xs text-gray-600 mb-1">{temple.location}</p>
                             <div className="flex flex-wrap gap-1 mb-1">
