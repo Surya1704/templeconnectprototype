@@ -22,7 +22,7 @@ interface TempleCollageItem {
   imageSrc: string;
 }
 
-// Updated temple data for the collage with correctly linked temple IDs for Jyotirlingas
+// Updated temple data for the collage with 8 selected temples (excluding jyotirlingas)
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
@@ -54,21 +54,6 @@ const templeData: TempleCollageItem[] = [
     imageSrc: "/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png"
   },
   {
-    id: "temple-3",
-    name: "Kedarnath Temple",
-    description: "Ancient shrine in the Himalayas",
-    position: {
-      top: "10%",
-      left: "70%",
-      width: "22%",
-      height: "30%",
-      zIndex: 1,
-      rotate: "3deg"
-    },
-    templeId: "28", // Correct ID for Kedarnath
-    imageSrc: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png"
-  },
-  {
     id: "temple-4",
     name: "Jagannath Puri",
     description: "Famous for its annual Rath Yatra",
@@ -82,21 +67,6 @@ const templeData: TempleCollageItem[] = [
     },
     templeId: "5", // ID for Jagannath Puri
     imageSrc: "/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png"
-  },
-  {
-    id: "temple-5",
-    name: "Kashi Vishwanath",
-    description: "One of the most famous Hindu temples",
-    position: {
-      top: "50%",
-      left: "35%",
-      width: "25%",
-      height: "35%",
-      zIndex: 2,
-      rotate: "1deg"
-    },
-    templeId: "30", // ID for Kashi Vishwanath Jyotirlinga
-    imageSrc: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png"
   },
   {
     id: "temple-6",
@@ -141,6 +111,36 @@ const templeData: TempleCollageItem[] = [
     },
     templeId: "7", // ID for Badrinath Temple
     imageSrc: "/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png"
+  },
+  {
+    id: "temple-9",
+    name: "Lotus Temple",
+    description: "Iconic Bahá'í House of Worship",
+    position: {
+      top: "20%",
+      left: "70%",
+      width: "22%",
+      height: "30%",
+      zIndex: 2,
+      rotate: "1deg"
+    },
+    templeId: "3", // ID for Lotus Temple
+    imageSrc: "https://images.unsplash.com/photo-1587922546307-776227941871?q=80&w=1974&auto=format&fit=crop"
+  },
+  {
+    id: "temple-10",
+    name: "Shirdi Sai Baba Temple",
+    description: "Shrine of the revered saint Sai Baba",
+    position: {
+      top: "8%",
+      left: "55%",
+      width: "24%",
+      height: "28%",
+      zIndex: 2,
+      rotate: "-1deg"
+    },
+    templeId: "42", // ID for Shirdi Temple
+    imageSrc: "https://images.unsplash.com/photo-1600516124918-79a230d1b66f?q=80&w=1974&auto=format&fit=crop"
   }
 ];
 
