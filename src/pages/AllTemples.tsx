@@ -1,9 +1,10 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { filterTemples, getTempleImages, allTemples } from "@/data/mergeTemples";
 import StateFilter from "@/components/StateFilter";
 import { categories, indianStates } from "@/data/temples";
-import { Search, Map, ChevronDown } from "lucide-react";
+import { Search, Map as MapIcon, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
