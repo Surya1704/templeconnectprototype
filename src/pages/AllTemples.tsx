@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { filterTemples, getTempleImages, allTemples } from "@/data/mergeTemples";
+import { allTemples, filterTemples, getTempleImages } from "@/data/mergeTemples";
 import StateFilter from "@/components/StateFilter";
 import { categories, indianStates } from "@/data/temples";
 import { Search, Map as MapIcon, ChevronDown } from "lucide-react";
@@ -35,71 +35,37 @@ const AllTemples = () => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    // First, ensure we have all 12 Jyotirlinga temples (IDs 24-35)
-    const jyotirlingaIds = Array.from({ length: 12 }, (_, i) => (i + 24).toString());
+    console.log("Total temples in allTemples:", allTemples.length);
+    console.log("All temple IDs:", allTemples.map(t => `${t.id} (${t.name})`));
     
-    // Get all jyotirlinga temples that exist in our data
+    // Check specifically for Jyotirlingas (IDs 24-35)
+    const jyotirlingaIds = Array.from({ length: 12 }, (_, i) => (i + 24).toString());
     const jyotirlingas = jyotirlingaIds
       .map(id => allTemples.find(temple => temple.id === id))
       .filter(Boolean);
     
-    // Get filtered temples based on user selections
-    const filteredByUserCriteria = filterTemples({
+    console.log("Found Jyotirlingas:", jyotirlingas.map(j => `${j.id} (${j.name})`));
+    
+    // Apply filters using the filterTemples function
+    const filtered = filterTemples({
       state: selectedState,
       tag: selectedTag,
       search: searchQuery,
     });
     
-    // Create a map of temple IDs for quick lookup
-    const filteredTempleMap = new Map();
-    filteredByUserCriteria.forEach(temple => {
-      filteredTempleMap.set(temple.id, temple);
-    });
+    console.log("Filtered temples:", filtered.length);
+    console.log("Search query:", searchQuery);
     
-    // Final set of temples to display
-    const finalTemples = [...filteredByUserCriteria];
+    if (searchQuery) {
+      const searchLower = searchQuery.toLowerCase();
+      console.log("Temples matching search:", filtered.filter(temple => 
+        temple.name.toLowerCase().includes(searchLower) ||
+        temple.location.toLowerCase().includes(searchLower) ||
+        temple.state.toLowerCase().includes(searchLower)
+      ).map(t => `${t.id} (${t.name})`));
+    }
     
-    // Always include all Jyotirlinga temples that match the filters
-    jyotirlingas.forEach(jyotirlinga => {
-      // Check if this jyotirlinga is already included
-      if (!filteredTempleMap.has(jyotirlinga.id)) {
-        let shouldInclude = true;
-        
-        // Apply state filter if selected
-        if (selectedState !== "All States" && jyotirlinga.state !== selectedState) {
-          shouldInclude = false;
-        }
-        
-        // Apply tag filter if selected
-        if (selectedTag && !jyotirlinga.tags.includes(selectedTag)) {
-          shouldInclude = false;
-        }
-        
-        // Apply search filter if provided
-        if (searchQuery) {
-          const searchLower = searchQuery.toLowerCase();
-          if (
-            !jyotirlinga.name.toLowerCase().includes(searchLower) &&
-            !jyotirlinga.location.toLowerCase().includes(searchLower) &&
-            !jyotirlinga.state.toLowerCase().includes(searchLower)
-          ) {
-            shouldInclude = false;
-          }
-        }
-        
-        if (shouldInclude) {
-          finalTemples.push(jyotirlinga);
-        }
-      }
-    });
-    
-    console.log("Jyotirlinga IDs in filtered results:", 
-      finalTemples
-        .filter(temple => jyotirlingaIds.includes(temple.id))
-        .map(temple => `${temple.id} (${temple.name})`)
-    );
-    
-    setFilteredTemples(finalTemples);
+    setFilteredTemples(filtered);
   }, [selectedState, selectedTag, searchQuery]);
 
   // Sorted based on selected option
