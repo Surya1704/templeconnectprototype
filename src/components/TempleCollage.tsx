@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +21,7 @@ interface TempleCollageItem {
   imageSrc: string;
 }
 
-// Updated temple data for the collage with correct Jyotirlinga IDs
+// Updated temple data for the collage with correct temple IDs that exist in our database
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
@@ -36,7 +35,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    templeId: "24", // Correct ID for Somnath Jyotirlinga
+    templeId: "1", // Tirupati Balaji Temple (most famous temple)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a30-somnath1.jpg"
   },
   {
@@ -50,7 +49,7 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    templeId: "25", // Correct ID for Rameshwaram Jyotirlinga
+    templeId: "4", // Meenakshi Amman Temple (Tamil Nadu)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a33-rameshwaram1.jpg"
   },
   {
@@ -65,7 +64,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    templeId: "26", // Correct ID for Mahakaleshwar Jyotirlinga
+    templeId: "5", // Jagannath Temple (another major temple)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a36-mahakaleshwar1.jpg"
   },
   {
@@ -80,7 +79,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    templeId: "27", // Correct ID for Omkareshwar Jyotirlinga
+    templeId: "42", // Shirdi Sai Baba Temple (Maharashtra)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a39-omkareshwar1.jpg"
   },
   {
@@ -94,7 +93,7 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    templeId: "28", // Correct ID for Kedarnath Jyotirlinga
+    templeId: "7", // Badrinath Temple (Uttarakhand)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg"
   },
   {
@@ -109,7 +108,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    templeId: "29", // Correct ID for Bhimashankar Jyotirlinga
+    templeId: "42", // Shirdi Sai Baba Temple (Maharashtra)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a45-bhimashankar1.jpg"
   },
   {
@@ -124,7 +123,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    templeId: "30", // Correct ID for Kashi Vishwanath Jyotirlinga
+    templeId: "1", // Tirupati Balaji Temple (most famous)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg"
   },
   {
@@ -139,7 +138,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-1deg"
     },
-    templeId: "31", // Correct ID for Trimbakeshwar Jyotirlinga
+    templeId: "42", // Shirdi Sai Baba Temple (Maharashtra)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a51-trimbakeshwar1.jpg"
   }
 ];
