@@ -22,12 +22,12 @@ interface TempleCollageItem {
   imageSrc: string;
 }
 
-// Updated temple data for the collage with 8 selected temples (excluding jyotirlingas)
+// Updated temple data for the collage with correct Jyotirlinga IDs
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
-    name: "Golden Temple",
-    description: "Sacred Sikh shrine in Amritsar",
+    name: "Somnath",
+    description: "First among the 12 Jyotirlingas",
     position: {
       top: "5%",
       left: "10%",
@@ -36,13 +36,13 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    templeId: "2", // ID for Golden Temple
-    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg"
+    templeId: "24", // Correct ID for Somnath Jyotirlinga
+    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a30-somnath1.jpg"
   },
   {
     id: "temple-2",
-    name: "Meenakshi Temple",
-    description: "Iconic temple with colorful gopurams",
+    name: "Rameshwaram",
+    description: "Located at the southern tip of India",
     position: {
       top: "15%",
       left: "38%",
@@ -50,13 +50,13 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    templeId: "4", // ID for Meenakshi Temple
-    imageSrc: "/lovable-uploads/adc13ff4-6e68-4df2-aa6c-ba386b70fcc9.png"
+    templeId: "25", // Correct ID for Rameshwaram Jyotirlinga
+    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a33-rameshwaram1.jpg"
   },
   {
-    id: "temple-4",
-    name: "Jagannath Puri",
-    description: "Famous for its annual Rath Yatra",
+    id: "temple-3",
+    name: "Mahakaleshwar",
+    description: "Located in Ujjain, Madhya Pradesh",
     position: {
       top: "42%",
       left: "5%",
@@ -65,13 +65,13 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    templeId: "5", // ID for Jagannath Puri
-    imageSrc: "/lovable-uploads/28a331ad-d3c0-4157-8b9a-32af5d26e785.png"
+    templeId: "26", // Correct ID for Mahakaleshwar Jyotirlinga
+    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a36-mahakaleshwar1.jpg"
   },
   {
-    id: "temple-6",
-    name: "Brihadeeswara Temple",
-    description: "UNESCO World Heritage site in Thanjavur",
+    id: "temple-4",
+    name: "Omkareshwar",
+    description: "Located on an island in Narmada river",
     position: {
       top: "45%",
       left: "65%",
@@ -80,13 +80,13 @@ const templeData: TempleCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    templeId: "9", // ID for Brihadeeswara Temple
-    imageSrc: "/lovable-uploads/dc0a16f8-c635-404e-8e78-b77eb4b37792.png"
+    templeId: "27", // Correct ID for Omkareshwar Jyotirlinga
+    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a39-omkareshwar1.jpg"
   },
   {
-    id: "temple-7",
-    name: "Tirupati Balaji",
-    description: "World's richest temple",
+    id: "temple-5",
+    name: "Kedarnath",
+    description: "Located in the Himalayan ranges",
     position: {
       top: "75%",
       left: "20%",
@@ -94,13 +94,13 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    templeId: "1", // ID for Tirupati Balaji
-    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg"
+    templeId: "28", // Correct ID for Kedarnath Jyotirlinga
+    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg"
   },
   {
-    id: "temple-8",
-    name: "Badrinath Temple",
-    description: "Sacred to Lord Vishnu",
+    id: "temple-6",
+    name: "Bhimashankar",
+    description: "Located in Maharashtra",
     position: {
       top: "70%",
       left: "50%",
@@ -109,13 +109,13 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    templeId: "7", // ID for Badrinath Temple
-    imageSrc: "/lovable-uploads/ea3c8734-1903-4391-bad2-38836ad90d38.png"
+    templeId: "29", // Correct ID for Bhimashankar Jyotirlinga
+    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a45-bhimashankar1.jpg"
   },
   {
-    id: "temple-9",
-    name: "Lotus Temple",
-    description: "Iconic Bahá'í House of Worship",
+    id: "temple-7",
+    name: "Kashi Vishwanath",
+    description: "Located in Varanasi, Uttar Pradesh",
     position: {
       top: "20%",
       left: "70%",
@@ -124,13 +124,13 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    templeId: "3", // ID for Lotus Temple
-    imageSrc: "https://images.unsplash.com/photo-1587922546307-776227941871?q=80&w=1974&auto=format&fit=crop"
+    templeId: "30", // Correct ID for Kashi Vishwanath Jyotirlinga
+    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg"
   },
   {
-    id: "temple-10",
-    name: "Shirdi Sai Baba Temple",
-    description: "Shrine of the revered saint Sai Baba",
+    id: "temple-8",
+    name: "Trimbakeshwar",
+    description: "Located near Ellora caves, Maharashtra",
     position: {
       top: "8%",
       left: "55%",
@@ -139,8 +139,8 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-1deg"
     },
-    templeId: "42", // ID for Shirdi Temple
-    imageSrc: "https://images.unsplash.com/photo-1600516124918-79a230d1b66f?q=80&w=1974&auto=format&fit=crop"
+    templeId: "31", // Correct ID for Trimbakeshwar Jyotirlinga
+    imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a51-trimbakeshwar1.jpg"
   }
 ];
 
