@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -150,7 +149,7 @@ const TempleCollage: React.FC = () => {
   return (
     <div className="relative w-full h-[90vh] overflow-hidden bg-gradient-to-b from-spiritual-maroon/30 via-spiritual-ochre/30 to-spiritual-saffron/20 rounded-xl">
       {/* Solid background overlay to prevent text bleeding through */}
-      <div className="absolute inset-0 bg-white/95 rounded-xl" />
+      <div className="absolute inset-0 bg-white rounded-xl z-10" />
       
       {templeData.map((temple) => (
         <motion.div
@@ -158,20 +157,20 @@ const TempleCollage: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: Math.random() * 0.5 }}
-          className="absolute cursor-pointer group z-10"
+          className="absolute cursor-pointer group"
           style={{
             top: temple.position.top,
             left: temple.position.left,
             width: temple.position.width,
             height: temple.position.height,
-            zIndex: temple.position.zIndex + 10,
+            zIndex: temple.position.zIndex + 20,
             transform: temple.position.rotate ? `rotate(${temple.position.rotate})` : 'none'
           }}
           onClick={() => {
             console.log(`Navigating to temple ID: ${temple.templeId} (${temple.name})`);
             navigate(`/temple/${temple.templeId}`);
           }}
-          whileHover={{ scale: 1.05, zIndex: 20, transition: { duration: 0.3 } }}
+          whileHover={{ scale: 1.05, zIndex: 30, transition: { duration: 0.3 } }}
         >
           <div className={cn(
             "w-full h-full rounded-lg overflow-hidden border-4 border-spiritual-gold/40 shadow-lg",
@@ -218,15 +217,15 @@ const TempleCollage: React.FC = () => {
       ))}
       
       {/* Decorative elements with higher z-index */}
-      <div className="absolute top-5 left-5 w-40 h-40 rounded-full bg-spiritual-gold/5 blur-2xl z-5"></div>
-      <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-spiritual-maroon/5 blur-3xl z-5"></div>
-      <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-spiritual-ochre/5 blur-xl z-5"></div>
+      <div className="absolute top-5 left-5 w-40 h-40 rounded-full bg-spiritual-gold/5 blur-2xl z-15"></div>
+      <div className="absolute bottom-10 right-10 w-60 h-60 rounded-full bg-spiritual-maroon/5 blur-3xl z-15"></div>
+      <div className="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-spiritual-ochre/5 blur-xl z-15"></div>
       
       {/* Animated particle effect for divine ambiance */}
       {Array.from({ length: 12 }).map((_, i) => (
         <motion.div
           key={`particle-${i}`}
-          className="absolute w-1 h-1 rounded-full bg-spiritual-gold/40 z-5"
+          className="absolute w-1 h-1 rounded-full bg-spiritual-gold/40 z-15"
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
@@ -244,7 +243,7 @@ const TempleCollage: React.FC = () => {
         />
       ))}
       
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center z-15">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center z-25">
         <motion.p 
           className="text-spiritual-maroon/70 text-sm mb-2"
           initial={{ opacity: 0 }}
