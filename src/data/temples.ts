@@ -1,3 +1,4 @@
+
 import { Flame, Mountain, Church, Book, Home, Users, Sun, Moon, Star, Waves } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -112,6 +113,151 @@ export const temples: Temple[] = [
     price: 0,
     tags: ["Sai Baba", "Darshan", "Prasad"],
     description: "The Shirdi Sai Baba Temple is a beautiful shrine dedicated to the saint Sai Baba, who is revered by both Hindus and Muslims. Located in Shirdi town of Maharashtra, India, the temple is one of the richest temples in the country and receives an average of 25,000 devotees daily."
+  },
+  // The 12 Jyotirlingas
+  {
+    id: "24",
+    name: "Somnath Temple",
+    location: "Somnath, Gujarat",
+    state: "Gujarat",
+    rating: 4.95,
+    image: "https://images.unsplash.com/photo-1582632728747-04b27b2d7c62?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 6:00 AM - 9:00 PM",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "The Somnath temple is one of the twelve Jyotirlinga shrines of the god Shiva. Located in Prabhas Patan near Veraval in Saurashtra on the western coast of Gujarat, India, the temple is considered sacred due to the various legends connected to it."
+  },
+  {
+    id: "25",
+    name: "Rameshwaram Temple",
+    location: "Rameshwaram, Tamil Nadu",
+    state: "Tamil Nadu",
+    rating: 4.92,
+    image: "https://images.unsplash.com/photo-1583920772519-29e0c3c90156?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 5:00 AM - 1:00 PM, 3:00 PM - 9:00 PM",
+    price: 50,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Ramanathaswamy Temple is a Hindu temple dedicated to the god Shiva located on Rameswaram island in the state of Tamil Nadu, India. It is also one of the twelve Jyotirlinga temples."
+  },
+  {
+    id: "26",
+    name: "Mahakaleshwar Temple",
+    location: "Ujjain, Madhya Pradesh",
+    state: "Madhya Pradesh",
+    rating: 4.89,
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 4:00 AM - 11:00 PM",
+    price: 100,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Mahakaleshwar Jyotirlinga is one of the twelve Jyotirlinga shrines of Shiva. It is located in the ancient city of Ujjain in the state of Madhya Pradesh, India."
+  },
+  {
+    id: "27",
+    name: "Omkareshwar Temple",
+    location: "Omkareshwar, Madhya Pradesh",
+    state: "Madhya Pradesh",
+    rating: 4.88,
+    image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 5:00 AM - 10:00 PM",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Omkareshwar is one of the 12 revered Jyotirlinga shrines of Shiva. It is located on an island called Mandhata in the Narmada river in Khandwa district, Madhya Pradesh, India."
+  },
+  {
+    id: "28",
+    name: "Kedarnath Temple",
+    location: "Kedarnath, Uttarakhand",
+    state: "Uttarakhand",
+    rating: 4.96,
+    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open during summer months only",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Himalayan"],
+    description: "Kedarnath Temple is one of the twelve Jyotirlinga temples of Shiva. Due to extreme weather conditions, the temple is open only between the months of April (Akshaya Tritiya) and November (Kartik Purnima, the autumn full moon)."
+  },
+  {
+    id: "29",
+    name: "Bhimashankar Temple",
+    location: "Bhorgiri, Maharashtra",
+    state: "Maharashtra",
+    rating: 4.87,
+    image: "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 5:00 AM - 9:00 PM",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Bhimashankar Temple is one of the 12 Jyotirlinga shrines of the Hindu god Shiva. It is located in the Bhorgiri village, Khed taluka near Pune, in Maharashtra, India."
+  },
+  {
+    id: "30",
+    name: "Kashi Vishwanath Temple",
+    location: "Varanasi, Uttar Pradesh",
+    state: "Uttar Pradesh",
+    rating: 4.93,
+    image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 3:00 AM - 11:00 PM",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "The Kashi Vishwanath Temple is one of the most famous Hindu temples and is one of the twelve Jyotirlingas. The temple is located in Varanasi, Uttar Pradesh, India."
+  },
+  {
+    id: "31",
+    name: "Trimbakeshwar Temple",
+    location: "Trimbak, Maharashtra",
+    state: "Maharashtra",
+    rating: 4.86,
+    image: "https://images.unsplash.com/photo-1580500550469-2d4b7bd31ba5?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 5:30 AM - 9:00 PM",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Trimbakeshwar Shiva Temple is an ancient Hindu temple in the town of Trimbak, in the Trimbakeshwar tehsil in Nashik District of Maharashtra, India, 28 km from the city of Nashik and 40 km from Nashik road."
+  },
+  {
+    id: "32",
+    name: "Baidyanath Temple",
+    location: "Deoghar, Jharkhand",
+    state: "Jharkhand",
+    rating: 4.91,
+    image: "https://images.unsplash.com/photo-1576928360699-34b59aa77ad5?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 4:00 AM - 3:30 PM, 6:00 PM - 9:00 PM",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Baidyanath Temple, also known as Baba Baidyanath Dham, is one of the twelve Jyotirlingas, the most sacred abodes of Shiva. It is located in Deoghar in the Santhal Parganas division of the state of Jharkhand, India."
+  },
+  {
+    id: "33",
+    name: "Nageshwar Temple",
+    location: "Dwarka, Gujarat",
+    state: "Gujarat",
+    rating: 4.84,
+    image: "https://images.unsplash.com/photo-1552928266-5a2e87a0cf2e?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 6:00 AM - 9:30 PM",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Nageshwar Jyotirlinga is one of the 12 Jyotirlinga shrines mentioned in the Shiva Purana. Located on the route between Gomti Dwarka and the Bait Dwarka Island on the coast of Saurashtra in Gujarat."
+  },
+  {
+    id: "34",
+    name: "Mallikarjuna Temple",
+    location: "Srisailam, Andhra Pradesh",
+    state: "Andhra Pradesh",
+    rating: 4.90,
+    image: "https://images.unsplash.com/photo-1578068299769-1e8ad4f6af7e?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 4:30 AM - 10:00 PM",
+    price: 100,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Mallikarjuna Jyotirlinga temple is one of the twelve Jyotirlinga temples located on the Srisailam Hill in the state of Andhra Pradesh, India. The temple is dedicated to Lord Shiva in the form of Mallikarjuna."
+  },
+  {
+    id: "35",
+    name: "Grishneshwar Temple",
+    location: "Ellora, Maharashtra",
+    state: "Maharashtra",
+    rating: 4.85,
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1974&auto=format&fit=crop",
+    hours: "Open 5:30 AM - 9:30 PM",
+    price: 0,
+    tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
+    description: "Grishneshwar Temple is one of the 12 Jyotirlinga shrines of the Hindu deity Shiva. It is located at a distance of 11 kilometers from Daulatabad near Aurangabad in Maharashtra, India."
   }
 ];
 
