@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +36,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    templeId: "1", // Tirupati Balaji Temple (most famous temple)
+    templeId: "2", // Golden Temple (closest major temple)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a30-somnath1.jpg"
   },
   {
@@ -49,7 +50,7 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    templeId: "4", // Meenakshi Amman Temple (Tamil Nadu)
+    templeId: "4", // Meenakshi Amman Temple (Tamil Nadu - same state)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a33-rameshwaram1.jpg"
   },
   {
@@ -64,7 +65,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    templeId: "5", // Jagannath Temple (another major temple)
+    templeId: "5", // Jagannath Temple
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a36-mahakaleshwar1.jpg"
   },
   {
@@ -93,7 +94,7 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    templeId: "7", // Badrinath Temple (Uttarakhand)
+    templeId: "7", // Badrinath Temple (Uttarakhand - same state)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg"
   },
   {
@@ -108,7 +109,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    templeId: "42", // Shirdi Sai Baba Temple (Maharashtra)
+    templeId: "42", // Shirdi Sai Baba Temple (Maharashtra - same state)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a45-bhimashankar1.jpg"
   },
   {
@@ -138,7 +139,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-1deg"
     },
-    templeId: "42", // Shirdi Sai Baba Temple (Maharashtra)
+    templeId: "12", // Akshardham Temple (Delhi)
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a51-trimbakeshwar1.jpg"
   }
 ];
