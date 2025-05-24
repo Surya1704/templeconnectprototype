@@ -7,13 +7,16 @@ import { extendedTemples4 } from './extendedTemples4';
 import { extendedTemples5 } from './extendedTemples5';
 import { templeDetails, TempleDetails } from './templeDetails';
 
+// Filter out duplicate temples - specifically remove Bhimashankar duplicate (ID 81)
+const filteredExtendedTemples4 = extendedTemples4.filter(temple => temple.id !== "81");
+
 // This merges all the temple data into one array
 export const allTemples: Temple[] = [
   ...originalTemples,
   ...extendedTemples,
   ...extendedTemples2,
   ...extendedTemples3,
-  ...extendedTemples4,
+  ...filteredExtendedTemples4,
   ...extendedTemples5
 ];
 
