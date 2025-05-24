@@ -15,7 +15,7 @@ export interface Temple {
   congestion?: "low" | "moderate" | "high" | "extreme";
 }
 
-// Keeping only 15 temples (excluding jyotirlingas)
+// Keeping only the most famous temples (8 temples - reduced from 15)
 export const temples: Temple[] = [
   {
     id: "1",
@@ -90,30 +90,6 @@ export const temples: Temple[] = [
     description: "Badrinath Temple is a Hindu temple dedicated to Vishnu which is situated in the town of Badrinath in Uttarakhand, India. The temple and town form one of the four Char Dham and Chota Char Dham pilgrimage sites. The temple is also one of the 108 Divya Desams dedicated to Vishnu."
   },
   {
-    id: "9",
-    name: "Brihadeeswara Temple",
-    location: "Thanjavur, Tamil Nadu",
-    state: "Tamil Nadu",
-    rating: 4.93,
-    image: "https://images.unsplash.com/photo-1616843413587-9b1d52fd4437?q=80&w=1974&auto=format&fit=crop",
-    hours: "Open 6:00 AM - 8:00 PM",
-    price: 100,
-    tags: ["Darshan", "UNESCO", "Architecture"],
-    description: "Brihadeeswara Temple, also called Rajarajesvaram or Peruvudaiyār Kōvil, is a Hindu temple dedicated to Shiva located in South bank of Kaveri river in Thanjavur, Tamil Nadu, India. It is one of the largest South Indian temples and an exemplary example of a fully realized Tamil architecture."
-  },
-  {
-    id: "10",
-    name: "Konark Sun Temple",
-    location: "Konark, Odisha",
-    state: "Odisha",
-    rating: 4.90,
-    image: "https://images.unsplash.com/photo-1600687623593-1c503a8d4d8d?q=80&w=2070&auto=format&fit=crop",
-    hours: "Open 6:00 AM - 8:00 PM",
-    price: 150,
-    tags: ["UNESCO", "Architecture", "Historical"],
-    description: "Konark Sun Temple is a 13th-century CE Sun temple at Konark about 35 kilometres northeast from Puri on the coastline of Odisha, India. The temple is attributed to king Narasimhadeva I of the Eastern Ganga Dynasty about 1250 CE."
-  },
-  {
     id: "12",
     name: "Akshardham Temple",
     location: "New Delhi, Delhi",
@@ -124,66 +100,6 @@ export const temples: Temple[] = [
     price: 200,
     tags: ["Architecture", "Modern", "Cultural"],
     description: "Swaminarayan Akshardham is a Hindu temple, and spiritual-cultural campus in Delhi, India. The temple is close to the border with Noida. Also referred to as Akshardham Temple or Akshardham Delhi, the complex displays millennia of traditional and modern Hindu culture, spirituality, and architecture."
-  },
-  {
-    id: "13",
-    name: "Siddhivinayak Temple",
-    location: "Mumbai, Maharashtra",
-    state: "Maharashtra",
-    rating: 4.85,
-    image: "https://images.unsplash.com/photo-1587899765100-c5153ec94e19?q=80&w=1974&auto=format&fit=crop",
-    hours: "Open 5:30 AM - 10:00 PM",
-    price: 50,
-    tags: ["Darshan", "Prasad", "Morning Aarti"],
-    description: "Shree Siddhivinayak Ganapati Mandir is a Hindu temple dedicated to Lord Shri Ganesh. It is located in Prabhadevi, Mumbai, Maharashtra. It was originally built by Laxman Vithu and Deubai Patil on 19 November 1801."
-  },
-  {
-    id: "15",
-    name: "ISKCON Temple Bangalore",
-    location: "Bangalore, Karnataka",
-    state: "Karnataka",
-    rating: 4.87,
-    image: "https://images.unsplash.com/photo-1626619001521-33c81762da47?q=80&w=1974&auto=format&fit=crop",
-    hours: "Open 4:15 AM - 8:30 PM",
-    price: 0,
-    tags: ["Darshan", "Prasad", "Cultural Programs"],
-    description: "Sri Radha Krishna Temple is a Krishna Hindu temple situated in Rajajinagar, Bangalore, India. The temple is one of the largest ISKCON temples in the world and is a major attraction for devotees and tourists visiting Bangalore."
-  },
-  {
-    id: "16",
-    name: "Mahabodhi Temple",
-    location: "Bodh Gaya, Bihar",
-    state: "Bihar",
-    rating: 4.92,
-    image: "https://images.unsplash.com/photo-1623484280771-a432c65bbb7a?q=80&w=1974&auto=format&fit=crop",
-    hours: "Open 5:00 AM - 9:00 PM",
-    price: 300,
-    tags: ["UNESCO", "Buddhist", "Meditation"],
-    description: "The Mahabodhi Temple Complex is one of the four holy sites related to the life of the Lord Buddha, and particularly to the attainment of Enlightenment. The first temple was built by Emperor Asoka in the 3rd century B.C., and the present temple dates from the 5th or 6th centuries."
-  },
-  {
-    id: "20",
-    name: "Sanchi Stupa",
-    location: "Sanchi, Madhya Pradesh",
-    state: "Madhya Pradesh",
-    rating: 4.89,
-    image: "https://images.unsplash.com/photo-1590579446305-8155823517c5?q=80&w=1974&auto=format&fit=crop",
-    hours: "Open 9:00 AM - 5:00 PM",
-    price: 75,
-    tags: ["UNESCO", "Buddhist", "Historical"],
-    description: "The Great Stupa at Sanchi is one of the oldest stone structures in India and was originally commissioned by the emperor Ashoka in the 3rd century BCE. Its nucleus was a simple hemispherical brick structure built over the relics of the Buddha."
-  },
-  {
-    id: "40",
-    name: "Dilwara Temples",
-    location: "Mount Abu, Rajasthan",
-    state: "Rajasthan",
-    rating: 4.94,
-    image: "https://images.unsplash.com/photo-1618737739989-3b716a768071?q=80&w=1974&auto=format&fit=crop",
-    hours: "Open 12:00 PM - 5:00 PM",
-    price: 100,
-    tags: ["Jain", "Marble", "Architecture"],
-    description: "The Dilwara Temples are a group of Jain temples located about 2½ kilometers from Mount Abu, Rajasthan. These temples were built between the 11th and 13th centuries AD and are famous for their stunning use of marble and intricate marble carvings."
   },
   {
     id: "42",
