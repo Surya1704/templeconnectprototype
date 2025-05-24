@@ -22,7 +22,7 @@ interface TempleCollageItem {
   imageSrc: string;
 }
 
-// Updated temple data for the collage with correct temple IDs that exist in our database
+// Updated temple data for the collage with correct Jyotirlinga temple IDs (24-35)
 const templeData: TempleCollageItem[] = [
   {
     id: "temple-1",
@@ -36,7 +36,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-2deg"
     },
-    templeId: "2", // Golden Temple (closest major temple)
+    templeId: "24", // Somnath Jyotirlinga
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a30-somnath1.jpg"
   },
   {
@@ -50,7 +50,7 @@ const templeData: TempleCollageItem[] = [
       height: "40%",
       zIndex: 3,
     },
-    templeId: "4", // Meenakshi Amman Temple (Tamil Nadu - same state)
+    templeId: "25", // Rameshwaram Jyotirlinga
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a33-rameshwaram1.jpg"
   },
   {
@@ -65,7 +65,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 4,
       rotate: "-1deg"
     },
-    templeId: "5", // Jagannath Temple
+    templeId: "26", // Mahakaleshwar Jyotirlinga
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a36-mahakaleshwar1.jpg"
   },
   {
@@ -80,7 +80,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 3,
       rotate: "-2deg"
     },
-    templeId: "42", // Shirdi Sai Baba Temple (Maharashtra)
+    templeId: "27", // Omkareshwar Jyotirlinga
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a39-omkareshwar1.jpg"
   },
   {
@@ -94,7 +94,7 @@ const templeData: TempleCollageItem[] = [
       height: "35%",
       zIndex: 5,
     },
-    templeId: "7", // Badrinath Temple (Uttarakhand - same state)
+    templeId: "28", // Kedarnath Jyotirlinga
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg"
   },
   {
@@ -109,7 +109,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 1,
       rotate: "2deg"
     },
-    templeId: "42", // Shirdi Sai Baba Temple (Maharashtra - same state)
+    templeId: "29", // Bhimashankar Jyotirlinga
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a45-bhimashankar1.jpg"
   },
   {
@@ -124,7 +124,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "1deg"
     },
-    templeId: "1", // Tirupati Balaji Temple (most famous)
+    templeId: "30", // Kashi Vishwanath Jyotirlinga
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg"
   },
   {
@@ -139,7 +139,7 @@ const templeData: TempleCollageItem[] = [
       zIndex: 2,
       rotate: "-1deg"
     },
-    templeId: "12", // Akshardham Temple (Delhi)
+    templeId: "31", // Trimbakeshwar Jyotirlinga
     imageSrc: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a51-trimbakeshwar1.jpg"
   }
 ];
@@ -164,7 +164,10 @@ const TempleCollage: React.FC = () => {
             zIndex: temple.position.zIndex,
             transform: temple.position.rotate ? `rotate(${temple.position.rotate})` : 'none'
           }}
-          onClick={() => navigate(`/temple/${temple.templeId}`)}
+          onClick={() => {
+            console.log(`Navigating to temple ID: ${temple.templeId} (${temple.name})`);
+            navigate(`/temple/${temple.templeId}`);
+          }}
           whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.3 } }}
         >
           <div className={cn(
