@@ -90,6 +90,14 @@ const TripPlanner = () => {
       }
       setStep(2);
     } else if (step === 2) {
+      if (!startDate || !startTime) {
+        toast({
+          title: "Start date and time required",
+          description: "Please provide both a start date and time for your trip.",
+          variant: "destructive",
+        });
+        return;
+      }
       generateTripPlan();
     }
   };
@@ -251,3 +259,4 @@ const TripPlanner = () => {
 };
 
 export default TripPlanner;
+
