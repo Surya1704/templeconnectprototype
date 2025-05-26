@@ -206,7 +206,7 @@ const JyotirlingsCollage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-[90vh] overflow-hidden bg-gradient-to-b from-spiritual-saffron/30 via-spiritual-ochre/30 to-spiritual-maroon/20 rounded-xl">
+    <div className="relative w-full h-[130vh] overflow-hidden bg-gradient-to-b from-spiritual-saffron/30 via-spiritual-ochre/30 to-spiritual-maroon/20 rounded-xl">
       {jyotirlingsData.map((jyotirlinga) => (
         <motion.div
           key={jyotirlinga.id}
@@ -296,18 +296,19 @@ const JyotirlingsCollage: React.FC = () => {
         />
       ))}
       
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center">
+      <div className="absolute bottom-6 left-1/3 transform -translate-x-1/2 text-center flex flex-col items-center">
         <motion.p 
           className="text-spiritual-maroon/70 text-sm mb-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
         >
-        
+      
         </motion.p>
         <motion.div
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
+          className="flex justify-center"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 5L12 19M12 19L5 12M12 19L19 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-spiritual-maroon/60"/>
