@@ -220,9 +220,9 @@ const JyotirlingsCollage: React.FC = () => {
             width: jyotirlinga.position.width,
             height: jyotirlinga.position.height,
             zIndex: jyotirlinga.position.zIndex,
-            transform: jyotirlinga.position.rotate ? rotate(${jyotirlinga.position.rotate}) : "none",
+            transform: jyotirlinga.position.rotate ? `rotate(${jyotirlinga.position.rotate})` : "none",
           }}
-          onClick={() => navigate(/temple/${jyotirlinga.templeId})}
+          onClick={() => navigate(`/temple/${jyotirlinga.templeId}`)}
           whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.3 } }}
         >
           <div className={cn(
