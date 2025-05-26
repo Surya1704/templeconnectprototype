@@ -153,6 +153,10 @@ export const templeImages: Record<string, string[]> = {
   // Shirdi Sai Baba Temple - ID 42
   "42": [
     "https://i.pinimg.com/736x/32/27/3b/32273b8b0a807e88d85c1c081e420219.jpg"
+  
+  "56": [
+    "https://www.tourmyindia.com/states/andhrapradesh/images/kanipakam-vinayaka-temple1.jpg"
+  ],
   ],
   // Jyotirlingas
   "24": [
