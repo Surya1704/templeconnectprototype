@@ -296,7 +296,7 @@ const JyotirlingsCollage: React.FC = () => {
         />
       ))}
       
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center flex flex-col items-center">
+      <div className="absolute bottom-6 left-1/3 transform -translate-x-1/2 text-center flex flex-col items-center">
         <motion.p 
           className="text-spiritual-maroon/70 text-sm mb-2"
           initial={{ opacity: 0 }}
