@@ -303,7 +303,7 @@ const JyotirlingsCollage: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
         >
-          Click on any Jyotirlinga to start your spiritual journey
+        
         </motion.p>
         <motion.div
           animate={{ y: [0, 5, 0] }}
