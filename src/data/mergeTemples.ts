@@ -121,7 +121,7 @@ export const filterTemples = ({ state, tag, search }: { state?: string; tag?: st
 export const templeImages: Record<string, string[]> = {
   // Tirupati Balaji Temple - ID 1
   "1": [
-    "https://images.unsplash.com/photo-1621831714462-bec666e92454?q=80&w=1974&auto=format&fit=crop",
+    "https://www.shutterstock.com/shutterstock/photos/2460970041/display_1500/stock-photo-main-gopuram-of-balaji-temple-at-tirumala-tirupati-india-march-2460970041.jpg",
     "https://images.unsplash.com/photo-1600516124918-79a230d1b66f?q=80&w=1974&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1578068299769-1e8ad4f6af7e?q=80&w=1974&auto=format&fit=crop"
   ],
