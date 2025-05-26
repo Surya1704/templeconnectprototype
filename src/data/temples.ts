@@ -25,7 +25,7 @@ export const temples: Temple[] = [
     location: "Tirupati, Andhra Pradesh",
     state: "Andhra Pradesh",
     rating: 4.85,
-    image: "https://www.shutterstock.com/image-photo/tirupati-andhra-pradesh-indiaoctober-12-2024a-2312345678", // Replace with actual Shutterstock image URL
+    image: "https://www.istockphoto.com/photos/tirupati-balaji", // Replace with actual Shutterstock image URL
     hours: "Booking required",
     price: 300,
     tags: ["Darshan", "Prasad", "Accommodation"],
