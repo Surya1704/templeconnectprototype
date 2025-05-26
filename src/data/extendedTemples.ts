@@ -9,7 +9,7 @@ export const extendedTemples: Temple[] = [
     location: "Kanipakam, Andhra Pradesh",
     state: "Andhra Pradesh",
     rating: 4.89,
-    image: "https://images.unsplash.com/photo-1621816039325-498a09c0fc13?q=80&w=1974&auto=format&fit=crop",
+    image: "https://imgs.search.brave.com/3VAb3e9TUtMjwEP7Ocwjx7oGZ0ZciGi5YwFIbgLxfuQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vM2hIeGRo/NlNxcXVTVUdDV2FZ/SlQxd1c5SlQta1ct/Q2dpeHgyN28xeEFV/RS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlp/WlhOMC9ZbVZ1WjJG/c2RYSjFMbU52L2JT/OTNjQzFqYjI1MFpX/NTAvTDNWd2JHOWha/SE12TWpBeS9OQzh3/T0M5TFlXNXBjR0Zy/L1lXMHRWbWx1WVhs/aGEyRXQvVkdWdGNH/eGxMVlJwYldsdS9a/M011YW5Cbg",
     hours: "Open 5:00 AM - 9:00 PM",
     price: 50,
     tags: ["Ganesh", "Swayambhu", "Darshan"],
