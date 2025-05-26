@@ -1,4 +1,3 @@
-
 import { temples as originalTemples, Temple } from './temples';
 import { extendedTemples } from './extendedTemples';
 import { extendedTemples2 } from './extendedTemples2';
@@ -10,8 +9,8 @@ import { templeDetails, TempleDetails } from './templeDetails';
 // Filter out duplicate temples - specifically remove Bhimashankar duplicate (ID 81)
 const filteredExtendedTemples4 = extendedTemples4.filter(temple => temple.id !== "81");
 
-// This merges all the temple data into one array
-export const allTemples: Temple[] = [
+// Combine all temple arrays
+const combinedTemples: Temple[] = [
   ...originalTemples,
   ...extendedTemples,
   ...extendedTemples2,
@@ -19,6 +18,23 @@ export const allTemples: Temple[] = [
   ...filteredExtendedTemples4,
   ...extendedTemples5
 ];
+
+// Remove duplicates based on temple name (case-insensitive)
+const deduplicateTemples = (temples: Temple[]): Temple[] => {
+  const seen = new Set<string>();
+  return temples.filter(temple => {
+    const normalizedName = temple.name.toLowerCase().trim();
+    if (seen.has(normalizedName)) {
+      console.log(`Removing duplicate temple: ${temple.name} (ID: ${temple.id})`);
+      return false;
+    }
+    seen.add(normalizedName);
+    return true;
+  });
+};
+
+// This merges all the temple data into one array with duplicates removed
+export const allTemples: Temple[] = deduplicateTemples(combinedTemples);
 
 // Map of temple name slugs to IDs for easier lookup
 const templeNameToIdMap: Record<string, string> = {
