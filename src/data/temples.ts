@@ -18,7 +18,6 @@ export interface Temple {
   congestion?: "low" | "moderate" | "high" | "extreme";
 }
 
-// Top temples with images and descriptions
 export const temples: Temple[] = [
   {
     id: "1",
@@ -26,7 +25,7 @@ export const temples: Temple[] = [
     location: "Tirupati, Andhra Pradesh",
     state: "Andhra Pradesh",
     rating: 4.85,
-    image: "https://images.unsplash.com/photo-1621831714462-bec666e92454?q=80&w=1974&auto=format&fit=crop",
+    image: "https://www.shutterstock.com/image-photo/tirupati-andhra-pradesh-indiaoctober-12-2024a-2312345678", // Replace with actual Shutterstock image URL
     hours: "Booking required",
     price: 300,
     tags: ["Darshan", "Prasad", "Accommodation"],
@@ -38,7 +37,7 @@ export const temples: Temple[] = [
     location: "Amritsar, Punjab",
     state: "Punjab",
     rating: 4.98,
-    image: "https://images.unsplash.com/photo-1597074866923-dc0589150358?q=80&w=2070&auto=format&fit=crop",
+    image: "https://www.gettyimages.in/detail/photo/golden-temple-amritsar-india-royalty-free-image-1234567890", // Replace with actual Getty Images URL
     hours: "Open 24 hours",
     price: 0,
     tags: ["Darshan", "Langar", "Amrit Sarovar"],
@@ -50,7 +49,7 @@ export const temples: Temple[] = [
     location: "New Delhi, Delhi",
     state: "Delhi",
     rating: 4.95,
-    image: "https://images.unsplash.com/photo-1587922546307-776227941871?q=80&w=1974&auto=format&fit=crop",
+    image: "https://www.shutterstock.com/image-photo/lotus-temple-new-delhi-india-july-29th-2018-1234567890", // Replace with actual Shutterstock image URL
     hours: "Open 9:00 AM - 5:30 PM (Closed on Mondays)",
     price: 0,
     tags: ["Architecture", "Bahá'í", "Meditation"],
@@ -62,7 +61,7 @@ export const temples: Temple[] = [
     location: "Madurai, Tamil Nadu",
     state: "Tamil Nadu",
     rating: 4.91,
-    image: "https://images.unsplash.com/photo-1591014101761-a4172786fbbe?q=80&w=2071&auto=format&fit=crop",
+    image: "https://www.gettyimages.in/detail/photo/meenakshi-amman-temple-madurai-india-royalty-free-image-1234567890", // Replace with actual Getty Images URL
     hours: "Open 5:00 AM - 12:30 PM, 4:00 PM - 10:00 PM",
     price: 100,
     tags: ["Darshan", "Aarti", "Cultural Tour"],
@@ -74,7 +73,7 @@ export const temples: Temple[] = [
     location: "Puri, Odisha",
     state: "Odisha",
     rating: 4.89,
-    image: "https://images.unsplash.com/photo-1627894486874-b830e5a8be76?q=80&w=2070&auto=format&fit=crop",
+    image: "https://www.gettyimages.com/detail/photo/jagannath-temple-puri-india-royalty-free-image-1234567890", // Replace with actual Getty Images URL
     hours: "Open 5:00 AM - 11:00 PM",
     price: 150,
     tags: ["Darshan", "Aarti", "Prasad"],
@@ -86,7 +85,7 @@ export const temples: Temple[] = [
     location: "Badrinath, Uttarakhand",
     state: "Uttarakhand",
     rating: 4.94,
-    image: "https://images.unsplash.com/photo-1623953858703-9c7c4f5ceb73?q=80&w=1974&auto=format&fit=crop",
+    image: "https://www.gettyimages.in/detail/photo/badrinath-temple-uttarakhand-india-royalty-free-image-1234567890", // Replace with actual Getty Images URL
     hours: "Open during summer months only",
     price: 250,
     tags: ["Darshan", "Himalayan", "Sacred"],
@@ -98,7 +97,7 @@ export const temples: Temple[] = [
     location: "New Delhi, Delhi",
     state: "Delhi",
     rating: 4.91,
-    image: "https://images.unsplash.com/photo-1545126178-862cdb469409?q=80&w=1974&auto=format&fit=crop",
+    image: "https://www.gettyimages.com/detail/photo/akshardham-temple-new-delhi-india-royalty-free-image-1234567890", // Replace with actual Getty Images URL
     hours: "Open 9:30 AM - 6:30 PM (Closed on Mondays)",
     price: 200,
     tags: ["Architecture", "Modern", "Cultural"],
@@ -110,20 +109,19 @@ export const temples: Temple[] = [
     location: "Shirdi, Maharashtra",
     state: "Maharashtra",
     rating: 4.95,
-    image: "https://images.unsplash.com/photo-1600516124918-79a230d1b66f?q=80&w=1974&auto=format&fit=crop",
+    image: "https://sai.org.in/en/photo-gallery", // Official photo gallery
     hours: "Open 4:00 AM - 11:00 PM",
     price: 0,
     tags: ["Sai Baba", "Darshan", "Prasad"],
     description: "This temple is dedicated to Sai Baba of Shirdi, a revered saint worshipped by people of all faiths. One of the richest temples in India."
   },
-  // Jyotirlinga temples
   {
     id: "24",
     name: "Somnath Temple",
     location: "Somnath, Gujarat",
     state: "Gujarat",
     rating: 4.95,
-    image: "https://images.unsplash.com/photo-1582632728747-04b27b2d7c62?q=80&w=1974&auto=format&fit=crop",
+    image: "https://www.gettyimages.in/detail/photo/somnath-temple-gujarat-india-royalty-free-image-1234567890", // Replace with actual Getty Images URL
     hours: "Open 6:00 AM - 9:00 PM",
     price: 0,
     tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
@@ -135,7 +133,7 @@ export const temples: Temple[] = [
     location: "Rameshwaram, Tamil Nadu",
     state: "Tamil Nadu",
     rating: 4.92,
-    image: "https://images.unsplash.com/photo-1583920772519-29e0c3c90156?q=80&w=1974&auto=format&fit=crop",
+    image: "https://www.gettyimages.in/detail/photo/rameshwaram-temple-tamil-nadu-india-royalty-free-image-1234567890", // Replace with actual Getty Images URL
     hours: "Open 5:00 AM - 1:00 PM, 3:00 PM - 9:00 PM",
     price: 50,
     tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
@@ -147,7 +145,7 @@ export const temples: Temple[] = [
     location: "Ujjain, Madhya Pradesh",
     state: "Madhya Pradesh",
     rating: 4.89,
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop",
+    image: "https://shrimahakaleshwar.com/", // Official website
     hours: "Open 4:00 AM - 11:00 PM",
     price: 100,
     tags: ["Jyotirlinga", "Shiva Temples", "Darshan"],
@@ -159,7 +157,7 @@ export const temples: Temple[] = [
     location: "Omkareshwar, Madhya Pradesh",
     state: "Madhya Pradesh",
     rating: 4.87,
-    image: "https://images.unsplash.com/photo-1619015523660-4c452fa10bd1?q=80&w=1974&auto=format&fit=crop",
+    image: "https://www.gettyimages.com/detail/photo/omkareshwar-temple-madhya-pradesh-india-royalty-free-image-1234567890", // Replace with actual Getty Images URL
     hours: "Open 5:00 AM - 10:00 PM",
     price: 50,
     tags: ["Jyotirlinga", "River Island", "Sacred"],
