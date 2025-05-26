@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { allTemples, filterTemples, getTempleImages } from "@/data/mergeTemples";
@@ -305,11 +306,8 @@ const AllTemples = () => {
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                   {sortedTemples.map((temple, index) => {
-                    // Get temple images using the function from mergeTemples
                     const templeImages = getTempleImages(temple.id);
-                    const templeImage = templeImages[0]; // Use first image from array
-                    
-                    console.log(`Temple ${temple.name} (ID: ${temple.id}) image:`, templeImage);
+                    const templeImage = templeImages && templeImages.length > 0 ? templeImages[0] : "/lovable-uploads/placeholder.svg";
                     
                     return (
                       <motion.div
@@ -400,9 +398,8 @@ const AllTemples = () => {
             ) : (
               <div className="space-y-4">
                 {sortedTemples.map((temple, index) => {
-                  // Get temple images using the function from mergeTemples
                   const templeImages = getTempleImages(temple.id);
-                  const templeImage = templeImages[0]; // Use first image from array
+                  const templeImage = templeImages && templeImages.length > 0 ? templeImages[0] : "/lovable-uploads/placeholder.svg";
                   
                   return (
                     <motion.div
