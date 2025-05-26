@@ -206,7 +206,7 @@ const JyotirlingsCollage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-[110vh] overflow-hidden bg-gradient-to-b from-spiritual-saffron/30 via-spiritual-ochre/30 to-spiritual-maroon/20 rounded-xl">
+    <div className="relative w-full h-[130vh] overflow-hidden bg-gradient-to-b from-spiritual-saffron/30 via-spiritual-ochre/30 to-spiritual-maroon/20 rounded-xl">
       {jyotirlingsData.map((jyotirlinga) => (
         <motion.div
           key={jyotirlinga.id}
