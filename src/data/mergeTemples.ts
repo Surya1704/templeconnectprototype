@@ -119,80 +119,78 @@ export const filterTemples = ({ state, tag, search }: { state?: string; tag?: st
 
 // Map temple IDs to image arrays - each temple gets multiple high-quality images
 export const templeImages: Record<string, string[]> = {
+  // Tirupati Balaji Temple - ID 1
+  "1": [
+    "https://images.unsplash.com/photo-1621831714462-bec666e92454?q=80&w=1974&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600516124918-79a230d1b66f?q=80&w=1974&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1578068299769-1e8ad4f6af7e?q=80&w=1974&auto=format&fit=crop"
+  ],
+  // Golden Temple - ID 2
+  "2": [
+    "https://images.unsplash.com/photo-1597074866923-dc0589150358?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1583920772519-29e0c3c90156?q=80&w=1974&auto=format&fit=crop"
+  ],
+  // Lotus Temple - ID 3
+  "3": [
+    "https://images.unsplash.com/photo-1587922546307-776227941871?q=80&w=1974&auto=format&fit=crop"
+  ],
+  // Meenakshi Amman Temple - ID 4
+  "4": [
+    "https://images.unsplash.com/photo-1591014101761-a4172786fbbe?q=80&w=2071&auto=format&fit=crop"
+  ],
+  // Jagannath Temple - ID 5
+  "5": [
+    "https://images.unsplash.com/photo-1627894486874-b830e5a8be76?q=80&w=2070&auto=format&fit=crop"
+  ],
+  // Badrinath Temple - ID 7
+  "7": [
+    "https://images.unsplash.com/photo-1623953858703-9c7c4f5ceb73?q=80&w=1974&auto=format&fit=crop"
+  ],
+  // Akshardham Temple - ID 12
+  "12": [
+    "https://images.unsplash.com/photo-1545126178-862cdb469409?q=80&w=1974&auto=format&fit=crop"
+  ],
+  // Shirdi Sai Baba Temple - ID 42
+  "42": [
+    "https://images.unsplash.com/photo-1600516124918-79a230d1b66f?q=80&w=1974&auto=format&fit=crop"
+  ],
   // Jyotirlingas
   "24": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a30-somnath1.jpg",
-    "/lovable-uploads/8954a8b9-9631-4a12-8bbb-02d9615d4c76.png",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a31-somnath2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a32-somnath3.jpg"
+    "https://images.unsplash.com/photo-1582632728747-04b27b2d7c62?q=80&w=1974&auto=format&fit=crop"
   ],
   "25": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a33-rameshwaram1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a34-rameshwaram2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a35-rameshwaram3.jpg"
+    "https://images.unsplash.com/photo-1583920772519-29e0c3c90156?q=80&w=1974&auto=format&fit=crop"
   ],
   "26": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a36-mahakaleshwar1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a37-mahakaleshwar2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a38-mahakaleshwar3.jpg"
+    "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop"
   ],
   "27": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a39-omkareshwar1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a40-omkareshwar2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a41-omkareshwar3.jpg"
+    "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?q=80&w=1974&auto=format&fit=crop"
   ],
   "28": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a43-kedarnath2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a44-kedarnath3.jpg"
+    "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1974&auto=format&fit=crop"
   ],
   "29": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a45-bhimashankar1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a46-bhimashankar2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a47-bhimashankar3.jpg"
+    "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=1974&auto=format&fit=crop"
   ],
   "30": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a49-kashi2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a50-kashi3.jpg"
+    "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=1974&auto=format&fit=crop"
   ],
   "31": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a51-trimbakeshwar1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a52-trimbakeshwar2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a53-trimbakeshwar3.jpg"
+    "https://images.unsplash.com/photo-1580500550469-2d4b7bd31ba5?q=80&w=1974&auto=format&fit=crop"
   ],
   "32": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a54-vaidyanath1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a55-vaidyanath2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a56-vaidyanath3.jpg"
+    "https://images.unsplash.com/photo-1576928360699-34b59aa77ad5?q=80&w=1974&auto=format&fit=crop"
   ],
   "33": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a57-nageshwar1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a58-nageshwar2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a59-nageshwar3.jpg"
+    "https://images.unsplash.com/photo-1552928266-5a2e87a0cf2e?q=80&w=1974&auto=format&fit=crop"
   ],
   "34": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a60-mallikarjuna1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a61-mallikarjuna2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a62-mallikarjuna3.jpg"
+    "https://images.unsplash.com/photo-1578068299769-1e8ad4f6af7e?q=80&w=1974&auto=format&fit=crop"
   ],
   "35": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a63-grishneshwar1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a64-grishneshwar2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a65-grishneshwar3.jpg"
-  ],
-  // Other popular temples
-  "1": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a67-tirupatibalaji2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a68-tirupatibalaji3.jpg"
-  ],
-  "2": [
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a70-goldentemple2.jpg",
-    "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a71-goldentemple3.jpg"
+    "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1974&auto=format&fit=crop"
   ]
-  // Add more temple images as needed
 };
 
 // Prasad images by temple ID
@@ -252,7 +250,7 @@ export const getTempleImages = (id: string): string[] => {
   const numericId = templeNameToIdMap[id.toLowerCase()] || id;
   
   // Return the image array for this temple, or a default image if not found
-  return templeImages[numericId] || ["/lovable-uploads/placeholder.svg"];
+  return templeImages[numericId] || ["https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1974&auto=format&fit=crop"];
 };
 
 // Function to get prasad images for a temple by ID
