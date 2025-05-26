@@ -160,10 +160,10 @@ export const templeImages: Record<string, string[]> = {
   ],
   // Jyotirlingas
   "24": [
-    "https://images.unsplash.com/photo-1582632728747-04b27b2d7c62?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/cd/84/8d/cd848d413a478fa85d11e1068fb669f3.jpg"
   ],
   "25": [
-    "https://images.unsplash.com/photo-1583920772519-29e0c3c90156?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/93/59/70/93597094f822d72ffdef77060377da59.jpg"
   ],
   "26": [
     "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop"
