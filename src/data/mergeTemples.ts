@@ -126,28 +126,29 @@ export const templeImages: Record<string, string[]> = {
   ],
   // Golden Temple - ID 2
   "2": [
-    "https://images.unsplash.com/photo-1597074866923-dc0589150358?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1583920772519-29e0c3c90156?q=80&w=1974&auto=format&fit=crop"
+   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScTuyrdbTd2MdbmhvpfMIyeyoiPfUSA-ydnw&s"
   ],
   // Lotus Temple - ID 3
   "3": [
-    "https://images.unsplash.com/photo-1587922546307-776227941871?q=80&w=1974&auto=format&fit=crop"
+
+    "https://sceneloc8.com/wp-content/uploads/2024/03/5-34.png"
   ],
   // Meenakshi Amman Temple - ID 4
   "4": [
-    "https://images.unsplash.com/photo-1591014101761-a4172786fbbe?q=80&w=2071&auto=format&fit=crop"
+
+    "https://admin.southindiatoursandtravels.com/pages/gallery/24742.jpg"
   ],
   // Jagannath Temple - ID 5
   "5": [
-    "https://images.unsplash.com/photo-1627894486874-b830e5a8be76?q=80&w=2070&auto=format&fit=crop"
+    "https://s7ap1.scene7.com/is/image/incredibleindia/sri-jagannath-temple-puri-odisha-1-attr-hero?qlt=82&ts=1726663747217"
   ],
   // Badrinath Temple - ID 7
   "7": [
-    "https://images.unsplash.com/photo-1623953858703-9c7c4f5ceb73?q=80&w=1974&auto=format&fit=crop"
+    "https://majesticjourney.in/wp-content/uploads/2020/05/badrinath-temple.jpg"
   ],
   // Akshardham Temple - ID 12
   "12": [
-    "https://images.unsplash.com/photo-1545126178-862cdb469409?q=80&w=1974&auto=format&fit=crop"
+    "https://temple.yatradham.org/public/Product/temple/temple_11AClJMV_202408181323200.jpg"
   ],
   // Shirdi Sai Baba Temple - ID 42
   "42": [
