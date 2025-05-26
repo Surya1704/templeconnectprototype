@@ -126,7 +126,7 @@ export const templeImages: Record<string, string[]> = {
   ],
   // Golden Temple - ID 2
   "2": [
-   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScTuyrdbTd2MdbmhvpfMIyeyoiPfUSA-ydnw&s"
+   "https://imgs.search.brave.com/r30S7CRq7dU4ZfLiUzEZSF0T4LhCGhZ3MlLd0Yxh1Vw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vT0hLaDJX/WGxiZE1GX0tmQVk1/R2l1ZHZYVnpXa2pI/XzktT1ZWSzB1TTFP/Zy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/WldScC9ZUzVuWlhS/MGVXbHRZV2RsL2N5/NWpiMjB2YVdRdk1U/WXcvT1RJek56WXpM/M0JvYjNSdi9MMmx1/WkdsaExYQjFibXBo/L1lpMWhiWEpwZEhO/aGNpMTIvYVdWM0xX/OW1MV2R2YkdSbC9i/aTEwWlcxd2JHVXVh/bkJuL1AzTTlOakV5/ZURZeE1pWjMvUFRB/bWF6MHlNQ1pqUFhv/dC9SRVJ6VEhoTFNW/aFJaekpEL1JuaHVT/M1pVZG5VemRHOXAv/Y0hCRGNWUkxWV0Zy/WmtadC9YM1pmZDNN/OQ"
   ],
   // Lotus Temple - ID 3
   "3": [
