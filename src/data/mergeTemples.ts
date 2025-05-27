@@ -121,11 +121,11 @@ export const filterTemples = ({ state, tag, search }: { state?: string; tag?: st
 export const templeImages: Record<string, string[]> = {
   // Tirupati Balaji Temple - ID 1
   "1": [
-    "https://www.shutterstock.com/shutterstock/photos/2460970041/display_1500/stock-photo-main-gopuram-of-balaji-temple-at-tirumala-tirupati-india-march-2460970041.jpg"
+    "https://www.citybit.in/wp-content/uploads/2023/08/Tirupati-Balaji-Temple.jpg"
   ],
   // Golden Temple - ID 2
   "2": [
-   "https://imgs.search.brave.com/r30S7CRq7dU4ZfLiUzEZSF0T4LhCGhZ3MlLd0Yxh1Vw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vT0hLaDJX/WGxiZE1GX0tmQVk1/R2l1ZHZYVnpXa2pI/XzktT1ZWSzB1TTFP/Zy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/WldScC9ZUzVuWlhS/MGVXbHRZV2RsL2N5/NWpiMjB2YVdRdk1U/WXcvT1RJek56WXpM/M0JvYjNSdi9MMmx1/WkdsaExYQjFibXBo/L1lpMWhiWEpwZEhO/aGNpMTIvYVdWM0xX/OW1MV2R2YkdSbC9i/aTEwWlcxd2JHVXVh/bkJuL1AzTTlOakV5/ZURZeE1pWjMvUFRB/bWF6MHlNQ1pqUFhv/dC9SRVJ6VEhoTFNW/aFJaekpEL1JuaHVT/M1pVZG5VemRHOXAv/Y0hCRGNWUkxWV0Zy/WmtadC9YM1ptZDNN/OQ"
+   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScTuyrdbTd2MdbmhvpfMIyeyoiPfUSA-ydnw&s"
   ],
   // Lotus Temple - ID 3
   "3": [
@@ -153,7 +153,7 @@ export const templeImages: Record<string, string[]> = {
   ],
   // Kanipakam Vinayaka Temple - ID 56
   "56": [
-    "https://www.tourmyindia.com/states/andhrapradesh/images/kanipakam-vinayaka-temple1.jpg"
+    "https://i.pinimg.com/736x/85/45/29/854529ef2677ebe28d95a2e6f3ad5b52.jpg"
   ],
   // Jyotirlingas
   "24": [
@@ -163,34 +163,34 @@ export const templeImages: Record<string, string[]> = {
     "https://i.pinimg.com/736x/93/59/70/93597094f822d72ffdef77060377da59.jpg"
   ],
   "26": [
-    "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/09/29/b6/0929b612a990073813c7a0beb4379dbf.jpg"
   ],
   "27": [
-    "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/00/00/bf/0000bf4d7ed3ed4e71cd26cd917b999f.jpg"
   ],
   "28": [
-    "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/36/da/9d/36da9dea692a7f4b93d7705a824da3f1.jpgp"
   ],
   "29": [
-    "https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/b0/f3/ea/b0f3eaf06804243e4012b3f0ca13664d.jpg"
   ],
   "30": [
-    "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/bf/60/88/bf60886c58e4ffd17540c7f8e4f5d583.jpg"
   ],
   "31": [
-    "https://images.unsplash.com/photo-1580500550469-2d4b7bd31ba5?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/69/3c/10/693c10b64f3e25876d9e56d324e5ebf0.jpg"
   ],
   "32": [
-    "https://images.unsplash.com/photo-1576928360699-34b59aa77ad5?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/cf/79/ee/cf79eef56bd59e234c855407c7f655b2.jpg"
   ],
   "33": [
-    "https://images.unsplash.com/photo-1552928266-5a2e87a0cf2e?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/16/ba/94/16ba9415c8a9538d8a96142f5a415477.jpg"
   ],
   "34": [
-    "https://images.unsplash.com/photo-1578068299769-1e8ad4f6af7e?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/d7/1c/56/d71c5636a100eab080d68b5d53906a7a.jpg"
   ],
   "35": [
-    "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1974&auto=format&fit=crop"
+    "https://i.pinimg.com/736x/88/1d/fb/881dfbb20a3c3fc4792f0a490e6c0edf.jpg"
   ],
   "36": [
     "https://images.unsplash.com/photo-1532339142462-f43ef81e7359?q=80&w=1974&auto=format&fit=crop"
