@@ -121,21 +121,18 @@ export const filterTemples = ({ state, tag, search }: { state?: string; tag?: st
 export const templeImages: Record<string, string[]> = {
   // Tirupati Balaji Temple - ID 1
   "1": [
-    "https://www.citybit.in/wp-content/uploads/2023/08/Tirupati-Balaji-Temple.jpg"
-    
+    "https://www.shutterstock.com/shutterstock/photos/2460970041/display_1500/stock-photo-main-gopuram-of-balaji-temple-at-tirumala-tirupati-india-march-2460970041.jpg"
   ],
   // Golden Temple - ID 2
   "2": [
-   "https://imgs.search.brave.com/r30S7CRq7dU4ZfLiUzEZSF0T4LhCGhZ3MlLd0Yxh1Vw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vT0hLaDJX/WGxiZE1GX0tmQVk1/R2l1ZHZYVnpXa2pI/XzktT1ZWSzB1TTFP/Zy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/WldScC9ZUzVuWlhS/MGVXbHRZV2RsL2N5/NWpiMjB2YVdRdk1U/WXcvT1RJek56WXpM/M0JvYjNSdi9MMmx1/WkdsaExYQjFibXBo/L1lpMWhiWEpwZEhO/aGNpMTIvYVdWM0xX/OW1MV2R2YkdSbC9i/aTEwWlcxd2JHVXVh/bkJuL1AzTTlOakV5/ZURZeE1pWjMvUFRB/bWF6MHlNQ1pqUFhv/dC9SRVJ6VEhoTFNW/aFJaekpEL1JuaHVT/M1pVZG5VemRHOXAv/Y0hCRGNWUkxWV0Zy/WmtadC9YM1pmZDNN/OQ"
+   "https://imgs.search.brave.com/r30S7CRq7dU4ZfLiUzEZSF0T4LhCGhZ3MlLd0Yxh1Vw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vT0hLaDJX/WGxiZE1GX0tmQVk1/R2l1ZHZYVnpXa2pI/XzktT1ZWSzB1TTFP/Zy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/WldScC9ZUzVuWlhS/MGVXbHRZV2RsL2N5/NWpiMjB2YVdRdk1U/WXcvT1RJek56WXpM/M0JvYjNSdi9MMmx1/WkdsaExYQjFibXBo/L1lpMWhiWEpwZEhO/aGNpMTIvYVdWM0xX/OW1MV2R2YkdSbC9i/aTEwWlcxd2JHVXVh/bkJuL1AzTTlOakV5/ZURZeE1pWjMvUFRB/bWF6MHlNQ1pqUFhv/dC9SRVJ6VEhoTFNW/aFJaekpEL1JuaHVT/M1pVZG5VemRHOXAv/Y0hCRGNWUkxWV0Zy/WmtadC9YM1ptZDNN/OQ"
   ],
   // Lotus Temple - ID 3
   "3": [
-
     "https://sceneloc8.com/wp-content/uploads/2024/03/5-34.png"
   ],
   // Meenakshi Amman Temple - ID 4
   "4": [
-
     "https://admin.southindiatoursandtravels.com/pages/gallery/24742.jpg"
   ],
   // Jagannath Temple - ID 5
@@ -153,10 +150,10 @@ export const templeImages: Record<string, string[]> = {
   // Shirdi Sai Baba Temple - ID 42
   "42": [
     "https://i.pinimg.com/736x/32/27/3b/32273b8b0a807e88d85c1c081e420219.jpg"
-  
+  ],
+  // Kanipakam Vinayaka Temple - ID 56
   "56": [
     "https://www.tourmyindia.com/states/andhrapradesh/images/kanipakam-vinayaka-temple1.jpg"
-  ],
   ],
   // Jyotirlingas
   "24": [
@@ -194,11 +191,10 @@ export const templeImages: Record<string, string[]> = {
   ],
   "35": [
     "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1974&auto=format&fit=crop"
-  ]
+  ],
   "36": [
-  "https://images.unsplash.com/photo-1532339142462-f43ef81e7359?q=80&w=1974&auto=format&fit=crop"
-
-
+    "https://images.unsplash.com/photo-1532339142462-f43ef81e7359?q=80&w=1974&auto=format&fit=crop"
+  ]
 };
 
 // Prasad images by temple ID
