@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -222,7 +223,7 @@ const JyotirlingsCollage: React.FC = () => {
             zIndex: jyotirlinga.position.zIndex,
             transform: jyotirlinga.position.rotate ? `rotate(${jyotirlinga.position.rotate})` : 'none'
           }}
-          onClick={() => navigate(`/temple/${jyotirlinga.templeId}`)} // Use the correct templeId directly
+          onClick={() => navigate(`/temple/${jyotirlinga.templeId}`)}
           whileHover={{ scale: 1.05, zIndex: 10, transition: { duration: 0.3 } }}
         >
           <div className={cn(

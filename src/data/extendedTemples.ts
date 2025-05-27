@@ -9,7 +9,8 @@ export const extendedTemples: Temple[] = [
     location: "Kanipakam, Andhra Pradesh",
     state: "Andhra Pradesh",
     rating: 4.89,
-    
+    image: "https://www.tourmyindia.com/states/andhrapradesh/images/kanipakam-vinayaka-temple1.jpg",
+    hours: "Open 4:00 AM - 9:00 PM",
     price: 50,
     tags: ["Ganesh", "Swayambhu", "Darshan"],
     description: "Kanipakam Vinayaka Temple is a Hindu temple for Lord Ganesha in the village of Kanipakam, Andhra Pradesh. The main deity in the temple, Lord Ganesha, is known to be swayambhu (self-manifested)."
