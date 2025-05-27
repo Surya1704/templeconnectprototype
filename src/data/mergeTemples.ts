@@ -169,7 +169,7 @@ export const templeImages: Record<string, string[]> = {
     "https://i.pinimg.com/736x/00/00/bf/0000bf4d7ed3ed4e71cd26cd917b999f.jpg"
   ],
   "28": [
-    "https://i.pinimg.com/736x/36/da/9d/36da9dea692a7f4b93d7705a824da3f1.jpgp"
+    "https://i.pinimg.com/736x/36/da/9d/36da9dea692a7f4b93d7705a824da3f1.jpg"
   ],
   "29": [
     "https://i.pinimg.com/736x/b0/f3/ea/b0f3eaf06804243e4012b3f0ca13664d.jpg"
