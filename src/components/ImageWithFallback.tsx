@@ -12,7 +12,7 @@ interface ImageWithFallbackProps {
 const ImageWithFallback = ({
   src,
   alt,
-  fallbackSrc = "/placeholder.svg",
+  fallbackSrc = "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1974&auto=format&fit=crop",
   className = "",
   onClick,
 }: ImageWithFallbackProps) => {
@@ -27,8 +27,18 @@ const ImageWithFallback = ({
     setHasError(false);
     setCurrentSrc(src);
     
+    // Only preload if src is valid
+    if (!src || src.trim() === '') {
+      console.log(`Empty src provided, using fallback: ${fallbackSrc}`);
+      setCurrentSrc(fallbackSrc);
+      setHasError(true);
+      setIsLoading(false);
+      return;
+    }
+    
     // Create a new image to preload
     const img = new Image();
+    img.crossOrigin = "anonymous"; // Handle CORS issues
     img.src = src;
     
     img.onload = () => {
@@ -58,14 +68,9 @@ const ImageWithFallback = ({
     }
   };
 
-  // Fix the issue with the direct image rendering
-  useEffect(() => {
-    if (imgRef.current) {
-      // Force reload the image if it's already in the DOM
-      const imgElement = imgRef.current;
-      imgElement.src = currentSrc;
-    }
-  }, [currentSrc]);
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
 
   return (
     <div className={`relative ${className}`}>
@@ -80,7 +85,9 @@ const ImageWithFallback = ({
         alt={alt}
         className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'} w-full h-full object-cover`}
         onError={handleError}
+        onLoad={handleLoad}
         onClick={onClick}
+        loading="lazy"
       />
     </div>
   );

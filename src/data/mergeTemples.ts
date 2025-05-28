@@ -117,8 +117,33 @@ export const filterTemples = ({ state, tag, search }: { state?: string; tag?: st
   return filtered;
 };
 
+// Function to get images for a temple by ID - this now uses the temple's image property directly
+export const getTempleImages = (id: string): string[] => {
+  // If the ID is a name slug, convert it to numeric ID
+  const numericId = templeNameToIdMap[id.toLowerCase()] || id;
+  
+  // Find the temple and get its image
+  const temple = getTempleById(numericId);
+  
+  if (temple && temple.image && temple.image.trim() !== '') {
+    console.log(`Found temple image for ID ${numericId}: ${temple.image}`);
+    return [temple.image];
+  }
+  
+  // Fallback to the old templeImages mapping if no direct image
+  const fallbackImages = templeImages[numericId];
+  if (fallbackImages && fallbackImages.length > 0) {
+    console.log(`Using fallback images for ID ${numericId}:`, fallbackImages);
+    return fallbackImages;
+  }
+  
+  // Final fallback
+  console.log(`No images found for temple ID ${numericId}, using default fallback`);
+  return ["https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1974&auto=format&fit=crop"];
+};
+
 // Map temple IDs to image arrays - each temple gets multiple high-quality images
-export const templeImages: Record<string, string[]> = {
+const templeImages: Record<string, string[]> = {
   // Tirupati Balaji Temple - ID 1
   "1": [
     "https://www.citybit.in/wp-content/uploads/2023/08/Tirupati-Balaji-Temple.jpg"
@@ -172,7 +197,7 @@ export const templeImages: Record<string, string[]> = {
     "https://i.pinimg.com/736x/36/da/9d/36da9dea692a7f4b93d7705a824da3f1.jpg"
   ],
   "29": [
-    "https://i.pinimg.com/736x/b0/f3/ea/b0f3eaf06804243e4012b3f0ca13664d.jpg"
+    "https://i.pinimg.com/736x/b0/f3/ea/b0/f3eaf06804243e4012b3f0ca13664d.jpg"
   ],
   "30": [
     "https://i.pinimg.com/736x/bf/60/88/bf60886c58e4ffd17540c7f8e4f5d583.jpg"
@@ -246,15 +271,6 @@ export const accommodationImages: Record<string, Record<string, string>> = {
     "Devotee Accommodations": "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a89-devoteestay.jpg"
   }
   // Add more accommodation images for other temples
-};
-
-// Function to get images for a temple by ID
-export const getTempleImages = (id: string): string[] => {
-  // If the ID is a name slug, convert it to numeric ID
-  const numericId = templeNameToIdMap[id.toLowerCase()] || id;
-  
-  // Return the image array for this temple, or a default image if not found
-  return templeImages[numericId] || ["https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1974&auto=format&fit=crop"];
 };
 
 // Function to get prasad images for a temple by ID

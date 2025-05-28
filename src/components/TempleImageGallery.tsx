@@ -21,10 +21,13 @@ const TempleImageGallery = ({ templeId }: TempleImageGalleryProps) => {
     try {
       const fetchedImages = getTempleImages(templeId);
       console.log(`Fetched images for temple ${templeId}:`, fetchedImages);
-      setImages(fetchedImages);
       
-      if (fetchedImages.length === 0) {
-        console.warn(`No images found for temple ID: ${templeId}`);
+      // Filter out any undefined or empty image URLs
+      const validImages = fetchedImages.filter(img => img && img.trim() !== '');
+      setImages(validImages);
+      
+      if (validImages.length === 0) {
+        console.warn(`No valid images found for temple ID: ${templeId}`);
       }
     } catch (error) {
       console.error(`Error fetching images for temple ${templeId}:`, error);
@@ -71,33 +74,37 @@ const TempleImageGallery = ({ templeId }: TempleImageGalleryProps) => {
         src={images[currentImageIndex]}
         alt={`Temple Image ${currentImageIndex + 1}`}
         className="w-full h-full object-cover"
-        fallbackSrc="/placeholder.svg"
+        fallbackSrc="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1974&auto=format&fit=crop"
       />
       
-      {/* Navigation Arrows - Always Visible with better contrast */}
-      <div className="absolute inset-0 flex items-center justify-between px-2 pointer-events-none">
-        <Button
-          variant="ghost"
-          onClick={handlePrevious}
-          className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white pointer-events-auto"
-        >
-          <ChevronLeft size={24} />
-        </Button>
-        <Button
-          variant="ghost"
-          onClick={handleNext}
-          className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white pointer-events-auto"
-        >
-          <ChevronRight size={24} />
-        </Button>
-      </div>
+      {/* Navigation Arrows - Only show if multiple images */}
+      {images.length > 1 && (
+        <div className="absolute inset-0 flex items-center justify-between px-2 pointer-events-none">
+          <Button
+            variant="ghost"
+            onClick={handlePrevious}
+            className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white pointer-events-auto"
+          >
+            <ChevronLeft size={24} />
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={handleNext}
+            className="h-12 w-12 rounded-full bg-black/50 hover:bg-black/70 text-white pointer-events-auto"
+          >
+            <ChevronRight size={24} />
+          </Button>
+        </div>
+      )}
       
-      {/* Image Counter */}
-      <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
-        {currentImageIndex + 1} / {images.length}
-      </div>
+      {/* Image Counter - Only show if multiple images */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm">
+          {currentImageIndex + 1} / {images.length}
+        </div>
+      )}
       
-      {/* Thumbnail Navigation - Only show on non-mobile */}
+      {/* Thumbnail Navigation - Only show on non-mobile and multiple images */}
       {!isMobile && images.length > 1 && (
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
           {images.map((image, index) => (
