@@ -103,9 +103,9 @@ const Jyotirlingas = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-spiritual-ivory/50 py-12 relative">
+    <div className="min-h-screen bg-gradient-to-br from-spiritual-ivory/30 via-spiritual-sandstone/20 to-spiritual-ochre/10 py-12 relative">
       {/* Om symbol image - adding directly from user upload */}
-      <div className="absolute top-10 right-10 opacity-10 pointer-events-none z-0">
+      <div className="absolute top-10 right-10 opacity-5 pointer-events-none z-0">
         <img 
           src="/lovable-uploads/960cbaec-20d3-4cc9-b47c-b237a3a0301d.png" 
           alt="Om Symbol" 
@@ -137,7 +137,7 @@ const Jyotirlingas = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm p-8 rounded-lg shadow-md"
+          className="max-w-6xl mx-auto bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-md"
         >
           <h2 className="text-2xl font-cinzel font-bold text-spiritual-maroon mb-6 text-center">
             About The 12 Jyotirlingas
