@@ -1,3 +1,4 @@
+
 import { temples as originalTemples, Temple } from './temples';
 import { extendedTemples } from './extendedTemples';
 import { extendedTemples2 } from './extendedTemples2';
@@ -9,11 +10,14 @@ import { templeDetails, TempleDetails } from './templeDetails';
 // Filter out duplicate temples - specifically remove Bhimashankar duplicate (ID 81)
 const filteredExtendedTemples4 = extendedTemples4.filter(temple => temple.id !== "81");
 
+// Filter out removed temples (ID 66 and 87)
+const filteredExtendedTemples2 = extendedTemples2.filter(temple => temple.id !== "66" && temple.id !== "87");
+
 // Combine all temple arrays
 const combinedTemples: Temple[] = [
   ...originalTemples,
   ...extendedTemples,
-  ...extendedTemples2,
+  ...filteredExtendedTemples2,
   ...extendedTemples3,
   ...filteredExtendedTemples4,
   ...extendedTemples5
@@ -183,9 +187,7 @@ export const templeImages: Record<string, string[]> = {
   "65": [
     "https://i.pinimg.com/736x/45/96/75/45967566ad0e150f5b9338b8125d1fb4.jpg"
   ],
-  "66": [
-    "https://imgs.search.brave.com/se9YSEv51g7Z0NydBls5kDww7mQE-De-DXmDa3RXFJQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YW50aWxvZ3ZhY2F0/aW9ucy5jb20vSW1h/Z2VzLy9BY3Rpdml0/eURldGFpbC8vQmFz/aWMvL0RvbWVzdGlj/Ly9LYXNobWlyLy9L/YXRyYS8vU3RhbmRh/cmQtQWN0aXZpdGll/cy8vQmFiYS1EaGFu/c2FyLVRlbXBsZS8v/R2FsbGVyeS8vQmFi/YS1EaGFuc2FyLVRl/bXBsZV8wLmpwZw"
-  ],
+  // Removed ID 66 (Baba Dhansar Temple)
   "67": [
     "https://i.pinimg.com/736x/df/50/07/df5007e9dd12950adc6edae03069c233.jpg"
   ],
@@ -246,9 +248,7 @@ export const templeImages: Record<string, string[]> = {
   "86": [
     "https://i.pinimg.com/736x/df/86/e7/df86e70a23282ba200cb8444456e2405.jpg"
   ],
-  "87": [
-    "https://imgs.search.brave.com/NEWX64o9qF-ZAOWicQXFXULdkIb9BHC-vpWhmh7nOso/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YXN0cm92ZWQuY29t/L2FzdHJvcGVkaWEv/YXNzZXRzL2ltYWdl/cy90ZW1wbGVzL2Rp/dnlhLWRlc2FtLXRl/bXBsZXMvVGhpcnV2/YWxsdXItVmVlcmFy/YWdoYXZhLVN3YW15/LVRlbXBsZS5qcGc"
-  ],
+  // Removed ID 87 (Shri Kashi Math Temple)
   "88": [
     "https://i.pinimg.com/736x/60/6f/65/606f6553b09e09c6c646928356139f17.jpg"
   ],
