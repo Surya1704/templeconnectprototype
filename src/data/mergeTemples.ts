@@ -155,6 +155,154 @@ export const templeImages: Record<string, string[]> = {
   "56": [
     "https://i.pinimg.com/736x/85/45/29/854529ef2677ebe28d95a2e6f3ad5b52.jpg"
   ],
+  // Updated temple images with your provided URLs
+  "57": [
+    "https://i.pinimg.com/736x/45/d6/55/45d6553f2e84b96f9e5d9ea944039a4b.jpg"
+  ],
+  "58": [
+    "https://i.pinimg.com/736x/15/cb/4f/15cb4fe465442af1bd54bc295d6a4796.jpg"
+  ],
+  "59": [
+    "https://i.pinimg.com/736x/9a/d1/ef/9ad1ef1ddd43513fdb30aafe360e1b96.jpg"
+  ],
+  "60": [
+    "https://i.pinimg.com/736x/45/cc/0f/45cc0f66b2710c48d044f3ef3b5d9346.jpg"
+  ],
+  "61": [
+    "https://i.pinimg.com/736x/29/52/73/29527361d968687d35a171ae418a9564.jpg"
+  ],
+  "62": [
+    "https://i.pinimg.com/736x/9c/0f/5d/9c0f5d6da8120cbc97ed43ec995ac575.jpg"
+  ],
+  "63": [
+    "https://i.pinimg.com/736x/42/2d/19/422d19eca7f96ec20a9eafad3ef4b13f.jpg"
+  ],
+  "64": [
+    "https://i.pinimg.com/736x/0a/29/94/0a29948da31e6581e8f72a26d881eed9.jpg"
+  ],
+  "65": [
+    "https://i.pinimg.com/736x/45/96/75/45967566ad0e150f5b9338b8125d1fb4.jpg"
+  ],
+  "66": [
+    "https://imgs.search.brave.com/se9YSEv51g7Z0NydBls5kDww7mQE-De-DXmDa3RXFJQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YW50aWxvZ3ZhY2F0/aW9ucy5jb20vSW1h/Z2VzLy9BY3Rpdml0/eURldGFpbC8vQmFz/aWMvL0RvbWVzdGlj/Ly9LYXNobWlyLy9L/YXRyYS8vU3RhbmRh/cmQtQWN0aXZpdGll/cy8vQmFiYS1EaGFu/c2FyLVRlbXBsZS8v/R2FsbGVyeS8vQmFi/YS1EaGFuc2FyLVRl/bXBsZV8wLmpwZw"
+  ],
+  "67": [
+    "https://i.pinimg.com/736x/df/50/07/df5007e9dd12950adc6edae03069c233.jpg"
+  ],
+  "68": [
+    "https://i.pinimg.com/736x/de/45/2a/de452a9ebd5a3c0205f10a8b0fe81ef2.jpg"
+  ],
+  "69": [
+    "https://i.pinimg.com/736x/32/04/0d/32040d72050834e813d28a264fc17bda.jpg"
+  ],
+  "70": [
+    "https://i.pinimg.com/736x/93/21/97/93219730609d93701bebc135443d8a77.jpg"
+  ],
+  "71": [
+    "https://i.pinimg.com/736x/54/5c/a1/545ca174de45f04ed17c553ae1568069.jpg"
+  ],
+  "72": [
+    "https://i.pinimg.com/736x/bf/60/88/bf60886c58e4ffd17540c7f8e4f5d583.jpg"
+  ],
+  "73": [
+    "https://i.pinimg.com/736x/c3/88/84/c38884ed136d73dc66b1ac3ec931dce6.jpg"
+  ],
+  "74": [
+    "https://i.pinimg.com/736x/0b/13/06/0b130683f9b04666997bb5ca571d4c6d.jpg"
+  ],
+  "75": [
+    "https://i.pinimg.com/736x/ca/9c/de/ca9cde57aa2ef1dc807de88282e5efb0.jpg"
+  ],
+  "76": [
+    "https://i.pinimg.com/736x/ab/4a/b0/ab4ab0626602fb85dea5c4d665c90363.jpg"
+  ],
+  "77": [
+    "https://i.pinimg.com/736x/88/1d/fb/881dfbb20a3c3fc4792f0a490e6c0edf.jpg"
+  ],
+  "78": [
+    "https://imgs.search.brave.com/pbuTDwMChVY7iFTW4hkptviL411BEe_P9Lc0U3Y1P34/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vc2FrYWxh/bS5vcmcvd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDUvQW1h/cmFyYW1hLVRlbXBs/ZS1Hb3B1cmFtLmpw/Zz9maXQ9NTQwLDY1/NSZzc2w9MQ"
+  ],
+  "79": [
+    "https://i.pinimg.com/736x/0e/83/97/0e83974e37817619b285a15f4a0c1e42.jpg"
+  ],
+  "80": [
+    "https://i.pinimg.com/736x/a6/8e/ca/a68eca302e0996ce1085c140202f9c48.jpg"
+  ],
+  "81": [
+    "https://i.pinimg.com/736x/3c/a9/4d/3ca94d76eb9650121a0dbca9223f0ced.jpg"
+  ],
+  "82": [
+    "https://i.pinimg.com/736x/aa/82/41/aa82419e422ca9106e939c0131f0067e.jpg"
+  ],
+  "83": [
+    "https://i.pinimg.com/736x/0c/63/43/0c6343f6e8a0b66e35d889ebdc2ce09e.jpg"
+  ],
+  "84": [
+    "https://i.pinimg.com/736x/5c/74/bd/5c74bd1beb1d7b21340a28da947bd3b6.jpg"
+  ],
+  "85": [
+    "https://i.pinimg.com/736x/21/87/61/2187612930d5d9c7ab072381b77ad4b6.jpg"
+  ],
+  "86": [
+    "https://i.pinimg.com/736x/df/86/e7/df86e70a23282ba200cb8444456e2405.jpg"
+  ],
+  "87": [
+    "https://imgs.search.brave.com/NEWX64o9qF-ZAOWicQXFXULdkIb9BHC-vpWhmh7nOso/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YXN0cm92ZWQuY29t/L2FzdHJvcGVkaWEv/YXNzZXRzL2ltYWdl/cy90ZW1wbGVzL2Rp/dnlhLWRlc2FtLXRl/bXBsZXMvVGhpcnV2/YWxsdXItVmVlcmFy/YWdoYXZhLVN3YW15/LVRlbXBsZS5qcGc"
+  ],
+  "88": [
+    "https://i.pinimg.com/736x/60/6f/65/606f6553b09e09c6c646928356139f17.jpg"
+  ],
+  "89": [
+    "https://imgs.search.brave.com/h9DUN-mJpbcxMUTstajNpQbljkFmdBDf7jHwiDkMdGM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YXN0cm92ZWQuY29t/L2FzdHJvcGVkaWEv/YXNzZXRzL2ltYWdl/cy90ZW1wbGVzL2Rp/dnlhLWRlc2FtLXRl/bXBsZXMvVGhpcnV2/YWxsdXItVmVlcmFy/YWdoYXZhLVN3YW15/LVRlbXBsZS5qcGc"
+  ],
+  "90": [
+    "https://i.pinimg.com/736x/ad/27/84/ad2784a631fdd8dcc1bfeeaa2ca95446.jpg"
+  ],
+  "91": [
+    "https://i.pinimg.com/736x/14/0b/5c/140b5c3b052b5886faaaef58ff3143ce.jpg"
+  ],
+  "92": [
+    "https://i.pinimg.com/736x/52/6f/6e/526f6e98957796ff12c7e752749ce271.jpg"
+  ],
+  "93": [
+    "https://i.pinimg.com/736x/a3/44/50/a34450f7a9c419d158fbebf0765322c6.jpg"
+  ],
+  "94": [
+    "https://i.pinimg.com/736x/f5/a7/a2/f5a7a26d3dadc7dd689365f83593dfbf.jpg"
+  ],
+  "95": [
+    "https://i.pinimg.com/736x/fb/2c/a8/fb2ca85a9cb23cc23ac8859dbb6b6e84.jpg"
+  ],
+  "96": [
+    "https://i.pinimg.com/736x/66/00/b9/6600b999d3f1443be7f0fcb413d8e9c1.jpg"
+  ],
+  "97": [
+    "https://i.pinimg.com/736x/96/4f/02/964f02b23005ea033cad4b1732451a58.jpg"
+  ],
+  "98": [
+    "https://i.pinimg.com/736x/ec/a8/63/eca86392c182c58c1ffcb6b4ffed9a19.jpg"
+  ],
+  "99": [
+    "https://i.pinimg.com/736x/35/a3/43/35a3437ef3ae73d2a7390e88e23a08aa.jpg"
+  ],
+  "100": [
+    "https://i.pinimg.com/736x/13/49/d4/1349d4a50c78bbfdea17360d14b6ebbd.jpg"
+  ],
+  "101": [
+    "https://i.pinimg.com/736x/2c/6b/cd/2c6bcd201cc04ae94459a9a89fd67220.jpg"
+  ],
+  "102": [
+    "https://i.pinimg.com/736x/44/73/eb/4473eb717a1bef31bbcc983b323a0e20.jpg"
+  ],
+  "103": [
+    "https://i.pinimg.com/736x/7d/74/32/7d74321bdc6feca58fbb72ed2f945337.jpg"
+  ],
+  "104": [
+    "https://i.pinimg.com/736x/f2/e3/7b/f2e37be39fe302a786abe78ceb4db786.jpg"
+  ],
+  "105": [
+    "https://i.pinimg.com/736x/9e/d5/8f/9ed58f7a343bfed80dfbc71c24a19b1c.jpg"
+  ],
   // Jyotirlingas
   "24": [
     "https://i.pinimg.com/736x/cd/84/8d/cd848d413a478fa85d11e1068fb669f3.jpg"
