@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -20,12 +21,13 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
-interface PrasadItem {
+interface OfferingItem {
   id: string;
   name: string;
   description: string;
   price: number;
   templeId: string;
+  category: "prasad" | "artifacts" | "souvenirs" | "holy-items";
 }
 
 interface Order {
@@ -40,58 +42,139 @@ interface Order {
   estimatedDelivery: string;
 }
 
-const prasadItems: PrasadItem[] = [
+const offeringItems: OfferingItem[] = [
+  // Prasad Items
   {
     id: "1",
     name: "Laddu Prasad",
     description: "Traditional sweet offering blessed at the temple",
     price: 151,
-    templeId: "1"
+    templeId: "1",
+    category: "prasad"
   },
   {
     id: "2",
     name: "Modak Prasad",
     description: "Sweet dumpling offering for special occasions",
     price: 201,
-    templeId: "2"
+    templeId: "2",
+    category: "prasad"
   },
   {
     id: "3",
     name: "Kheer Prasad",
     description: "Sacred rice pudding blessed by priests",
     price: 111,
-    templeId: "3"
+    templeId: "3",
+    category: "prasad"
   },
   {
     id: "4",
     name: "Halwa Prasad",
     description: "Semolina sweet offering for prosperity",
     price: 131,
-    templeId: "1"
+    templeId: "1",
+    category: "prasad"
   },
   {
     id: "5",
     name: "Panjiri Prasad",
     description: "Nutritious whole wheat offering for strength",
     price: 171,
-    templeId: "2"
+    templeId: "2",
+    category: "prasad"
   },
   {
     id: "6",
     name: "Chandan Tilak",
     description: "Sacred sandalwood paste for blessings",
     price: 51,
-    templeId: "4"
+    templeId: "4",
+    category: "prasad"
+  },
+  // Temple Artifacts
+  {
+    id: "7",
+    name: "Brass Temple Bell",
+    description: "Handcrafted brass bell for home temple worship",
+    price: 850,
+    templeId: "1",
+    category: "artifacts"
+  },
+  {
+    id: "8",
+    name: "Marble Ganesha Idol",
+    description: "Beautiful marble carved Ganesha statue",
+    price: 2500,
+    templeId: "2",
+    category: "artifacts"
+  },
+  {
+    id: "9",
+    name: "Silver Diya Set",
+    description: "Set of 5 silver diyas for festival celebrations",
+    price: 1200,
+    templeId: "3",
+    category: "artifacts"
+  },
+  {
+    id: "10",
+    name: "Rudraksha Mala",
+    description: "Authentic 108 bead rudraksha prayer mala",
+    price: 650,
+    templeId: "1",
+    category: "holy-items"
+  },
+  // Souvenirs
+  {
+    id: "11",
+    name: "Temple Photo Frame",
+    description: "Wooden frame with temple deity photograph",
+    price: 350,
+    templeId: "2",
+    category: "souvenirs"
+  },
+  {
+    id: "12",
+    name: "Sacred Thread (Kalava)",
+    description: "Blessed red thread for protection",
+    price: 25,
+    templeId: "4",
+    category: "holy-items"
+  },
+  // Holy Items
+  {
+    id: "13",
+    name: "Tulsi Plant",
+    description: "Sacred basil plant in decorative pot",
+    price: 180,
+    templeId: "3",
+    category: "holy-items"
+  },
+  {
+    id: "14",
+    name: "Copper Kalash",
+    description: "Traditional copper vessel for rituals",
+    price: 750,
+    templeId: "1",
+    category: "artifacts"
+  },
+  {
+    id: "15",
+    name: "Incense Stick Bundle",
+    description: "Premium quality incense sticks (50 pieces)",
+    price: 95,
+    templeId: "2",
+    category: "holy-items"
   }
 ];
 
-// Sample order history data
 const sampleOrders: Order[] = [
   {
     id: "ORD-001",
     items: [
       { itemId: "1", quantity: 2 },
-      { itemId: "3", quantity: 1 }
+      { itemId: "7", quantity: 1 }
     ],
     status: "delivered",
     date: "2025-04-10",
@@ -101,7 +184,7 @@ const sampleOrders: Order[] = [
   {
     id: "ORD-002",
     items: [
-      { itemId: "2", quantity: 1 },
+      { itemId: "8", quantity: 1 },
     ],
     status: "shipped",
     date: "2025-04-25",
@@ -111,8 +194,8 @@ const sampleOrders: Order[] = [
   {
     id: "ORD-003",
     items: [
-      { itemId: "5", quantity: 3 },
-      { itemId: "6", quantity: 1 }
+      { itemId: "10", quantity: 1 },
+      { itemId: "12", quantity: 3 }
     ],
     status: "processing",
     date: "2025-05-01",
@@ -121,11 +204,12 @@ const sampleOrders: Order[] = [
   }
 ];
 
-const PrasadBooking = () => {
+const TempleOfferings = () => {
   const [cart, setCart] = useState<Map<string, number>>(new Map());
   const [orders, setOrders] = useState<Order[]>(sampleOrders);
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
   const [showTrackingDialog, setShowTrackingDialog] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -137,7 +221,7 @@ const PrasadBooking = () => {
       
       toast({
         title: "Added to cart",
-        description: "Prasad item has been added to your cart",
+        description: "Item has been added to your cart",
       });
       
       return newCart;
@@ -174,7 +258,7 @@ const PrasadBooking = () => {
   const getTotalPrice = () => {
     let total = 0;
     cart.forEach((quantity, itemId) => {
-      const item = prasadItems.find(item => item.id === itemId);
+      const item = offeringItems.find(item => item.id === itemId);
       if (item) {
         total += item.price * quantity;
       }
@@ -191,7 +275,6 @@ const PrasadBooking = () => {
       return;
     }
 
-    // Create new order
     const newOrder: Order = {
       id: `ORD-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`,
       items: Array.from(cart.entries()).map(([itemId, quantity]) => ({ itemId, quantity })),
@@ -205,7 +288,7 @@ const PrasadBooking = () => {
     
     toast({
       title: "Order placed successfully",
-      description: `Your prasad order of ₹${getTotalPrice()} has been placed`,
+      description: `Your order of ₹${getTotalPrice()} has been placed`,
     });
     
     setCart(new Map());
@@ -229,30 +312,42 @@ const PrasadBooking = () => {
     }
   };
 
-  // Get details for an item in an order
   const getItemDetails = (itemId: string) => {
-    return prasadItems.find(item => item.id === itemId);
+    return offeringItems.find(item => item.id === itemId);
   };
   
-  // Calculate total for an order
   const calculateOrderTotal = (order: Order) => {
     let total = 0;
     order.items.forEach(item => {
-      const prasadItem = prasadItems.find(p => p.id === item.itemId);
-      if (prasadItem) {
-        total += prasadItem.price * item.quantity;
+      const offeringItem = offeringItems.find(p => p.id === item.itemId);
+      if (offeringItem) {
+        total += offeringItem.price * item.quantity;
       }
     });
     return total;
+  };
+
+  const filteredItems = selectedCategory === "all" 
+    ? offeringItems 
+    : offeringItems.filter(item => item.category === selectedCategory);
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case "prasad": return "🍯";
+      case "artifacts": return "🔔";
+      case "souvenirs": return "🖼️";
+      case "holy-items": return "🙏";
+      default: return "🏛️";
+    }
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold mb-2">Temple Prasad Booking</h1>
+          <h1 className="text-3xl font-bold mb-2">Temple Offerings</h1>
           <p className="text-gray-600">
-            Order sacred prasad from temples across India
+            Discover sacred prasad, temple artifacts, and holy items from temples across India
           </p>
         </div>
         
@@ -271,7 +366,7 @@ const PrasadBooking = () => {
 
       <Tabs defaultValue="shop" className="w-full">
         <TabsList className="mb-6">
-          <TabsTrigger value="shop">Shop Prasad</TabsTrigger>
+          <TabsTrigger value="shop">Shop Offerings</TabsTrigger>
           <TabsTrigger value="orders">My Orders</TabsTrigger>
         </TabsList>
         
@@ -281,7 +376,7 @@ const PrasadBooking = () => {
             <div className="flex flex-wrap gap-4 mb-4">
               <input
                 type="text"
-                placeholder="Search prasad items..."
+                placeholder="Search temple offerings..."
                 className="flex-grow border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
               <select className="border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
@@ -292,10 +387,16 @@ const PrasadBooking = () => {
                   </option>
                 ))}
               </select>
-              <select className="border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Most Popular</option>
+              <select 
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="border rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <option value="all">All Categories</option>
+                <option value="prasad">Prasad</option>
+                <option value="artifacts">Temple Artifacts</option>
+                <option value="souvenirs">Souvenirs</option>
+                <option value="holy-items">Holy Items</option>
               </select>
               <Button className="bg-orange-500 hover:bg-orange-600">
                 Search
@@ -303,14 +404,71 @@ const PrasadBooking = () => {
             </div>
           </div>
 
-          {/* Prasad Items */}
+          {/* Category Pills */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === "all" 
+                  ? "bg-orange-500 text-white" 
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              🏛️ All Items
+            </button>
+            <button
+              onClick={() => setSelectedCategory("prasad")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === "prasad" 
+                  ? "bg-orange-500 text-white" 
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              🍯 Prasad
+            </button>
+            <button
+              onClick={() => setSelectedCategory("artifacts")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === "artifacts" 
+                  ? "bg-orange-500 text-white" 
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              🔔 Temple Artifacts
+            </button>
+            <button
+              onClick={() => setSelectedCategory("souvenirs")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === "souvenirs" 
+                  ? "bg-orange-500 text-white" 
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              🖼️ Souvenirs
+            </button>
+            <button
+              onClick={() => setSelectedCategory("holy-items")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === "holy-items" 
+                  ? "bg-orange-500 text-white" 
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              🙏 Holy Items
+            </button>
+          </div>
+
+          {/* Temple Offerings */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {prasadItems.map((item) => (
+            {filteredItems.map((item) => (
               <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div className="h-48 bg-orange-100 flex items-center justify-center">
+                <div className="h-48 bg-orange-100 flex items-center justify-center relative">
                   <div className="text-orange-500 text-4xl font-bold">
-                    {item.name.split(' ')[0]}
+                    {getCategoryIcon(item.category)}
                   </div>
+                  <span className="absolute top-2 right-2 bg-white px-2 py-1 rounded-full text-xs font-medium text-gray-600 capitalize">
+                    {item.category.replace('-', ' ')}
+                  </span>
                 </div>
                 
                 <CardContent className="p-4">
@@ -359,10 +517,9 @@ const PrasadBooking = () => {
             
             {orders.length === 0 ? (
               <div className="p-8 text-center">
-                <p className="text-gray-500 mb-4">You haven't placed any prasad orders yet.</p>
+                <p className="text-gray-500 mb-4">You haven't placed any orders yet.</p>
                 <Button 
                   onClick={() => {
-                    // Fix: Instead of using Element.click(), we use the TabsTrigger's value to switch tabs
                     const shopTab = document.querySelector('[data-value="shop"]');
                     if (shopTab && shopTab instanceof HTMLElement) {
                       shopTab.click();
@@ -370,7 +527,7 @@ const PrasadBooking = () => {
                   }} 
                   className="bg-orange-500 hover:bg-orange-600"
                 >
-                  Shop Prasad
+                  Shop Offerings
                 </Button>
               </div>
             ) : (
@@ -406,8 +563,8 @@ const PrasadBooking = () => {
                         return itemDetails ? (
                           <div key={item.itemId} className="flex items-center gap-3">
                             <div className="w-12 h-12 rounded overflow-hidden bg-orange-100 flex items-center justify-center">
-                              <div className="text-orange-500 font-bold">
-                                {itemDetails.name.charAt(0)}
+                              <div className="text-orange-500 text-lg">
+                                {getCategoryIcon(itemDetails.category)}
                               </div>
                             </div>
                             <div className="flex-grow">
@@ -525,4 +682,4 @@ const PrasadBooking = () => {
   );
 };
 
-export default PrasadBooking;
+export default TempleOfferings;

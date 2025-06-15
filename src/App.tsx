@@ -18,7 +18,6 @@ import AboutUs from "@/pages/AboutUs";
 import PujaTiming from "@/pages/PujaTiming";
 import NotFound from "@/pages/NotFound";
 import TripPlanner from "@/pages/TripPlanner";
-import AI from "@/pages/AI";
 import Jyotirlingas from "@/pages/Jyotirlingas";
 import TempleStore from "@/pages/TempleStore";
 
@@ -37,7 +36,7 @@ const App = () => {
           <Route path="/puja-timings" element={<PujaTiming />} />
           <Route path="/puja-booking" element={<PoojaBooking />} />
           <Route path="/store" element={<TempleStore />} />
-          <Route path="/prasad-booking" element={<PrasadBooking />} />
+          <Route path="/temple-offerings" element={<PrasadBooking />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/astrology" element={<Astrology />} />
           <Route path="/stay-bookings" element={<StayBookings />} />
@@ -46,7 +45,6 @@ const App = () => {
           <Route path="/founder" element={<Founder />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/trip-planner" element={<TripPlanner />} />
-          <Route path="/ai" element={<AI />} />
           <Route path="/jyotirlingas" element={<Jyotirlingas />} />
           <Route path="*" element={<NotFound />} />
         </Route>
