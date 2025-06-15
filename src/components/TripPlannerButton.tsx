@@ -21,7 +21,7 @@ const TripPlannerButton = ({
       onClick={() => navigate("/trip-planner")}
     >
       <Map className="h-4 w-4" />
-      <span>Plan Your Temple Trip</span>
+      <span>Plan Temple Trip</span>
     </Button>
   );
 };

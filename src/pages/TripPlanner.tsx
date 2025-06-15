@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -106,10 +107,10 @@ const TripPlanner = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon">
-          AI Temple Trip Planner
+          Temple Trip Planner
         </h1>
         <p className="text-gray-600 mt-2">
-          Create a personalized temple itinerary based on your preferences
+          Plan your perfect temple journey with personalized routes, darshan timings, and prasad delivery
         </p>
       </div>
 
@@ -139,9 +140,9 @@ const TripPlanner = () => {
             {step === 3 && (<><Route className="h-5 w-5 text-spiritual-maroon" /> Your Personalized Temple Itinerary</>)}
           </CardTitle>
           <CardDescription>
-            {step === 1 && "Select the states you plan to visit during your trip"}
-            {step === 2 && "Tell us about your trip duration and preferences"}
-            {step === 3 && "Here's your personalized temple itinerary"}
+            {step === 1 && "Select the states you plan to visit during your temple journey"}
+            {step === 2 && "Tell us about your trip duration, preferences, and when you'd like to start"}
+            {step === 3 && "Here's your personalized temple itinerary with optimized routes and timings"}
           </CardDescription>
         </CardHeader>
 
@@ -185,10 +186,10 @@ const TripPlanner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="preferences" className="text-base font-medium">Specific Preferences (Optional)</Label>
+                  <Label htmlFor="preferences" className="text-base font-medium">Temple Preferences (Optional)</Label>
                   <Textarea
                     id="preferences"
-                    placeholder="Any specific deities, architecture styles, or famous temples you'd like to visit?"
+                    placeholder="Any specific deities, architecture styles, famous temples, or special ceremonies you'd like to experience?"
                     className="min-h-[100px]"
                     value={preferences}
                     onChange={(e) => setPreferences(e.target.value)}
@@ -206,7 +207,7 @@ const TripPlanner = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="startTime" className="text-base font-medium">Start Time</Label>
+                  <Label htmlFor="startTime" className="text-base font-medium">Preferred Start Time</Label>
                   <Input
                     type="time"
                     id="startTime"
@@ -219,6 +220,16 @@ const TripPlanner = () => {
 
             {step === 3 && suggestedTrip && (
               <div className="space-y-6">
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+                  <h3 className="font-medium text-orange-800 mb-2">✨ Your Journey Includes:</h3>
+                  <ul className="text-sm text-orange-700 space-y-1">
+                    <li>• Optimized routes between temples</li>
+                    <li>• Best darshan timings to avoid crowds</li>
+                    <li>• Prasad delivery options where available</li>
+                    <li>• Temple-specific guidelines and dress codes</li>
+                  </ul>
+                </div>
+
                 {suggestedTrip.days.map((day, index) => (
                   <motion.div key={index} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}>
                     <h3 className="font-bold text-lg text-spiritual-maroon flex items-center gap-2 mb-2">
@@ -233,9 +244,10 @@ const TripPlanner = () => {
                           <div>
                             <h4 className="font-medium text-spiritual-maroon">{temple.name}</h4>
                             <p className="text-sm text-gray-600">{temple.location}, {temple.state}</p>
+                            <p className="text-xs text-orange-600 mt-1">Best visit time: Early morning (6-8 AM) or Evening (6-8 PM)</p>
                           </div>
                           <Button variant="outline" className="shrink-0" onClick={() => navigateToTemple(temple.id)}>
-                            View
+                            View Details
                           </Button>
                         </div>
                       ))}
@@ -248,10 +260,22 @@ const TripPlanner = () => {
             {isLoading && (
               <div className="flex flex-col items-center justify-center py-10">
                 <div className="h-12 w-12 rounded-full border-4 border-spiritual-saffron/30 border-t-spiritual-saffron animate-spin mb-4"></div>
-                <p className="text-gray-600">Our AI is generating your personalized itinerary...</p>
+                <p className="text-gray-600">Planning your perfect temple journey...</p>
               </div>
             )}
           </CardContent>
+
+          {step < 3 && (
+            <CardFooter>
+              <Button 
+                type="submit" 
+                className="w-full bg-spiritual-saffron hover:bg-spiritual-ochre"
+                disabled={isLoading}
+              >
+                {step === 1 ? "Continue to Trip Details" : "Generate My Trip Plan"}
+              </Button>
+            </CardFooter>
+          )}
         </form>
       </Card>
     </div>
@@ -259,4 +283,3 @@ const TripPlanner = () => {
 };
 
 export default TripPlanner;
-
