@@ -526,4 +526,4 @@ const PrasadBooking = () => {
   );
 };
 
-export default PrasadBooking;
+export default Temple Offering;
