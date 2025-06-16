@@ -25,7 +25,7 @@ const PujaTiming = () => {
       id: 1,
       temple: "Tirupati Balaji",
       location: "Tirumala, Andhra Pradesh",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg",
+      image: "https://www.citybit.in/wp-content/uploads/2023/08/Tirupati-Balaji-Temple.jpg",
       pujas: [
         {
           name: "Suprabhatam",
@@ -65,7 +65,7 @@ const PujaTiming = () => {
       id: 2,
       temple: "Somnath Temple",
       location: "Gujarat",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a32-somnath3.jpg",
+      image: "https://i.pinimg.com/736x/cd/84/8d/cd848d413a478fa85d11e1068fb669f3.jpg",
       pujas: [
         {
           name: "Mangla Aarti",
@@ -105,7 +105,7 @@ const PujaTiming = () => {
       id: 3,
       temple: "Golden Temple",
       location: "Amritsar, Punjab",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg",
+      image: "https://i.pinimg.com/736x/b5/8f/90/b58f9075a821f2a6d87c816da131d806.jpg",
       pujas: [
         {
           name: "Asa di Var",
@@ -137,7 +137,7 @@ const PujaTiming = () => {
       id: 4,
       temple: "Kashi Vishwanath",
       location: "Varanasi, Uttar Pradesh",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg",
+      image: "https://i.pinimg.com/736x/bf/60/88/bf60886c58e4ffd17540c7f8e4f5d583.jpg",
       pujas: [
         {
           name: "Mangla Aarti",
@@ -177,7 +177,7 @@ const PujaTiming = () => {
       id: 5,
       temple: "Jagannath Temple",
       location: "Puri, Odisha",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a91-jagannath.jpg",
+      image: "https://s7ap1.scene7.com/is/image/incredibleindia/sri-jagannath-temple-puri-odisha-1-attr-hero?qlt=82&ts=1726663747217",
       pujas: [
         {
           name: "Mangala Alati",
@@ -217,7 +217,7 @@ const PujaTiming = () => {
       id: 6,
       temple: "Kedarnath Temple",
       location: "Uttarakhand",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg",
+      image: "https://i.pinimg.com/736x/36/da/9d/36da9dea692a7f4b93d7705a824da3f1.jpg",
       pujas: [
         {
           name: "Abhishek",
