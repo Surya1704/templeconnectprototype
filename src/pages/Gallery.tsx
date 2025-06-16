@@ -33,7 +33,7 @@ const Gallery = () => {
       title: "Varanasi Kashi Vishwanath Temple",
       category: "Architecture",
       location: "Uttar Pradesh",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg",
+      image: "https://i.pinimg.com/736x/bf/60/88/bf60886c58e4ffd17540c7f8e4f5d583.jpg",
       status: "approved"
     },
     {
@@ -41,7 +41,7 @@ const Gallery = () => {
       title: "Tirupati Balaji Temple",
       category: "Architecture",
       location: "Andhra Pradesh",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg",
+      image: "https://www.citybit.in/wp-content/uploads/2023/08/Tirupati-Balaji-Temple.jpg",
       status: "approved"
     },
     {
@@ -49,7 +49,7 @@ const Gallery = () => {
       title: "Golden Temple During Festival",
       category: "Festival",
       location: "Punjab",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScTuyrdbTd2MdbmhvpfMIyeyoiPfUSA-ydnw&s",
       status: "approved"
     },
     {
@@ -57,7 +57,7 @@ const Gallery = () => {
       title: "Meenakshi Temple Rituals",
       category: "Rituals",
       location: "Tamil Nadu",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a90-meenakshirituals.jpg",
+      image: "https://admin.southindiatoursandtravels.com/pages/gallery/24742.jpg",
       status: "approved"
     },
     {
@@ -65,7 +65,7 @@ const Gallery = () => {
       title: "Lord Jagannath Deity",
       category: "Deities",
       location: "Odisha",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a91-jagannath.jpg",
+      image: "https://s7ap1.scene7.com/is/image/incredibleindia/sri-jagannath-temple-puri-odisha-1-attr-hero?qlt=82&ts=1726663747217",
       status: "approved"
     },
     {
@@ -73,7 +73,7 @@ const Gallery = () => {
       title: "Somnath Temple Interior",
       category: "Interior",
       location: "Gujarat",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a32-somnath3.jpg",
+      image: "https://i.pinimg.com/736x/cd/84/8d/cd848d413a478fa85d11e1068fb669f3.jpg",
       status: "approved"
     },
     {
@@ -81,7 +81,7 @@ const Gallery = () => {
       title: "Badrinath Temple",
       category: "Architecture",
       location: "Uttarakhand",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a92-badrinath.jpg",
+      image: "https://majesticjourney.in/wp-content/uploads/2020/05/badrinath-temple.jpg",
       status: "approved"
     },
     {
@@ -89,7 +89,7 @@ const Gallery = () => {
       title: "Kedarnath Festival Celebration",
       category: "Festival",
       location: "Uttarakhand",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg",
+      image: "https://i.pinimg.com/736x/36/da/9d/36da9dea692a7f4b93d7705a824da3f1.jpg",
       status: "approved"
     },
     {
@@ -97,7 +97,7 @@ const Gallery = () => {
       title: "Brihadeeswara Temple Rituals",
       category: "Rituals",
       location: "Tamil Nadu",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a93-brihadeeswara.jpg",
+      image: "https://i.pinimg.com/736x/35/a3/43/35a3437ef3ae73d2a7390e88e23a08aa.jpg",
       status: "pending"
     },
     {
@@ -105,7 +105,7 @@ const Gallery = () => {
       title: "Konark Sun Temple",
       category: "Architecture",
       location: "Odisha",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a94-konark.jpg",
+      image: "https://i.pinimg.com/736x/d7/69/35/d7693575afa421aaa8a437b4fe79f7b6.jpg",
       status: "approved"
     },
     {
@@ -113,7 +113,7 @@ const Gallery = () => {
       title: "Rameshwaram Temple Interior",
       category: "Interior",
       location: "Tamil Nadu",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a35-rameshwaram3.jpg",
+      image: "https://i.pinimg.com/736x/35/54/15/3554152fec5f75fd0d0354c02a1a2f62.jpg",
       status: "approved"
     },
     {
@@ -121,7 +121,7 @@ const Gallery = () => {
       title: "Akshardham Temple Deity",
       category: "Deities",
       location: "Delhi",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a95-akshardham.jpg",
+      image: "https://i.pinimg.com/736x/af/d0/58/afd058d7267b41f19f6bded357903146.jpg",
       status: "pending"
     }
   ];
