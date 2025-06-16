@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -162,12 +161,12 @@ const NavBar = () => {
             <NavItem to="/jyotirlingas" text="Jyotirlingas" active={location.pathname === '/jyotirlingas'} />
             <NavItem to="/events" text="Events" active={location.pathname === '/events'} />
             <NavItem to="/puja-timings" text="Puja" active={location.pathname === '/puja-timings'} />
-            <NavItem to="/prasad-booking" text="Prasad" active={location.pathname === '/prasad-booking'} />
+            <NavItem to="/temple-offerings" text="Temple Offerings" active={location.pathname === '/temple-offerings'} />
             <NavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
             <NavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
             <NavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
             <NavItem to="/stay-bookings" text="Stay" active={location.pathname === '/stay-bookings'} />
-            <NavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
+            <NavItem to="/trip-planner" text="Trip Planner" active={location.pathname === '/trip-planner'} />
             <NavItem to="/donations" text="Donate" active={location.pathname === '/donations'} />
           </motion.ul>
         </div>
@@ -188,12 +187,12 @@ const NavBar = () => {
               <MobileNavItem to="/jyotirlingas" text="Jyotirlingas" active={location.pathname === '/jyotirlingas'} />
               <MobileNavItem to="/events" text="Events" active={location.pathname === '/events'} />
               <MobileNavItem to="/puja-timings" text="Puja Timings" active={location.pathname === '/puja-timings'} />
-              <MobileNavItem to="/prasad-booking" text="Prasad Booking" active={location.pathname === '/prasad-booking'} />
+              <MobileNavItem to="/temple-offerings" text="Temple Offerings" active={location.pathname === '/temple-offerings'} />
               <MobileNavItem to="/gallery" text="Gallery" active={location.pathname === '/gallery'} />
               <MobileNavItem to="/astrology" text="Astrology" active={location.pathname === '/astrology'} />
               <MobileNavItem to="/about-us" text="About Us" active={location.pathname === '/about-us'} />
               <MobileNavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
-              <MobileNavItem to="/ai" text="AI" active={location.pathname === '/ai'} />
+              <MobileNavItem to="/trip-planner" text="Trip Planner" active={location.pathname === '/trip-planner'} />
               <MobileNavItem to="/donations" text="Donations" active={location.pathname === '/donations'} />
               {/* Add Login to mobile menu */}
               <MobileNavItem to="/login" text="Login" active={location.pathname === '/login'} />
