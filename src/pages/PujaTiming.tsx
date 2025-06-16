@@ -25,7 +25,7 @@ const PujaTiming = () => {
       id: 1,
       temple: "Tirupati Balaji",
       location: "Tirumala, Andhra Pradesh",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a72-somnathladdu.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg",
       pujas: [
         {
           name: "Suprabhatam",
@@ -65,7 +65,7 @@ const PujaTiming = () => {
       id: 2,
       temple: "Somnath Temple",
       location: "Gujarat",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a78-shivaratrisomnath.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a32-somnath3.jpg",
       pujas: [
         {
           name: "Mangla Aarti",
@@ -105,7 +105,7 @@ const PujaTiming = () => {
       id: 3,
       temple: "Golden Temple",
       location: "Amritsar, Punjab",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a80-chariotfestival.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg",
       pujas: [
         {
           name: "Asa di Var",
@@ -137,7 +137,7 @@ const PujaTiming = () => {
       id: 4,
       temple: "Kashi Vishwanath",
       location: "Varanasi, Uttar Pradesh",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a81-arudradarshan.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg",
       pujas: [
         {
           name: "Mangla Aarti",
@@ -177,7 +177,7 @@ const PujaTiming = () => {
       id: 5,
       temple: "Jagannath Temple",
       location: "Puri, Odisha",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a82-shivaratrimahakal.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a91-jagannath.jpg",
       pujas: [
         {
           name: "Mangala Alati",
@@ -217,7 +217,7 @@ const PujaTiming = () => {
       id: 6,
       temple: "Kedarnath Temple",
       location: "Uttarakhand",
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a83-shravanmonth.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg",
       pujas: [
         {
           name: "Abhishek",
@@ -286,7 +286,7 @@ const PujaTiming = () => {
           Stay connected with divine schedules. Never miss the sacred moments of worship at India's most revered temples.
         </p>
         <div className="mt-4 flex justify-center">
-          <div className="bg-orange-100 text-orange-800 px-4 py-2 rounded-full flex items-center gap-2">
+          <div className="bg-orange-100 text-orange-800 px-4 py-2 rounded-full flex items-center gap-2 border border-orange-200">
             <Clock className="h-4 w-4" />
             <span className="font-medium">
               Current Time: {currentTime.toLocaleTimeString('en-US', { 
@@ -316,7 +316,7 @@ const PujaTiming = () => {
             <option value="jagannath">Jagannath Temple</option>
             <option value="kedarnath">Kedarnath Temple</option>
           </select>
-          <Button className="bg-orange-500 hover:bg-orange-600">
+          <Button className="bg-orange-500 hover:bg-orange-600 border border-orange-400 shadow-md">
             View Schedule
           </Button>
         </div>
@@ -343,8 +343,8 @@ const PujaTiming = () => {
                     <span>{schedule.location}</span>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline">Live Schedule</Badge>
-                    <Badge variant="outline">{schedule.pujas.length} Daily Pujas</Badge>
+                    <Badge variant="outline" className="border shadow-sm">Live Schedule</Badge>
+                    <Badge variant="outline" className="border shadow-sm">{schedule.pujas.length} Daily Pujas</Badge>
                   </div>
                 </div>
               </div>
@@ -357,7 +357,7 @@ const PujaTiming = () => {
                   return (
                     <div 
                       key={index}
-                      className={`border rounded-lg p-4 transition-all duration-300 ${
+                      className={`border-2 rounded-lg p-4 transition-all duration-300 ${
                         status === "ongoing" 
                           ? "border-green-500 bg-green-50" 
                           : status === "upcoming"
@@ -369,10 +369,10 @@ const PujaTiming = () => {
                         <h3 className="font-semibold text-lg">{puja.name}</h3>
                         <div className="flex items-center gap-2">
                           {status === "ongoing" && (
-                            <Badge className="bg-green-500">Live Now</Badge>
+                            <Badge className="bg-green-500 border border-green-400">Live Now</Badge>
                           )}
                           {status === "upcoming" && (
-                            <Badge className="bg-orange-500">Starting Soon</Badge>
+                            <Badge className="bg-orange-500 border border-orange-400">Starting Soon</Badge>
                           )}
                           {puja.importance === "high" && (
                             <Star className="h-4 w-4 text-yellow-500 fill-current" />
@@ -399,12 +399,12 @@ const PujaTiming = () => {
                           size="sm" 
                           variant="outline"
                           onClick={() => setReminder(schedule.temple, puja.name)}
-                          className="flex items-center gap-1"
+                          className="flex items-center gap-1 border-2 shadow-sm"
                         >
                           <Bell className="h-3 w-3" />
                           Set Reminder
                         </Button>
-                        <Button size="sm" variant="outline">
+                        <Button size="sm" variant="outline" className="border-2 shadow-sm">
                           <Camera className="h-3 w-3" />
                         </Button>
                       </div>
@@ -418,7 +418,7 @@ const PujaTiming = () => {
       </div>
 
       {/* Information Section */}
-      <div className="mt-12 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-8">
+      <div className="mt-12 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-8 border border-orange-100">
         <h2 className="text-2xl font-bold text-center mb-6">Important Information</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center">

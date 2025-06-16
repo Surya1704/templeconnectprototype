@@ -235,7 +235,7 @@ const Gallery = () => {
                 <option>East India</option>
                 <option>West India</option>
               </select>
-              <Button className="bg-orange-500 hover:bg-orange-600 flex items-center gap-2">
+              <Button className="bg-orange-500 hover:bg-orange-600 flex items-center gap-2 border border-orange-400 shadow-md">
                 <Filter className="h-4 w-4" />
                 Filter
               </Button>
@@ -246,7 +246,7 @@ const Gallery = () => {
         {/* Upload Button */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-spiritual-maroon hover:bg-spiritual-maroon/90 flex items-center gap-2 whitespace-nowrap">
+            <Button className="bg-spiritual-maroon hover:bg-spiritual-maroon/90 flex items-center gap-2 whitespace-nowrap border border-spiritual-maroon/50 shadow-md">
               <Upload className="h-4 w-4" />
               Upload Image
             </Button>
@@ -353,18 +353,16 @@ const Gallery = () => {
         </Dialog>
       </div>
       
-      {/* Featured Collection - Modified to be more mobile-friendly */}
+      {/* Featured Collection - With proper image */}
       <div className="relative mb-10 rounded-lg overflow-hidden">
-        <div className="w-full h-48 md:h-64 bg-gradient-to-r from-orange-500 to-amber-500 flex items-center justify-center">
-          {isMobile ? (
-            <ImageIcon className="h-16 w-16 text-white/40" />
-          ) : (
-            <ImageWithFallback 
-              src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a96-diwali.jpg" 
-              alt="Festival of Lights" 
-              className="w-full h-full object-cover opacity-40"
-            />
-          )}
+        <div className="w-full h-48 md:h-64 relative">
+          <ImageWithFallback 
+            src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a80-chariotfestival.jpg" 
+            alt="Festival of Lights" 
+            className="w-full h-full object-cover"
+            fallbackSrc="/placeholder.svg"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"></div>
         </div>
         <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-center text-white">
           <h2 className="text-xl md:text-3xl font-bold mb-2">Featured Collection: Festival of Lights</h2>
@@ -373,7 +371,7 @@ const Gallery = () => {
             images of temples illuminated by thousands of lamps.
           </p>
           <div>
-            <Button variant="outline" className="border-white text-white hover:bg-white/20">
+            <Button variant="outline" className="border-white text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm">
               View Collection
             </Button>
           </div>
@@ -398,7 +396,7 @@ const Gallery = () => {
                     src={item.image} 
                     alt={item.title}
                     className="w-full h-full object-cover"
-                    fallbackSrc="/lovable-uploads/placeholder.svg"
+                    fallbackSrc="/placeholder.svg"
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                     <div className="text-center">
@@ -406,7 +404,7 @@ const Gallery = () => {
                       <div className="flex justify-center gap-2">
                         <Button 
                           size="sm" 
-                          className="bg-green-500 hover:bg-green-600 rounded-full h-8 w-8 p-0"
+                          className="bg-green-500 hover:bg-green-600 rounded-full h-8 w-8 p-0 border-2 border-green-400"
                           onClick={() => handleImageModeration(item.id, true)}
                         >
                           <Check size={16} />
@@ -414,7 +412,7 @@ const Gallery = () => {
                         <Button 
                           size="sm" 
                           variant="destructive"
-                          className="rounded-full h-8 w-8 p-0"
+                          className="rounded-full h-8 w-8 p-0 border-2 border-red-400"
                           onClick={() => handleImageModeration(item.id, false)}
                         >
                           <X size={16} />
@@ -450,7 +448,7 @@ const Gallery = () => {
                 src={item.image} 
                 alt={item.title}
                 className="w-full h-full object-cover"
-                fallbackSrc="/lovable-uploads/placeholder.svg"
+                fallbackSrc="/placeholder.svg"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-4">
@@ -459,7 +457,7 @@ const Gallery = () => {
                   {item.category} • {item.location}
                 </div>
                 <h3 className="text-white font-semibold mb-2">{item.title}</h3>
-                <Button size="sm" variant="outline" className="text-white border-white hover:bg-white/20">
+                <Button size="sm" variant="outline" className="text-white border-white hover:bg-white/20 bg-white/10 backdrop-blur-sm">
                   View Details
                 </Button>
               </div>
@@ -475,7 +473,7 @@ const Gallery = () => {
       )}
       
       <div className="mt-10 text-center">
-        <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
+        <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50 border-2 shadow-md">
           Load More Items
         </Button>
       </div>

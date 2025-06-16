@@ -37,7 +37,7 @@ const Events = () => {
       category: "festival",
       attendees: 100000,
       rating: 4.9,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a80-chariotfestival.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg",
       highlights: ["Temple Illumination", "Fireworks", "Community Langar"]
     },
     {
@@ -51,7 +51,7 @@ const Events = () => {
       category: "festival",
       attendees: 200000,
       rating: 4.7,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a79-kartikpurnima.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg",
       highlights: ["Processions", "Special Darshan", "Cultural Events"]
     },
     {
@@ -65,7 +65,7 @@ const Events = () => {
       category: "pilgrimage",
       attendees: 1000000,
       rating: 4.9,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a81-arudradarshan.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg",
       highlights: ["Holy Dip", "Spiritual Discourses", "Sadhu Darshan"]
     },
     {
@@ -79,7 +79,7 @@ const Events = () => {
       category: "festival",
       attendees: 1500000,
       rating: 4.8,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a82-shivaratrimahakal.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a91-jagannath.jpg",
       highlights: ["Chariot Procession", "Mass Participation", "Traditional Music"]
     },
     {
@@ -93,7 +93,7 @@ const Events = () => {
       category: "spiritual",
       attendees: 500,
       rating: 4.6,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a83-shravanmonth.jpg",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg",
       highlights: ["Guided Meditation", "Yoga Sessions", "Himalayan Views"]
     }
   ];
@@ -148,7 +148,7 @@ const Events = () => {
           </div>
           
           <div className="flex items-end">
-            <Button className="w-full bg-orange-500 hover:bg-orange-600">
+            <Button className="w-full bg-orange-500 hover:bg-orange-600 border border-orange-400 shadow-md">
               Search Events
             </Button>
           </div>
@@ -159,28 +159,28 @@ const Events = () => {
       <div className="flex flex-wrap gap-3 mb-8 justify-center">
         <Badge 
           variant={selectedFilter === "all" ? "default" : "outline"}
-          className="cursor-pointer px-4 py-2"
+          className="cursor-pointer px-4 py-2 border shadow-sm"
           onClick={() => setSelectedFilter("all")}
         >
           All Events
         </Badge>
         <Badge 
           variant={selectedFilter === "festival" ? "default" : "outline"}
-          className="cursor-pointer px-4 py-2"
+          className="cursor-pointer px-4 py-2 border shadow-sm"
           onClick={() => setSelectedFilter("festival")}
         >
           🎉 Festivals
         </Badge>
         <Badge 
           variant={selectedFilter === "pilgrimage" ? "default" : "outline"}
-          className="cursor-pointer px-4 py-2"
+          className="cursor-pointer px-4 py-2 border shadow-sm"
           onClick={() => setSelectedFilter("pilgrimage")}
         >
           🚶 Pilgrimages
         </Badge>
         <Badge 
           variant={selectedFilter === "spiritual" ? "default" : "outline"}
-          className="cursor-pointer px-4 py-2"
+          className="cursor-pointer px-4 py-2 border shadow-sm"
           onClick={() => setSelectedFilter("spiritual")}
         >
           🧘 Spiritual Events
@@ -199,11 +199,11 @@ const Events = () => {
                 fallbackSrc="/placeholder.svg"
               />
               <div className="absolute top-4 right-4">
-                <Badge className="bg-orange-500 text-white">
+                <Badge className="bg-orange-500 text-white border border-orange-400">
                   {event.category}
                 </Badge>
               </div>
-              <div className="absolute bottom-4 left-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded flex items-center gap-1">
+              <div className="absolute bottom-4 left-4 bg-black bg-opacity-80 text-white px-2 py-1 rounded flex items-center gap-1 border border-white/20">
                 <Star className="h-3 w-3 fill-current" />
                 <span className="text-sm">{event.rating}</span>
               </div>
@@ -245,7 +245,7 @@ const Events = () => {
                 <h4 className="text-sm font-medium mb-2">Event Highlights:</h4>
                 <div className="flex flex-wrap gap-1">
                   {event.highlights.map((highlight, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
+                    <Badge key={index} variant="outline" className="text-xs border shadow-sm">
                       {highlight}
                     </Badge>
                   ))}
@@ -253,10 +253,10 @@ const Events = () => {
               </div>
               
               <div className="flex gap-2">
-                <Button className="flex-1 bg-orange-500 hover:bg-orange-600">
+                <Button className="flex-1 bg-orange-500 hover:bg-orange-600 border border-orange-400 shadow-md">
                   Register Now
                 </Button>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" className="border-2 shadow-sm">
                   <Camera className="h-4 w-4" />
                 </Button>
               </div>
@@ -266,17 +266,17 @@ const Events = () => {
       </div>
 
       {/* Call to Action */}
-      <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-8 text-center">
+      <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-8 text-center border border-orange-100">
         <h2 className="text-2xl font-bold mb-4">Don't Miss Out on Sacred Celebrations</h2>
         <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
           Join millions of devotees in experiencing the divine energy of temple festivals. 
           Get notified about upcoming events and special celebrations.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button className="bg-orange-500 hover:bg-orange-600 px-8">
+          <Button className="bg-orange-500 hover:bg-orange-600 px-8 border border-orange-400 shadow-md">
             Subscribe to Notifications
           </Button>
-          <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
+          <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50 border-2 shadow-md">
             View Calendar
           </Button>
         </div>
