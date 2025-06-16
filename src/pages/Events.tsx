@@ -23,7 +23,7 @@ const Events = () => {
       category: "festival",
       attendees: 50000,
       rating: 4.8,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a78-shivaratrisomnath.jpg",
+      image: "https://i.pinimg.com/736x/3c/e2/c3/3ce2c373003a51dc5589496554b7ce76.jpg",
       highlights: ["Special Abhishek", "Cultural Programs", "Prasad Distribution"]
     },
     {
@@ -37,7 +37,7 @@ const Events = () => {
       category: "festival",
       attendees: 100000,
       rating: 4.9,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a69-goldentemple1.jpg",
+      image: "https://i.pinimg.com/736x/55/c8/30/55c8306e3a08e6df393a71a0acb11914.jpg",
       highlights: ["Temple Illumination", "Fireworks", "Community Langar"]
     },
     {
@@ -51,7 +51,7 @@ const Events = () => {
       category: "festival",
       attendees: 200000,
       rating: 4.7,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a66-tirupatibalaji1.jpg",
+      image: "https://i.pinimg.com/736x/ec/43/cd/ec43cddd1f72b04b8743229b8ba815f8.jpg",
       highlights: ["Processions", "Special Darshan", "Cultural Events"]
     },
     {
@@ -65,7 +65,7 @@ const Events = () => {
       category: "pilgrimage",
       attendees: 1000000,
       rating: 4.9,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a48-kashi1.jpg",
+      image: "https://i.pinimg.com/736x/6d/a2/9e/6da29ed46946a91bbe050f045d3c8eee.jpg",
       highlights: ["Holy Dip", "Spiritual Discourses", "Sadhu Darshan"]
     },
     {
@@ -79,7 +79,7 @@ const Events = () => {
       category: "festival",
       attendees: 1500000,
       rating: 4.8,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a91-jagannath.jpg",
+      image: "https://i.pinimg.com/736x/42/60/fb/4260fb49a4b1496eb18cc90f79b87185.jpg",
       highlights: ["Chariot Procession", "Mass Participation", "Traditional Music"]
     },
     {
@@ -93,7 +93,7 @@ const Events = () => {
       category: "spiritual",
       attendees: 500,
       rating: 4.6,
-      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg",
+      image: "https://i.pinimg.com/736x/f3/7f/61/f37f61c5a973d2c2cefa0d5a7aded906.jpg",
       highlights: ["Guided Meditation", "Yoga Sessions", "Himalayan Views"]
     }
   ];
