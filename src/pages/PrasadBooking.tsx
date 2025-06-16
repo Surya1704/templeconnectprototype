@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -27,7 +26,8 @@ interface OfferingItem {
   description: string;
   price: number;
   templeId: string;
-  category: "prasad" | "artifacts" | "souvenirs" | "holy-items";
+  category: "prasad" | "artifacts" | "souvenirs" | "holy-items" | "tilak-powders" | "oils-lamps";
+  shelfLife?: string;
 }
 
 interface Order {
@@ -43,14 +43,15 @@ interface Order {
 }
 
 const offeringItems: OfferingItem[] = [
-  // Prasad Items
+  // Prasad Items (with higher shelf life for shipping)
   {
     id: "1",
     name: "Laddu Prasad",
     description: "Traditional sweet offering blessed at the temple",
     price: 151,
     templeId: "1",
-    category: "prasad"
+    category: "prasad",
+    shelfLife: "21 days"
   },
   {
     id: "2",
@@ -58,7 +59,8 @@ const offeringItems: OfferingItem[] = [
     description: "Sweet dumpling offering for special occasions",
     price: 201,
     templeId: "2",
-    category: "prasad"
+    category: "prasad",
+    shelfLife: "18 days"
   },
   {
     id: "3",
@@ -66,7 +68,8 @@ const offeringItems: OfferingItem[] = [
     description: "Sacred rice pudding blessed by priests",
     price: 111,
     templeId: "3",
-    category: "prasad"
+    category: "prasad",
+    shelfLife: "15 days"
   },
   {
     id: "4",
@@ -74,7 +77,8 @@ const offeringItems: OfferingItem[] = [
     description: "Semolina sweet offering for prosperity",
     price: 131,
     templeId: "1",
-    category: "prasad"
+    category: "prasad",
+    shelfLife: "20 days"
   },
   {
     id: "5",
@@ -82,19 +86,136 @@ const offeringItems: OfferingItem[] = [
     description: "Nutritious whole wheat offering for strength",
     price: 171,
     templeId: "2",
-    category: "prasad"
+    category: "prasad",
+    shelfLife: "30 days"
   },
+  
+  // Tilak Powders & Sacred Items
   {
     id: "6",
-    name: "Chandan Tilak",
-    description: "Sacred sandalwood paste for blessings",
-    price: 51,
+    name: "Kumkum Powder",
+    description: "Sacred red turmeric powder for tilak and prayers",
+    price: 75,
     templeId: "4",
-    category: "prasad"
+    category: "tilak-powders",
+    shelfLife: "2 years"
   },
-  // Temple Artifacts
   {
     id: "7",
+    name: "Chandan Tilak",
+    description: "Sacred sandalwood paste for blessings",
+    price: 125,
+    templeId: "4",
+    category: "tilak-powders",
+    shelfLife: "1 year"
+  },
+  {
+    id: "8",
+    name: "Vibhuti (Sacred Ash)",
+    description: "Holy ash for tilak and spiritual purification",
+    price: 65,
+    templeId: "1",
+    category: "tilak-powders",
+    shelfLife: "Unlimited"
+  },
+  {
+    id: "9",
+    name: "Sindoor Powder",
+    description: "Sacred vermillion powder for worship",
+    price: 85,
+    templeId: "3",
+    category: "tilak-powders",
+    shelfLife: "3 years"
+  },
+  {
+    id: "10",
+    name: "Haldi Powder (Turmeric)",
+    description: "Pure turmeric powder for rituals and tilak",
+    price: 55,
+    templeId: "2",
+    category: "tilak-powders",
+    shelfLife: "2 years"
+  },
+  
+  // Gangajal & Holy Water
+  {
+    id: "11",
+    name: "Gangajal",
+    description: "Holy water from the sacred River Ganges",
+    price: 101,
+    templeId: "1",
+    category: "holy-items",
+    shelfLife: "Unlimited"
+  },
+  {
+    id: "12",
+    name: "Char Dham Water",
+    description: "Sacred water from the four holy dhams",
+    price: 151,
+    templeId: "4",
+    category: "holy-items",
+    shelfLife: "Unlimited"
+  },
+  
+  // Oils & Lamps
+  {
+    id: "13",
+    name: "Sesame Oil (Til Oil)",
+    description: "Pure sesame oil for lighting diyas and prayers",
+    price: 95,
+    templeId: "2",
+    category: "oils-lamps",
+    shelfLife: "1 year"
+  },
+  {
+    id: "14",
+    name: "Mustard Oil",
+    description: "Traditional mustard oil for temple lamps",
+    price: 85,
+    templeId: "3",
+    category: "oils-lamps",
+    shelfLife: "1 year"
+  },
+  {
+    id: "15",
+    name: "Ghee (Clarified Butter)",
+    description: "Pure cow ghee for diyas and havan",
+    price: 225,
+    templeId: "1",
+    category: "oils-lamps",
+    shelfLife: "6 months"
+  },
+  {
+    id: "16",
+    name: "Brass Diya Set",
+    description: "Set of 5 traditional brass oil lamps",
+    price: 350,
+    templeId: "4",
+    category: "oils-lamps",
+    shelfLife: "Years"
+  },
+  {
+    id: "17",
+    name: "Clay Diyas (Pack of 12)",
+    description: "Traditional earthen lamps for festivals",
+    price: 75,
+    templeId: "2",
+    category: "oils-lamps",
+    shelfLife: "Years"
+  },
+  {
+    id: "18",
+    name: "Silver Diya",
+    description: "Elegant silver lamp for special occasions",
+    price: 1200,
+    templeId: "3",
+    category: "oils-lamps",
+    shelfLife: "Years"
+  },
+  
+  // Temple Artifacts
+  {
+    id: "19",
     name: "Brass Temple Bell",
     description: "Handcrafted brass bell for home temple worship",
     price: 850,
@@ -102,7 +223,7 @@ const offeringItems: OfferingItem[] = [
     category: "artifacts"
   },
   {
-    id: "8",
+    id: "20",
     name: "Marble Ganesha Idol",
     description: "Beautiful marble carved Ganesha statue",
     price: 2500,
@@ -110,62 +231,77 @@ const offeringItems: OfferingItem[] = [
     category: "artifacts"
   },
   {
-    id: "9",
-    name: "Silver Diya Set",
-    description: "Set of 5 silver diyas for festival celebrations",
-    price: 1200,
-    templeId: "3",
-    category: "artifacts"
-  },
-  {
-    id: "10",
-    name: "Rudraksha Mala",
-    description: "Authentic 108 bead rudraksha prayer mala",
-    price: 650,
-    templeId: "1",
-    category: "holy-items"
-  },
-  // Souvenirs
-  {
-    id: "11",
-    name: "Temple Photo Frame",
-    description: "Wooden frame with temple deity photograph",
-    price: 350,
-    templeId: "2",
-    category: "souvenirs"
-  },
-  {
-    id: "12",
-    name: "Sacred Thread (Kalava)",
-    description: "Blessed red thread for protection",
-    price: 25,
-    templeId: "4",
-    category: "holy-items"
-  },
-  // Holy Items
-  {
-    id: "13",
-    name: "Tulsi Plant",
-    description: "Sacred basil plant in decorative pot",
-    price: 180,
-    templeId: "3",
-    category: "holy-items"
-  },
-  {
-    id: "14",
+    id: "21",
     name: "Copper Kalash",
     description: "Traditional copper vessel for rituals",
     price: 750,
     templeId: "1",
     category: "artifacts"
   },
+  
+  // Agarbatti & Incense
   {
-    id: "15",
-    name: "Incense Stick Bundle",
-    description: "Premium quality incense sticks (50 pieces)",
-    price: 95,
+    id: "22",
+    name: "Sandalwood Agarbatti",
+    description: "Premium sandalwood incense sticks (100 pieces)",
+    price: 145,
     templeId: "2",
+    category: "holy-items",
+    shelfLife: "2 years"
+  },
+  {
+    id: "23",
+    name: "Rose Agarbatti",
+    description: "Fragrant rose incense sticks (100 pieces)",
+    price: 95,
+    templeId: "3",
+    category: "holy-items",
+    shelfLife: "2 years"
+  },
+  {
+    id: "24",
+    name: "Jasmine Agarbatti",
+    description: "Sweet jasmine incense sticks (100 pieces)",
+    price: 105,
+    templeId: "4",
+    category: "holy-items",
+    shelfLife: "2 years"
+  },
+  
+  // Other Holy Items
+  {
+    id: "25",
+    name: "Rudraksha Mala",
+    description: "Authentic 108 bead rudraksha prayer mala",
+    price: 650,
+    templeId: "1",
     category: "holy-items"
+  },
+  {
+    id: "26",
+    name: "Sacred Thread (Kalava)",
+    description: "Blessed red thread for protection",
+    price: 25,
+    templeId: "4",
+    category: "holy-items"
+  },
+  {
+    id: "27",
+    name: "Tulsi Plant",
+    description: "Sacred basil plant in decorative pot",
+    price: 180,
+    templeId: "3",
+    category: "holy-items"
+  },
+  
+  // Souvenirs
+  {
+    id: "28",
+    name: "Temple Photo Frame",
+    description: "Wooden frame with temple deity photograph",
+    price: 350,
+    templeId: "2",
+    category: "souvenirs"
   }
 ];
 
@@ -337,6 +473,8 @@ const TempleOfferings = () => {
       case "artifacts": return "🔔";
       case "souvenirs": return "🖼️";
       case "holy-items": return "🙏";
+      case "tilak-powders": return "🟡";
+      case "oils-lamps": return "🪔";
       default: return "🏛️";
     }
   };
@@ -347,7 +485,7 @@ const TempleOfferings = () => {
         <div>
           <h1 className="text-3xl font-bold mb-2">Temple Offerings</h1>
           <p className="text-gray-600">
-            Discover sacred prasad, temple artifacts, and holy items from temples across India
+            Discover sacred prasad, temple artifacts, tilak powders, agarbatti, oils, lamps and holy items from temples across India
           </p>
         </div>
         
@@ -394,9 +532,11 @@ const TempleOfferings = () => {
               >
                 <option value="all">All Categories</option>
                 <option value="prasad">Prasad</option>
+                <option value="tilak-powders">Tilak Powders</option>
+                <option value="oils-lamps">Oils & Lamps</option>
+                <option value="holy-items">Agarbatti & Holy Items</option>
                 <option value="artifacts">Temple Artifacts</option>
                 <option value="souvenirs">Souvenirs</option>
-                <option value="holy-items">Holy Items</option>
               </select>
               <Button className="bg-orange-500 hover:bg-orange-600">
                 Search
@@ -427,6 +567,36 @@ const TempleOfferings = () => {
               🍯 Prasad
             </button>
             <button
+              onClick={() => setSelectedCategory("tilak-powders")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === "tilak-powders" 
+                  ? "bg-orange-500 text-white" 
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              🟡 Tilak Powders
+            </button>
+            <button
+              onClick={() => setSelectedCategory("oils-lamps")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === "oils-lamps" 
+                  ? "bg-orange-500 text-white" 
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              🪔 Oils & Lamps
+            </button>
+            <button
+              onClick={() => setSelectedCategory("holy-items")}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === "holy-items" 
+                  ? "bg-orange-500 text-white" 
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              🙏 Agarbatti & Holy Items
+            </button>
+            <button
               onClick={() => setSelectedCategory("artifacts")}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 selectedCategory === "artifacts" 
@@ -446,16 +616,6 @@ const TempleOfferings = () => {
             >
               🖼️ Souvenirs
             </button>
-            <button
-              onClick={() => setSelectedCategory("holy-items")}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedCategory === "holy-items" 
-                  ? "bg-orange-500 text-white" 
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              🙏 Holy Items
-            </button>
           </div>
 
           {/* Temple Offerings */}
@@ -469,6 +629,11 @@ const TempleOfferings = () => {
                   <span className="absolute top-2 right-2 bg-white px-2 py-1 rounded-full text-xs font-medium text-gray-600 capitalize">
                     {item.category.replace('-', ' ')}
                   </span>
+                  {item.shelfLife && (
+                    <span className="absolute top-2 left-2 bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                      {item.shelfLife}
+                    </span>
+                  )}
                 </div>
                 
                 <CardContent className="p-4">

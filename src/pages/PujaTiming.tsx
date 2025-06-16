@@ -1,375 +1,451 @@
 
-import React, { useState } from "react";
-import { Calendar, Clock, MapPin, Bell, Calendar as CalendarIcon, Search } from "lucide-react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Clock, MapPin, Bell, Calendar, Star, Camera } from "lucide-react";
 import { temples } from "@/data/temples";
-import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import ImageWithFallback from "@/components/ImageWithFallback";
-import { getTempleImages } from "@/data/mergeTemples";
 
 const PujaTiming = () => {
   const { toast } = useToast();
-  const [searchQuery, setSearchQuery] = useState("");
-  
-  // Generate puja timings for temples
-  const generateTimings = () => {
-    const pujaTypes = [
-      { name: "Mangala Aarti" },
-      { name: "Abhishekam" },
-      { name: "Shayan Aarti" },
-      { name: "Bhog Offering" },
-      { name: "Sandhya Aarti" },
-    ];
-    
-    return temples.map(temple => {
-      const morningPujas = [
+  const [selectedTemple, setSelectedTemple] = useState("all");
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const pujaSchedules = [
+    {
+      id: 1,
+      temple: "Tirupati Balaji",
+      location: "Tirumala, Andhra Pradesh",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a72-somnathladdu.jpg",
+      pujas: [
         {
-          id: `${temple.id}-m1`,
-          name: "Mangala Aarti",
-          time: "5:00 AM - 6:00 AM",
-          temple: temple.name,
-          location: temple.location,
-          description: "Early morning ritual offering to the deity with lamps.",
-          isPremium: false
+          name: "Suprabhatam",
+          time: "03:00 AM",
+          duration: "45 min",
+          description: "Morning awakening prayers to Lord Venkateswara",
+          type: "daily",
+          importance: "high"
         },
         {
-          id: `${temple.id}-m2`,
-          name: "Abhishekam",
-          time: "8:00 AM - 9:30 AM",
-          temple: temple.name,
-          location: temple.location,
-          description: "Ritual bathing of the deity with sacred substances.",
-          isPremium: temple.id === "1" || temple.id === "3"
-        }
-      ];
-      
-      const eveningPujas = [
+          name: "Thomala Seva",
+          time: "04:00 AM",
+          duration: "30 min",
+          description: "Decoration with flowers and ornaments",
+          type: "daily",
+          importance: "medium"
+        },
         {
-          id: `${temple.id}-e1`,
+          name: "Archana",
+          time: "06:30 AM",
+          duration: "2 hours",
+          description: "General darshan and prayers",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Sahasra Namarchana",
+          time: "11:00 AM",
+          duration: "1 hour",
+          description: "Chanting of 1000 names of Lord Vishnu",
+          type: "special",
+          importance: "high"
+        }
+      ]
+    },
+    {
+      id: 2,
+      temple: "Somnath Temple",
+      location: "Gujarat",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a78-shivaratrisomnath.jpg",
+      pujas: [
+        {
+          name: "Mangla Aarti",
+          time: "06:00 AM",
+          duration: "30 min",
+          description: "Morning prayers to Lord Shiva",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Madhyan Aarti",
+          time: "12:00 PM",
+          duration: "20 min",
+          description: "Midday worship ceremony",
+          type: "daily",
+          importance: "medium"
+        },
+        {
           name: "Sandhya Aarti",
-          time: "6:00 PM - 7:00 PM",
-          temple: temple.name,
-          location: temple.location,
-          description: "Evening ritual offering to the deity with lamps and chanting.",
-          isPremium: false
+          time: "07:00 PM",
+          duration: "45 min",
+          description: "Evening prayer ceremony with lamps",
+          type: "daily",
+          importance: "high"
         },
         {
-          id: `${temple.id}-e2`,
           name: "Shayan Aarti",
-          time: "8:00 PM - 9:00 PM",
-          temple: temple.name,
-          location: temple.location,
-          description: "Night ritual before the deity retires to sleep.",
-          isPremium: temple.id === "2" || temple.id === "4"
+          time: "10:30 PM",
+          duration: "15 min",
+          description: "Night prayer before temple closure",
+          type: "daily",
+          importance: "medium"
         }
-      ];
-      
-      return {
-        temple,
-        morningPujas,
-        eveningPujas,
-        images: getTempleImages(temple.id)
-      };
-    });
+      ]
+    },
+    {
+      id: 3,
+      temple: "Golden Temple",
+      location: "Amritsar, Punjab",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a80-chariotfestival.jpg",
+      pujas: [
+        {
+          name: "Asa di Var",
+          time: "04:00 AM",
+          duration: "2 hours",
+          description: "Morning hymns and prayers",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Rehras Sahib",
+          time: "06:00 PM",
+          duration: "1 hour",
+          description: "Evening prayers and kirtan",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Kirtan Darbar",
+          time: "08:00 PM",
+          duration: "2 hours",
+          description: "Devotional singing and prayers",
+          type: "daily",
+          importance: "medium"
+        }
+      ]
+    },
+    {
+      id: 4,
+      temple: "Kashi Vishwanath",
+      location: "Varanasi, Uttar Pradesh",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a81-arudradarshan.jpg",
+      pujas: [
+        {
+          name: "Mangla Aarti",
+          time: "03:30 AM",
+          duration: "45 min",
+          description: "Pre-dawn prayers to Lord Shiva",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Bhog Aarti",
+          time: "11:15 AM",
+          duration: "30 min",
+          description: "Offering of food to the deity",
+          type: "daily",
+          importance: "medium"
+        },
+        {
+          name: "Sandhya Aarti",
+          time: "07:00 PM",
+          duration: "1 hour",
+          description: "Grand evening ceremony with Ganga Aarti",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Shringaar Aarti",
+          time: "09:00 PM",
+          duration: "20 min",
+          description: "Decoration ceremony before rest",
+          type: "daily",
+          importance: "medium"
+        }
+      ]
+    },
+    {
+      id: 5,
+      temple: "Jagannath Temple",
+      location: "Puri, Odisha",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a82-shivaratrimahakal.jpg",
+      pujas: [
+        {
+          name: "Mangala Alati",
+          time: "05:00 AM",
+          duration: "30 min",
+          description: "Morning awakening of Lord Jagannath",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Gopala Ballava Bhog",
+          time: "08:00 AM",
+          duration: "45 min",
+          description: "Morning food offering",
+          type: "daily",
+          importance: "medium"
+        },
+        {
+          name: "Sandhya Alati",
+          time: "06:30 PM",
+          duration: "40 min",
+          description: "Evening prayer ceremony",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Bada Singhar Alati",
+          time: "08:00 PM",
+          duration: "30 min",
+          description: "Grand decoration ceremony",
+          type: "special",
+          importance: "high"
+        }
+      ]
+    },
+    {
+      id: 6,
+      temple: "Kedarnath Temple",
+      location: "Uttarakhand",
+      image: "/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a83-shravanmonth.jpg",
+      pujas: [
+        {
+          name: "Abhishek",
+          time: "04:00 AM",
+          duration: "1 hour",
+          description: "Sacred bathing of Shiva Lingam",
+          type: "daily",
+          importance: "high"
+        },
+        {
+          name: "Madhyan Aarti",
+          time: "12:00 PM",
+          duration: "30 min",
+          description: "Midday prayers in Himalayan serenity",
+          type: "daily",
+          importance: "medium"
+        },
+        {
+          name: "Sandhya Aarti",
+          time: "06:30 PM",
+          duration: "45 min",
+          description: "Evening prayers with mountain backdrop",
+          type: "daily",
+          importance: "high"
+        }
+      ]
+    }
+  ];
+
+  const filteredSchedules = selectedTemple === "all" 
+    ? pujaSchedules 
+    : pujaSchedules.filter(schedule => schedule.temple.toLowerCase().includes(selectedTemple.toLowerCase()));
+
+  const getCurrentPujaStatus = (time: string) => {
+    const pujaTime = new Date();
+    const [hours, minutes] = time.split(':');
+    const period = time.includes('AM') || time.includes('PM') ? time.slice(-2) : '';
+    
+    let hour24 = parseInt(hours);
+    if (period === 'PM' && hour24 !== 12) hour24 += 12;
+    if (period === 'AM' && hour24 === 12) hour24 = 0;
+    
+    pujaTime.setHours(hour24, parseInt(minutes.replace(/[AP]M/, '')), 0, 0);
+    
+    const now = currentTime;
+    const diffMs = pujaTime.getTime() - now.getTime();
+    const diffHours = diffMs / (1000 * 60 * 60);
+    
+    if (Math.abs(diffHours) < 1) return "ongoing";
+    if (diffHours > 0 && diffHours < 2) return "upcoming";
+    return "scheduled";
   };
 
-  const templeTimings = generateTimings();
-  
-  // Filter based on search
-  const filteredTimings = searchQuery 
-    ? templeTimings.filter(item => 
-        item.temple.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.temple.location.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : templeTimings;
-  
-  const handleReminder = (pujaName: string, templeName: string) => {
+  const setReminder = (temple: string, puja: string) => {
     toast({
       title: "Reminder Set",
-      description: `You'll be notified before the ${pujaName} at ${templeName}`,
+      description: `You'll be notified before ${puja} at ${temple}`,
     });
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Temple Puja Timings</h1>
-        <p className="text-gray-600 mb-8">
-          Find daily puja schedules, special ceremonies, and festival timings across all temples
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold mb-4">Temple Puja Timings</h1>
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          Stay connected with divine schedules. Never miss the sacred moments of worship at India's most revered temples.
         </p>
-        
-        {/* Search and filter */}
-        <div className="relative max-w-xl mb-8">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-          <Input
-            placeholder="Search temples by name or location"
-            className="pl-10"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-        
-        {/* Featured puja schedule section with image */}
-        <div className="relative rounded-lg overflow-hidden mb-10">
-          <ImageWithFallback
-            src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a42-kedarnath1.jpg"
-            alt="Featured Puja Ceremony"
-            className="w-full h-72 object-cover"
-            fallbackSrc="/placeholder.svg"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-orange-500/30 p-4">
-            <div className="p-6 h-full flex flex-col justify-end">
-              <span className="inline-block bg-orange-500 text-white text-sm font-medium px-3 py-1 rounded-full mb-3">
-                Special Ceremony
-              </span>
-              <h2 className="text-3xl font-bold text-white mb-2">Kashi Vishwanath Shringar</h2>
-              <div className="flex flex-wrap gap-4 mb-4 text-white/80">
-                <div className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  <span>Today</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  <span>8:00 PM - 9:30 PM</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <MapPin className="h-4 w-4" />
-                  <span>Varanasi, Uttar Pradesh</span>
-                </div>
-              </div>
-              
-              <div className="flex gap-3">
-                <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
-                  <Link to="/puja-booking">Book VIP Access</Link>
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-white/70 text-white hover:bg-white/10"
-                  onClick={() => handleReminder("Shringar Ceremony", "Kashi Vishwanath")}
-                >
-                  <Bell className="h-4 w-4 mr-2" />
-                  Set Reminder
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Tabs for different temples */}
-      <Tabs defaultValue="all" className="mb-6">
-        <TabsList className="mb-6">
-          <TabsTrigger value="all">All Temples</TabsTrigger>
-          <TabsTrigger value="north">North India</TabsTrigger>
-          <TabsTrigger value="south">South India</TabsTrigger>
-          <TabsTrigger value="favorite">My Favorites</TabsTrigger>
-        </TabsList>
-        
-        {/* Tab contents */}
-        <TabsContent value="all">
-          <div className="space-y-8">
-            {filteredTimings.slice(0, 5).map((item) => (
-              <TempleTimingCard key={item.temple.id} data={item} onReminder={handleReminder} />
-            ))}
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="north">
-          <div className="space-y-8">
-            {filteredTimings
-              .filter(item => ["Uttar Pradesh", "Punjab", "Uttarakhand", "Delhi"].includes(item.temple.state))
-              .slice(0, 5)
-              .map((item) => (
-                <TempleTimingCard key={item.temple.id} data={item} onReminder={handleReminder} />
-              ))}
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="south">
-          <div className="space-y-8">
-            {filteredTimings
-              .filter(item => ["Tamil Nadu", "Karnataka", "Andhra Pradesh", "Kerala"].includes(item.temple.state))
-              .slice(0, 5)
-              .map((item) => (
-                <TempleTimingCard key={item.temple.id} data={item} onReminder={handleReminder} />
-              ))}
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="favorite">
-          <div className="text-center py-16">
-            <div className="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-              <Bell className="h-8 w-8 text-orange-500" />
-            </div>
-            <h3 className="text-xl font-medium mb-2">No favorites yet</h3>
-            <p className="text-gray-500 mb-4">
-              Add temples to your favorites to get quick access to their puja schedules
-            </p>
-            <Button asChild className="bg-orange-500 hover:bg-orange-600">
-              <Link to="/temples">Browse Temples</Link>
-            </Button>
-          </div>
-        </TabsContent>
-      </Tabs>
-      
-      {/* Calendar Integration */}
-      <div className="bg-orange-50 border border-orange-100 rounded-lg p-6 mt-12">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
-            <h3 className="text-xl font-bold mb-2">Sync Puja Timings to Your Calendar</h3>
-            <p className="text-gray-600 mb-4">
-              Never miss a temple ceremony or special puja with calendar notifications
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button className="bg-orange-500 hover:bg-orange-600">
-                <CalendarIcon className="h-4 w-4 mr-2" />
-                Google Calendar
-              </Button>
-              <Button variant="outline">
-                <CalendarIcon className="h-4 w-4 mr-2" />
-                Apple Calendar
-              </Button>
-              <Button variant="outline">
-                <Bell className="h-4 w-4 mr-2" />
-                SMS Alerts
-              </Button>
-            </div>
-          </div>
-          <div className="hidden md:block">
-            <ImageWithFallback
-              src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a96-diwali.jpg"
-              alt="Calendar integration"
-              className="w-48 h-48 object-cover rounded-lg"
-              fallbackSrc="/placeholder.svg"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Temple Timing Card Component
-const TempleTimingCard = ({ 
-  data, 
-  onReminder
-}: { 
-  data: { 
-    temple: any, 
-    morningPujas: any[], 
-    eveningPujas: any[],
-    images?: string[]
-  },
-  onReminder: (pujaName: string, templeName: string) => void
-}) => {
-  const { temple, morningPujas, eveningPujas, images = [] } = data;
-  const templeImage = images && images.length > 0 ? images[0] : null;
-  
-  return (
-    <Card className="overflow-hidden border-none shadow-sm">
-      <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3 bg-orange-100">
-          {templeImage ? (
-            <ImageWithFallback
-              src={templeImage}
-              alt={temple.name}
-              className="w-full h-full object-cover min-h-[160px]"
-              fallbackSrc="/placeholder.svg"
-            />
-          ) : (
-            <div className="p-8 text-orange-500 font-bold text-2xl h-full flex items-center justify-center">
-              {temple.name.charAt(0)}
-            </div>
-          )}
-        </div>
-        <CardContent className="p-6 md:w-2/3">
-          <div className="flex justify-between items-start mb-4">
-            <div>
-              <h3 className="text-xl font-bold mb-1">
-                <Link to={`/temple/${temple.id}`} className="hover:text-orange-500">
-                  {temple.name}
-                </Link>
-              </h3>
-              <p className="text-gray-600">{temple.location}</p>
-            </div>
-            <Button variant="outline" size="sm">
-              Open Hours: {temple.hours.replace('Open ', '')}
-            </Button>
-          </div>
-          
-          <div className="mb-6">
-            <h4 className="font-medium text-gray-800 mb-2">Morning Pujas</h4>
-            <div className="space-y-3">
-              {morningPujas.map((puja) => (
-                <PujaRow key={puja.id} puja={puja} onReminder={onReminder} />
-              ))}
-            </div>
-          </div>
-          
-          <div>
-            <h4 className="font-medium text-gray-800 mb-2">Evening Pujas</h4>
-            <div className="space-y-3">
-              {eveningPujas.map((puja) => (
-                <PujaRow key={puja.id} puja={puja} onReminder={onReminder} />
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </div>
-    </Card>
-  );
-};
-
-// Individual Puja Row Component - Always show buttons
-const PujaRow = ({ 
-  puja, 
-  onReminder 
-}: { 
-  puja: any, 
-  onReminder: (pujaName: string, templeName: string) => void 
-}) => (
-  <div className="flex justify-between items-center">
-    <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
-        <Clock className="w-5 h-5 text-orange-500" />
-      </div>
-      <div>
-        <div className="font-medium">
-          {puja.name}
-          {puja.isPremium && (
-            <span className="ml-2 text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">
-              Premium
+        <div className="mt-4 flex justify-center">
+          <div className="bg-orange-100 text-orange-800 px-4 py-2 rounded-full flex items-center gap-2">
+            <Clock className="h-4 w-4" />
+            <span className="font-medium">
+              Current Time: {currentTime.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: true 
+              })}
             </span>
-          )}
+          </div>
         </div>
-        <div className="text-sm text-gray-600">{puja.time}</div>
+      </div>
+
+      {/* Temple Filter */}
+      <div className="bg-white rounded-lg shadow p-6 mb-8">
+        <div className="flex flex-col md:flex-row gap-4 items-center">
+          <label className="font-medium">Select Temple:</label>
+          <select 
+            value={selectedTemple}
+            onChange={(e) => setSelectedTemple(e.target.value)}
+            className="flex-grow border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+            <option value="all">All Temples</option>
+            <option value="tirupati">Tirupati Balaji</option>
+            <option value="somnath">Somnath Temple</option>
+            <option value="golden">Golden Temple</option>
+            <option value="kashi">Kashi Vishwanath</option>
+            <option value="jagannath">Jagannath Temple</option>
+            <option value="kedarnath">Kedarnath Temple</option>
+          </select>
+          <Button className="bg-orange-500 hover:bg-orange-600">
+            View Schedule
+          </Button>
+        </div>
+      </div>
+
+      {/* Puja Schedules */}
+      <div className="space-y-8">
+        {filteredSchedules.map((schedule) => (
+          <Card key={schedule.id} className="overflow-hidden">
+            <CardHeader className="pb-4">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="w-full md:w-48 h-32 rounded-lg overflow-hidden">
+                  <ImageWithFallback
+                    src={schedule.image}
+                    alt={schedule.temple}
+                    className="w-full h-full object-cover"
+                    fallbackSrc="/placeholder.svg"
+                  />
+                </div>
+                <div className="flex-grow">
+                  <CardTitle className="text-2xl mb-2">{schedule.temple}</CardTitle>
+                  <div className="flex items-center gap-2 text-gray-600 mb-4">
+                    <MapPin className="h-4 w-4" />
+                    <span>{schedule.location}</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">Live Schedule</Badge>
+                    <Badge variant="outline">{schedule.pujas.length} Daily Pujas</Badge>
+                  </div>
+                </div>
+              </div>
+            </CardHeader>
+            
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {schedule.pujas.map((puja, index) => {
+                  const status = getCurrentPujaStatus(puja.time);
+                  return (
+                    <div 
+                      key={index}
+                      className={`border rounded-lg p-4 transition-all duration-300 ${
+                        status === "ongoing" 
+                          ? "border-green-500 bg-green-50" 
+                          : status === "upcoming"
+                          ? "border-orange-500 bg-orange-50"
+                          : "border-gray-200 hover:border-orange-300"
+                      }`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className="font-semibold text-lg">{puja.name}</h3>
+                        <div className="flex items-center gap-2">
+                          {status === "ongoing" && (
+                            <Badge className="bg-green-500">Live Now</Badge>
+                          )}
+                          {status === "upcoming" && (
+                            <Badge className="bg-orange-500">Starting Soon</Badge>
+                          )}
+                          {puja.importance === "high" && (
+                            <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                          )}
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2 mb-3">
+                        <div className="flex items-center gap-2 text-sm">
+                          <Clock className="h-4 w-4 text-orange-500" />
+                          <span className="font-medium">{puja.time}</span>
+                          <span className="text-gray-500">({puja.duration})</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm">
+                          <Calendar className="h-4 w-4 text-blue-500" />
+                          <span className="capitalize">{puja.type}</span>
+                        </div>
+                      </div>
+                      
+                      <p className="text-gray-600 text-sm mb-4">{puja.description}</p>
+                      
+                      <div className="flex gap-2">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => setReminder(schedule.temple, puja.name)}
+                          className="flex items-center gap-1"
+                        >
+                          <Bell className="h-3 w-3" />
+                          Set Reminder
+                        </Button>
+                        <Button size="sm" variant="outline">
+                          <Camera className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Information Section */}
+      <div className="mt-12 bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-8">
+        <h2 className="text-2xl font-bold text-center mb-6">Important Information</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="text-center">
+            <Clock className="h-8 w-8 text-orange-500 mx-auto mb-3" />
+            <h3 className="font-semibold mb-2">Timing Accuracy</h3>
+            <p className="text-sm text-gray-600">
+              Timings may vary during festivals and special occasions. Please verify before visiting.
+            </p>
+          </div>
+          <div className="text-center">
+            <Bell className="h-8 w-8 text-orange-500 mx-auto mb-3" />
+            <h3 className="font-semibold mb-2">Reminder Service</h3>
+            <p className="text-sm text-gray-600">
+              Set reminders to never miss your favorite puja ceremonies and spiritual moments.
+            </p>
+          </div>
+          <div className="text-center">
+            <Camera className="h-8 w-8 text-orange-500 mx-auto mb-3" />
+            <h3 className="font-semibold mb-2">Live Darshan</h3>
+            <p className="text-sm text-gray-600">
+              Experience live darshan from the comfort of your home during scheduled puja times.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-    {/* Always visible buttons - no hover dependency */}
-    <div className="flex gap-2">
-      <Button 
-        size="sm" 
-        variant="ghost" 
-        className="text-orange-500"
-        onClick={() => onReminder(puja.name, puja.temple)}
-      >
-        <Bell className="h-4 w-4" />
-      </Button>
-      <Button 
-        size="sm" 
-        asChild 
-        className={puja.isPremium ? "bg-amber-500 hover:bg-amber-600" : "bg-orange-500 hover:bg-orange-600"}
-      >
-        <Link to="/puja-booking">
-          {puja.isPremium ? "Book VIP" : "Book"}
-        </Link>
-      </Button>
-    </div>
-  </div>
-);
+  );
+};
 
 export default PujaTiming;
