@@ -149,7 +149,7 @@ export const templeImages: Record<string, string[]> = {
   ],
   // Akshardham Temple - ID 12
   "12": [
-    "https://temple.yatradham.org/public/Product/temple/temple_11AClJMV_202408181323200.jpg"
+    "https://i.pinimg.com/736x/af/d0/58/afd058d7267b41f19f6bded357903146.jpg"
   ],
   // Shirdi Sai Baba Temple - ID 42
   "42": [
