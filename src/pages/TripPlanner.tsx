@@ -1,120 +1,283 @@
 
-import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Bell, MapPin, Route, Sparkles } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { filterTemples } from "@/data/mergeTemples";
+import { indianStates } from "@/data/temples";
+import { Map, CalendarRange, Clock, Route } from "lucide-react";
+import { motion } from "framer-motion";
+import { useToast } from "@/components/ui/use-toast";
+import { generateAITripPlan, AITripPlan } from "@/utils/aiTourService";
 
 const TripPlanner = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const [step, setStep] = useState<number>(1);
+  const [states, setStates] = useState<string[]>([]);
+  const [duration, setDuration] = useState<string>("3");
+  const [preferences, setPreferences] = useState<string>("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [startTime, setStartTime] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [suggestedTrip, setSuggestedTrip] = useState<AITripPlan | null>(null);
+
+  const handleStateSelect = (state: string) => {
+    if (states.includes(state)) {
+      setStates(states.filter(s => s !== state));
+    } else {
+      setStates([...states, state]);
+    }
+  };
+
+  const generateTripPlan = async () => {
+    setIsLoading(true);
+
+    try {
+      const tripPlan = await generateAITripPlan(
+        states,
+        parseInt(duration),
+        preferences
+      );
+
+      setSuggestedTrip(tripPlan);
+      setStep(3);
+
+      toast({
+        title: "Trip Plan Generated",
+        description: "Your personalized temple tour has been created!",
+      });
+    } catch (error) {
+      console.error("Error generating trip plan:", error);
+      toast({
+        title: "Error",
+        description: "Failed to generate your trip plan. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const navigateToTemple = (templeId: string) => {
+    if (!templeId) {
+      toast({
+        title: "Temple not found",
+        description: "This temple information is not available",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    navigate(`/temple/${templeId}`);
+  };
+
+  const handlePlannerSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (step === 1) {
+      if (states.length === 0) {
+        toast({
+          title: "Please select at least one state",
+          description: "Select the states you plan to visit",
+          variant: "destructive",
+        });
+        return;
+      }
+      setStep(2);
+    } else if (step === 2) {
+      if (!startDate || !startTime) {
+        toast({
+          title: "Start date and time required",
+          description: "Please provide both a start date and time for your trip.",
+          variant: "destructive",
+        });
+        return;
+      }
+      generateTripPlan();
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2 text-spiritual-maroon">Trip Planner</h1>
-          <p className="text-gray-600">
-            AI-powered spiritual journey planning for temple visits across India
-          </p>
-        </div>
-
-        {/* Coming Soon Banner */}
-        <div className="bg-gradient-to-r from-spiritual-saffron/10 to-spiritual-maroon/10 rounded-2xl p-12 text-center border border-spiritual-saffron/20">
-          <div className="w-24 h-24 mx-auto mb-8 bg-spiritual-saffron/20 rounded-full flex items-center justify-center">
-            <Sparkles className="h-12 w-12 text-spiritual-saffron" />
-          </div>
-          <h2 className="text-3xl font-bold text-spiritual-maroon mb-6">AI-Powered Darshan Planning Launches Soon</h2>
-          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Our intelligent trip planner will create personalized spiritual journeys based on your preferences, 
-            time constraints, and the most auspicious visiting times for each temple.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Button className="bg-spiritual-saffron hover:bg-spiritual-ochre text-white px-8 py-3">
-              <Bell className="h-5 w-5 mr-2" />
-              Be First to Know
-            </Button>
-            <Button variant="outline" className="border-spiritual-maroon text-spiritual-maroon hover:bg-spiritual-maroon hover:text-white px-8 py-3">
-              Join Early Access
-            </Button>
-          </div>
-        </div>
-
-        {/* Preview Features */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-spiritual-saffron/20 rounded-full flex items-center justify-center mr-4">
-                  <Route className="h-6 w-6 text-spiritual-saffron" />
-                </div>
-                <h3 className="text-lg font-semibold text-spiritual-maroon">Smart Route Planning</h3>
-              </div>
-              <p className="text-gray-600">Optimize your temple visits with intelligent routing that considers traffic, distances, and optimal darshan times.</p>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-spiritual-saffron/20 rounded-full flex items-center justify-center mr-4">
-                  <MapPin className="h-6 w-6 text-spiritual-saffron" />
-                </div>
-                <h3 className="text-lg font-semibold text-spiritual-maroon">Temple Recommendations</h3>
-              </div>
-              <p className="text-gray-600">Discover hidden gems and must-visit temples based on your spiritual interests and travel preferences.</p>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-spiritual-saffron/20 rounded-full flex items-center justify-center mr-4">
-                  <Sparkles className="h-6 w-6 text-spiritual-saffron" />
-                </div>
-                <h3 className="text-lg font-semibold text-spiritual-maroon">Auspicious Timing</h3>
-              </div>
-              <p className="text-gray-600">Get recommendations for the most spiritually beneficial times to visit each temple based on lunar calendar and festivals.</p>
-            </CardContent>
-          </Card>
-
-          <Card className="hover:shadow-lg transition-shadow">
-            <CardContent className="p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-spiritual-saffron/20 rounded-full flex items-center justify-center mr-4">
-                  <Bell className="h-6 w-6 text-spiritual-saffron" />
-                </div>
-                <h3 className="text-lg font-semibold text-spiritual-maroon">Real-time Updates</h3>
-              </div>
-              <p className="text-gray-600">Receive live updates about temple crowd levels, special events, and any changes to your planned itinerary.</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* How It Will Work */}
-        <div className="bg-white rounded-lg shadow-sm border p-8 mt-12">
-          <h3 className="text-2xl font-semibold text-spiritual-maroon mb-6 text-center">How It Will Work</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-spiritual-saffron/20 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-spiritual-saffron">1</span>
-              </div>
-              <h4 className="font-semibold mb-2">Tell Us Your Preferences</h4>
-              <p className="text-gray-600 text-sm">Share your spiritual interests, available time, and preferred locations</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-spiritual-saffron/20 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-spiritual-saffron">2</span>
-              </div>
-              <h4 className="font-semibold mb-2">AI Creates Your Journey</h4>
-              <p className="text-gray-600 text-sm">Our intelligent system plans the perfect spiritual itinerary for you</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-spiritual-saffron/20 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-spiritual-saffron">3</span>
-              </div>
-              <h4 className="font-semibold mb-2">Follow Your Plan</h4>
-              <p className="text-gray-600 text-sm">Get guided navigation and real-time updates throughout your journey</p>
-            </div>
-          </div>
-        </div>
+      <div className="text-center mb-10">
+        <h1 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon">
+          Temple Trip Planner
+        </h1>
+        <p className="text-gray-600 mt-2">
+          Plan your perfect temple journey with personalized routes, darshan timings, and prasad delivery
+        </p>
       </div>
+
+      {step < 3 && (
+        <div className="flex items-center justify-center mb-8">
+          <div className="flex items-center">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step >= 1 ? "bg-spiritual-saffron text-white" : "bg-gray-200"}`}>
+              1
+            </div>
+            <div className={`h-1 w-12 ${step >= 2 ? "bg-spiritual-saffron" : "bg-gray-200"}`}></div>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step >= 2 ? "bg-spiritual-saffron text-white" : "bg-gray-200"}`}>
+              2
+            </div>
+            <div className={`h-1 w-12 ${step >= 3 ? "bg-spiritual-saffron" : "bg-gray-200"}`}></div>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step >= 3 ? "bg-spiritual-saffron text-white" : "bg-gray-200"}`}>
+              3
+            </div>
+          </div>
+        </div>
+      )}
+
+      <Card className="max-w-3xl mx-auto">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            {step === 1 && (<><Map className="h-5 w-5 text-spiritual-maroon" /> Where are you planning to visit?</>)}
+            {step === 2 && (<><CalendarRange className="h-5 w-5 text-spiritual-maroon" /> Trip Details</>)}
+            {step === 3 && (<><Route className="h-5 w-5 text-spiritual-maroon" /> Your Personalized Temple Itinerary</>)}
+          </CardTitle>
+          <CardDescription>
+            {step === 1 && "Select the states you plan to visit during your temple journey"}
+            {step === 2 && "Tell us about your trip duration, preferences, and when you'd like to start"}
+            {step === 3 && "Here's your personalized temple itinerary with optimized routes and timings"}
+          </CardDescription>
+        </CardHeader>
+
+        <form onSubmit={handlePlannerSubmit}>
+          <CardContent>
+            {step === 1 && (
+              <div className="space-y-4">
+                <div>
+                  <Label className="text-base font-medium mb-2 block">Select states to visit:</Label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                    {indianStates.map((state) => (
+                      <Button
+                        key={state}
+                        type="button"
+                        variant={states.includes(state) ? "default" : "outline"}
+                        className={`justify-start ${states.includes(state) ? "bg-spiritual-saffron hover:bg-spiritual-ochre" : ""}`}
+                        onClick={() => handleStateSelect(state)}
+                      >
+                        {state}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {step === 2 && (
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="duration" className="text-base font-medium">Trip Duration (days)</Label>
+                  <Select value={duration} onValueChange={setDuration}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select duration" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[1, 2, 3, 5, 7, 10, 14, 21].map((day) => (
+                        <SelectItem key={day} value={day.toString()}>{day} {day === 1 ? "day" : "days"}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="preferences" className="text-base font-medium">Temple Preferences (Optional)</Label>
+                  <Textarea
+                    id="preferences"
+                    placeholder="Any specific deities, architecture styles, famous temples, or special ceremonies you'd like to experience?"
+                    className="min-h-[100px]"
+                    value={preferences}
+                    onChange={(e) => setPreferences(e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="startDate" className="text-base font-medium">Start Date</Label>
+                  <Input
+                    type="date"
+                    id="startDate"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="startTime" className="text-base font-medium">Preferred Start Time</Label>
+                  <Input
+                    type="time"
+                    id="startTime"
+                    value={startTime}
+                    onChange={(e) => setStartTime(e.target.value)}
+                  />
+                </div>
+              </div>
+            )}
+
+            {step === 3 && suggestedTrip && (
+              <div className="space-y-6">
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+                  <h3 className="font-medium text-orange-800 mb-2">✨ Your Journey Includes:</h3>
+                  <ul className="text-sm text-orange-700 space-y-1">
+                    <li>• Optimized routes between temples</li>
+                    <li>• Best darshan timings to avoid crowds</li>
+                    <li>• Prasad delivery options where available</li>
+                    <li>• Temple-specific guidelines and dress codes</li>
+                  </ul>
+                </div>
+
+                {suggestedTrip.days.map((day, index) => (
+                  <motion.div key={index} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}>
+                    <h3 className="font-bold text-lg text-spiritual-maroon flex items-center gap-2 mb-2">
+                      <CalendarRange className="h-4 w-4" /> Day {day.day}
+                    </h3>
+                    <div className="border rounded-lg overflow-hidden">
+                      {day.temples.map((temple, tIndex) => (
+                        <div
+                          key={`${temple.id}-${tIndex}`}
+                          className={`p-4 flex justify-between items-center gap-4 ${tIndex !== day.temples.length - 1 ? "border-b" : ""}`}
+                        >
+                          <div>
+                            <h4 className="font-medium text-spiritual-maroon">{temple.name}</h4>
+                            <p className="text-sm text-gray-600">{temple.location}, {temple.state}</p>
+                            <p className="text-xs text-orange-600 mt-1">Best visit time: Early morning (6-8 AM) or Evening (6-8 PM)</p>
+                          </div>
+                          <Button variant="outline" className="shrink-0" onClick={() => navigateToTemple(temple.id)}>
+                            View Details
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {isLoading && (
+              <div className="flex flex-col items-center justify-center py-10">
+                <div className="h-12 w-12 rounded-full border-4 border-spiritual-saffron/30 border-t-spiritual-saffron animate-spin mb-4"></div>
+                <p className="text-gray-600">Planning your perfect temple journey...</p>
+              </div>
+            )}
+          </CardContent>
+
+          {step < 3 && (
+            <CardFooter>
+              <Button 
+                type="submit" 
+                className="w-full bg-spiritual-saffron hover:bg-spiritual-ochre"
+                disabled={isLoading}
+              >
+                {step === 1 ? "Continue to Trip Details" : "Generate My Trip Plan"}
+              </Button>
+            </CardFooter>
+          )}
+        </form>
+      </Card>
     </div>
   );
 };

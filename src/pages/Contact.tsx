@@ -2,13 +2,13 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Bell, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2 text-spiritual-maroon">Contact Us</h1>
+        <h1 className="text-3xl font-bold mb-2">Contact Us</h1>
         <p className="text-gray-600 mb-8">
           Have questions about TempleConnect? We're here to help you connect with temples across India.
         </p>
@@ -16,14 +16,14 @@ const Contact = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           <Card className="text-center">
             <CardContent className="p-6">
-              <div className="mx-auto w-12 h-12 rounded-full bg-spiritual-saffron/20 flex items-center justify-center mb-4">
-                <Mail className="h-5 w-5 text-spiritual-saffron" />
+              <div className="mx-auto w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4">
+                <Mail className="h-5 w-5 text-orange-500" />
               </div>
               <h3 className="font-semibold mb-2">Email Us</h3>
               <p className="text-gray-600 mb-4 text-sm">
                 Send us an email and we'll get back to you within 24 hours.
               </p>
-              <a href="mailto:support@templeconnect.com" className="text-spiritual-saffron hover:underline">
+              <a href="mailto:support@templeconnect.com" className="text-orange-500 hover:underline">
                 support@templeconnect.com
               </a>
             </CardContent>
@@ -31,29 +31,29 @@ const Contact = () => {
           
           <Card className="text-center">
             <CardContent className="p-6">
-              <div className="mx-auto w-12 h-12 rounded-full bg-spiritual-saffron/20 flex items-center justify-center mb-4">
-                <Instagram className="h-5 w-5 text-spiritual-saffron" />
+              <div className="mx-auto w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4">
+                <Phone className="h-5 w-5 text-orange-500" />
               </div>
-              <h3 className="font-semibold mb-2">Follow Us</h3>
+              <h3 className="font-semibold mb-2">Call Us</h3>
               <p className="text-gray-600 mb-4 text-sm">
-                Get updates and spiritual content on our Instagram.
+                Available Monday-Saturday from 9AM to 6PM IST.
               </p>
-              <a href="#" className="text-spiritual-saffron hover:underline">
-                @templeconnect
+              <a href="tel:+919876543210" className="text-orange-500 hover:underline">
+                +91 98765 43210
               </a>
             </CardContent>
           </Card>
           
           <Card className="text-center">
             <CardContent className="p-6">
-              <div className="mx-auto w-12 h-12 rounded-full bg-spiritual-saffron/20 flex items-center justify-center mb-4">
-                <MapPin className="h-5 w-5 text-spiritual-saffron" />
+              <div className="mx-auto w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4">
+                <MapPin className="h-5 w-5 text-orange-500" />
               </div>
               <h3 className="font-semibold mb-2">Visit Us</h3>
               <p className="text-gray-600 mb-4 text-sm">
-                Our office is located in Mumbai, Maharashtra.
+                Our office is located in Bangalore, Karnataka.
               </p>
-              <a href="#" className="text-spiritual-saffron hover:underline">
+              <a href="#" className="text-orange-500 hover:underline">
                 View on Map
               </a>
             </CardContent>
@@ -70,7 +70,7 @@ const Contact = () => {
                   <label className="block mb-1 text-sm font-medium">Full Name</label>
                   <input
                     type="text"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-spiritual-saffron"
+                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="Your name"
                   />
                 </div>
@@ -79,7 +79,7 @@ const Contact = () => {
                   <label className="block mb-1 text-sm font-medium">Email</label>
                   <input
                     type="email"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-spiritual-saffron"
+                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="Your email"
                   />
                 </div>
@@ -89,7 +89,7 @@ const Contact = () => {
                 <label className="block mb-1 text-sm font-medium">Subject</label>
                 <input
                   type="text"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-spiritual-saffron"
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="How can we help you?"
                 />
               </div>
@@ -98,13 +98,13 @@ const Contact = () => {
                 <label className="block mb-1 text-sm font-medium">Message</label>
                 <textarea
                   rows={5}
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-spiritual-saffron"
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="Type your message here..."
                 ></textarea>
               </div>
               
               <div>
-                <Button className="w-full sm:w-auto bg-spiritual-saffron hover:bg-spiritual-ochre">
+                <Button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600">
                   Send Message
                 </Button>
               </div>
@@ -115,23 +115,23 @@ const Contact = () => {
         <div className="mt-10">
           <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
           
-          <div className="space-y-4 mb-8">
+          <div className="space-y-4">
             {[
               { 
                 q: "How do I list my temple on TempleConnect?", 
-                a: "Temple representatives can register on our platform and submit their temple details. Our team will verify the information before publishing." 
+                a: "Temple representatives can register on our platform and submit their temple details through the 'List Your Temple' option. Our team will verify the information before publishing." 
               },
               { 
-                q: "When will booking services be available?", 
-                a: "We're working on enabling darshan bookings and puja services. Join our waitlist to be notified when these features launch." 
+                q: "Is booking darshans through TempleConnect reliable?", 
+                a: "Yes, we partner directly with temples to ensure authentic and reliable booking services. We provide instant confirmation and e-tickets for your convenience." 
               },
               { 
                 q: "How do donations work?", 
-                a: "Currently, we provide links to official temple donation pages. Direct donation integration is coming soon." 
+                a: "100% of your donation goes directly to the temple of your choice. TempleConnect only facilitates the transaction and provides you with a receipt for your records." 
               },
               { 
-                q: "Is the app available on mobile?", 
-                a: "Our website is fully mobile-optimized. Native mobile apps are in development and will be available soon." 
+                q: "Can I modify or cancel my darshan booking?", 
+                a: "Yes, most bookings can be modified or canceled up to 48 hours before the scheduled time. Please check the specific temple's cancellation policy for details." 
               },
             ].map((faq, index) => (
               <div key={index} className="border rounded-lg p-4">
@@ -139,21 +139,6 @@ const Contact = () => {
                 <p className="text-gray-600">{faq.a}</p>
               </div>
             ))}
-          </div>
-
-          {/* Join Waitlist CTA */}
-          <div className="bg-gradient-to-r from-spiritual-saffron/10 to-spiritual-maroon/10 rounded-2xl p-8 text-center border border-spiritual-saffron/20">
-            <div className="w-16 h-16 mx-auto mb-4 bg-spiritual-saffron/20 rounded-full flex items-center justify-center">
-              <Bell className="h-8 w-8 text-spiritual-saffron" />
-            </div>
-            <h3 className="text-xl font-bold text-spiritual-maroon mb-2">Stay Updated</h3>
-            <p className="text-gray-700 mb-4">
-              Join our waitlist to be the first to know about new features and temple partnerships.
-            </p>
-            <Button className="bg-spiritual-saffron hover:bg-spiritual-ochre text-white">
-              <Bell className="h-4 w-4 mr-2" />
-              Join the Waitlist
-            </Button>
           </div>
         </div>
       </div>

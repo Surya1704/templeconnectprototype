@@ -1,208 +1,483 @@
-
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Search, Filter, ImageIcon, Upload, Check, X } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import MobileOptimizedLayout from "@/components/MobileOptimizedLayout";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { motion } from "framer-motion";
 import ImageWithFallback from "@/components/ImageWithFallback";
 
-const galleryImages = [
-  {
-    id: "1",
-    src: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png",
-    alt: "Somnath Temple Architecture",
-    category: "architecture",
-    temple: "Somnath Temple",
-    location: "Gujarat"
-  },
-  {
-    id: "2", 
-    src: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png",
-    alt: "Temple Festival Celebration",
-    category: "festivals",
-    temple: "Tirupati Balaji",
-    location: "Andhra Pradesh"
-  },
-  {
-    id: "3",
-    src: "/lovable-uploads/b668b893-dac5-4d67-9be0-425045941429.png",
-    alt: "Golden Temple Dawn",
-    category: "spiritual",
-    temple: "Golden Temple",
-    location: "Punjab"
-  },
-  {
-    id: "4",
-    src: "/lovable-uploads/bff90acf-434f-4b5d-a02a-f8cd060e2ec9.png",
-    alt: "Temple Art and Sculptures",
-    category: "art",
-    temple: "Kashi Vishwanath",
-    location: "Uttar Pradesh"
-  },
-  {
-    id: "5",
-    src: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png",
-    alt: "Kedarnath Mountain View",
-    category: "spiritual",
-    temple: "Kedarnath",
-    location: "Uttarakhand"
-  },
-  {
-    id: "6",
-    src: "/lovable-uploads/bed64bd3-3688-44d2-9bad-a6918b67c9a6.png",
-    alt: "Devotees in Prayer",
-    category: "spiritual",
-    temple: "Jagannath Temple",
-    location: "Odisha"
-  },
-  {
-    id: "7",
-    src: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png",
-    alt: "Temple Interior Design",
-    category: "architecture",
-    temple: "Meenakshi Temple",
-    location: "Tamil Nadu"
-  },
-  {
-    id: "8",
-    src: "/lovable-uploads/3c73bbb4-d8d9-439c-bac6-16dfc1940d71.png",
-    alt: "Evening Aarti Ceremony",
-    category: "festivals",
-    temple: "Vaishno Devi",
-    location: "Jammu & Kashmir"
-  },
-  {
-    id: "9",
-    src: "/lovable-uploads/3e630441-b218-447f-a772-6d16110739b2.png",
-    alt: "Traditional Temple Carvings",
-    category: "art",
-    temple: "Konark Sun Temple",
-    location: "Odisha"
-  },
-  {
-    id: "10",
-    src: "/lovable-uploads/f6e17f2f-fd67-45c1-8f9b-bdd05ef346ce.png",
-    alt: "Pilgrimage Journey",
-    category: "spiritual",
-    temple: "Amarnath Cave",
-    location: "Jammu & Kashmir"
-  }
-];
-
 const Gallery = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  const categories = [
-    { id: "all", name: "All Photos", emoji: "📷" },
-    { id: "architecture", name: "Architecture", emoji: "🏛️" },
-    { id: "festivals", name: "Festivals", emoji: "🎉" },
-    { id: "spiritual", name: "Spiritual Moments", emoji: "🙏" },
-    { id: "art", name: "Art & Culture", emoji: "🎨" }
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const { toast } = useToast();
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [imageDescription, setImageDescription] = useState("");
+  const [imageCategory, setImageCategory] = useState("Architecture");
+  const [imageLocation, setImageLocation] = useState("");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const isMobile = useIsMobile();
+  
+  // Gallery items with actual images
+  const galleryItems = [
+    {
+      id: 1,
+      title: "Varanasi Kashi Vishwanath Temple",
+      category: "Architecture",
+      location: "Uttar Pradesh",
+      image: "https://i.pinimg.com/736x/bf/60/88/bf60886c58e4ffd17540c7f8e4f5d583.jpg",
+      status: "approved"
+    },
+    {
+      id: 2,
+      title: "Tirupati Balaji Temple",
+      category: "Architecture",
+      location: "Andhra Pradesh",
+      image: "https://www.citybit.in/wp-content/uploads/2023/08/Tirupati-Balaji-Temple.jpg",
+      status: "approved"
+    },
+    {
+      id: 3,
+      title: "Golden Temple During Festival",
+      category: "Festival",
+      location: "Punjab",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScTuyrdbTd2MdbmhvpfMIyeyoiPfUSA-ydnw&s",
+      status: "approved"
+    },
+    {
+      id: 4,
+      title: "Meenakshi Temple Rituals",
+      category: "Rituals",
+      location: "Tamil Nadu",
+      image: "https://admin.southindiatoursandtravels.com/pages/gallery/24742.jpg",
+      status: "approved"
+    },
+    {
+      id: 5,
+      title: "Lord Jagannath Deity",
+      category: "Deities",
+      location: "Odisha",
+      image: "https://s7ap1.scene7.com/is/image/incredibleindia/sri-jagannath-temple-puri-odisha-1-attr-hero?qlt=82&ts=1726663747217",
+      status: "approved"
+    },
+    {
+      id: 6,
+      title: "Somnath Temple Interior",
+      category: "Interior",
+      location: "Gujarat",
+      image: "https://i.pinimg.com/736x/cd/84/8d/cd848d413a478fa85d11e1068fb669f3.jpg",
+      status: "approved"
+    },
+    {
+      id: 7,
+      title: "Badrinath Temple",
+      category: "Architecture",
+      location: "Uttarakhand",
+      image: "https://majesticjourney.in/wp-content/uploads/2020/05/badrinath-temple.jpg",
+      status: "approved"
+    },
+    {
+      id: 8,
+      title: "Kedarnath Festival Celebration",
+      category: "Festival",
+      location: "Uttarakhand",
+      image: "https://i.pinimg.com/736x/36/da/9d/36da9dea692a7f4b93d7705a824da3f1.jpg",
+      status: "approved"
+    },
+    {
+      id: 9,
+      title: "Brihadeeswara Temple Rituals",
+      category: "Rituals",
+      location: "Tamil Nadu",
+      image: "https://i.pinimg.com/736x/35/a3/43/35a3437ef3ae73d2a7390e88e23a08aa.jpg",
+      status: "pending"
+    },
+    {
+      id: 10,
+      title: "Konark Sun Temple",
+      category: "Architecture",
+      location: "Odisha",
+      image: "https://i.pinimg.com/736x/d7/69/35/d7693575afa421aaa8a437b4fe79f7b6.jpg",
+      status: "approved"
+    },
+    {
+      id: 11,
+      title: "Rameshwaram Temple Interior",
+      category: "Interior",
+      location: "Tamil Nadu",
+      image: "https://i.pinimg.com/736x/35/54/15/3554152fec5f75fd0d0354c02a1a2f62.jpg",
+      status: "approved"
+    },
+    {
+      id: 12,
+      title: "Akshardham Temple Deity",
+      category: "Deities",
+      location: "Delhi",
+      image: "https://i.pinimg.com/736x/af/d0/58/afd058d7267b41f19f6bded357903146.jpg",
+      status: "pending"
+    }
   ];
+  
+  // Display only approved images in the gallery
+  const filteredItems = activeCategory === "all" 
+    ? galleryItems.filter(item => item.status === "approved")
+    : galleryItems.filter(item => item.category === activeCategory && item.status === "approved");
+    
+  // Also show pending images for admin interface
+  const pendingItems = galleryItems.filter(item => item.status === "pending");
+    
+  const categories = ["all", ...Array.from(new Set(galleryItems.map(item => item.category)))];
 
-  const filteredImages = selectedCategory === "all" 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === selectedCategory);
+  // Handle image upload
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Handle image submission
+  const handleImageSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!imageFile) {
+      toast({
+        title: "No image selected",
+        description: "Please select an image to upload",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (!imageDescription || !imageLocation) {
+      toast({
+        title: "Missing information",
+        description: "Please provide a description and location",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // In a real app, this would be an API call to upload the image
+    toast({
+      title: "Image submitted for approval",
+      description: "Thank you for your contribution. Your image will be reviewed before being added to the gallery.",
+    });
+    
+    // Reset form and close dialog
+    setImageFile(null);
+    setImagePreview(null);
+    setImageDescription("");
+    setImageLocation("");
+    setIsDialogOpen(false);
+  };
+
+  // Handle approval/rejection of pending images
+  const handleImageModeration = (id: number, approved: boolean) => {
+    toast({
+      title: approved ? "Image approved" : "Image rejected",
+      description: approved 
+        ? "The image has been added to the gallery" 
+        : "The image has been rejected and won't be displayed",
+    });
+    
+    // In a real app, this would update the database
+  };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8"
-        >
-          <h1 className="text-3xl md:text-4xl font-bold text-spiritual-maroon mb-4">
-            Temple Gallery
-          </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore the beauty and spirituality of India's sacred temples through our curated photo collection
-          </p>
-        </motion.div>
-
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {categories.map(category => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedCategory === category.id
-                  ? "bg-spiritual-saffron text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {category.emoji} {category.name}
-            </button>
-          ))}
-        </div>
-
-        {/* Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {filteredImages.map((image, index) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card 
-                className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer group"
-                onClick={() => setSelectedImage(image.src)}
-              >
-                <div className="aspect-square relative overflow-hidden">
-                  <ImageWithFallback
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    fallbackSrc="/placeholder.svg"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                    <h3 className="text-white font-semibold text-sm">{image.temple}</h3>
-                    <p className="text-white/80 text-xs">{image.location}</p>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Coming Soon Notice */}
-        <div className="text-center bg-spiritual-saffron/10 rounded-lg p-8 border border-spiritual-saffron/20">
-          <h3 className="text-xl font-semibold text-spiritual-maroon mb-2">New Galleries Added Every Month</h3>
-          <p className="text-gray-700 mb-4">
-            Our photography team is constantly capturing the beauty of India's temples. 
-            Check back regularly for new collections and high-resolution images.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Button className="bg-spiritual-saffron hover:bg-spiritual-ochre text-white">
-              Submit Your Photos
-            </Button>
-            <Button variant="outline" className="border-spiritual-saffron text-spiritual-saffron hover:bg-spiritual-saffron hover:text-white">
-              Follow for Updates
-            </Button>
-          </div>
-        </div>
-
-        {/* Lightbox Modal */}
-        {selectedImage && (
-          <div 
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <div className="max-w-4xl max-h-full">
-              <img 
-                src={selectedImage} 
-                alt="Gallery Image" 
-                className="max-w-full max-h-full object-contain"
+    <MobileOptimizedLayout className="py-6 md:py-8">
+      <h1 className="text-2xl md:text-3xl font-bold mb-2">Temple Gallery</h1>
+      <p className="text-gray-600 mb-6">
+        Explore stunning images of temples, festivals, rituals, and more
+      </p>
+      
+      <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
+        {/* Search & Filter */}
+        <div className="bg-white rounded-lg shadow p-4 mb-4 md:mb-0 w-full">
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="relative flex-grow">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search gallery..."
+                className="w-full pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <select 
+                className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                value={activeCategory}
+                onChange={(e) => setActiveCategory(e.target.value)}
+              >
+                {categories.map(category => (
+                  <option key={category} value={category}>
+                    {category === "all" ? "All Categories" : category}
+                  </option>
+                ))}
+              </select>
+              <select className="border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white">
+                <option>All Regions</option>
+                <option>North India</option>
+                <option>South India</option>
+                <option>East India</option>
+                <option>West India</option>
+              </select>
+              <Button className="bg-orange-500 hover:bg-orange-600 flex items-center gap-2 border border-orange-400 shadow-md">
+                <Filter className="h-4 w-4" />
+                Filter
+              </Button>
+            </div>
           </div>
-        )}
+        </div>
+        
+        {/* Upload Button */}
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogTrigger asChild>
+            <Button className="bg-spiritual-maroon hover:bg-spiritual-maroon/90 flex items-center gap-2 whitespace-nowrap border border-spiritual-maroon/50 shadow-md">
+              <Upload className="h-4 w-4" />
+              Upload Image
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Upload Your Temple Image</DialogTitle>
+              <DialogDescription>
+                Share your spiritual journey with the community. All images will be reviewed before being added to the gallery.
+              </DialogDescription>
+            </DialogHeader>
+            <form onSubmit={handleImageSubmit} className="space-y-4">
+              <div className="grid w-full items-center gap-1.5">
+                <label htmlFor="image-upload" className="text-sm font-medium">
+                  Select Image
+                </label>
+                <div className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-md border-gray-300 cursor-pointer bg-gray-50 hover:bg-gray-100">
+                  {imagePreview ? (
+                    <img 
+                      src={imagePreview} 
+                      alt="Preview" 
+                      className="h-full object-contain"
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <ImageIcon className="w-10 h-10 text-gray-400" />
+                      <p className="mb-2 text-sm text-gray-500">
+                        <span className="font-semibold">Click to upload</span> or drag and drop
+                      </p>
+                      <p className="text-xs text-gray-500">PNG, JPG, GIF (MAX. 2MB)</p>
+                    </div>
+                  )}
+                  <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    className="absolute w-full h-full opacity-0 cursor-pointer"
+                    onChange={handleImageUpload}
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label htmlFor="description" className="text-sm font-medium">
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  className="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  rows={3}
+                  placeholder="Describe your temple image..."
+                  value={imageDescription}
+                  onChange={(e) => setImageDescription(e.target.value)}
+                />
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="category" className="text-sm font-medium">
+                    Category
+                  </label>
+                  <select
+                    id="category"
+                    className="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 bg-white"
+                    value={imageCategory}
+                    onChange={(e) => setImageCategory(e.target.value)}
+                  >
+                    {categories.filter(c => c !== "all").map(category => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="location" className="text-sm font-medium">
+                    Location
+                  </label>
+                  <input
+                    id="location"
+                    type="text"
+                    className="w-full p-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    placeholder="e.g., Gujarat, Tamil Nadu"
+                    value={imageLocation}
+                    onChange={(e) => setImageLocation(e.target.value)}
+                  />
+                </div>
+              </div>
+              
+              <div className="flex justify-end gap-2 pt-4">
+                <Button 
+                  type="button" 
+                  variant="outline"
+                  onClick={() => setIsDialogOpen(false)}
+                >
+                  Cancel
+                </Button>
+                <Button type="submit" className="bg-spiritual-maroon hover:bg-spiritual-maroon/90">
+                  Submit for Approval
+                </Button>
+              </div>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
-    </div>
+      
+      {/* Featured Collection - With proper image */}
+      <div className="relative mb-10 rounded-lg overflow-hidden">
+        <div className="w-full h-48 md:h-64 relative">
+          <ImageWithFallback 
+            src="/lovable-uploads/055b2680-dfaa-40c6-b314-04c7b4fe0a80-chariotfestival.jpg" 
+            alt="Festival of Lights" 
+            className="w-full h-full object-cover"
+            fallbackSrc="/placeholder.svg"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40"></div>
+        </div>
+        <div className="absolute inset-0 p-4 md:p-8 flex flex-col justify-center text-white">
+          <h2 className="text-xl md:text-3xl font-bold mb-2">Featured Collection: Festival of Lights</h2>
+          <p className="mb-4 max-w-2xl text-sm md:text-base">
+            Explore our curated collection of temple celebrations during Diwali, with stunning 
+            images of temples illuminated by thousands of lamps.
+          </p>
+          <div>
+            <Button variant="outline" className="border-white text-white hover:bg-white/20 bg-white/10 backdrop-blur-sm">
+              View Collection
+            </Button>
+          </div>
+        </div>
+      </div>
+      
+      {/* Admin Section - Pending Approval Images */}
+      {pendingItems.length > 0 && (
+        <div className="mb-10">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold text-spiritual-maroon">Pending Approval</h2>
+            <span className="bg-yellow-100 text-yellow-800 text-xs py-1 px-2 rounded-full">
+              {pendingItems.length} pending
+            </span>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {pendingItems.map((item) => (
+              <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
+                <div className="relative h-48">
+                  <ImageWithFallback 
+                    src={item.image} 
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    fallbackSrc="/placeholder.svg"
+                  />
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-white text-sm mb-2">Pending Review</div>
+                      <div className="flex justify-center gap-2">
+                        <Button 
+                          size="sm" 
+                          className="bg-green-500 hover:bg-green-600 rounded-full h-8 w-8 p-0 border-2 border-green-400"
+                          onClick={() => handleImageModeration(item.id, true)}
+                        >
+                          <Check size={16} />
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="destructive"
+                          className="rounded-full h-8 w-8 p-0 border-2 border-red-400"
+                          onClick={() => handleImageModeration(item.id, false)}
+                        >
+                          <X size={16} />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <div className="text-xs font-medium text-orange-500 mb-1">
+                    {item.category} • {item.location}
+                  </div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {/* Gallery Grid - With actual images */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredItems.map((item, index) => (
+          <motion.div 
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            className="group relative overflow-hidden bg-gray-100 rounded-lg hover:shadow-lg transition-shadow"
+          >
+            <div className="w-full h-64">
+              <ImageWithFallback 
+                src={item.image} 
+                alt={item.title}
+                className="w-full h-full object-cover"
+                fallbackSrc="/placeholder.svg"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-4">
+              <div>
+                <div className="text-xs font-medium text-orange-400 mb-1">
+                  {item.category} • {item.location}
+                </div>
+                <h3 className="text-white font-semibold mb-2">{item.title}</h3>
+                <Button size="sm" variant="outline" className="text-white border-white hover:bg-white/20 bg-white/10 backdrop-blur-sm">
+                  View Details
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      
+      {filteredItems.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-gray-500">No items found for this category</p>
+        </div>
+      )}
+      
+      <div className="mt-10 text-center">
+        <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50 border-2 shadow-md">
+          Load More Items
+        </Button>
+      </div>
+    </MobileOptimizedLayout>
   );
 };
 
