@@ -81,7 +81,7 @@ const AboutUs = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Digital Services</h4>
-                  <p className="text-gray-600 text-sm">Online darshan booking, puja services, and prasad delivery</p>
+                  <p className="text-gray-600 text-sm">Online darshan viewing, puja timings, and temple information</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -118,7 +118,7 @@ const AboutUs = () => {
                   <span className="text-spiritual-saffron text-sm">✓</span>
                 </div>
                 <div>
-                  <h4 font-semibold mb-1">Global Reach</h4>
+                  <h4 className="font-semibold mb-1">Global Reach</h4>
                   <p className="text-gray-600 text-sm">Making Indian temples accessible to devotees worldwide</p>
                 </div>
               </div>
