@@ -1,144 +1,206 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Instagram, MapPin } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Message Sent",
+      description: "Thank you for reaching out! We'll get back to you soon.",
+    });
+    setFormData({ name: "", email: "", subject: "", message: "" });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2">Contact Us</h1>
-        <p className="text-gray-600 mb-8">
-          Have questions about TempleConnect? We're here to help you connect with temples across India.
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <Card className="text-center">
-            <CardContent className="p-6">
-              <div className="mx-auto w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4">
-                <Mail className="h-5 w-5 text-orange-500" />
-              </div>
-              <h3 className="font-semibold mb-2">Email Us</h3>
-              <p className="text-gray-600 mb-4 text-sm">
-                Send us an email and we'll get back to you within 24 hours.
-              </p>
-              <a href="mailto:support@templeconnect.com" className="text-orange-500 hover:underline">
-                support@templeconnect.com
-              </a>
-            </CardContent>
-          </Card>
-          
-          <Card className="text-center">
-            <CardContent className="p-6">
-              <div className="mx-auto w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4">
-                <Phone className="h-5 w-5 text-orange-500" />
-              </div>
-              <h3 className="font-semibold mb-2">Call Us</h3>
-              <p className="text-gray-600 mb-4 text-sm">
-                Available Monday-Saturday from 9AM to 6PM IST.
-              </p>
-              <a href="tel:+919876543210" className="text-orange-500 hover:underline">
-                +91 98765 43210
-              </a>
-            </CardContent>
-          </Card>
-          
-          <Card className="text-center">
-            <CardContent className="p-6">
-              <div className="mx-auto w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center mb-4">
-                <MapPin className="h-5 w-5 text-orange-500" />
-              </div>
-              <h3 className="font-semibold mb-2">Visit Us</h3>
-              <p className="text-gray-600 mb-4 text-sm">
-                Our office is located in Bangalore, Karnataka.
-              </p>
-              <a href="#" className="text-orange-500 hover:underline">
-                View on Map
-              </a>
-            </CardContent>
-          </Card>
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-cinzel font-bold text-spiritual-maroon mb-4">
+            Contact TempleConnect
+          </h1>
+          <p className="text-lg text-spiritual-maroon/70 max-w-2xl mx-auto">
+            Have questions or want to connect? We'd love to hear from you.
+          </p>
         </div>
         
-        <Card>
-          <CardContent className="p-6">
-            <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
-            
-            <form className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Contact Form */}
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-xl font-cinzel font-bold text-spiritual-maroon mb-6">
+                Send us a Message
+              </h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-700">
+                      Full Name
+                    </label>
+                    <Input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block mb-2 text-sm font-medium text-gray-700">
+                      Email
+                    </label>
+                    <Input
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                </div>
+                
                 <div>
-                  <label className="block mb-1 text-sm font-medium">Full Name</label>
-                  <input
-                    type="text"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                    placeholder="Your name"
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    Subject
+                  </label>
+                  <Input
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="How can we help you?"
+                    required
                   />
                 </div>
                 
                 <div>
-                  <label className="block mb-1 text-sm font-medium">Email</label>
-                  <input
-                    type="email"
-                    className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                    placeholder="Your email"
+                  <label className="block mb-2 text-sm font-medium text-gray-700">
+                    Message
+                  </label>
+                  <Textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
+                    placeholder="Tell us more about your inquiry..."
+                    required
                   />
                 </div>
-              </div>
-              
-              <div>
-                <label className="block mb-1 text-sm font-medium">Subject</label>
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="How can we help you?"
-                />
-              </div>
-              
-              <div>
-                <label className="block mb-1 text-sm font-medium">Message</label>
-                <textarea
-                  rows={5}
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Type your message here..."
-                ></textarea>
-              </div>
-              
-              <div>
-                <Button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600">
+                
+                <Button 
+                  type="submit" 
+                  className="w-full bg-spiritual-saffron hover:bg-spiritual-ochre"
+                >
                   Send Message
                 </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+              </form>
+            </CardContent>
+          </Card>
+          
+          {/* Contact Information */}
+          <div className="space-y-6">
+            <Card>
+              <CardContent className="p-6 text-center">
+                <Mail className="h-12 w-12 text-spiritual-saffron mx-auto mb-4" />
+                <h3 className="font-cinzel font-bold text-spiritual-maroon mb-2">Email Us</h3>
+                <p className="text-gray-600 mb-4">
+                  Send us an email and we'll respond within 24 hours
+                </p>
+                <a 
+                  href="mailto:hello@templeconnect.com" 
+                  className="text-spiritual-saffron hover:text-spiritual-ochre font-medium"
+                >
+                  hello@templeconnect.com
+                </a>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardContent className="p-6 text-center">
+                <Instagram className="h-12 w-12 text-spiritual-saffron mx-auto mb-4" />
+                <h3 className="font-cinzel font-bold text-spiritual-maroon mb-2">Follow Us</h3>
+                <p className="text-gray-600 mb-4">
+                  Stay updated with our latest temple additions and features
+                </p>
+                <a 
+                  href="https://instagram.com/templeconnect" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-spiritual-saffron hover:text-spiritual-ochre font-medium"
+                >
+                  @templeconnect
+                </a>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardContent className="p-6 text-center">
+                <MapPin className="h-12 w-12 text-spiritual-saffron mx-auto mb-4" />
+                <h3 className="font-cinzel font-bold text-spiritual-maroon mb-2">Based in</h3>
+                <p className="text-gray-600">
+                  Mumbai, Maharashtra<br />
+                  India
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
         
-        <div className="mt-10">
-          <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
+        {/* FAQ Section */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-cinzel font-bold text-spiritual-maroon mb-6 text-center">
+            Frequently Asked Questions
+          </h2>
           
           <div className="space-y-4">
-            {[
-              { 
-                q: "How do I list my temple on TempleConnect?", 
-                a: "Temple representatives can register on our platform and submit their temple details through the 'List Your Temple' option. Our team will verify the information before publishing." 
-              },
-              { 
-                q: "Is booking darshans through TempleConnect reliable?", 
-                a: "Yes, we partner directly with temples to ensure authentic and reliable booking services. We provide instant confirmation and e-tickets for your convenience." 
-              },
-              { 
-                q: "How do donations work?", 
-                a: "100% of your donation goes directly to the temple of your choice. TempleConnect only facilitates the transaction and provides you with a receipt for your records." 
-              },
-              { 
-                q: "Can I modify or cancel my darshan booking?", 
-                a: "Yes, most bookings can be modified or canceled up to 48 hours before the scheduled time. Please check the specific temple's cancellation policy for details." 
-              },
-            ].map((faq, index) => (
-              <div key={index} className="border rounded-lg p-4">
-                <h3 className="font-semibold mb-2">{faq.q}</h3>
-                <p className="text-gray-600">{faq.a}</p>
-              </div>
-            ))}
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <h4 className="font-medium text-spiritual-maroon mb-2">
+                How can I list my temple on TempleConnect?
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Contact us through the form above with your temple details, and we'll help you get started with the listing process.
+              </p>
+            </div>
+            
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <h4 className="font-medium text-spiritual-maroon mb-2">
+                Are the temple timings and information accurate?
+              </h4>
+              <p className="text-gray-600 text-sm">
+                We work directly with temple authorities and regularly update information. However, we recommend calling temples directly for the most current details.
+              </p>
+            </div>
+            
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <h4 className="font-medium text-spiritual-maroon mb-2">
+                Do you charge any fees for donations?
+              </h4>
+              <p className="text-gray-600 text-sm">
+                No, all donations go directly to temple official websites. TempleConnect simply provides links to authentic temple donation portals.
+              </p>
+            </div>
           </div>
         </div>
       </div>
