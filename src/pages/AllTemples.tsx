@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -172,20 +171,12 @@ const AllTemples = () => {
                     ))}
                   </div>
                   
-                  <div className="flex gap-2">
-                    <Link 
-                      to="/puja-timings" 
-                      className="flex-1 bg-spiritual-saffron text-white text-center py-2 px-3 rounded-md text-sm hover:bg-spiritual-ochre transition-colors"
-                    >
-                      View Timings
-                    </Link>
-                    <Link 
-                      to="/donations" 
-                      className="flex-1 border border-spiritual-saffron text-spiritual-saffron text-center py-2 px-3 rounded-md text-sm hover:bg-spiritual-saffron hover:text-white transition-colors"
-                    >
-                      Donate
-                    </Link>
-                  </div>
+                  <Link 
+                    to="/puja-timings" 
+                    className="w-full bg-spiritual-saffron text-white text-center py-2 px-3 rounded-md text-sm hover:bg-spiritual-ochre transition-colors block"
+                  >
+                    View Timings
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>
