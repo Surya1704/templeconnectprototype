@@ -1,11 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Search, Menu, X, User } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 const NavBar = () => {
   const location = useLocation();
@@ -63,45 +63,6 @@ const NavBar = () => {
           </Link>
         </div>
         
-        {/* Enhanced Search Bar */}
-        <div className="my-4 md:my-0 w-full md:w-auto flex-1 max-w-xl mx-auto md:mx-0">
-          <div className="hidden md:flex items-center justify-center rounded-full border shadow-sm bg-white overflow-hidden">
-            <div className="flex divide-x flex-1">
-              <div className="flex-1 px-3 py-2">
-                <Select>
-                  <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
-                    <SelectValue placeholder="Any Temple" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="any">Any Temple</SelectItem>
-                    <SelectItem value="tirupati">Tirupati</SelectItem>
-                    <SelectItem value="vaishno-devi">Vaishno Devi</SelectItem>
-                    <SelectItem value="kedarnath">Kedarnath</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div className="flex-1 px-3 py-2">
-                <Select>
-                  <SelectTrigger className="border-0 shadow-none h-auto p-0 focus:ring-0">
-                    <SelectValue placeholder="Any Date" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="any">Any Date</SelectItem>
-                    <SelectItem value="today">Today</SelectItem>
-                    <SelectItem value="tomorrow">Tomorrow</SelectItem>
-                    <SelectItem value="this-week">This Week</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-            
-            <Button variant="default" size="icon" className="rounded-full h-10 w-10 m-1 bg-spiritual-saffron hover:bg-spiritual-ochre">
-              <Search className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-        
         {/* Mobile menu toggle */}
         <div className="md:hidden flex items-center">
           <Button
@@ -116,31 +77,6 @@ const NavBar = () => {
               <Menu className="h-6 w-6" />
             )}
           </Button>
-        </div>
-        
-        {/* Right side action buttons */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Link to="/contact">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="border-spiritual-saffron text-spiritual-saffron hover:bg-spiritual-saffron/5 transition-all hover:shadow-md"
-            >
-              List Your Temple
-            </Button>
-          </Link>
-          
-          {/* Login Button */}
-          <Link to="/login">
-            <Button 
-              variant="default" 
-              size="sm"
-              className="bg-spiritual-maroon text-white hover:bg-spiritual-maroon/90 transition-all flex items-center gap-2"
-            >
-              <User size={16} />
-              Login
-            </Button>
-          </Link>
         </div>
       </div>
       
@@ -194,8 +130,6 @@ const NavBar = () => {
               <MobileNavItem to="/stay-bookings" text="Stay Bookings" active={location.pathname === '/stay-bookings'} />
               <MobileNavItem to="/trip-planner" text="Trip Planner" active={location.pathname === '/trip-planner'} />
               <MobileNavItem to="/donations" text="Donations" active={location.pathname === '/donations'} />
-              {/* Add Login to mobile menu */}
-              <MobileNavItem to="/login" text="Login" active={location.pathname === '/login'} />
             </ul>
             
             <div className="mt-4 pt-4 border-t">
