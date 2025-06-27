@@ -267,7 +267,7 @@ const Mooshak: React.FC = () => {
           type: "spring",
           damping: 18, // Reduced from 25 for faster movement
           stiffness: 200, // Increased from 120 for more responsive follow
-          mass: 0.5, // Reduced from 0.6 for lighter feel and faster movement
+          mass: 0.3, // Reduced from 0.6 for lighter feel and faster movement
           rotateZ: {
             duration: 0.3,
             repeat: isRunning ? Infinity : 0,
