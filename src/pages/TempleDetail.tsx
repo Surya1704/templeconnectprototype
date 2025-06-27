@@ -73,10 +73,15 @@ const TempleDetail = () => {
   }, [id, toast]);
 
   const handleBooking = () => {
-    toast({
-      title: "Booking initiated!",
-      description: "You will soon be redirected to the booking page.",
-    });
+    navigate('/coming-soon');
+  };
+
+  const handlePujaBooking = () => {
+    navigate('/coming-soon');
+  };
+
+  const handlePrasadBooking = () => {
+    navigate('/coming-soon');
   };
 
   // Handle redirection to all temples if not found
@@ -412,12 +417,7 @@ const TempleDetail = () => {
                     <Link to="/ai" className="text-spiritual-ochre hover:text-spiritual-maroon text-sm">Learn more</Link>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
-                    <GuidedTourButton 
-                      templeName={temple.name}
-                      templeTags={temple.tags}
-                      className="w-full"
-                    />
-                    <Link to="/trip-planner" className="w-full">
+                    <Link to="/coming-soon" className="w-full">
                       <Button variant="outline" className="w-full">
                         Plan a Trip Including This Temple
                       </Button>
@@ -455,6 +455,7 @@ const TempleDetail = () => {
                   <Button 
                     variant="outline"
                     className="w-full border-spiritual-maroon text-spiritual-maroon hover:bg-spiritual-maroon/5 mb-4"
+                    onClick={handlePujaBooking}
                   >
                     Book Puja Service
                   </Button>
@@ -462,6 +463,7 @@ const TempleDetail = () => {
                   <Button 
                     variant="outline"
                     className="w-full border-spiritual-ochre text-spiritual-ochre hover:bg-spiritual-ochre/5"
+                    onClick={handlePrasadBooking}
                   >
                     Order Prasad Online
                   </Button>

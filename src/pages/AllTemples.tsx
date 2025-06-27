@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { allTemples, filterTemples, getTempleImages } from "@/data/mergeTemples";
@@ -355,12 +354,6 @@ const AllTemples = () => {
                             </div>
                             
                             <div className="flex gap-2">
-                              <GuidedTourButton
-                                templeName={temple.name}
-                                templeTags={temple.tags}
-                                variant="outline"
-                                className="w-full"
-                              />
                               <Button 
                                 variant="default" 
                                 className="w-full bg-spiritual-saffron hover:bg-spiritual-ochre"

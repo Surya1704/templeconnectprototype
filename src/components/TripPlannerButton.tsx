@@ -18,7 +18,7 @@ const TripPlannerButton = ({
     <Button
       variant={variant}
       className={`flex items-center gap-2 ${className}`}
-      onClick={() => navigate("/trip-planner")}
+      onClick={() => navigate("/coming-soon")}
     >
       <Map className="h-4 w-4" />
       <span>Plan Temple Trip</span>
