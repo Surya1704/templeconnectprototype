@@ -1,259 +1,117 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* FaithConnect Design System
+   Palette: warm beige, terracotta/saffron, deep brown, soft gold, white
+   All colors HSL.
+*/
+
 @layer base {
   :root {
-    --background: 39 38% 97%;
-    --foreground: 36 25% 16%;
+    --background: 36 33% 94%;          /* warm beige #F4ECE0 */
+    --foreground: 24 30% 18%;          /* deep brown */
 
     --card: 0 0% 100%;
-    --card-foreground: 36 25% 16%;
+    --card-foreground: 24 30% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 36 25% 16%;
+    --popover-foreground: 24 30% 18%;
 
-    --primary: 28 100% 52%;
+    --primary: 22 55% 58%;             /* terracotta saffron #C98A60 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 26 66% 89%;
-    --secondary-foreground: 36 25% 16%;
+    --secondary: 36 33% 88%;
+    --secondary-foreground: 24 30% 18%;
 
-    --muted: 26 39% 94%;
-    --muted-foreground: 36 8% 46%;
+    --muted: 36 25% 90%;
+    --muted-foreground: 24 12% 42%;
 
-    --accent: 356 75% 25%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 40 65% 55%;              /* soft gold */
+    --accent-foreground: 24 30% 18%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 26 20% 86%;
-    --input: 26 20% 86%;
-    --ring: 28 100% 52%;
+    --border: 30 20% 84%;
+    --input: 30 20% 84%;
+    --ring: 22 55% 58%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Brand tokens */
+    --brand-saffron: 22 55% 58%;
+    --brand-saffron-deep: 18 50% 45%;
+    --brand-gold: 40 65% 55%;
+    --brand-cream: 36 33% 94%;
+    --brand-ink: 24 30% 18%;
+
+    --gradient-warm: linear-gradient(135deg, hsl(36 33% 96%), hsl(30 30% 90%));
+    --gradient-saffron: linear-gradient(135deg, hsl(22 55% 62%), hsl(18 50% 48%));
+    --shadow-soft: 0 4px 20px -8px hsl(24 30% 18% / 0.12);
+    --shadow-card: 0 8px 30px -12px hsl(24 30% 18% / 0.18);
+    --shadow-glow: 0 0 40px hsl(22 55% 58% / 0.3);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 36 22% 8%;
-    --foreground: 39 38% 85%;
-
-    --card: 36 22% 12%;
-    --card-foreground: 39 38% 85%;
-
-    --popover: 36 22% 12%;
-    --popover-foreground: 39 38% 85%;
-
-    --primary: 28 100% 45%;
+    --background: 24 20% 10%;
+    --foreground: 36 33% 92%;
+    --card: 24 20% 13%;
+    --card-foreground: 36 33% 92%;
+    --popover: 24 20% 13%;
+    --popover-foreground: 36 33% 92%;
+    --primary: 22 55% 58%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 26 16% 25%;
-    --secondary-foreground: 39 38% 85%;
-
-    --muted: 26 16% 20%;
-    --muted-foreground: 36 8% 65%;
-
-    --accent: 356 75% 25%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 26 16% 30%;
-    --input: 26 16% 30%;
-    --ring: 28 100% 45%;
-    
-    --sidebar-background: 36 22% 10%;
-    --sidebar-foreground: 39 38% 85%;
-    --sidebar-primary: 28 100% 45%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 26 16% 25%;
-    --sidebar-accent-foreground: 39 38% 85%;
-    --sidebar-border: 26 16% 30%;
-    --sidebar-ring: 28 100% 45%;
+    --secondary: 24 15% 20%;
+    --secondary-foreground: 36 33% 92%;
+    --muted: 24 15% 18%;
+    --muted-foreground: 36 15% 65%;
+    --accent: 40 65% 55%;
+    --accent-foreground: 24 30% 18%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 24 15% 22%;
+    --input: 24 15% 22%;
+    --ring: 22 55% 58%;
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
+  * { @apply border-border; }
+  html, body { @apply h-full; }
   body {
-    @apply bg-background text-foreground font-sans;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    -webkit-tap-highlight-color: transparent;
   }
+  h1, h2, h3, h4, h5, .heading { @apply font-serif; letter-spacing: -0.01em; }
+  html { scroll-behavior: smooth; }
 
-  h1, h2, h3, h4, h5, .heading {
-    @apply font-playfair;
-  }
-  
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
+  /* Hide scrollbar utility (used in reels) */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
 @layer components {
-  .temple-pattern {
-    position: relative;
+  .fc-card {
+    @apply bg-card rounded-2xl overflow-hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
   }
-  
-  .temple-pattern::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.5;
-    z-index: -1;
+  .fc-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px -12px hsl(24 30% 18% / 0.22);
   }
-
-  .mandala-bg {
-    position: relative;
+  .fc-chip {
+    @apply inline-flex items-center gap-1 rounded-full bg-secondary text-secondary-foreground text-xs font-medium px-3 py-1;
   }
-  
-  .mandala-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='%23d4af37' stroke-width='1' fill='none' stroke-opacity='0.1'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='%23d4af37' stroke-width='1' fill='none' stroke-opacity='0.1'/%3E%3Ccircle cx='50' cy='50' r='20' stroke='%23d4af37' stroke-width='1' fill='none' stroke-opacity='0.1'/%3E%3C/svg%3E");
-    opacity: 0.5;
-    z-index: -1;
-  }
-
-  .lotus-accent {
-    position: relative;
-  }
-  
-  .lotus-accent::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 15px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='15' viewBox='0 0 30 15'%3E%3Cpath d='M15,0 C10,0 5,5 0,15 L30,15 C25,5 20,0 15,0' fill='%23d4af37' fill-opacity='0.2'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  .divine-glow {
-    @apply relative;
-  }
-  
-  .divine-glow::after {
-    @apply content-[''] absolute -inset-[1px] rounded-lg bg-gradient-to-tr from-spiritual-gold/20 via-spiritual-saffron/10 to-spiritual-gold/20 blur-sm -z-10;
-  }
-
-  .divine-btn {
-    @apply bg-spiritual-saffron text-white hover:bg-spiritual-ochre transition-colors font-medium;
-  }
-
-  .divine-btn-outline {
-    @apply border-spiritual-saffron text-spiritual-saffron hover:bg-spiritual-saffron/5 transition-colors font-medium;
-  }
-
-  .ornate-border {
-    @apply border-2 border-spiritual-gold/30 rounded-lg;
-  }
-  
-  /* Temple card hover effects */
-  .temple-card {
-    @apply transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg;
-  }
-  
-  /* Mandala spinner animation */
-  .mandala-spin {
-    animation: spin 20s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* Diya glow effect */
-  .diya-glow {
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-  
-  @keyframes glow {
-    0% { filter: drop-shadow(0 0 2px rgba(255, 119, 34, 0.7)); }
-    100% { filter: drop-shadow(0 0 6px rgba(255, 119, 34, 0.9)); }
-  }
-  
-  /* Parallax Layers */
-  .parallax-layer {
-    will-change: transform;
-  }
-  
-  /* Sacred geometrical borders */
-  .sacred-border {
-    position: relative;
-  }
-  
-  .sacred-border::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, 
-      rgba(212, 175, 55, 0), 
-      rgba(212, 175, 55, 0.5), 
-      rgba(212, 175, 55, 0.8),
-      rgba(212, 175, 55, 0.5),
-      rgba(212, 175, 55, 0)
-    );
-  }
-  
-  /* Hover reveal effect */
-  .hover-reveal {
-    @apply relative overflow-hidden;
-  }
-  
-  .hover-reveal-content {
-    @apply absolute inset-0 flex items-center justify-center bg-spiritual-maroon/80 opacity-0 transition-opacity duration-300;
-  }
-  
-  .hover-reveal:hover .hover-reveal-content {
-    @apply opacity-100;
+  .gradient-saffron {
+    background: var(--gradient-saffron);
   }
 }
 
-/* Temple-inspired scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: theme('colors.spiritual.ivory');
-}
-
-::-webkit-scrollbar-thumb {
-  background: theme('colors.spiritual.saffron');
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.spiritual.ochre');
-}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--primary) / 0.5); border-radius: 8px; }
