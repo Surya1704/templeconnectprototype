@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,27 +7,31 @@ import Logo from "@/components/Logo";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "@/hooks/use-toast";
 
-export default function Login() {
-  const { login } = useAuth();
+export default function Signup() {
+  const { signup } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = (location.state as { from?: string } | null)?.from ?? "/";
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [show, setShow] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (password.length < 6) {
+      toast({ title: "Password too short", description: "Use at least 6 characters.", variant: "destructive" });
+      return;
+    }
     setSubmitting(true);
     try {
-      await login(email.trim(), password);
-      toast({ title: "Welcome back" });
+      await signup(email.trim(), password, name.trim());
+      toast({ title: "Account created" });
       navigate(from, { replace: true });
     } catch (err) {
       toast({
-        title: "Sign in failed",
+        title: "Sign up failed",
         description: err instanceof Error ? err.message : "Unknown error",
         variant: "destructive",
       });
@@ -42,54 +45,32 @@ export default function Login() {
       <Link to="/" aria-label="Home"><Logo /></Link>
 
       <div className="mt-8 w-full max-w-sm rounded-2xl bg-card p-6 shadow-[var(--shadow-card)]">
-        <h1 className="font-serif text-2xl font-semibold">Welcome back</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Sign in to continue your journey.</p>
+        <h1 className="font-serif text-2xl font-semibold">Create your account</h1>
+        <p className="mt-1 text-sm text-muted-foreground">Discover. Connect. Belong.</p>
 
         <form className="mt-6 space-y-4" onSubmit={submit}>
           <div className="space-y-1.5">
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required className="h-11" />
+          </div>
+          <div className="space-y-1.5">
             <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="h-11"
-            />
+            <Input id="email" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-11" />
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="password">Password</Label>
-            <div className="relative">
-              <Input
-                id="password"
-                type={show ? "text" : "password"}
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="h-11 pr-10"
-              />
-              <button
-                type="button"
-                onClick={() => setShow((v) => !v)}
-                aria-label={show ? "Hide password" : "Show password"}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-              >
-                {show ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-              </button>
-            </div>
+            <Input id="password" type="password" autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} required className="h-11" />
           </div>
 
           <Button type="submit" disabled={submitting} className="w-full h-11 rounded-full font-semibold">
-            {submitting ? "Signing in…" : "Sign in"}
+            {submitting ? "Creating…" : "Create account"}
           </Button>
         </form>
 
         <p className="mt-5 text-center text-sm text-muted-foreground">
-          New to FaithConnect?{" "}
-          <Link to="/signup" state={{ from }} className="font-medium text-primary hover:underline">
-            Create an account
+          Already have an account?{" "}
+          <Link to="/login" state={{ from }} className="font-medium text-primary hover:underline">
+            Sign in
           </Link>
         </p>
       </div>
