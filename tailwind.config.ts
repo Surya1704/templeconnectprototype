@@ -63,24 +63,26 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Temple-inspired color palette
+				// Faith Connect — warm luxury palette (sandstone / terracotta / deep brown / soft gold)
 				spiritual: {
-					saffron: '#FF7722',
-					maroon: '#800000',
-					gold: '#D4AF37',
-					deepgold: '#B8860B',
-					ivory: '#FFFFF0',
-					sandstone: '#F4A460',
-					ochre: '#CC7722',
-					copper: '#B87333',
-					vermilion: '#E34234',
-					turmeric: '#FFC300',
+					saffron: '#C2541E',     // muted terracotta (replaces bright saffron)
+					maroon: '#3D2418',      // deep warm brown (replaces maroon)
+					gold: '#B8923A',        // soft refined gold
+					deepgold: '#8C6E2A',
+					ivory: '#FBF6EC',       // warm ivory background
+					sandstone: '#E8D4B0',   // sandstone accent
+					ochre: '#A8451A',       // deeper terracotta hover
+					copper: '#9C6B3F',
+					vermilion: '#B5432B',
+					turmeric: '#D4A84A',
 				},
 			},
 			fontFamily: {
-				'cinzel': ['Cinzel', 'serif'],
-				'playfair': ['Playfair Display', 'serif'],
-				'sans': ['Poppins', 'sans-serif'],
+				'cinzel': ['Fraunces', 'serif'],
+				'playfair': ['Fraunces', 'serif'],
+				'fraunces': ['Fraunces', 'serif'],
+				'serif': ['Fraunces', 'serif'],
+				'sans': ['Inter', 'Poppins', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
