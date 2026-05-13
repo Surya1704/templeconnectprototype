@@ -10,8 +10,8 @@ const Mooshak: React.FC = () => {
   const [showMantra, setShowMantra] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [lastMoveTime, setLastMoveTime] = useState(0);
-  const stillTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const mantraTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const stillTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mantraTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const mooshakRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const prevPositionRef = useRef({ x: 0, y: 0 });
