@@ -65,13 +65,13 @@ export default {
 				},
 				// Faith Connect — warm luxury palette (sandstone / terracotta / deep brown / soft gold)
 				spiritual: {
-					saffron: '#C68A66',     // soft terracotta from logo
-					maroon: '#3D2418',      // deep warm brown wordmark
-					gold: '#B8923A',
+					saffron: '#C2541E',     // muted terracotta (replaces bright saffron)
+					maroon: '#3D2418',      // deep warm brown (replaces maroon)
+					gold: '#B8923A',        // soft refined gold
 					deepgold: '#8C6E2A',
-					ivory: '#F2EBDD',       // logo background cream
-					sandstone: '#E8D4B0',
-					ochre: '#A86A4A',
+					ivory: '#FBF6EC',       // warm ivory background
+					sandstone: '#E8D4B0',   // sandstone accent
+					ochre: '#A8451A',       // deeper terracotta hover
 					copper: '#9C6B3F',
 					vermilion: '#B5432B',
 					turmeric: '#D4A84A',

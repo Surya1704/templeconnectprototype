@@ -5,18 +5,18 @@
 
 @layer base {
   :root {
-    /* Faith Connect — minimal logo-aligned palette */
-    --background: 39 36% 91%;            /* logo cream */
+    /* Faith Connect — warm luxury palette */
+    --background: 38 56% 95%;            /* warm ivory */
     --foreground: 22 38% 16%;            /* deep warm brown */
 
-    --card: 38 40% 96%;
+    --card: 36 50% 98%;
     --card-foreground: 22 38% 16%;
 
     --popover: 36 50% 98%;
     --popover-foreground: 22 38% 16%;
 
-    --primary: 22 41% 59%;               /* logo terracotta */
-    --primary-foreground: 39 36% 96%;
+    --primary: 17 74% 44%;               /* muted terracotta */
+    --primary-foreground: 38 56% 97%;
 
     --secondary: 34 49% 80%;             /* sandstone */
     --secondary-foreground: 22 38% 16%;
@@ -32,7 +32,7 @@
 
     --border: 34 30% 82%;
     --input: 34 30% 82%;
-    --ring: 22 41% 59%;
+    --ring: 17 74% 44%;
 
     --radius: 0.75rem;
 

@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import logo from "@/assets/faithconnect-logo.jpg";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -41,11 +40,18 @@ const NavBar = () => {
           to="/"
           className="flex items-center text-spiritual-maroon font-semibold transition-transform hover:scale-[1.02]"
         >
-          <img
-            src={logo}
-            alt="Faith Connect"
-            className="w-9 h-9 mr-2.5 object-contain mix-blend-multiply"
-          />
+          <motion.div
+            initial={{ rotateY: 0 }}
+            animate={{ rotateY: 360 }}
+            transition={{ duration: 2, repeatDelay: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="mr-2.5"
+          >
+            <img
+              src="/lovable-uploads/5ef6ad5e-6ea5-4e4f-b2da-57175381c635.png"
+              alt="Faith Connect"
+              className="w-8 h-8"
+            />
+          </motion.div>
           <span className="text-xl font-fraunces tracking-tight">
             Faith<span className="text-spiritual-saffron">Connect</span>
           </span>
