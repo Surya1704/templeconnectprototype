@@ -21,6 +21,7 @@ import TripPlanner from "@/pages/TripPlanner";
 import Jyotirlingas from "@/pages/Jyotirlingas";
 import TempleStore from "@/pages/TempleStore";
 import ComingSoon from "@/pages/ComingSoon";
+import OnboardTemple from "@/pages/OnboardTemple";
 
 import { Toaster } from "@/components/ui/toaster";
 import "@/App.css";
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/trip-planner" element={<TripPlanner />} />
           <Route path="/jyotirlingas" element={<Jyotirlingas />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
+          <Route path="/onboard-temple" element={<OnboardTemple />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         {/* Routes outside the main layout */}
