@@ -7,7 +7,8 @@ const Footer = () => {
     <footer className="bg-spiritual-ivory border-t border-spiritual-sandstone/40 text-spiritual-maroon">
       <div className="container mx-auto px-4 py-10">
         <div className="flex flex-col items-center space-y-6">
-          <Link to="/" className="font-fraunces text-2xl tracking-tight">
+          <Link to="/" className="flex items-center gap-2 font-fraunces text-2xl tracking-tight">
+            <img src="/faithconnect-logo.jpg" alt="" className="w-8 h-8 object-contain mix-blend-multiply" />
             Faith<span className="text-spiritual-saffron">Connect</span>
           </Link>
 
