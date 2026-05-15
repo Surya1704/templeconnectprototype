@@ -1,126 +1,162 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
-import Logo from "@/components/brand/Logo";
+import { motion } from "framer-motion";
 
-// Six routes only (master prompt §6).
 const NAV_LINKS = [
-  { to: "/explore", label: "Explore" },
-  { to: "/donate", label: "Donate" },
-  { to: "/list-your-temple", label: "List Your Temple" },
-  { to: "/about", label: "About" },
+  { to: "/", label: "Home" },
+  { to: "/temples", label: "Explore Temples" },
+  { to: "/donations", label: "Donate" },
+  { to: "/onboard-temple", label: "List Your Temple" },
+  { to: "/about-us", label: "About" },
 ];
 
 const NavBar = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isHome = location.pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Lock body scroll when mobile drawer is open.
-  useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full bg-ground-ivory transition-[border-color] duration-300",
+        "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-[hsl(var(--line-hair))]"
-          : "border-b border-transparent"
+          ? "bg-spiritual-ivory/90 backdrop-blur-md border-b border-spiritual-sandstone/40 shadow-sm"
+          : "bg-transparent"
       )}
-      style={{ height: 72 }}
     >
-      <div className="container mx-auto h-full px-6 flex items-center justify-between">
-        <Logo animated={isHome} size={32} />
-
-        {/* Desktop nav — right-aligned, asymmetric (§14.1) */}
-        <nav className="hidden md:flex items-center gap-10">
-          {NAV_LINKS.map((link) => (
-            <NavItem
-              key={link.to}
-              to={link.to}
-              text={link.label}
-              active={location.pathname === link.to || location.pathname.startsWith(link.to + "/")}
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+        {/* Logo */}
+        <Link
+          to="/"
+          className="flex items-center text-spiritual-maroon font-semibold transition-transform hover:scale-[1.02]"
+        >
+          <motion.div
+            initial={{ rotateY: 0 }}
+            animate={{ rotateY: 360 }}
+            transition={{ duration: 2, repeatDelay: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="mr-2.5"
+          >
+            <img
+              src="/lovable-uploads/5ef6ad5e-6ea5-4e4f-b2da-57175381c635.png"
+              alt="Faith Connect"
+              className="w-8 h-8"
             />
-          ))}
+          </motion.div>
+          <span className="text-xl font-fraunces tracking-tight">
+            Faith<span className="text-spiritual-saffron">Connect</span>
+          </span>
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center">
+          <motion.ul
+            className="flex items-center space-x-8"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+          >
+            {NAV_LINKS.map((link) => (
+              <NavItem
+                key={link.to}
+                to={link.to}
+                text={link.label}
+                active={location.pathname === link.to}
+              />
+            ))}
+          </motion.ul>
         </nav>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 text-ink-espresso"
-          onClick={() => setMobileMenuOpen((v) => !v)}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileMenuOpen}
-        >
-          {mobileMenuOpen ? <X className="h-6 w-6" strokeWidth={1.5} /> : <Menu className="h-6 w-6" strokeWidth={1.5} />}
-        </button>
+        {/* Mobile menu toggle */}
+        <div className="md:hidden flex items-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-spiritual-maroon hover:bg-spiritual-maroon/5"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+        </div>
       </div>
 
-      {/* Full-screen mobile drawer */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden fixed inset-0 top-[72px] bg-ground-ivory z-40"
-          >
-            <ul className="flex flex-col items-start gap-6 px-8 pt-12">
-              {NAV_LINKS.map((link, i) => (
-                <motion.li
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="md:hidden bg-spiritual-ivory border-t border-spiritual-sandstone/40"
+        >
+          <div className="container mx-auto py-4 px-4">
+            <ul className="flex flex-col space-y-1">
+              {NAV_LINKS.map((link) => (
+                <MobileNavItem
                   key={link.to}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 + i * 0.04, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Link
-                    to={link.to}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="font-fraunces text-[32px] tracking-tight text-ink-espresso"
-                  >
-                    {link.label}
-                  </Link>
-                </motion.li>
+                  to={link.to}
+                  text={link.label}
+                  active={location.pathname === link.to}
+                  onClick={() => setMobileMenuOpen(false)}
+                />
               ))}
             </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </motion.div>
+      )}
     </header>
   );
 };
 
-const NavItem = ({ to, text, active }: { to: string; text: string; active: boolean }) => (
-  <Link
-    to={to}
-    className={cn(
-      "relative font-sans text-[14px] font-normal transition-colors duration-200",
-      active ? "text-ink-espresso" : "text-ink-walnut hover:text-ink-espresso"
-    )}
-  >
-    {text}
-    <span
+const NavItem = ({ to, text, active = false }: { to: string; text: string; active?: boolean }) => (
+  <li>
+    <Link
+      to={to}
       className={cn(
-        "absolute left-0 -bottom-1 h-[2px] w-full bg-copper-500 origin-left transition-transform duration-300 ease-fc-out",
-        active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+        "inline-block py-2 text-sm font-medium tracking-wide transition-colors relative",
+        active
+          ? "text-spiritual-maroon after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-px after:bg-spiritual-saffron"
+          : "text-spiritual-maroon/70 hover:text-spiritual-maroon"
       )}
-      style={{ transformOrigin: "left center" }}
-    />
-  </Link>
+    >
+      {text}
+    </Link>
+  </li>
+);
+
+const MobileNavItem = ({
+  to,
+  text,
+  active = false,
+  onClick,
+}: {
+  to: string;
+  text: string;
+  active?: boolean;
+  onClick?: () => void;
+}) => (
+  <li>
+    <Link
+      to={to}
+      onClick={onClick}
+      className={cn(
+        "block py-2.5 px-3 rounded-md font-medium transition-colors",
+        active
+          ? "bg-spiritual-saffron/10 text-spiritual-saffron"
+          : "text-spiritual-maroon hover:bg-spiritual-saffron/5"
+      )}
+    >
+      {text}
+    </Link>
+  </li>
 );
 
 export default NavBar;
