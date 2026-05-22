@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import fcLogo from "@/assets/fc-logo.png";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -47,9 +48,9 @@ const NavBar = () => {
             className="mr-2.5"
           >
             <img
-              src="/lovable-uploads/5ef6ad5e-6ea5-4e4f-b2da-57175381c635.png"
+              src={fcLogo}
               alt="Faith Connect"
-              className="w-8 h-8"
+              className="w-9 h-9 object-contain"
             />
           </motion.div>
           <span className="text-xl font-fraunces tracking-tight">
