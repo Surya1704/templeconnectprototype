@@ -33,40 +33,28 @@ const AllTemples = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { toast } = useToast();
   const isMobile = useIsMobile();
+  const { temples: allTemples } = useTemples();
 
   useEffect(() => {
-    console.log("Total temples in allTemples:", allTemples.length);
-    console.log("All temple IDs:", allTemples.map(t => `${t.id} (${t.name})`));
-    
-    // Check specifically for Jyotirlingas (IDs 24-35)
-    const jyotirlingaIds = Array.from({ length: 12 }, (_, i) => (i + 24).toString());
-    const jyotirlingas = jyotirlingaIds
-      .map(id => allTemples.find(temple => temple.id === id))
-      .filter(Boolean);
-    
-    console.log("Found Jyotirlingas:", jyotirlingas.map(j => `${j.id} (${j.name})`));
-    
-    // Apply filters using the filterTemples function
-    const filtered = filterTemples({
-      state: selectedState,
-      tag: selectedTag,
-      search: searchQuery,
-    });
-    
-    console.log("Filtered temples:", filtered.length);
-    console.log("Search query:", searchQuery);
-    
-    if (searchQuery) {
-      const searchLower = searchQuery.toLowerCase();
-      console.log("Temples matching search:", filtered.filter(temple => 
-        temple.name.toLowerCase().includes(searchLower) ||
-        temple.location.toLowerCase().includes(searchLower) ||
-        temple.state.toLowerCase().includes(searchLower)
-      ).map(t => `${t.id} (${t.name})`));
+    // Filter the merged (DB + static fallback) temple list
+    let filtered = allTemples;
+    if (selectedState && selectedState !== "All States") {
+      filtered = filtered.filter((t) => t.state === selectedState);
     }
-    
+    if (selectedTag && selectedTag !== "all") {
+      filtered = filtered.filter((t) => t.tags?.includes(selectedTag));
+    }
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (t) =>
+          t.name.toLowerCase().includes(q) ||
+          t.location.toLowerCase().includes(q) ||
+          t.state.toLowerCase().includes(q)
+      );
+    }
     setFilteredTemples(filtered);
-  }, [selectedState, selectedTag, searchQuery]);
+  }, [selectedState, selectedTag, searchQuery, allTemples]);
 
   // Sorted based on selected option
   const sortedTemples = [...filteredTemples].sort((a, b) => {
