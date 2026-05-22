@@ -78,11 +78,11 @@ export default {
 				},
 			},
 			fontFamily: {
-				'cinzel': ['Fraunces', 'serif'],
-				'playfair': ['Fraunces', 'serif'],
-				'fraunces': ['Fraunces', 'serif'],
-				'serif': ['Fraunces', 'serif'],
-				'sans': ['Inter', 'Poppins', 'sans-serif'],
+				'cinzel': ['"Crimson Pro"', 'serif'],
+				'playfair': ['"Crimson Pro"', 'serif'],
+				'fraunces': ['"Crimson Pro"', 'serif'],
+				'serif': ['"Crimson Pro"', 'serif'],
+				'sans': ['"Crimson Pro"', 'serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
