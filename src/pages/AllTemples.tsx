@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { allTemples, filterTemples, getTempleImages } from "@/data/mergeTemples";
+import { filterTemples, getTempleImages } from "@/data/mergeTemples";
+import { useTemples } from "@/hooks/useTemples";
 import StateFilter from "@/components/StateFilter";
 import { categories, indianStates } from "@/data/temples";
 import { Search, Map as MapIcon, ChevronDown } from "lucide-react";
