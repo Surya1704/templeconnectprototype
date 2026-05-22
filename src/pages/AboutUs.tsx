@@ -184,7 +184,7 @@ const AboutUs = () => {
                 <div className="w-full md:w-1/3">
                   <div className="rounded-xl overflow-hidden border-4 border-white shadow-lg">
                     <img 
-                      src="/lovable-uploads/79f0f7ee-07d3-44a6-a1b9-3e35e6530e64.png"
+                      src="/src/assets/founder.png"
                       alt="Surya Rajesh - Founder" 
                       className="w-full h-auto"
                     />
@@ -193,9 +193,9 @@ const AboutUs = () => {
                 
                 <div className="w-full md:w-2/3">
                   <h3 className="text-2xl font-cinzel font-bold text-spiritual-maroon mb-2">Surya Rajesh</h3>
-                  <p className="text-spiritual-saffron mb-4">Founder & CEO, TempleConnect</p>
+                  <p className="text-spiritual-saffron mb-4">Founder & CEO, Faith Connect</p>
                   <p className="text-gray-700 mb-4">
-                    A student of Podar International School in Mumbai, Surya Rajesh founded TempleConnect after 
+                    A student of Podar International School in Mumbai, Surya Rajesh founded Faith Connect after 
                     experiencing firsthand the challenges of temple visits during family pilgrimages. His vision
                     to make spiritual experiences more accessible through technology has transformed how devotees
                     connect with temples across India.
