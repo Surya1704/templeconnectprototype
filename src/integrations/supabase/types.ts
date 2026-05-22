@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      temples: {
+        Row: {
+          congestion: string | null
+          created_at: string
+          description: string | null
+          donation_url: string | null
+          hours: string | null
+          id: string
+          image: string | null
+          location: string
+          name: string
+          price: number | null
+          rating: number | null
+          state: string
+          tags: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          congestion?: string | null
+          created_at?: string
+          description?: string | null
+          donation_url?: string | null
+          hours?: string | null
+          id: string
+          image?: string | null
+          location: string
+          name: string
+          price?: number | null
+          rating?: number | null
+          state: string
+          tags?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          congestion?: string | null
+          created_at?: string
+          description?: string | null
+          donation_url?: string | null
+          hours?: string | null
+          id?: string
+          image?: string | null
+          location?: string
+          name?: string
+          price?: number | null
+          rating?: number | null
+          state?: string
+          tags?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
