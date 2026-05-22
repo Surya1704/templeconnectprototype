@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { BookOpen, Target, Flag, Star } from "lucide-react";
+import founderImg from "@/assets/founder.png";
 
 const AboutUs = () => {
   return (
@@ -184,7 +185,7 @@ const AboutUs = () => {
                 <div className="w-full md:w-1/3">
                   <div className="rounded-xl overflow-hidden border-4 border-white shadow-lg">
                     <img 
-                      src="/src/assets/founder.png"
+                      src={founderImg}
                       alt="Surya Rajesh - Founder" 
                       className="w-full h-auto"
                     />

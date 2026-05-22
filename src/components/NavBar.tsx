@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import fcLogo from "@/assets/fc-logo.png";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -47,7 +48,7 @@ const NavBar = () => {
             className="mr-2.5"
           >
             <img
-              src="/src/assets/fc-logo.png"
+              src={fcLogo}
               alt="Faith Connect"
               className="w-9 h-9 object-contain"
             />
