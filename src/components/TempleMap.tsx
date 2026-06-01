@@ -150,7 +150,11 @@ export function TempleMap({
         }}
       >
         {temples.map((temple) => (
-          <TempleMarker key={temple.osmId} temple={temple} onClick={onTempleClick} />
+          <TempleMarker
+            key={`${temple.source}-${temple.osmId ?? temple.slug ?? temple.name}`}
+            temple={temple}
+            onClick={onTempleClick}
+          />
         ))}
       </MarkerClusterGroup>
     </MapContainer>

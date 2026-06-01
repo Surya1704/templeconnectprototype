@@ -30,6 +30,11 @@ const OVERPASS_SERVERS = [
   "https://overpass.private.coffee/api/interpreter",
 ] as const;
 
+// Nominatim's usage policy requires a valid contact in the User-Agent.
+// TODO(owner): set a real, monitored contact email before production.
+const NOMINATIM_CONTACT_EMAIL = "hello@faithconnect.in";
+const NOMINATIM_USER_AGENT = `FaithConnect/1.0 (+https://faithconnect.in; contact: ${NOMINATIM_CONTACT_EMAIL})`;
+
 export function getBundledJyotirlingas(): Temple[] {
   return jyotirlingas.map((j: Jyotirlinga) => ({
     osmId: `bundled/${j.slug}`, name: j.name, lat: j.lat, lng: j.lng,
@@ -104,7 +109,7 @@ export async function enrichTemple(temple: Temple): Promise<Temple> {
   const cacheKey = nominatimCacheKey(temple.osmId);
   try { const cached = localStorage.getItem(cacheKey); if (cached) return { ...temple, ...JSON.parse(cached) }; } catch { /* ignore */ }
   try {
-    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${temple.lat}&lon=${temple.lng}`, { headers: { "User-Agent": "FaithConnect/1.0 (contact: hello@faithconnect.in)" } });
+    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${temple.lat}&lon=${temple.lng}`, { headers: { "User-Agent": NOMINATIM_USER_AGENT } });
     if (!response.ok) return temple; const data = await response.json(); const address = data.address || {};
     const enriched = { state: address.state || temple.state, district: address.county || temple.district, town: address.city || temple.town };
     try { localStorage.setItem(cacheKey, JSON.stringify(enriched)); } catch { /* ignore */ }
@@ -115,7 +120,7 @@ export async function enrichTemple(temple: Temple): Promise<Temple> {
 export async function searchTemples(query: string): Promise<Temple[]> {
   if (!query.trim() || query.length < 3) return [];
   try {
-    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(query + " temple india")}&countrycodes=in&limit=20`, { headers: { "User-Agent": "FaithConnect/1.0 (contact: hello@faithconnect.in)" } });
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&q=${encodeURIComponent(query + " temple india")}&countrycodes=in&limit=20`, { headers: { "User-Agent": NOMINATIM_USER_AGENT } });
     if (!response.ok) return []; const data = await response.json();
     return data.map((item: Record<string, unknown>) => ({ osmId: `search/${item.osm_type}/${item.osm_id}`, name: (item.name as string) || "Unnamed temple", lat: Number(item.lat), lng: Number(item.lon), state: (item.address as Record<string, string>)?.state, source: "osm" as const }));
   } catch { return []; }
