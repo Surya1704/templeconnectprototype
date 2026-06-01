@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { MapPin, ExternalLink, ArrowLeft, Navigation, Plane, TrainFront, Bus } from "lucide-react";
+import { MapPin, ExternalLink, ArrowLeft, Navigation, Plane, TrainFront, Bus, MessageCircle, Send } from "lucide-react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { SectionReveal } from "@/components/SectionReveal";
 import { getJyotirlinga } from "@/data/jyotirlingas";
@@ -41,6 +41,9 @@ export default function TempleDetail() {
   const nearestAirport = bundled?.nearestAirport ?? remote?.nearest_airport ?? undefined;
   const nearestRailway = bundled?.nearestRailway ?? remote?.nearest_railway ?? undefined;
   const localTransport = bundled?.localTransport ?? remote?.local_transport ?? undefined;
+  const whatsappLink = bundled?.whatsappLink ?? remote?.whatsapp_link ?? undefined;
+  const telegramLink = bundled?.telegramLink ?? remote?.telegram_link ?? undefined;
+  const hasCommunity = Boolean(whatsappLink || telegramLink);
   const hasGettingThere = Boolean(nearestAirport || nearestRailway || localTransport);
   const directionsUrl =
     typeof lat === "number" && typeof lng === "number"
@@ -170,6 +173,35 @@ export default function TempleDetail() {
             <p className="font-sans text-[12px] text-ink-tertiary text-center">
               Managed by {remote.hrce_department ?? "HR&CE"}
             </p>
+          )}
+
+          {hasCommunity && (
+            <div className="pt-2 space-y-3">
+              {whatsappLink && (
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3.5 font-sans text-[14px] font-medium rounded-pill transition-opacity duration-160 hover:opacity-90"
+                  style={{ backgroundColor: "#25D366", color: "#ffffff" }}
+                >
+                  <MessageCircle size={15} strokeWidth={1.75} /> Join WhatsApp community
+                </a>
+              )}
+              {telegramLink && (
+                <a
+                  href={telegramLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3.5 border border-line-soft font-sans text-[14px] text-ink-primary rounded-pill hover:border-accent/40 transition-colors duration-160"
+                >
+                  <Send size={14} strokeWidth={1.5} /> Join Telegram channel
+                </a>
+              )}
+              <p className="font-sans text-[11px] text-ink-tertiary text-center leading-[1.5]">
+                These are official community links provided by each temple.
+              </p>
+            </div>
           )}
         </aside>
       </div>
