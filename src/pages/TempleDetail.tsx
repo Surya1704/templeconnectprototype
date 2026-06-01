@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { MapPin, ExternalLink, ArrowLeft } from "lucide-react";
+import { MapPin, ExternalLink, ArrowLeft, Navigation, Plane, TrainFront, Bus } from "lucide-react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { SectionReveal } from "@/components/SectionReveal";
 import { getJyotirlinga } from "@/data/jyotirlingas";
@@ -36,6 +36,16 @@ export default function TempleDetail() {
   const imageUrl = bundled?.imageUrl ?? remote?.hero_image ?? remote?.image_urls?.[0];
   const donationLink = bundled?.donationLink ?? remote?.donation_link;
   const officialWebsite = bundled?.officialWebsite ?? remote?.official_website;
+  const lat = bundled?.lat ?? remote?.lat;
+  const lng = bundled?.lng ?? remote?.lng;
+  const nearestAirport = bundled?.nearestAirport ?? remote?.nearest_airport ?? undefined;
+  const nearestRailway = bundled?.nearestRailway ?? remote?.nearest_railway ?? undefined;
+  const localTransport = bundled?.localTransport ?? remote?.local_transport ?? undefined;
+  const hasGettingThere = Boolean(nearestAirport || nearestRailway || localTransport);
+  const directionsUrl =
+    typeof lat === "number" && typeof lng === "number"
+      ? `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
+      : null;
 
   if (!name) {
     return (
