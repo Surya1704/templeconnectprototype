@@ -15,6 +15,8 @@ export interface Temple {
   isJyotirlinga?: boolean; source: "bundled" | "supabase" | "osm";
   slug?: string; blurb?: string; imageUrl?: string; donationLink?: string;
   officialWebsite?: string; hrceManaged?: boolean; hrceDepartment?: string;
+  whatsappLink?: string; telegramLink?: string;
+  nearestAirport?: string; nearestRailway?: string; localTransport?: string;
 }
 export type LatLngBoundsLiteral = [[number, number], [number, number]];
 
@@ -33,6 +35,8 @@ export function getBundledJyotirlingas(): Temple[] {
     osmId: `bundled/${j.slug}`, name: j.name, lat: j.lat, lng: j.lng,
     deity: j.deity, state: j.state, isJyotirlinga: true, source: "bundled" as const,
     slug: j.slug, blurb: j.blurb, imageUrl: j.imageUrl, donationLink: j.donationLink, officialWebsite: j.officialWebsite,
+    whatsappLink: j.whatsappLink, telegramLink: j.telegramLink,
+    nearestAirport: j.nearestAirport, nearestRailway: j.nearestRailway, localTransport: j.localTransport,
   }));
 }
 
@@ -46,6 +50,9 @@ export async function fetchSupabaseTemplesList(filters?: { state?: string; deity
     source: "supabase" as const, slug: t.slug, blurb: t.blurb || undefined,
     imageUrl: t.hero_image || (t.image_urls?.[0]) || undefined, donationLink: t.donation_link || undefined,
     officialWebsite: t.official_website || undefined, hrceManaged: t.hrce_managed, hrceDepartment: t.hrce_department || undefined,
+    whatsappLink: t.whatsapp_link || undefined, telegramLink: t.telegram_link || undefined,
+    nearestAirport: t.nearest_airport || undefined, nearestRailway: t.nearest_railway || undefined,
+    localTransport: t.local_transport || undefined,
   }));
 }
 

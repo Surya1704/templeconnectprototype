@@ -48,6 +48,11 @@ export interface Temple {
   hrce_managed: boolean;
   hrce_department: string | null;
   donation_link: string | null;
+  whatsapp_link: string | null;
+  telegram_link: string | null;
+  nearest_airport: string | null;
+  nearest_railway: string | null;
+  local_transport: string | null;
   image_urls: string[];
   hero_image: string | null;
   accessibility_notes: string | null;
@@ -123,6 +128,38 @@ export async function submitInquiry(inquiry: {
     return { data: null, error: "Supabase is not configured. Add credentials to .env to enable submissions." };
   }
   const { data, error } = await supabase.from("inquiries").insert(inquiry).select().single();
+  return { data, error: error?.message ?? null };
+}
+
+export type WaitlistType = "crm" | "donation_software" | "website" | "devotee";
+
+export interface WaitlistEntry {
+  id: string;
+  type: WaitlistType;
+  name: string | null;
+  organization: string | null;
+  email: string | null;
+  phone: string | null;
+  state: string | null;
+  notes: string | null;
+  source: string | null;
+  created_at: string;
+}
+
+export async function submitWaitlist(input: {
+  type: WaitlistType;
+  name?: string;
+  organization?: string;
+  email?: string;
+  phone?: string;
+  state?: string;
+  notes?: string;
+  source?: string;
+}): Promise<{ data: WaitlistEntry | null; error: string | null }> {
+  if (!supabase) {
+    return { data: null, error: "Backend not configured." };
+  }
+  const { data, error } = await supabase.from("waitlists").insert(input).select().single();
   return { data, error: error?.message ?? null };
 }
 
