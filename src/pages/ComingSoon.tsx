@@ -1,54 +1,38 @@
-
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Clock, ArrowLeft } from "lucide-react";
-import MobileOptimizedLayout from "@/components/MobileOptimizedLayout";
+import { Eyebrow } from "@/components/Eyebrow";
 
-const ComingSoon = () => {
+interface ComingSoonProps {
+  title?: string;
+  subline?: string;
+}
+
+export default function ComingSoon({
+  title = "Coming soon",
+  subline = "We are building this with the same care as everything else on FaithConnect. Check back shortly.",
+}: ComingSoonProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-spiritual-ivory/50 to-white flex items-center justify-center">
-      <MobileOptimizedLayout>
-        <div className="text-center max-w-md mx-auto px-4">
-          <div className="mb-8">
-            <div className="w-20 h-20 bg-spiritual-saffron/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Clock className="w-10 h-10 text-spiritual-saffron" />
-            </div>
-            <h1 className="text-3xl font-cinzel font-bold text-spiritual-maroon mb-4">
-              Coming Soon
-            </h1>
-            <p className="text-gray-600 text-lg mb-2">
-              🛠️ This service will be launching soon.
-            </p>
-            <p className="text-gray-500">
-              Stay connected for updates!
-            </p>
-          </div>
-          
-          <div className="space-y-3">
-            <Button 
-              asChild 
-              className="w-full bg-spiritual-saffron hover:bg-spiritual-ochre"
-            >
-              <Link to="/temples">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Temples
-              </Link>
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              asChild 
-              className="w-full border-spiritual-maroon text-spiritual-maroon hover:bg-spiritual-maroon/5"
-            >
-              <Link to="/">
-                Go to Homepage
-              </Link>
-            </Button>
-          </div>
+    <section className="min-h-[70vh] bg-bg-primary flex items-center justify-center px-5 md:px-8 pt-16">
+      <div className="max-w-xl text-center">
+        <Eyebrow className="text-accent-soft">FAITHCONNECT</Eyebrow>
+        <h1 className="mt-6 font-serif text-[40px] md:text-[56px] font-normal leading-[1.05] tracking-[-0.02em] text-ink-primary">
+          {title}
+        </h1>
+        <p className="mt-6 font-serif text-[18px] text-ink-secondary leading-[1.65]">{subline}</p>
+        <div className="mt-10 flex flex-col items-center gap-4">
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center px-7 py-3.5 bg-accent text-bg-card font-sans text-[14px] font-medium rounded-pill hover:bg-accent-deep hover:-translate-y-0.5 transition-all duration-320 fc-out"
+          >
+            Back to home
+          </Link>
+          <Link
+            to="/explore"
+            className="font-sans text-[14px] text-ink-secondary hover:underline underline-offset-2 transition-colors duration-160"
+          >
+            Explore temples →
+          </Link>
         </div>
-      </MobileOptimizedLayout>
-    </div>
+      </div>
+    </section>
   );
-};
-
-export default ComingSoon;
+}

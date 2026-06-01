@@ -108,9 +108,44 @@ export default function TempleDetail() {
               <p className="mt-2 font-serif text-[16px] text-ink-secondary leading-[1.65]">{remote.accessibility_notes}</p>
             </div>
           )}
+          {hasGettingThere && (
+            <div className="mt-10 pt-8 border-t border-line-hair">
+              <h2 className="font-serif text-[24px] text-ink-primary">Getting there</h2>
+              <ul className="mt-4 space-y-3">
+                {nearestAirport && (
+                  <li className="flex items-start gap-3">
+                    <Plane size={16} className="mt-0.5 shrink-0 text-accent" strokeWidth={1.5} />
+                    <span className="font-sans text-[14px] text-ink-secondary">{nearestAirport}</span>
+                  </li>
+                )}
+                {nearestRailway && (
+                  <li className="flex items-start gap-3">
+                    <TrainFront size={16} className="mt-0.5 shrink-0 text-accent" strokeWidth={1.5} />
+                    <span className="font-sans text-[14px] text-ink-secondary">{nearestRailway}</span>
+                  </li>
+                )}
+                {localTransport && (
+                  <li className="flex items-start gap-3">
+                    <Bus size={16} className="mt-0.5 shrink-0 text-accent" strokeWidth={1.5} />
+                    <span className="font-sans text-[14px] text-ink-secondary">{localTransport}</span>
+                  </li>
+                )}
+              </ul>
+            </div>
+          )}
         </SectionReveal>
 
         <aside className="space-y-4">
+          {directionsUrl && (
+            <a
+              href={directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full px-6 py-3.5 border border-line-soft font-sans text-[14px] text-ink-primary rounded-pill hover:border-accent/40 transition-colors duration-160"
+            >
+              <Navigation size={14} strokeWidth={1.5} /> Get directions
+            </a>
+          )}
           {donationLink && (
             <a
               href={donationLink}

@@ -6,6 +6,7 @@ import TempleDetail from "@/pages/TempleDetail";
 import Donations from "@/pages/Donations";
 import OnboardTemple from "@/pages/OnboardTemple";
 import AboutUs from "@/pages/AboutUs";
+import Astrology from "@/pages/Astrology";
 import NotFound from "@/pages/NotFound";
 
 function LegacyTempleRedirect() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/donate" element={<Donations />} />
           <Route path="/list-your-temple" element={<OnboardTemple />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/astrology" element={<Astrology />} />
 
           <Route path="/temples" element={<Navigate to="/explore" replace />} />
           <Route path="/temple/:id" element={<LegacyTempleRedirect />} />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-const NAV_ITEMS = [ { label: "Explore temples", href: "/explore" }, { label: "Donate", href: "/donate" }, { label: "List your temple", href: "/list-your-temple" }, { label: "About", href: "/about" } ];
+const NAV_ITEMS = [ { label: "Explore temples", href: "/explore" }, { label: "Donate", href: "/donate" }, { label: "Astrology", href: "/astrology" }, { label: "List your temple", href: "/list-your-temple" }, { label: "About", href: "/about" } ];
 
 export function NavBar() {
   const [scrolled, setScrolled] = useState(false); const [mobileOpen, setMobileOpen] = useState(false); const location = useLocation();

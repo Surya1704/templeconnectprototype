@@ -1,15 +1,10 @@
+import ComingSoon from "./ComingSoon";
 
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-const Astrology = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate("/coming-soon");
-  }, [navigate]);
-
-  return null;
-};
-
-export default Astrology;
+export default function Astrology() {
+  return (
+    <ComingSoon
+      title="Astrology AI"
+      subline="Personalised muhurta, panchang, and temple-aligned guidance — thoughtfully built, arriving soon."
+    />
+  );
+}
