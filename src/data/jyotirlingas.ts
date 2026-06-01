@@ -1,0 +1,163 @@
+export interface Jyotirlinga {
+  slug: string;
+  name: string;
+  deity: string;
+  state: string;
+  lat: number;
+  lng: number;
+  blurb: string;
+  imageUrl: string;
+  donationLink: string;
+  officialWebsite: string;
+}
+
+export const jyotirlingas: Jyotirlinga[] = [
+  {
+    slug: "somnath",
+    name: "Somnath",
+    deity: "Shiva",
+    state: "Gujarat",
+    lat: 20.888,
+    lng: 70.4011,
+    blurb: "The first among the twelve, destroyed and rebuilt across millennia. Standing at the shore of the Arabian Sea.",
+    imageUrl: "/lovable-uploads/006968a1-560a-479d-8493-50f8639dce12.png",
+    donationLink: "https://somnath.org/donate",
+    officialWebsite: "https://somnath.org",
+  },
+  {
+    slug: "mallikarjuna",
+    name: "Mallikarjuna",
+    deity: "Shiva & Parvati",
+    state: "Andhra Pradesh",
+    lat: 16.0739,
+    lng: 78.8687,
+    blurb: "Nestled on the Sri Sailam hill, one of the oldest and most revered Shakti Peethas alongside a Jyotirlinga.",
+    imageUrl: "/lovable-uploads/b27d0b3a-4090-4b23-804a-b569ee1c971b.png",
+    donationLink: "https://srisailamonline.com/donate",
+    officialWebsite: "https://srisailamonline.com",
+  },
+  {
+    slug: "mahakaleshwar",
+    name: "Mahakaleshwar",
+    deity: "Shiva",
+    state: "Madhya Pradesh",
+    lat: 23.1828,
+    lng: 75.7682,
+    blurb: "The only Jyotirlinga facing south, in the heart of Ujjain. The Bhasma Aarti here is legendary.",
+    imageUrl: "/lovable-uploads/b668b893-dac5-4d67-9be0-425045941429.png",
+    donationLink: "https://mahakaleshwar.nic.in/donate",
+    officialWebsite: "https://mahakaleshwar.nic.in",
+  },
+  {
+    slug: "omkareshwar",
+    name: "Omkareshwar",
+    deity: "Shiva",
+    state: "Madhya Pradesh",
+    lat: 22.2473,
+    lng: 76.1502,
+    blurb: "Shaped like the Om symbol itself, an island in the Narmada where two rivers converge.",
+    imageUrl: "/lovable-uploads/bff90acf-434f-4b5d-a02a-f8cd060e2ec9.png",
+    donationLink: "https://omkareshwar.temple.org.in/donate",
+    officialWebsite: "https://omkareshwar.temple.org.in",
+  },
+  {
+    slug: "kedarnath",
+    name: "Kedarnath",
+    deity: "Shiva",
+    state: "Uttarakhand",
+    lat: 30.7352,
+    lng: 79.0669,
+    blurb: "At 3,583m in the Garhwal Himalayas. One of the Char Dhams. Open only six months a year.",
+    imageUrl: "/lovable-uploads/8a415d87-63d9-44f9-bb8e-583856ad0fa5.png",
+    donationLink: "https://badarinath-kedarnath.gov.in/donation",
+    officialWebsite: "https://badarinath-kedarnath.gov.in",
+  },
+  {
+    slug: "bhimashankar",
+    name: "Bhimashankar",
+    deity: "Shiva",
+    state: "Maharashtra",
+    lat: 19.0728,
+    lng: 73.5354,
+    blurb: "In the Sahyadri hills, the source of the Bhima river. Ancient Nagara architecture at its finest.",
+    imageUrl: "/lovable-uploads/bed64bd3-3688-44d2-9bad-a6918b67c9a6.png",
+    donationLink: "https://bhimashankar.temple.org.in/donate",
+    officialWebsite: "https://bhimashankar.temple.org.in",
+  },
+  {
+    slug: "kashi-vishwanath",
+    name: "Kashi Vishwanath",
+    deity: "Shiva",
+    state: "Uttar Pradesh",
+    lat: 25.3109,
+    lng: 83.0107,
+    blurb: "In the oldest living city on Earth. The corridor project has transformed the approach to the sanctum.",
+    imageUrl: "/lovable-uploads/ea8558eb-ef06-4c98-8f0c-23095bb29074.png",
+    donationLink: "https://shrikashivishwanath.org/donation",
+    officialWebsite: "https://shrikashivishwanath.org",
+  },
+  {
+    slug: "trimbakeshwar",
+    name: "Trimbakeshwar",
+    deity: "Shiva",
+    state: "Maharashtra",
+    lat: 19.9322,
+    lng: 73.5292,
+    blurb: "Source of the Godavari. The lingam here has three faces embodying Brahma, Vishnu, and Shiva.",
+    imageUrl: "/lovable-uploads/3c73bbb4-d8d9-439c-bac6-16dfc1940d71.png",
+    donationLink: "https://trimbakeshwar.temple.org.in/donate",
+    officialWebsite: "https://trimbakeshwar.temple.org.in",
+  },
+  {
+    slug: "vaidyanath",
+    name: "Baidyanath",
+    deity: "Shiva",
+    state: "Jharkhand",
+    lat: 24.492,
+    lng: 86.7,
+    blurb: "Also called Vaidyanath — the healer. In Deoghar, one of the most important pilgrimage sites in eastern India.",
+    imageUrl: "/lovable-uploads/3e630441-b218-447f-a772-6d16110739b2.png",
+    donationLink: "https://baidyanathdham.in/donate",
+    officialWebsite: "https://baidyanathdham.in",
+  },
+  {
+    slug: "nageshvara",
+    name: "Nageshvara",
+    deity: "Shiva",
+    state: "Gujarat",
+    lat: 22.407,
+    lng: 69.0823,
+    blurb: "Near Dwarka, on the coast of Saurashtra. The legend of the demon Daaruka and the devotee Supriya.",
+    imageUrl: "/lovable-uploads/f6e17f2f-fd67-45c1-8f9b-bdd05ef346ce.png",
+    donationLink: "https://nageshwar.temple.org.in/donate",
+    officialWebsite: "https://nageshwar.temple.org.in",
+  },
+  {
+    slug: "rameshwaram",
+    name: "Rameshwaram",
+    deity: "Shiva",
+    state: "Tamil Nadu",
+    lat: 9.2881,
+    lng: 79.3174,
+    blurb: "The southernmost Char Dham. The longest corridor of any Hindu temple. Managed by HR&CE Tamil Nadu.",
+    imageUrl: "/lovable-uploads/c868ae47-1318-4239-9e0b-8e11ffd2ab53.png",
+    donationLink: "https://hrce.tn.gov.in/hrceadmin/donation",
+    officialWebsite: "https://hrce.tn.gov.in",
+  },
+  {
+    slug: "grishneshwar",
+    name: "Grishneshwar",
+    deity: "Shiva",
+    state: "Maharashtra",
+    lat: 20.0269,
+    lng: 75.1791,
+    blurb: "The smallest and the last of the twelve. A short walk from the Ellora caves — two UNESCO worlds in one place.",
+    imageUrl: "/lovable-uploads/55fb5f1f-b855-4295-a028-e2385fe97d48.png",
+    donationLink: "https://grishneshwar.temple.org.in/donate",
+    officialWebsite: "https://grishneshwar.temple.org.in",
+  },
+];
+
+export function getJyotirlinga(slug: string): Jyotirlinga | undefined {
+  return jyotirlingas.find((j) => j.slug === slug);
+}

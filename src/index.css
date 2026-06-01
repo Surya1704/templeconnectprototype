@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary:    #f1ece2;
+  --bg-secondary:  #e8e1d2;
+  --bg-card:       #f8f4ec;
+  --bg-deep:       #1a1612;
+
+  --ink-primary:   #2a1f17;
+  --ink-secondary: #5c4a3a;
+  --ink-tertiary:  #8a7560;
+  --ink-muted:     #b8a890;
+
+  --accent:        #b97a57;
+  --accent-deep:   #9e6342;
+  --accent-soft:   #c99175;
+  --accent-glow:   rgba(185, 122, 87, 0.18);
+
+  --line-hair:     rgba(42, 31, 23, 0.08);
+  --line-soft:     rgba(42, 31, 23, 0.14);
+  --line-strong:   rgba(42, 31, 23, 0.22);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    background-color: var(--bg-primary);
+    color: var(--ink-primary);
+    font-family: 'Crimson Pro', serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: var(--accent-glow);
+    color: var(--ink-primary);
+  }
+}
+
+@layer utilities {
+  .fc-out {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.dropcap::first-letter {
+  float: left;
+  font-family: 'Crimson Pro', serif;
+  font-size: 84px;
+  line-height: 0.8;
+  padding-right: 8px;
+  padding-top: 4px;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--bg-card) !important;
+  border-radius: 20px !important;
+  padding: 16px !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+  font-family: 'Crimson Pro', serif !important;
+  color: var(--ink-primary) !important;
+}
+.leaflet-popup-tip {
+  background: var(--bg-card) !important;
+}
+.leaflet-popup-close-button {
+  color: var(--ink-tertiary) !important;
+  font-size: 18px !important;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--line-soft); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-tertiary); }
