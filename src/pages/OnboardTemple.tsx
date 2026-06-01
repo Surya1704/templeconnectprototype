@@ -1,15 +1,9 @@
 import { useState } from "react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { SectionReveal } from "@/components/SectionReveal";
+import { WaitlistForm } from "@/components/WaitlistForm";
 import { submitInquiry } from "@/lib/supabase";
-
-const INDIAN_STATES = [
-  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat",
-  "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh",
-  "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
-  "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh",
-  "Uttarakhand", "West Bengal", "Delhi",
-];
+import { INDIAN_STATES } from "@/data/indianStates";
 
 export default function OnboardTemple() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -125,6 +119,30 @@ export default function OnboardTemple() {
             </form>
           )}
         </SectionReveal>
+      </section>
+
+      <section id="waitlist" className="bg-bg-secondary border-y border-line-hair py-16 scroll-mt-24">
+        <div className="max-w-container mx-auto px-5 md:px-8">
+          <SectionReveal>
+            <Eyebrow className="text-accent-soft">EARLY ACCESS</Eyebrow>
+            <h2 className="mt-4 font-serif text-[32px] text-ink-primary">Join the waitlist</h2>
+            <p className="mt-3 font-serif text-[16px] text-ink-secondary max-w-lg">
+              Not ready for a full pilot? Tell us which product you want first and we&apos;ll keep you posted.
+            </p>
+            <div className="mt-8 max-w-lg">
+              <WaitlistForm
+                type="crm"
+                title="Tell us what you need"
+                blurb="We're rolling out access in stages across India."
+                typeOptions={[
+                  { value: "crm", label: "Operations CRM" },
+                  { value: "donation_software", label: "Donation software" },
+                  { value: "website", label: "Temple website / public profile" },
+                ]}
+              />
+            </div>
+          </SectionReveal>
+        </div>
       </section>
 
       <section id="cases" className="bg-bg-deep py-16 scroll-mt-24">
