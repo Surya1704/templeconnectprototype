@@ -8,9 +8,11 @@ import { INDIAN_STATES } from "@/data/indianStates";
 export default function OnboardTemple() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [consent, setConsent] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!consent) return;
     const fd = new FormData(e.currentTarget);
     setStatus("loading");
     setErrorMsg("");
@@ -30,6 +32,7 @@ export default function OnboardTemple() {
     }
     setStatus("success");
     e.currentTarget.reset();
+    setConsent(false);
   }
 
   return (
@@ -106,13 +109,25 @@ export default function OnboardTemple() {
                 <label htmlFor="notes" className="block font-sans text-[11px] uppercase tracking-[0.1em] text-ink-tertiary mb-2">Notes</label>
                 <textarea id="notes" name="notes" rows={4} className="w-full px-4 py-3 rounded-[12px] border border-line-soft bg-bg-card font-sans text-[14px] resize-none" />
               </div>
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                  className="mt-1 h-4 w-4 shrink-0 accent-[#9e6342]"
+                />
+                <span className="font-sans text-[13px] text-ink-secondary leading-[1.5]">
+                  I agree to FaithConnect storing my contact details to respond to this request, per the{" "}
+                  <a href="/about#privacy" className="text-accent hover:underline">Privacy Policy</a>.
+                </span>
+              </label>
               {status === "error" && (
                 <p className="font-sans text-[13px] text-red-700">{errorMsg || "Could not submit. Check Supabase configuration."}</p>
               )}
               <button
                 type="submit"
-                disabled={status === "loading"}
-                className="inline-flex items-center justify-center px-7 py-3.5 bg-accent text-bg-card font-sans text-[14px] font-medium rounded-pill hover:bg-accent-deep disabled:opacity-60 transition-all duration-320 fc-out"
+                disabled={!consent || status === "loading"}
+                className="inline-flex items-center justify-center px-7 py-3.5 bg-accent text-bg-card font-sans text-[14px] font-medium rounded-pill hover:bg-accent-deep disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-320 fc-out"
               >
                 {status === "loading" ? "Sending…" : "Submit inquiry"}
               </button>

@@ -48,7 +48,42 @@ export default function AboutUs() {
           <h2 className="mt-4 font-serif text-[32px] text-ink-primary">Privacy policy</h2>
           <p className="mt-4 font-serif text-[16px] text-ink-secondary leading-[1.65]">
             FaithConnect does not sell personal data. Anonymous analytics may be used to understand aggregate traffic.
-            When you leave this site for a temple portal, that destination&apos;s privacy policy applies.
+            When you leave this site for a temple portal, that destination&apos;s privacy policy applies. This notice
+            follows the principles of India&apos;s Digital Personal Data Protection Act, 2023.
+          </p>
+
+          <h3 className="mt-8 font-serif text-[20px] text-ink-primary">What we collect</h3>
+          <p className="mt-2 font-serif text-[16px] text-ink-secondary leading-[1.65]">
+            When you submit an inquiry or join a waitlist, we collect the details you provide — typically your name,
+            phone number, email, organisation, and state. We do not collect any payment or donation information.
+          </p>
+
+          <h3 className="mt-6 font-serif text-[20px] text-ink-primary">Why we collect it</h3>
+          <p className="mt-2 font-serif text-[16px] text-ink-secondary leading-[1.65]">
+            Solely to respond to your inquiry and to manage interest in our products (temple onboarding, CRM,
+            donation software, and devotee waitlists). We process this data only with your explicit consent, which
+            you give via the checkbox on each form.
+          </p>
+
+          <h3 className="mt-6 font-serif text-[20px] text-ink-primary">How long we keep it</h3>
+          <p className="mt-2 font-serif text-[16px] text-ink-secondary leading-[1.65]">
+            We retain contact details only as long as needed to respond to your request or until you ask us to erase
+            them, after which they are deleted from our systems.
+          </p>
+
+          <h3 className="mt-6 font-serif text-[20px] text-ink-primary">Third-party links</h3>
+          <p className="mt-2 font-serif text-[16px] text-ink-secondary leading-[1.65]">
+            Outbound donation, WhatsApp, Telegram, and official-website links point to third parties. Once you follow
+            them, those organisations&apos; own policies govern your data and any transaction.{" "}
+            <strong className="text-ink-primary font-normal">FaithConnect never processes, holds, or routes donations</strong> —
+            every contribution is made directly to the temple&apos;s own official channel.
+          </p>
+
+          <h3 className="mt-6 font-serif text-[20px] text-ink-primary">Grievance contact</h3>
+          <p className="mt-2 font-serif text-[16px] text-ink-secondary leading-[1.65]">
+            To access, correct, or erase your data, or to raise a grievance, contact our Grievance Officer at{" "}
+            {/* TODO(owner): replace with the registered DPDP grievance email */}
+            <a href="mailto:grievance@faithconnect.in" className="text-accent hover:underline">grievance@faithconnect.in</a>.
           </p>
         </SectionReveal>
         </div>
