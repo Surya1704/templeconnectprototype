@@ -7,6 +7,7 @@ interface ImageWithFallbackProps {
   fallbackSrc?: string;
   className?: string;
   onClick?: () => void;
+  loading?: "lazy" | "eager";
 }
 
 const ImageWithFallback = ({
@@ -15,6 +16,7 @@ const ImageWithFallback = ({
   fallbackSrc = "/placeholder.svg",
   className = "",
   onClick,
+  loading,
 }: ImageWithFallbackProps) => {
   const [currentSrc, setCurrentSrc] = useState<string>(src);
   const [hasError, setHasError] = useState(false);
@@ -78,6 +80,7 @@ const ImageWithFallback = ({
         ref={imgRef}
         src={currentSrc}
         alt={alt}
+        loading={loading}
         className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'} w-full h-full object-cover`}
         onError={handleError}
         onClick={onClick}
