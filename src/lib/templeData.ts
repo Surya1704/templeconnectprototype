@@ -15,7 +15,8 @@ export interface Temple {
   deity?: string; state?: string; district?: string; town?: string;
   isJyotirlinga?: boolean; source: "bundled" | "supabase" | "osm";
   slug?: string; blurb?: string; imageUrl?: string; donationLink?: string;
-  officialWebsite?: string; hrceManaged?: boolean; hrceDepartment?: string;
+  officialWebsite?: string; isOfficial?: boolean;
+  hrceManaged?: boolean; hrceDepartment?: string;
   whatsappLink?: string; telegramLink?: string;
   nearestAirport?: string; nearestRailway?: string; localTransport?: string;
 }
@@ -41,6 +42,7 @@ export function getBundledJyotirlingas(): Temple[] {
     osmId: `bundled/${j.slug}`, name: j.name, lat: j.lat, lng: j.lng,
     deity: j.deity, state: j.state, isJyotirlinga: true, source: "bundled" as const,
     slug: j.slug, blurb: j.blurb, imageUrl: j.imageUrl, donationLink: j.donationLink, officialWebsite: j.officialWebsite,
+    isOfficial: true,
     whatsappLink: j.whatsappLink, telegramLink: j.telegramLink,
     nearestAirport: j.nearestAirport, nearestRailway: j.nearestRailway, localTransport: j.localTransport,
   }));
@@ -52,7 +54,23 @@ export function getBundledExtraTemples(): Temple[] {
     deity: t.deity, state: t.state, isJyotirlinga: false, source: "bundled" as const,
     slug: t.slug, blurb: t.blurb, imageUrl: t.imageUrl,
     donationLink: t.donationLink, officialWebsite: t.officialWebsite,
+    isOfficial: Boolean(t.officialWebsite),
   }));
+}
+
+export function searchBundledTemples(query: string): Temple[] {
+  const q = query.toLowerCase().trim();
+  if (!q) return getAllBundledTemples();
+  return getAllBundledTemples().filter((t) =>
+    t.name.toLowerCase().includes(q) ||
+    t.state?.toLowerCase().includes(q) ||
+    t.deity?.toLowerCase().includes(q) ||
+    t.blurb?.toLowerCase().includes(q)
+  );
+}
+
+export function getOfficialBundledTemples(): Temple[] {
+  return getAllBundledTemples().filter((t) => t.isOfficial);
 }
 
 // Everything that ships with the app: the twelve Jyotirlingas + the directory.

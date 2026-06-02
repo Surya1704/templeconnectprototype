@@ -41,6 +41,7 @@ export const extraTemples: BundledTemple[] = [
     blurb: "A towering Dravidian complex in Madurai with vividly sculpted gopurams, dedicated to Goddess Meenakshi and Sundareswarar.",
     imageUrl: "/placeholder.svg",
     officialWebsite: "https://maduraimeenakshi.org/",
+    donationLink: "https://maduraimeenakshi.org/donation/",
   },
   {
     slug: "jagannath-puri",
@@ -52,6 +53,7 @@ export const extraTemples: BundledTemple[] = [
     blurb: "Home of the famous Rath Yatra, this 12th-century temple is one of the Char Dham pilgrimage sites.",
     imageUrl: "/placeholder.svg",
     officialWebsite: "https://www.shreejagannatha.in/",
+    donationLink: "https://www.shreejagannatha.in/donation/",
   },
   {
     slug: "badrinath",
@@ -63,6 +65,7 @@ export const extraTemples: BundledTemple[] = [
     blurb: "A Char Dham shrine high in the Garhwal Himalayas on the bank of the Alaknanda, dedicated to Lord Vishnu.",
     imageUrl: "/placeholder.svg",
     officialWebsite: "https://badrinath-kedarnath.gov.in/",
+    donationLink: "https://badrinath-kedarnath.gov.in/OnlineServices/OnlineDonation.aspx",
   },
   {
     slug: "kamakhya",
@@ -74,6 +77,7 @@ export const extraTemples: BundledTemple[] = [
     blurb: "One of the most revered Shakti Peethas, set on Nilachal Hill overlooking Guwahati and the Brahmaputra.",
     imageUrl: "/placeholder.svg",
     officialWebsite: "https://kamakhyatemple.org/",
+    donationLink: "https://kamakhyatemple.org/donation/",
   },
   {
     slug: "vaishno-devi",
@@ -85,6 +89,7 @@ export const extraTemples: BundledTemple[] = [
     blurb: "A cave shrine in the Trikuta Mountains reached by a hill trek from Katra, among India's most visited pilgrimages.",
     imageUrl: "/placeholder.svg",
     officialWebsite: "https://www.maavaishnodevi.org/",
+    donationLink: "https://www.maavaishnodevi.org/donation/",
   },
   {
     slug: "siddhivinayak",
@@ -96,6 +101,7 @@ export const extraTemples: BundledTemple[] = [
     blurb: "Mumbai's beloved Ganesha temple in Prabhadevi, known for its golden-domed sanctum and devoted crowds.",
     imageUrl: "/placeholder.svg",
     officialWebsite: "https://www.siddhivinayak.org/",
+    donationLink: "https://www.siddhivinayak.org/en/donation",
   },
   {
     slug: "shirdi-sai",
@@ -107,6 +113,7 @@ export const extraTemples: BundledTemple[] = [
     blurb: "The samadhi shrine of Sai Baba of Shirdi, drawing pilgrims of every faith to the town of Shirdi.",
     imageUrl: "/placeholder.svg",
     officialWebsite: "https://www.sai.org.in/",
+    donationLink: "https://www.sai.org.in/en/donation",
   },
   {
     slug: "padmanabhaswamy",
@@ -117,6 +124,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 76.9436,
     blurb: "A Dravidian-Kerala style temple in Thiruvananthapuram where Vishnu reclines on the serpent Anantha.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://spst.spfestates.org/",
+    donationLink: "https://spst.spfestates.org/donation/",
   },
   {
     slug: "brihadeeswarar",
@@ -127,6 +136,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 79.1318,
     blurb: "A UNESCO-listed Chola masterpiece in Thanjavur, crowned by one of the tallest temple vimanas in the world.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://hrce.tn.gov.in/",
+    donationLink: "https://hrce.tn.gov.in/",
   },
   {
     slug: "dwarkadhish",
@@ -137,6 +148,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 68.9685,
     blurb: "A Char Dham temple on the Gomti creek in Dwarka, honouring Krishna as the king of Dwarka.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://dwarka.nic.in/tourist-place/dwarkadhish-temple/",
+    donationLink: "https://devbhumidwarka.nic.in/",
   },
   {
     slug: "golden-temple",
@@ -147,6 +160,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 74.8765,
     blurb: "The holiest gurdwara of Sikhism in Amritsar, its gilded sanctum set amid the Amrit Sarovar.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.goldentempleamritsar.org/",
+    donationLink: "https://sgpc.net/",
   },
   {
     slug: "kanchi-kamakshi",
@@ -157,6 +172,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 79.7036,
     blurb: "A principal Shakti shrine in the temple-town of Kanchipuram, dedicated to Goddess Kamakshi.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://hrce.tn.gov.in/",
+    donationLink: "https://hrce.tn.gov.in/",
   },
   {
     slug: "ekambareswarar",
@@ -167,6 +184,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 79.7000,
     blurb: "One of the Pancha Bhoota Sthalams representing the earth element, with a vast gopuram in Kanchipuram.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://hrce.tn.gov.in/",
+    donationLink: "https://hrce.tn.gov.in/",
   },
   {
     slug: "arunachaleswarar",
@@ -177,6 +196,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 79.0672,
     blurb: "The fire-element shrine at the foot of Arunachala hill in Tiruvannamalai, famed for the Karthigai Deepam.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://hrce.tn.gov.in/",
+    donationLink: "https://hrce.tn.gov.in/",
   },
   {
     slug: "kanyakumari-amman",
@@ -187,6 +208,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 77.5562,
     blurb: "A coastal Shakti Peetha at the southern tip of India where three seas meet.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://hrce.tn.gov.in/",
+    donationLink: "https://hrce.tn.gov.in/",
   },
   {
     slug: "ramappa",
@@ -197,6 +220,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 79.9447,
     blurb: "A UNESCO World Heritage Kakatiya-era temple near Warangal, known for its floating-brick shikhara and dancing sculptures.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://telanganatourism.gov.in/",
   },
   {
     slug: "lepakshi-veerabhadra",
@@ -207,6 +231,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 77.6065,
     blurb: "A Vijayanagara temple celebrated for its hanging pillar, mural ceilings, and monolithic Nandi.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://aptourism.gov.in/",
   },
   {
     slug: "mookambika-kollur",
@@ -217,6 +242,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 74.9420,
     blurb: "A revered Devi temple on the banks of the Souparnika river in the Western Ghats.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.kollurmookambika.org/",
+    donationLink: "https://www.kollurmookambika.org/donation/",
   },
   {
     slug: "chennakesava-belur",
@@ -227,6 +254,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 75.8648,
     blurb: "A Hoysala-era jewel covered in intricate friezes, built on the banks of the Yagachi river.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://asi.nic.in/",
   },
   {
     slug: "hoysaleswara-halebidu",
@@ -237,6 +265,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 75.9943,
     blurb: "A twin-shrine Hoysala temple in Halebidu renowned for densely carved soapstone walls.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://asi.nic.in/",
   },
   {
     slug: "virupaksha-hampi",
@@ -247,6 +276,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 76.4600,
     blurb: "The living temple at the heart of the Hampi UNESCO site, continuously worshipped for centuries.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://asi.nic.in/",
   },
   {
     slug: "sun-temple-modhera",
@@ -257,6 +287,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 72.1326,
     blurb: "A Solanki-era temple to the Sun god with a stepped kunda, aligned so light reaches the sanctum at equinox.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.gujarattourism.com/",
   },
   {
     slug: "sabarimala",
@@ -267,6 +298,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 77.0817,
     blurb: "A forest hill shrine to Lord Ayyappa, reached after a vow-bound pilgrimage through the Periyar ranges.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://sabarimala.kerala.gov.in/",
   },
   {
     slug: "guruvayur",
@@ -277,6 +309,8 @@ export const extraTemples: BundledTemple[] = [
     lng: 76.0391,
     blurb: "A major Krishna temple in Thrissur district, often called the Dwarka of the South.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://guruvayurdevasom.in/",
+    donationLink: "https://guruvayurdevasom.in/donation/",
   },
   {
     slug: "banke-bihari-vrindavan",
@@ -287,6 +321,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 77.6962,
     blurb: "A much-loved Krishna temple in Vrindavan where the deity's darshan is given in brief, curtained glimpses.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.bihariji.org/",
   },
   {
     slug: "khatu-shyam",
@@ -297,6 +332,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 75.4060,
     blurb: "A hugely popular Shyam temple in Sikar district drawing vast crowds during the Phalguna Mela.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://khatu-shyam-ji-mandir.business.site/",
   },
   {
     slug: "karni-mata-deshnoke",
@@ -307,6 +343,7 @@ export const extraTemples: BundledTemple[] = [
     lng: 73.3411,
     blurb: "The famous 'rat temple' near Bikaner, where kabas are revered as part of the goddess's lineage.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.rajasthan.gov.in/",
   },
   {
     slug: "jwalamukhi",
@@ -317,6 +354,193 @@ export const extraTemples: BundledTemple[] = [
     lng: 76.3203,
     blurb: "A Shakti Peetha in Kangra where natural flames are worshipped as the goddess, with no idol in the sanctum.",
     imageUrl: "/placeholder.svg",
+    officialWebsite: "https://himachaltourism.gov.in/",
+  },
+  {
+    slug: "konark-sun-temple",
+    name: "Konark Sun Temple",
+    deity: "Surya",
+    state: "Odisha",
+    lat: 19.8876,
+    lng: 86.0945,
+    blurb: "A 13th-century UNESCO World Heritage chariot-shaped temple on the Odisha coast.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://asi.nic.in/",
+  },
+  {
+    slug: "lingaraj-bhubaneswar",
+    name: "Lingaraj Temple",
+    deity: "Shiva (Harihara)",
+    state: "Odisha",
+    lat: 20.2389,
+    lng: 85.8339,
+    blurb: "An 11th-century Kalinga temple in Bhubaneswar, one of the largest and oldest active Shiva shrines in Odisha.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://odishatourism.gov.in/",
+  },
+  {
+    slug: "amarnath-cave",
+    name: "Amarnath Cave Temple",
+    deity: "Shiva",
+    state: "Jammu & Kashmir",
+    lat: 34.2139,
+    lng: 75.5008,
+    blurb: "A Himalayan cave shrine where an ice lingam forms each summer, reached by a demanding pilgrimage trek.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.shriamarnathjishrine.com/",
+    donationLink: "https://www.shriamarnathjishrine.com/Donation.aspx",
+  },
+  {
+    slug: "chidambaram-nataraja",
+    name: "Thillai Nataraja Temple, Chidambaram",
+    deity: "Shiva (Nataraja)",
+    state: "Tamil Nadu",
+    lat: 11.3994,
+    lng: 79.6915,
+    blurb: "The cosmic dance of Shiva is worshipped here in one of the Pancha Bhoota Sthalams representing akasha (space).",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://hrce.tn.gov.in/",
+    donationLink: "https://hrce.tn.gov.in/",
+  },
+  {
+    slug: "srirangam-ranganathaswamy",
+    name: "Sri Ranganathaswamy Temple, Srirangam",
+    deity: "Vishnu (Ranganatha)",
+    state: "Tamil Nadu",
+    lat: 10.8625,
+    lng: 78.6917,
+    blurb: "The largest functioning Hindu temple complex in the world, on an island in the Cauvery at Srirangam.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://hrce.tn.gov.in/",
+    donationLink: "https://hrce.tn.gov.in/",
+  },
+  {
+    slug: "udupi-krishna",
+    name: "Udupi Sri Krishna Matha",
+    deity: "Krishna",
+    state: "Karnataka",
+    lat: 13.3410,
+    lng: 74.7520,
+    blurb: "The birthplace of the Udupi sampradaya, where Krishna is worshipped through a unique window darshan.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.udipikrishnamutt.com/",
+  },
+  {
+    slug: "murudeshwar",
+    name: "Murudeshwar Temple",
+    deity: "Shiva",
+    state: "Karnataka",
+    lat: 14.0943,
+    lng: 74.4845,
+    blurb: "A coastal Shiva temple dominated by a towering Raja Gopura and a colossal statue overlooking the Arabian Sea.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.karnatakatourism.org/",
+  },
+  {
+    slug: "palani-murugan",
+    name: "Palani Murugan Temple",
+    deity: "Murugan (Kartikeya)",
+    state: "Tamil Nadu",
+    lat: 10.4382,
+    lng: 77.5200,
+    blurb: "One of the six abodes of Murugan, perched on the Palani hill and among Tamil Nadu's most visited shrines.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://palanimurugantemple.org/",
+    donationLink: "https://palanimurugantemple.org/donation/",
+  },
+  {
+    slug: "mahalakshmi-kolhapur",
+    name: "Mahalakshmi Temple, Kolhapur",
+    deity: "Shakti (Mahalakshmi)",
+    state: "Maharashtra",
+    lat: 16.6950,
+    lng: 74.2319,
+    blurb: "An important Shakti Peetha in Kolhapur where the goddess is worshipped as Ambabai.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.kolhapurcorporation.gov.in/",
+  },
+  {
+    slug: "dakshineswar-kali",
+    name: "Dakshineswar Kali Temple",
+    deity: "Shakti (Kali)",
+    state: "West Bengal",
+    lat: 22.6549,
+    lng: 88.3575,
+    blurb: "The riverside Kali temple associated with Sri Ramakrishna, on the Hooghly in north Kolkata.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.dakshineswar.org/",
+    donationLink: "https://www.dakshineswar.org/donation/",
+  },
+  {
+    slug: "akshardham-delhi",
+    name: "Akshardham, Delhi",
+    deity: "Swaminarayan",
+    state: "Delhi",
+    lat: 28.6127,
+    lng: 77.2773,
+    blurb: "A modern sandstone campus on the Yamuna showcasing Swaminarayan tradition, architecture, and cultural exhibits.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://akshardham.com/new-delhi/",
+    donationLink: "https://akshardham.com/new-delhi/donate/",
+  },
+  {
+    slug: "gangotri",
+    name: "Gangotri Temple",
+    deity: "Shakti (Ganga)",
+    state: "Uttarakhand",
+    lat: 30.9945,
+    lng: 78.9398,
+    blurb: "The Himalayan source shrine of the Ganga river, one of the Char Dham pilgrimage sites in Uttarakhand.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://badrinath-kedarnath.gov.in/",
+    donationLink: "https://badrinath-kedarnath.gov.in/OnlineServices/OnlineDonation.aspx",
+  },
+  {
+    slug: "yamunotri",
+    name: "Yamunotri Temple",
+    deity: "Shakti (Yamuna)",
+    state: "Uttarakhand",
+    lat: 31.0115,
+    lng: 78.4292,
+    blurb: "The westernmost Char Dham shrine dedicated to Goddess Yamuna, high in the Garhwal Himalayas.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://badrinath-kedarnath.gov.in/",
+    donationLink: "https://badrinath-kedarnath.gov.in/OnlineServices/OnlineDonation.aspx",
+  },
+  {
+    slug: "khajuraho-kandariya",
+    name: "Kandariya Mahadeva Temple, Khajuraho",
+    deity: "Shiva",
+    state: "Madhya Pradesh",
+    lat: 24.8529,
+    lng: 79.9220,
+    blurb: "The largest and finest of the Khajuraho group of medieval temples, a UNESCO World Heritage site.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://asi.nic.in/",
+  },
+  {
+    slug: "ambaji-gujarat",
+    name: "Ambaji Temple",
+    deity: "Shakti (Amba)",
+    state: "Gujarat",
+    lat: 24.3336,
+    lng: 72.8506,
+    blurb: "A principal Shakti shrine in the Aravalli hills of north Gujarat, drawing vast Navratri crowds.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://ambajitemple.in/",
+    donationLink: "https://ambajitemple.in/donation/",
+  },
+  {
+    slug: "iskcon-bangalore",
+    name: "ISKCON Sri Radha Krishna Temple, Bangalore",
+    deity: "Krishna & Radha",
+    state: "Karnataka",
+    lat: 13.0097,
+    lng: 77.5510,
+    blurb: "A prominent hilltop Krishna temple in Rajajinagar known for its gold-plated flag post and cultural programmes.",
+    imageUrl: "/placeholder.svg",
+    officialWebsite: "https://www.iskconbangalore.org/",
+    donationLink: "https://www.iskconbangalore.org/donate/",
   },
 ];
 
@@ -335,6 +559,7 @@ export interface BundledTempleDetail {
   donationLink?: string;
   officialWebsite?: string;
   isJyotirlinga: boolean;
+  isOfficial?: boolean;
   whatsappLink?: string;
   telegramLink?: string;
   nearestAirport?: string;
@@ -348,6 +573,6 @@ export function getBundledTemple(slug: string): BundledTempleDetail | undefined 
   const j = jyotirlingas.find((x) => x.slug === slug);
   if (j) return { ...j, isJyotirlinga: true };
   const e = extraTemples.find((x) => x.slug === slug);
-  if (e) return { ...e, isJyotirlinga: false };
+  if (e) return { ...e, isJyotirlinga: false, isOfficial: Boolean(e.officialWebsite) };
   return undefined;
 }
