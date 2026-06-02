@@ -1,11 +1,64 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { MapPin, ExternalLink, ArrowLeft, Navigation, Plane, TrainFront, Bus, MessageCircle, Send } from "lucide-react";
+import {
+  MapPin,
+  ExternalLink,
+  ArrowLeft,
+  Navigation,
+  Plane,
+  TrainFront,
+  Bus,
+  MessageCircle,
+  Send,
+  Shirt,
+  Sparkles,
+  Calendar,
+  Clock,
+  Camera,
+  Landmark,
+  BookOpen,
+} from "lucide-react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { SectionReveal } from "@/components/SectionReveal";
 import ImageWithFallback from "@/components/ImageWithFallback";
 import { getBundledTemple } from "@/data/temples";
+import { getTempleProfile } from "@/data/templeProfiles";
 import { fetchTempleBySlug } from "@/lib/supabase";
+
+function InfoBlock({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: React.ComponentType<{ size?: number; className?: string; strokeWidth?: number }>;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="mt-10 pt-8 border-t border-line-hair first:mt-0 first:pt-0 first:border-0">
+      <h2 className="flex items-center gap-2 font-serif text-[24px] text-ink-primary">
+        <Icon size={18} className="text-accent" strokeWidth={1.5} />
+        {title}
+      </h2>
+      <div className="mt-4">{children}</div>
+    </div>
+  );
+}
+
+function TagList({ items }: { items: string[] }) {
+  return (
+    <ul className="flex flex-wrap gap-2">
+      {items.map((item) => (
+        <li
+          key={item}
+          className="rounded-pill border border-line-soft bg-bg-secondary/60 px-3 py-1.5 font-sans text-[13px] text-ink-secondary"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default function TempleDetail() {
   const { slug = "" } = useParams();
@@ -51,6 +104,13 @@ export default function TempleDetail() {
       ? `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
       : null;
 
+  const profile = getTempleProfile(
+    slug,
+    name && deity && blurb && state
+      ? { name, deity, blurb, state }
+      : undefined
+  );
+
   if (!name) {
     return (
       <div className="max-w-container mx-auto px-5 md:px-8 pt-28 pb-24 text-center">
@@ -65,16 +125,12 @@ export default function TempleDetail() {
   return (
     <article className="bg-bg-primary pb-24">
       <div className="relative h-[min(48vh,480px)] w-full overflow-hidden bg-bg-secondary">
-        {imageUrl ? (
-          <ImageWithFallback
-            src={imageUrl}
-            alt={name}
-            fallbackSrc="/placeholder.svg"
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-bg-secondary" />
-        )}
+        <ImageWithFallback
+          src={imageUrl ?? "/placeholder.svg"}
+          alt={name}
+          fallbackSrc="/placeholder.svg"
+          className="h-full w-full"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-bg-deep/70 via-bg-deep/10 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 max-w-container mx-auto px-5 md:px-8 pb-10">
           <Link to="/explore" className="inline-flex items-center gap-1 font-sans text-[13px] text-bg-card/80 hover:text-bg-card mb-6">
@@ -103,24 +159,104 @@ export default function TempleDetail() {
               {blurb}
             </p>
           )}
+
+          {profile && (
+            <>
+              <InfoBlock icon={Landmark} title="Significance">
+                <p className="font-serif text-[16px] text-ink-secondary leading-[1.65] max-w-2xl">
+                  {profile.significance}
+                </p>
+              </InfoBlock>
+
+              {profile.history && (
+                <InfoBlock icon={BookOpen} title="History">
+                  <p className="font-serif text-[16px] text-ink-secondary leading-[1.65] max-w-2xl">
+                    {profile.history}
+                  </p>
+                </InfoBlock>
+              )}
+
+              {profile.architecture && (
+                <InfoBlock icon={Landmark} title="Architecture">
+                  <p className="font-serif text-[16px] text-ink-secondary leading-[1.65] max-w-2xl">
+                    {profile.architecture}
+                  </p>
+                </InfoBlock>
+              )}
+
+              <InfoBlock icon={Shirt} title="Temple attire">
+                <p className="font-serif text-[16px] text-ink-secondary leading-[1.65] max-w-2xl">
+                  {profile.templeAttire}
+                </p>
+              </InfoBlock>
+
+              <InfoBlock icon={Sparkles} title="Poojas & sevas">
+                <TagList items={profile.poojas} />
+                <p className="mt-3 font-sans text-[12px] text-ink-tertiary">
+                  Book arjitha sevas on the official temple portal where online booking is available.
+                </p>
+              </InfoBlock>
+
+              <InfoBlock icon={Calendar} title="Events & festivals">
+                <TagList items={profile.events} />
+              </InfoBlock>
+
+              {(profile.visitingHours || profile.bestTimeToVisit) && (
+                <InfoBlock icon={Clock} title="When to visit">
+                  {profile.visitingHours && (
+                    <p className="font-sans text-[14px] text-ink-secondary">
+                      <span className="font-medium text-ink-primary">Hours: </span>
+                      {profile.visitingHours}
+                    </p>
+                  )}
+                  {profile.bestTimeToVisit && (
+                    <p className={`font-sans text-[14px] text-ink-secondary ${profile.visitingHours ? "mt-2" : ""}`}>
+                      <span className="font-medium text-ink-primary">Best season: </span>
+                      {profile.bestTimeToVisit}
+                    </p>
+                  )}
+                </InfoBlock>
+              )}
+
+              {profile.photography && (
+                <InfoBlock icon={Camera} title="Photography">
+                  <p className="font-serif text-[16px] text-ink-secondary leading-[1.65] max-w-2xl">
+                    {profile.photography}
+                  </p>
+                </InfoBlock>
+              )}
+
+              {profile.nearbyAttractions && profile.nearbyAttractions.length > 0 && (
+                <InfoBlock icon={MapPin} title="Nearby">
+                  <ul className="space-y-2">
+                    {profile.nearbyAttractions.map((place) => (
+                      <li key={place} className="font-sans text-[14px] text-ink-secondary">
+                        · {place}
+                      </li>
+                    ))}
+                  </ul>
+                </InfoBlock>
+              )}
+            </>
+          )}
+
           {remote?.opening_time && (
-            <div className="mt-10 pt-8 border-t border-line-hair">
-              <h2 className="font-serif text-[24px] text-ink-primary">Visiting hours</h2>
-              <p className="mt-2 font-sans text-[14px] text-ink-secondary">
+            <InfoBlock icon={Clock} title="Visiting hours (official)">
+              <p className="font-sans text-[14px] text-ink-secondary">
                 {remote.opening_time} – {remote.closing_time ?? "—"}
               </p>
-            </div>
+            </InfoBlock>
           )}
+
           {remote?.accessibility_notes && (
-            <div className="mt-8">
-              <h2 className="font-serif text-[24px] text-ink-primary">Accessibility</h2>
-              <p className="mt-2 font-serif text-[16px] text-ink-secondary leading-[1.65]">{remote.accessibility_notes}</p>
-            </div>
+            <InfoBlock icon={MapPin} title="Accessibility">
+              <p className="font-serif text-[16px] text-ink-secondary leading-[1.65]">{remote.accessibility_notes}</p>
+            </InfoBlock>
           )}
+
           {hasGettingThere && (
-            <div className="mt-10 pt-8 border-t border-line-hair">
-              <h2 className="font-serif text-[24px] text-ink-primary">Getting there</h2>
-              <ul className="mt-4 space-y-3">
+            <InfoBlock icon={Navigation} title="Getting there">
+              <ul className="space-y-3">
                 {nearestAirport && (
                   <li className="flex items-start gap-3">
                     <Plane size={16} className="mt-0.5 shrink-0 text-accent" strokeWidth={1.5} />
@@ -140,11 +276,11 @@ export default function TempleDetail() {
                   </li>
                 )}
               </ul>
-            </div>
+            </InfoBlock>
           )}
         </SectionReveal>
 
-        <aside className="space-y-4">
+        <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
           {directionsUrl && (
             <a
               href={directionsUrl}
@@ -205,7 +341,7 @@ export default function TempleDetail() {
                 </a>
               )}
               <p className="font-sans text-[11px] text-ink-tertiary text-center leading-[1.5]">
-                These are official community links provided by each temple.
+                Official community links provided by the temple trust.
               </p>
             </div>
           )}

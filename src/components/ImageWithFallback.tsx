@@ -1,5 +1,4 @@
-
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from "react";
 
 interface ImageWithFallbackProps {
   src: string;
@@ -22,29 +21,23 @@ const ImageWithFallback = ({
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const imgRef = useRef<HTMLImageElement>(null);
-  
-  // Reset states when src changes
+
   useEffect(() => {
     setIsLoading(true);
     setHasError(false);
     setCurrentSrc(src);
-    
-    // Create a new image to preload
+
     const img = new Image();
+    img.referrerPolicy = "no-referrer";
     img.src = src;
-    
-    img.onload = () => {
-      setIsLoading(false);
-      console.log(`Image loaded successfully: ${src}`);
-    };
-    
+
+    img.onload = () => setIsLoading(false);
     img.onerror = () => {
-      console.log(`Image failed to load: ${src}, using fallback: ${fallbackSrc}`);
       setCurrentSrc(fallbackSrc);
       setHasError(true);
       setIsLoading(false);
     };
-    
+
     return () => {
       img.onload = null;
       img.onerror = null;
@@ -52,27 +45,17 @@ const ImageWithFallback = ({
   }, [src, fallbackSrc]);
 
   const handleError = () => {
-    console.log(`Handling error for image: ${currentSrc}`);
     if (!hasError && currentSrc !== fallbackSrc) {
-      console.log(`Setting fallback image: ${fallbackSrc}`);
       setCurrentSrc(fallbackSrc);
       setHasError(true);
+      setIsLoading(false);
     }
   };
-
-  // Fix the issue with the direct image rendering
-  useEffect(() => {
-    if (imgRef.current) {
-      // Force reload the image if it's already in the DOM
-      const imgElement = imgRef.current;
-      imgElement.src = currentSrc;
-    }
-  }, [currentSrc]);
 
   return (
     <div className={`relative ${className}`}>
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 animate-pulse">
+        <div className="absolute inset-0 flex items-center justify-center bg-bg-secondary animate-pulse">
           <span className="sr-only">Loading...</span>
         </div>
       )}
@@ -81,7 +64,8 @@ const ImageWithFallback = ({
         src={currentSrc}
         alt={alt}
         loading={loading}
-        className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'} w-full h-full object-cover`}
+        referrerPolicy="no-referrer"
+        className={`${className} ${isLoading ? "opacity-0" : "opacity-100 transition-opacity duration-300"} w-full h-full object-cover`}
         onError={handleError}
         onClick={onClick}
       />
