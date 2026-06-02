@@ -3,6 +3,7 @@
 
 export const TEMPLE_CARD_IMAGES: Record<string, string> = {
   "akshardham-delhi": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Swaminarayan_Akshardham%2C_Delhi.jpg/960px-Swaminarayan_Akshardham%2C_Delhi.jpg",
+  "ambaji-gujarat": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/0081323_Arasuri_Ambaji_mandir%2C_Shakti_Peeth%2C_north_Gujarat_037.jpg/500px-0081323_Arasuri_Ambaji_mandir%2C_Shakti_Peeth%2C_north_Gujarat_037.jpg",
   "amarnath-cave": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Cave_Temple_of_Lord_Amarnath.jpg/960px-Cave_Temple_of_Lord_Amarnath.jpg",
   "arunachaleswarar": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Arunachalam_temple_from_a_nearby_hill.jpg/960px-Arunachalam_temple_from_a_nearby_hill.jpg",
   "badrinath": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Badrinath_Temple_%2C_Uttarakhand.jpg/960px-Badrinath_Temple_%2C_Uttarakhand.jpg",
