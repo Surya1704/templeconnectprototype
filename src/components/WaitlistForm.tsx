@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { submitWaitlist, type WaitlistType } from "@/lib/supabase";
 import { INDIAN_STATES } from "@/data/indianStates";
+import { ConsentCheckbox } from "@/components/ConsentCheckbox";
 
 interface WaitlistTypeOption {
   value: WaitlistType;
@@ -150,18 +151,13 @@ export function WaitlistForm({ type, title, blurb, typeOptions, showOrganization
           <textarea id="wl-notes" rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} className={`${FIELD_CLASS} resize-none`} />
         </div>
 
-        <label className="flex items-start gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={consent}
-            onChange={(e) => setConsent(e.target.checked)}
-            className="mt-1 h-4 w-4 shrink-0 accent-[#9e6342]"
-          />
-          <span className="font-sans text-[13px] text-ink-secondary leading-[1.5]">
-            I agree to FaithConnect storing my contact details to respond to this request, per the{" "}
-            <a href="/about#privacy" className="text-accent hover:underline">Privacy Policy</a>.
-          </span>
-        </label>
+        <ConsentCheckbox id="wl-consent" checked={consent} onChange={setConsent}>
+          I agree to FaithConnect storing my contact details to respond to this request, per the{" "}
+          <Link to="/privacy" className="text-accent hover:underline">
+            Privacy Policy
+          </Link>
+          .
+        </ConsentCheckbox>
 
         {status === "error" && (
           <p className="font-sans text-[13px] text-red-700">{errorMsg || "Could not submit. Please try again."}</p>

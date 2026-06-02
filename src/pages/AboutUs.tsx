@@ -104,6 +104,33 @@ export default function AboutUs() {
         </div>
       </section>
 
+      <section id="community" className="max-w-container mx-auto px-5 md:px-8 py-16 scroll-mt-24 max-w-3xl border-t border-line-hair">
+        <SectionReveal>
+          <Eyebrow>COMMUNITY</Eyebrow>
+          <h2 className="mt-4 font-serif text-[32px] text-ink-primary">Devotee community</h2>
+          <p className="mt-4 font-serif text-[16px] text-ink-secondary leading-[1.65]">
+            Join fellow pilgrims for temple updates, verified donation reminders, and festival alerts. Temple-specific
+            WhatsApp and Telegram links appear on each official temple profile where the board publishes them.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="mailto:hello@faithconnect.in?subject=Join%20FaithConnect%20WhatsApp%20community"
+              className="inline-flex items-center gap-2 rounded-pill bg-[#25D366] px-5 py-2.5 font-sans text-[13px] font-medium text-white hover:opacity-90 transition-opacity duration-160"
+            >
+              Request WhatsApp invite
+            </a>
+            <a
+              href="https://t.me/faithconnect_in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-pill border border-line-soft px-5 py-2.5 font-sans text-[13px] font-medium text-ink-primary hover:border-accent/40 transition-colors duration-160"
+            >
+              Join Telegram channel
+            </a>
+          </div>
+        </SectionReveal>
+      </section>
+
       <section id="contact" className="bg-bg-secondary py-16 scroll-mt-24">
         <div className="max-w-container mx-auto px-5 md:px-8">
         <div className="max-w-3xl">

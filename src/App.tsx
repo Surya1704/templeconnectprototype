@@ -6,7 +6,10 @@ import TempleDetail from "@/pages/TempleDetail";
 import Donations from "@/pages/Donations";
 import OnboardTemple from "@/pages/OnboardTemple";
 import AboutUs from "@/pages/AboutUs";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsOfUse from "@/pages/TermsOfUse";
 import Astrology from "@/pages/Astrology";
+import ComingSoon from "@/pages/ComingSoon";
 import NotFound from "@/pages/NotFound";
 
 function LegacyTempleRedirect() {
@@ -25,6 +28,17 @@ export default function App() {
           <Route path="/donate" element={<Donations />} />
           <Route path="/list-your-temple" element={<OnboardTemple />} />
           <Route path="/about" element={<AboutUs />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfUse />} />
+          <Route
+            path="/festivals"
+            element={
+              <ComingSoon
+                title="Festival calendar"
+                subline="Seasonal festival listings and utsav schedules from verified temple boards are on the way."
+              />
+            }
+          />
           <Route path="/astrology" element={<Astrology />} />
 
           <Route path="/temples" element={<Navigate to="/explore" replace />} />
@@ -35,8 +49,6 @@ export default function App() {
           <Route path="/jyotirlingas" element={<Navigate to="/explore?tag=jyotirlinga" replace />} />
           <Route path="/contact" element={<Navigate to="/about#contact" replace />} />
           <Route path="/founder" element={<Navigate to="/about#contact" replace />} />
-          <Route path="/privacy" element={<Navigate to="/about#privacy" replace />} />
-          <Route path="/terms" element={<Navigate to="/about#terms" replace />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { MapPin, ExternalLink, ArrowLeft, Navigation, Plane, TrainFront, Bus, MessageCircle, Send } from "lucide-react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { SectionReveal } from "@/components/SectionReveal";
+import ImageWithFallback from "@/components/ImageWithFallback";
 import { getBundledTemple } from "@/data/temples";
 import { fetchTempleBySlug } from "@/lib/supabase";
 
@@ -65,7 +66,12 @@ export default function TempleDetail() {
     <article className="bg-bg-primary pb-24">
       <div className="relative h-[min(48vh,480px)] w-full overflow-hidden bg-bg-secondary">
         {imageUrl ? (
-          <img src={imageUrl} alt={name} className="w-full h-full object-cover" />
+          <ImageWithFallback
+            src={imageUrl}
+            alt={name}
+            fallbackSrc="/placeholder.svg"
+            className="w-full h-full object-cover"
+          />
         ) : (
           <div className="w-full h-full bg-bg-secondary" />
         )}

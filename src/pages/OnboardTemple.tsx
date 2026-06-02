@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Eyebrow } from "@/components/Eyebrow";
 import { SectionReveal } from "@/components/SectionReveal";
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { ConsentCheckbox } from "@/components/ConsentCheckbox";
 import { submitInquiry } from "@/lib/supabase";
 import { INDIAN_STATES } from "@/data/indianStates";
 
@@ -109,18 +111,13 @@ export default function OnboardTemple() {
                 <label htmlFor="notes" className="block font-sans text-[11px] uppercase tracking-[0.1em] text-ink-tertiary mb-2">Notes</label>
                 <textarea id="notes" name="notes" rows={4} className="w-full px-4 py-3 rounded-[12px] border border-line-soft bg-bg-card font-sans text-[14px] resize-none" />
               </div>
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={consent}
-                  onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-1 h-4 w-4 shrink-0 accent-[#9e6342]"
-                />
-                <span className="font-sans text-[13px] text-ink-secondary leading-[1.5]">
-                  I agree to FaithConnect storing my contact details to respond to this request, per the{" "}
-                  <a href="/about#privacy" className="text-accent hover:underline">Privacy Policy</a>.
-                </span>
-              </label>
+              <ConsentCheckbox id="inquiry-consent" checked={consent} onChange={setConsent}>
+                I agree to FaithConnect storing my contact details to respond to this request, per the{" "}
+                <Link to="/privacy" className="text-accent hover:underline">
+                  Privacy Policy
+                </Link>
+                .
+              </ConsentCheckbox>
               {status === "error" && (
                 <p className="font-sans text-[13px] text-red-700">{errorMsg || "Could not submit. Check Supabase configuration."}</p>
               )}

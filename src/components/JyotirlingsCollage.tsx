@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
+import { getTempleCardImage } from "@/data/templeImages";
 import { jyotirlingas, type Jyotirlinga } from "@/data/jyotirlingas";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -53,7 +54,7 @@ function Tile({ j }: { j: Jyotirlinga }) {
     >
       <div className="relative min-h-0 flex-1">
         <img
-          src={j.imageUrl}
+          src={getTempleCardImage(j.slug, j.imageUrl)}
           alt={`${j.name} temple`}
           loading="lazy"
           onError={(e) => {

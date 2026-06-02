@@ -1,8 +1,9 @@
 import { useMemo, useState, useCallback } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Search, SlidersHorizontal, MapPin, Navigation, X, Loader2 } from "lucide-react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Search, SlidersHorizontal, Navigation, X, Loader2 } from "lucide-react";
 import { TempleListingCard } from "@/components/explore/TempleListingCard";
 import { ExploreMap } from "@/components/explore/ExploreMap";
+import { ConsentCheckbox } from "@/components/ConsentCheckbox";
 import {
   getAllBundledTemples,
   getBundledFilterOptions,
@@ -18,8 +19,10 @@ function templeKey(t: Temple): string {
 type SortMode = "name" | "nearest";
 
 export default function AllTemples() {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const jyotirlingaOnlyParam = searchParams.get("tag") === "jyotirlinga";
+  const pilgrimageParam = searchParams.get("type") === "pilgrimage";
 
   const { deities, states } = useMemo(() => getBundledFilterOptions(), []);
 
@@ -27,7 +30,7 @@ export default function AllTemples() {
   const [selected, setSelected] = useState<Temple | null>(null);
   const [hovered, setHovered] = useState<Temple | null>(null);
   const [officialOnly, setOfficialOnly] = useState(true);
-  const [jyotirlingaOnly, setJyotirlingaOnly] = useState(jyotirlingaOnlyParam);
+  const [jyotirlingaOnly, setJyotirlingaOnly] = useState(jyotirlingaOnlyParam || pilgrimageParam);
   const [stateFilter, setStateFilter] = useState("");
   const [deityFilter, setDeityFilter] = useState("");
   const [donationOnly, setDonationOnly] = useState(false);
@@ -107,6 +110,25 @@ export default function AllTemples() {
   const activeFilterCount = [stateFilter, deityFilter, jyotirlingaOnly, donationOnly, !officialOnly].filter(Boolean).length;
 
   const title = jyotirlingaOnly ? "The twelve Jyotirlingas" : "Temples across India";
+
+  const handleOpen = useCallback(
+    (t: Temple) => {
+      setSelected(t);
+      if (t.slug) navigate(`/explore/${t.slug}`);
+    },
+    [navigate]
+  );
+
+  const mapPanel = (
+    <ExploreMap
+      temples={temples}
+      selectedId={selectedId}
+      hoveredId={hoveredId}
+      userLocation={userLocation}
+      onSelect={setSelected}
+      className="h-full w-full"
+    />
+  );
 
   return (
     <div className="flex min-h-screen flex-col bg-bg-primary pt-16">
@@ -196,15 +218,13 @@ export default function AllTemples() {
               <div className="flex flex-wrap items-center gap-2">
                 {!userLocation ? (
                   <>
-                    <label className="flex items-center gap-2 font-sans text-[12px] text-ink-secondary">
-                      <input
-                        type="checkbox"
-                        checked={locationConsent}
-                        onChange={(e) => setLocationConsent(e.target.checked)}
-                        className="rounded border-line-soft text-accent focus:ring-accent"
-                      />
+                    <ConsentCheckbox
+                      id="location-consent"
+                      checked={locationConsent}
+                      onChange={setLocationConsent}
+                    >
                       I consent to one-time location use
-                    </label>
+                    </ConsentCheckbox>
                     <button
                       type="button"
                       onClick={requestLocation}
@@ -234,15 +254,8 @@ export default function AllTemples() {
       </div>
 
       <div className="flex flex-1 flex-col lg:flex-row">
-        <div className="order-1 h-[42vh] min-h-[280px] w-full border-b border-line-hair lg:order-3 lg:hidden">
-          <ExploreMap
-            temples={temples}
-            selectedId={selectedId}
-            hoveredId={hoveredId}
-            userLocation={userLocation}
-            onSelect={setSelected}
-            className="h-full w-full"
-          />
+        <div className="order-1 h-[42vh] min-h-[280px] w-full border-b border-line-hair lg:order-2 lg:sticky lg:top-[calc(4rem+73px)] lg:h-[calc(100vh-4rem-73px)] lg:w-[45%] lg:border-b-0 lg:border-l lg:xl:w-[42%]">
+          {mapPanel}
         </div>
 
         <div className="order-2 w-full lg:order-1 lg:w-[55%] xl:w-[58%]">
@@ -265,23 +278,12 @@ export default function AllTemples() {
                     temple={t}
                     selected={selectedId === templeKey(t)}
                     onHover={setHovered}
-                    onSelect={setSelected}
+                    onSelect={handleOpen}
                   />
                 ))}
               </div>
             )}
           </div>
-        </div>
-
-        <div className="sticky top-[calc(4rem+73px)] order-3 hidden h-[calc(100vh-4rem-73px)] w-full border-l border-line-hair lg:order-2 lg:block lg:w-[45%] xl:w-[42%]">
-          <ExploreMap
-            temples={temples}
-            selectedId={selectedId}
-            hoveredId={hoveredId}
-            userLocation={userLocation}
-            onSelect={setSelected}
-            className="h-full w-full"
-          />
         </div>
       </div>
     </div>

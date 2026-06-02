@@ -3,6 +3,7 @@
  * Chosen over paid Google/Mapbox APIs for zero cost and smooth pan/zoom.
  */
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import L from "leaflet";
 import type { Temple } from "@/lib/templeData";
@@ -65,8 +66,14 @@ export function ExploreMap({
   onSelect,
   className = "",
 }: ExploreMapProps) {
+  const navigate = useNavigate();
   const [ready, setReady] = useState(false);
   useEffect(() => setReady(true), []);
+
+  function handleMarkerClick(t: Temple) {
+    onSelect?.(t);
+    if (t.slug) navigate(`/explore/${t.slug}`);
+  }
 
   const selected = useMemo(
     () => temples.find((t) => templeKey(t) === selectedId),
@@ -104,7 +111,7 @@ export function ExploreMap({
             position={[t.lat, t.lng]}
             icon={pillIcon(shortLabel(t.name), hi)}
             zIndexOffset={hi ? 1000 : t.isJyotirlinga ? 100 : 0}
-            eventHandlers={{ click: () => onSelect?.(t) }}
+            eventHandlers={{ click: () => handleMarkerClick(t) }}
           />
         );
       })}
