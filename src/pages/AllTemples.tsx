@@ -6,7 +6,7 @@ import { SectionReveal } from "@/components/SectionReveal";
 import { TempleMap } from "@/components/TempleMap";
 import {
   getAllTemplesForViewport,
-  getBundledJyotirlingas,
+  getAllBundledTemples,
   searchTemples,
   type Temple,
   type LatLngBoundsLiteral,
@@ -19,7 +19,7 @@ export default function AllTemples() {
   const [searchParams] = useSearchParams();
   const jyotirlingaOnly = searchParams.get("tag") === "jyotirlinga";
 
-  const [temples, setTemples] = useState<Temple[]>(getBundledJyotirlingas());
+  const [temples, setTemples] = useState<Temple[]>(getAllBundledTemples());
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Temple[] | null>(null);
@@ -73,7 +73,7 @@ export default function AllTemples() {
           {jyotirlingaOnly ? "The twelve Jyotirlingas" : "Explore temples across India"}
         </h1>
         <p className="mt-3 font-serif text-[17px] text-ink-secondary leading-[1.65] max-w-[560px]">
-          Pan and zoom the map. Verified temples from Supabase merge with OpenStreetMap data at closer zoom levels.
+          Pan and zoom the map. Our bundled directory of well-known temples merges with live OpenStreetMap places at closer zoom levels.
         </p>
         <div className="mt-6 relative max-w-md">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-ink-tertiary" size={16} strokeWidth={1.5} />

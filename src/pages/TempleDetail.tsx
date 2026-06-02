@@ -3,12 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import { MapPin, ExternalLink, ArrowLeft, Navigation, Plane, TrainFront, Bus, MessageCircle, Send } from "lucide-react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { SectionReveal } from "@/components/SectionReveal";
-import { getJyotirlinga } from "@/data/jyotirlingas";
+import { getBundledTemple } from "@/data/temples";
 import { fetchTempleBySlug } from "@/lib/supabase";
 
 export default function TempleDetail() {
   const { slug = "" } = useParams();
-  const bundled = getJyotirlinga(slug);
+  const bundled = getBundledTemple(slug);
   const [remote, setRemote] = useState<Awaited<ReturnType<typeof fetchTempleBySlug>>["data"]>(null);
   const [loading, setLoading] = useState(!bundled);
 
@@ -74,7 +74,7 @@ export default function TempleDetail() {
           <Link to="/explore" className="inline-flex items-center gap-1 font-sans text-[13px] text-bg-card/80 hover:text-bg-card mb-6">
             <ArrowLeft size={14} /> Explore
           </Link>
-          {bundled && <Eyebrow className="text-accent-soft">Jyotirlinga</Eyebrow>}
+          {bundled?.isJyotirlinga && <Eyebrow className="text-accent-soft">Jyotirlinga</Eyebrow>}
           <h1 className="mt-4 font-serif text-[clamp(32px,5vw,56px)] font-normal leading-[1.05] tracking-[-0.02em] text-bg-card">
             {name}
           </h1>

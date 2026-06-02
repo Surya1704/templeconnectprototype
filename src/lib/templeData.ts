@@ -7,6 +7,7 @@
  * Nominatim usage policy: max 1 request/second, requires User-Agent header.
  */
 import { jyotirlingas, type Jyotirlinga } from "@/data/jyotirlingas";
+import { extraTemples } from "@/data/temples";
 import { fetchTemples as fetchSupabaseTemples, type Temple as SupabaseTemple } from "@/lib/supabase";
 
 export interface Temple {
@@ -43,6 +44,20 @@ export function getBundledJyotirlingas(): Temple[] {
     whatsappLink: j.whatsappLink, telegramLink: j.telegramLink,
     nearestAirport: j.nearestAirport, nearestRailway: j.nearestRailway, localTransport: j.localTransport,
   }));
+}
+
+export function getBundledExtraTemples(): Temple[] {
+  return extraTemples.map((t) => ({
+    osmId: `bundled/${t.slug}`, name: t.name, lat: t.lat, lng: t.lng,
+    deity: t.deity, state: t.state, isJyotirlinga: false, source: "bundled" as const,
+    slug: t.slug, blurb: t.blurb, imageUrl: t.imageUrl,
+    donationLink: t.donationLink, officialWebsite: t.officialWebsite,
+  }));
+}
+
+// Everything that ships with the app: the twelve Jyotirlingas + the directory.
+export function getAllBundledTemples(): Temple[] {
+  return [...getBundledJyotirlingas(), ...getBundledExtraTemples()];
 }
 
 export async function fetchSupabaseTemplesList(filters?: { state?: string; deity?: string; search?: string; limit?: number; }): Promise<Temple[]> {
@@ -82,7 +97,7 @@ function parseOverpassResponse(elements: Array<Record<string, unknown>>): Temple
   }).filter((t): t is Temple => t !== null);
 }
 function mergeWithBundled(osmTemples: Temple[], bbox: LatLngBoundsLiteral): Temple[] {
-  const bundled = getBundledJyotirlingas().filter((t) => t.lat >= bbox[0][0] && t.lng >= bbox[0][1] && t.lat <= bbox[1][0] && t.lng <= bbox[1][1]);
+  const bundled = getAllBundledTemples().filter((t) => t.lat >= bbox[0][0] && t.lng >= bbox[0][1] && t.lat <= bbox[1][0] && t.lng <= bbox[1][1]);
   const isNearBundled = (t: Temple) => bundled.some((b) => Math.abs(t.lat - b.lat) < 0.002 && Math.abs(t.lng - b.lng) < 0.002);
   return [...bundled, ...osmTemples.filter((t) => !isNearBundled(t))];
 }
@@ -102,7 +117,7 @@ export async function fetchTemplesInBounds(bbox: LatLngBoundsLiteral): Promise<T
     } catch (err) { lastError = err instanceof Error ? err : new Error(String(err)); continue; }
   }
   console.warn("[FaithConnect] Overpass API unavailable.", lastError?.message);
-  return getBundledJyotirlingas().filter((t) => t.lat >= bbox[0][0] && t.lng >= bbox[0][1] && t.lat <= bbox[1][0] && t.lng <= bbox[1][1]);
+  return getAllBundledTemples().filter((t) => t.lat >= bbox[0][0] && t.lng >= bbox[0][1] && t.lat <= bbox[1][0] && t.lng <= bbox[1][1]);
 }
 
 export async function enrichTemple(temple: Temple): Promise<Temple> {
@@ -127,7 +142,7 @@ export async function searchTemples(query: string): Promise<Temple[]> {
 }
 
 export async function getAllTemplesForViewport(bbox: LatLngBoundsLiteral, zoom: number): Promise<Temple[]> {
-  const bundled = getBundledJyotirlingas().filter((t) => t.lat >= bbox[0][0] && t.lng >= bbox[0][1] && t.lat <= bbox[1][0] && t.lng <= bbox[1][1]);
+  const bundled = getAllBundledTemples().filter((t) => t.lat >= bbox[0][0] && t.lng >= bbox[0][1] && t.lat <= bbox[1][0] && t.lng <= bbox[1][1]);
   let supabaseTemples: Temple[] = [];
   try { supabaseTemples = await fetchSupabaseTemplesList({ limit: 200 }); supabaseTemples = supabaseTemples.filter((t) => t.lat >= bbox[0][0] && t.lng >= bbox[0][1] && t.lat <= bbox[1][0] && t.lng <= bbox[1][1]); } catch { /* demo mode */ }
   if (zoom >= 7) { try { return await fetchTemplesInBounds(bbox); } catch { /* fallback */ } }
