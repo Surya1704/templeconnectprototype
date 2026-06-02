@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { TempleListingCard } from "@/components/explore/TempleListingCard";
-import { TempleGoogleMap } from "@/components/explore/TempleGoogleMap";
+import { TempleStaticMap } from "@/components/explore/TempleStaticMap";
 import {
   getAllBundledTemples,
   searchBundledTemples,
@@ -72,7 +72,7 @@ export default function AllTemples() {
       <div className="flex flex-1 flex-col lg:flex-row">
         {/* Mobile map — pinned above the list */}
         <div className="order-1 h-[42vh] min-h-[280px] w-full border-b border-line-hair lg:hidden">
-          <TempleGoogleMap
+          <TempleStaticMap
             temples={temples}
             selectedId={selectedId}
             hoveredId={hoveredId}
@@ -112,7 +112,7 @@ export default function AllTemples() {
 
         {/* Right — map (sticky on desktop) */}
         <div className="sticky top-[calc(4rem+73px)] order-3 hidden h-[calc(100vh-4rem-73px)] w-full border-l border-line-hair lg:block lg:w-[45%] xl:w-[42%]">
-          <TempleGoogleMap
+          <TempleStaticMap
             temples={temples}
             selectedId={selectedId}
             hoveredId={hoveredId}
