@@ -4,6 +4,7 @@
 // these listings are community-sourced, not verified temple-trust partners.
 
 import { jyotirlingas } from "./jyotirlingas";
+import { getTempleCardImage } from "./templeImages";
 
 export interface BundledTemple {
   slug: string;
@@ -571,8 +572,8 @@ export interface BundledTempleDetail {
 // used by the temple detail page so every bundled listing resolves.
 export function getBundledTemple(slug: string): BundledTempleDetail | undefined {
   const j = jyotirlingas.find((x) => x.slug === slug);
-  if (j) return { ...j, isJyotirlinga: true };
+  if (j) return { ...j, imageUrl: getTempleCardImage(j.slug, j.imageUrl), isJyotirlinga: true };
   const e = extraTemples.find((x) => x.slug === slug);
-  if (e) return { ...e, isJyotirlinga: false, isOfficial: Boolean(e.officialWebsite) };
+  if (e) return { ...e, imageUrl: getTempleCardImage(e.slug, e.imageUrl), isJyotirlinga: false, isOfficial: Boolean(e.officialWebsite) };
   return undefined;
 }

@@ -8,6 +8,7 @@
  */
 import { jyotirlingas, type Jyotirlinga } from "@/data/jyotirlingas";
 import { extraTemples } from "@/data/temples";
+import { getTempleCardImage } from "@/data/templeImages";
 import { fetchTemples as fetchSupabaseTemples, type Temple as SupabaseTemple } from "@/lib/supabase";
 
 export interface Temple {
@@ -19,6 +20,7 @@ export interface Temple {
   hrceManaged?: boolean; hrceDepartment?: string;
   whatsappLink?: string; telegramLink?: string;
   nearestAirport?: string; nearestRailway?: string; localTransport?: string;
+  distanceKm?: number;
 }
 export type LatLngBoundsLiteral = [[number, number], [number, number]];
 
@@ -41,7 +43,7 @@ export function getBundledJyotirlingas(): Temple[] {
   return jyotirlingas.map((j: Jyotirlinga) => ({
     osmId: `bundled/${j.slug}`, name: j.name, lat: j.lat, lng: j.lng,
     deity: j.deity, state: j.state, isJyotirlinga: true, source: "bundled" as const,
-    slug: j.slug, blurb: j.blurb, imageUrl: j.imageUrl, donationLink: j.donationLink, officialWebsite: j.officialWebsite,
+    slug: j.slug, blurb: j.blurb, imageUrl: getTempleCardImage(j.slug, j.imageUrl), donationLink: j.donationLink, officialWebsite: j.officialWebsite,
     isOfficial: true,
     whatsappLink: j.whatsappLink, telegramLink: j.telegramLink,
     nearestAirport: j.nearestAirport, nearestRailway: j.nearestRailway, localTransport: j.localTransport,
@@ -52,7 +54,7 @@ export function getBundledExtraTemples(): Temple[] {
   return extraTemples.map((t) => ({
     osmId: `bundled/${t.slug}`, name: t.name, lat: t.lat, lng: t.lng,
     deity: t.deity, state: t.state, isJyotirlinga: false, source: "bundled" as const,
-    slug: t.slug, blurb: t.blurb, imageUrl: t.imageUrl,
+    slug: t.slug, blurb: t.blurb, imageUrl: getTempleCardImage(t.slug, t.imageUrl),
     donationLink: t.donationLink, officialWebsite: t.officialWebsite,
     isOfficial: Boolean(t.officialWebsite),
   }));
@@ -71,6 +73,13 @@ export function searchBundledTemples(query: string): Temple[] {
 
 export function getOfficialBundledTemples(): Temple[] {
   return getAllBundledTemples().filter((t) => t.isOfficial);
+}
+
+export function getBundledFilterOptions() {
+  const all = getAllBundledTemples();
+  const deities = [...new Set(all.map((t) => t.deity).filter(Boolean) as string[])].sort();
+  const states = [...new Set(all.map((t) => t.state).filter(Boolean) as string[])].sort();
+  return { deities, states };
 }
 
 // Everything that ships with the app: the twelve Jyotirlingas + the directory.

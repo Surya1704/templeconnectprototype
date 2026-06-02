@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, Heart, MapPin } from "lucide-react";
 import type { Temple } from "@/lib/templeData";
+import { formatDistance } from "@/lib/geo";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 interface TempleListingCardProps {
   temple: Temple;
@@ -10,8 +12,6 @@ interface TempleListingCardProps {
 }
 
 export function TempleListingCard({ temple, selected, onHover, onSelect }: TempleListingCardProps) {
-  const img = temple.imageUrl && !temple.imageUrl.endsWith("placeholder.svg") ? temple.imageUrl : "/placeholder.svg";
-
   return (
     <article
       className={`group cursor-pointer ${selected ? "ring-2 ring-accent ring-offset-2 rounded-[16px]" : ""}`}
@@ -20,9 +20,10 @@ export function TempleListingCard({ temple, selected, onHover, onSelect }: Templ
       onClick={() => onSelect?.(temple)}
     >
       <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] bg-bg-secondary">
-        <img
-          src={img}
+        <ImageWithFallback
+          src={temple.imageUrl ?? "/placeholder.svg"}
           alt={temple.name}
+          fallbackSrc="/placeholder.svg"
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
@@ -47,21 +48,26 @@ export function TempleListingCard({ temple, selected, onHover, onSelect }: Templ
       </div>
 
       <div className="mt-3 space-y-1">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="font-sans text-[15px] font-semibold leading-snug text-ink-primary line-clamp-1">
-            {temple.name}
-          </h3>
-        </div>
+        <h3 className="font-sans text-[15px] font-semibold leading-snug text-ink-primary line-clamp-1">
+          {temple.name}
+        </h3>
         <p className="font-sans text-[14px] text-ink-secondary line-clamp-1">
           {temple.deity}
           {temple.state ? ` · ${temple.state}` : ""}
         </p>
-        {temple.state && (
-          <p className="flex items-center gap-1 font-sans text-[13px] text-ink-tertiary">
-            <MapPin size={12} strokeWidth={1.5} />
-            {temple.state}
-          </p>
-        )}
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          {temple.state && (
+            <p className="flex items-center gap-1 font-sans text-[13px] text-ink-tertiary">
+              <MapPin size={12} strokeWidth={1.5} />
+              {temple.state}
+            </p>
+          )}
+          {typeof temple.distanceKm === "number" && (
+            <p className="font-sans text-[13px] font-medium text-accent">
+              {formatDistance(temple.distanceKm)}
+            </p>
+          )}
+        </div>
 
         {(temple.officialWebsite || temple.donationLink) && (
           <div className="flex flex-wrap items-center gap-2 pt-2" onClick={(e) => e.stopPropagation()}>
